@@ -20,10 +20,10 @@
         }
         /* aqui cambias el color - att:yo */
         .sidebar-dark{
-            background-color: #070D59;
+            background-color: #113F67;
         }
         .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus, .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active{
-            background-color: #1F3C88;
+            background-color: #34699A;
         }
         .nav-left-sidebar .submenu{
             background: #226fb3;
