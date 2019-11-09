@@ -12,6 +12,13 @@
     <link href="{{asset('templante/assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('templante/assets/libs/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('templante/assets/vendor/fonts/fontawesome/css/fontawesome-all.css')}}">
+    <style>
+        .navbar-brand {
+            margin-left: 30px!important;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,17 +31,18 @@
         <!-- ============================================================== -->
          <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="../index.html">Concept</a>
+                <a class="navbar-brand" href="../index.html">MegaSystem</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
+                       <!-- <li class="nav-item">
                             <div id="custom-search" class="top-search-bar">
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
                         </li>
+                        
                         <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
@@ -54,7 +62,7 @@
                                                 <div class="notification-info">
                                                     <div class="notification-list-user-img"><img src="../assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">
-John Abraham</span>is now following you
+                                                        John Abraham</span>is now following you
                                                         <div class="notification-date">2 days ago</div>
                                                     </div>
                                                 </div>
@@ -114,7 +122,7 @@ John Abraham</span>is now following you
                                     <div class="conntection-footer"><a href="#">More</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
