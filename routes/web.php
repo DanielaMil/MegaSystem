@@ -12,3 +12,8 @@
 */
 
 Route::get('/', 'AplicacionController@Inicio')->name('inicio');
+Route::get('/a', 'AplicacionController@Inicio2')->name('inicio2');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

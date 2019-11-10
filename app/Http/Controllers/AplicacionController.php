@@ -10,4 +10,9 @@ class AplicacionController extends Controller
     {
         return view('welcome');
     }
+    
+    public function Inicio2(REQUEST $request)
+    {
+        return view('Mantenedor/Registrar');
+    }
 }
