@@ -8,11 +8,13 @@ class AplicacionController extends Controller
 {
     public function Inicio(REQUEST $request)
     {
-        return view('welcome');
+        return view('layouts/app');
     }
-    
+
     public function Inicio2(REQUEST $request)
     {
         return view('Mantenedor/Registrar');
     }
+
+    
 }
