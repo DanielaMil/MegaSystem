@@ -3,7 +3,6 @@
 
 @endsection
 @section('url')
-fggf>jdk>fjkfjkj
 @endsection
 @section('content')
 <div class="row">

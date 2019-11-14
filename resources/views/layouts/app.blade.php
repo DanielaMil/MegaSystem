@@ -150,6 +150,7 @@
                                         <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
                                             Matricula
+
                                         </a>
                                     </li>
                                     <li>
@@ -325,7 +326,7 @@
             </div>
             <div class="app-main__outer">
                 <div class="app-main__inner">
-
+                    @yield('content')
                 </div>
                 <div class="app-wrapper-footer">
                     <div class="app-footer">
