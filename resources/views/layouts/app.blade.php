@@ -141,7 +141,7 @@
                             <li class="app-sidebar__heading">UI Components</li>
                             <li>
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
+                                    <i class="metismenu-icon pe-7s-next-2"></i>
                                     CETPRO
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
