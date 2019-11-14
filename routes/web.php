@@ -13,7 +13,6 @@
 
 Route::get('/', 'AplicacionController@Inicio')->name('inicio');
 Route::get('/a', 'AplicacionController@Inicio2')->name('inicio2');
-Route::get('/prueba', 'AplicacionController@Pruebita')->name('pruebita');
 
 Auth::routes();
 
