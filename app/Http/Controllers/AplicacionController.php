@@ -11,11 +11,6 @@ class AplicacionController extends Controller
         return view('layouts/app');
     }
 
-    public function Pruebita(REQUEST $request)
-    {
-        return view('layouts/prueba');
-    }
-
     public function Inicio2(REQUEST $request)
     {
         return view('Mantenedor/Registrar');
