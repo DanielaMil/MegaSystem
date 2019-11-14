@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
+    <title>MEGASYSTEM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -133,7 +133,7 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>
-                                <a href="index.html" class="mm-active">
+                                <a href="" class="mm-active">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Dashboard Example 1
                                 </a>
@@ -142,23 +142,23 @@
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-diamond"></i>
-                                    Elements
+                                    CETPRO
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="elements-buttons-standard.html">
+                                        <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
-                                            Buttons
+                                            MATRICULA
                                         </a>
                                     </li>
                                     <li>
                                         <a href="elements-dropdowns.html">
                                             <i class="metismenu-icon">
-                                            </i>Dropdowns
+                                            </i>ALUMNO
                                         </a>
                                     </li>
-                                    <li>
+                                    <!--<li>
                                         <a href="elements-icons.html">
                                             <i class="metismenu-icon">
                                             </i>Icons
@@ -271,54 +271,55 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="tables-regular.html">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Tables
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Widgets</li>
-                            <li>
-                                <a href="dashboard-boxes.html">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Dashboard Boxes
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Forms</li>
-                            <li>
-                                <a href="forms-controls.html">
-                                    <i class="metismenu-icon pe-7s-mouse">
-                                    </i>Forms Controls
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-layouts.html">
-                                    <i class="metismenu-icon pe-7s-eyedropper">
-                                    </i>Forms Layouts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-validation.html">
-                                    <i class="metismenu-icon pe-7s-pendrive">
-                                    </i>Forms Validation
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Charts</li>
-                            <li>
-                                <a href="charts-chartjs.html">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>ChartJS
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">PRO Version</li>
-                            <li>
-                                <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>
-                                    Upgrade to PRO
-                                </a>
-                            </li>
-                        </ul>
+                                    <li>
+                                        <a href="tables-regular.html">
+                                            <i class="metismenu-icon pe-7s-display2"></i>
+                                            Tables
+                                        </a>
+                                    </li>-->
+                                    <!--<li class="app-sidebar__heading">Widgets</li>
+                                    <li>
+                                        <a href="dashboard-boxes.html">
+                                            <i class="metismenu-icon pe-7s-display2"></i>
+                                            Dashboard Boxes
+                                        </a>
+                                    </li>
+                                    <li class="app-sidebar__heading">CETPRO</li>
+                                    <li>
+                                        <a href="">
+                                            <i class="metismenu-icon pe-7s-mouse">
+                                            </i>CETPRO
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/matricula')}}">
+                                            <i class="metismenu-icon pe-7s-eyedropper">
+                                            </i>MATRICULA
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="forms-validation.html">
+                                            <i class="metismenu-icon pe-7s-pendrive">
+                                            </i>ALUMNO
+                                        </a>
+                                    </li>
+                                    <li class="app-sidebar__heading">Charts</li>
+                                    <li>
+                                        <a href="charts-chartjs.html">
+                                            <i class="metismenu-icon pe-7s-graph2">
+                                            </i>ChartJS
+                                        </a>
+                                    </li>
+                                    <li class="app-sidebar__heading">PRO Version</li>
+                                    <li>
+                                        <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
+                                            <i class="metismenu-icon pe-7s-graph2">
+                                            </i>
+                                            Upgrade to PRO
+                                        </a>
+                                    </li>-->
+                                </ul>
                     </div>
                 </div>
             </div>

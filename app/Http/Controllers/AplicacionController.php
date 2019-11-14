@@ -16,5 +16,8 @@ class AplicacionController extends Controller
         return view('Mantenedor/Registrar');
     }
 
-    
+    public function Matricula(REQUEST $request)
+    {
+        return view('Mantenedor/Matricula');
+    }
 }
