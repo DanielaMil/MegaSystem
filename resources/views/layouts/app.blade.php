@@ -149,13 +149,13 @@
                                     <li>
                                         <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
-                                            MATRICULA
+                                            Matricula
                                         </a>
                                     </li>
                                     <li>
                                         <a href="elements-dropdowns.html">
                                             <i class="metismenu-icon">
-                                            </i>ALUMNO
+                                            </i>Alumno
                                         </a>
                                     </li>
                                     <!--<li>
