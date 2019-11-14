@@ -70,7 +70,7 @@ fggf>jdk>fjkfjkj
                                     </h5>
                                     <form class="">
                                         <div class="row m-3 ">
-                                            <div class="column m-3">
+                                            <div class="column m-3 w-50">
                                                 <div class="position-relative form-group"><label for="form-control" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Apellido Paterno</font>
@@ -115,27 +115,147 @@ fggf>jdk>fjkfjkj
                                         </div>
                                         <button class="mt-1 btn btn-primary">
                                             <font style="vertical-align: inherit;">
-                                                <font style="vertical-align: inherit;">Enviar</font>
+                                                <font style="vertical-align: inherit;">Registrar</font>
                                             </font>
                                         </button>
                                     </form>
                                 </div>
                             </div>
                             <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
-                                <p>
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">Como Aldus PageMaker, incluidas las versiones de Lorem. </font>
-                                        <font style="vertical-align: inherit;">Ha sobrevivido no solo cinco siglos, sino también el salto a la composición electrónica, permaneciendo esencialmente sin cambios.</font>
-                                    </font>
-                                </p>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Dato Apoderado</font>
+                                        </font>
+                                    </h5>
+                                    <form class="">
+                                        <div class="row m-3">
+                                            <div class="column m-3 w-50">
+                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Apellido Paterno</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Apellido Materno</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Nombre</font>
+                                                        </font>
+                                                    </label><input name="text" id="nombre" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="exampleSelect" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Genero</font>
+                                                        </font>
+                                                    </label><select name="select" id="exampleSelect" class="form-control">
+                                                        <option>
+                                                        </option>
+                                                    </select></div>
+                                            </div>
+                                            <div class="column m-3">
+                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Direccion</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">celular</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Fecha Nacimiento</font>
+                                                        </font>
+                                                    </label><input name="text" id="nombre" type="date" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="exampleSelect" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Parentesco</font>
+                                                        </font>
+                                                    </label><select name="select" id="exampleSelect" class="form-control">
+                                                        <option>
+                                                        </option>
+                                                    </select></div>
+                                            </div>
+                                        </div>
+                                        <button class="mt-1 btn btn-primary">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Registrar</font>
+                                            </font>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                             <div class="tab-pane show" id="tab-eg115-2" role="tabpanel">
-                                <p>
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">Lorem Ipsum ha sido el texto ficticio estándar de la industria desde el año 1500, cuando una impresora desconocida tomó una galera de tipo y la mezcló para hacer un libro de muestras. </font>
-                                        <font style="vertical-align: inherit;">Ha sobrevivido no solo cinco siglos, sino también el salto a la composición electrónica, permaneciendo esencialmente sin cambios.</font>
-                                    </font>
-                                </p>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">Matricula</font>
+                                        </font>
+                                    </h5>
+                                    <form class="">
+                                        <div class="row m-3 ">
+                                            <div class="column m-3 w-50">
+                                                <div class="position-relative form-group"><label for="exampleSelect" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Curso</font>
+                                                        </font>
+                                                    </label><select name="select" id="exampleSelect" class="form-control">
+                                                        <option>
+                                                        </option>
+                                                    </select></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Fecha</font>
+                                                        </font>
+                                                    </label><input name="text" id="nombre" type="date" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Promotor</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Nº Recibo</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Importe</font>
+                                                        </font>
+                                                    </label><input name="text" id="nombre" type="text" class="form-control"></div>
+                                            </div>
+                                            <div class="column m-3">
+                                                <div class="position-relative form-group"><label for="exampleSelect" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Grupo</font>
+                                                        </font>
+                                                    </label><select name="select" id="exampleSelect" class="form-control">
+                                                        <option>
+                                                        </option>
+                                                    </select></div>
+                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Costo Matricula</font>
+                                                        </font>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="exampleText" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Observacion</font>
+                                                        </font>
+                                                    </label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
+                                            </div>
+                                        </div>
+                                        <button class="mt-1 btn btn-primary">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Registrar</font>
+                                            </font>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
