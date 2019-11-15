@@ -141,7 +141,7 @@
                             <li class="app-sidebar__heading">UI Components</li>
                             <li>
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-next-2"></i>
+                                    <i class="metismenu-icon pe-7s-study"></i>
                                     CETPRO
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
@@ -194,23 +194,23 @@
                                             <i class="metismenu-icon">
                                             </i>Utilities
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-car"></i>
-                                    Components
+                                    <i class="metismenu-icon pe-7s-cash"></i>
+                                    TESORERÍA
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="components-tabs.html">
+                                        <a href="{{url('/ingresos')}}">
                                             <i class="metismenu-icon">
-                                            </i>Tabs
+                                            </i>Ingresos
                                         </a>
                                     </li>
-                                    <li>
+                                    <!--<li>
                                         <a href="components-accordions.html">
                                             <i class="metismenu-icon">
                                             </i>Accordions
@@ -269,10 +269,10 @@
                                             <i class="metismenu-icon">
                                             </i>Maps
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </li>
-                                    <li>
+                                <!--    <li>
                                         <a href="tables-regular.html">
                                             <i class="metismenu-icon pe-7s-display2"></i>
                                             Tables

@@ -18,4 +18,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
-
+Route::get('/ingresos', 'AplicacionController@Ingresos')->name('ingresos');

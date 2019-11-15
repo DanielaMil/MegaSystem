@@ -20,4 +20,8 @@ class AplicacionController extends Controller
     {
         return view('Mantenedor/Matricula');
     }
+    public function Ingresos(REQUEST $request)
+    {
+        return view('Mantenedor/Ingresos');
+    }
 }
