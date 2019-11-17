@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use DB;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,13 @@ class AplicacionController extends Controller
     {
         return view('layouts/app');
     }
-/*
+    /*
     public function Inicio2(REQUEST $request)
     {
         return view('Mantenedor/Registrar');
     }
 */
-//********************Matricula********************* */
+    //********************Matricula********************* */
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -25,12 +26,15 @@ class AplicacionController extends Controller
     public function DatosMatricula(Request $dato)
     {
         $_auxdni = $dato->input('txtDni');
-        $datos = DB::select("call buscarAlumnodni(?)",array($_auxdni));
+        $datos = DB::select("call buscarAlumnodni(?)", array($_auxdni));
         //return $datos;
-        return view('Mantenedor.MatriculaFrmRegistro',['datos'=>$datos]);
+        return view('Mantenedor.MatriculaFrmRegistro', ['datos' => $datos]);
 
         //return   view('Mantenedor.MatriculaFrm',compact(datos));
-    } 
-//********************FIN_Matricula********************* */
-
+    }
+    //********************FIN_Matricula********************* */
+    public function Ingresos(REQUEST $request)
+    {
+        return view('Mantenedor.Ingresos');
+    }
 }

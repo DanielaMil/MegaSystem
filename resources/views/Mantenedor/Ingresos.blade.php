@@ -2,9 +2,6 @@
 @section('css')
 
 @endsection
-@section('url')
-fggf>jdk>fjkfjkj
-@endsection
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -102,4 +99,3 @@ fggf>jdk>fjkfjkj
         </div>
     </div>
 </div>
-

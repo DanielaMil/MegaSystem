@@ -271,13 +271,13 @@
                                     </li>-->
                                 </ul>
                             </li>
-                                <!--    <li>
+                            <!--    <li>
                                         <a href="tables-regular.html">
                                             <i class="metismenu-icon pe-7s-display2"></i>
                                             Tables
                                         </a>
                                     </li>-->
-                                    <!--<li class="app-sidebar__heading">Widgets</li>
+                            <!--<li class="app-sidebar__heading">Widgets</li>
                                     <li>
                                         <a href="dashboard-boxes.html">
                                             <i class="metismenu-icon pe-7s-display2"></i>
@@ -319,7 +319,7 @@
                                             Upgrade to PRO
                                         </a>
                                     </li>-->
-                                </ul>
+                        </ul>
                     </div>
                 </div>
             </div>
