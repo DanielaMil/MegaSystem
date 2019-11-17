@@ -17,7 +17,7 @@ fggf>jdk>fjkfjkj
                     <font style="vertical-align: inherit;">
                         <font style="vertical-align: inherit;">DNI</font>
                     </font>
-                </label><input name="txtDni" type="text" class="form-control">
+                </label><input name="txtDni" type="text" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
             <!-- <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
