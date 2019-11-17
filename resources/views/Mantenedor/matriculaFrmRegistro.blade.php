@@ -3,41 +3,22 @@
 
 @endsection
 @section('url')
-fggf>jdk>fjkfjkj
-@endsection
-@section('content')
-<div class="card">
-    <div class="card-body">
-        <form class="form-inline">
-            <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group"><label class="mr-sm-2">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">DNI</font>
-                    </font>
-                </label><input name="dni" id="dni" type="number" class="form-control"></div>
-            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Buscar
-            </button>
-        </form>
-    </div>
-</div>
-@endsection
-@section('js')
-<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
-<script>
-    $(document).ready(function() {
 
-    });
-</script>
 @endsection
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+@section('content')
+<!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <!--******************Encabezado****************-->
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrar Matricula</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
+            <!--******************FIN_Encabezado****************-->
+            <!--**************************************************Formulario*********************************************************-->
             <div class="modal-body">
                 <div class="mb-3 card">
                     <div class="card-header card-header-tab-animation">
@@ -59,6 +40,8 @@ fggf>jdk>fjkfjkj
                                 </a></li>
                         </ul>
                     </div>
+
+                    <!--Formularios de Alumno Apoderado Matricula--->
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
@@ -68,31 +51,41 @@ fggf>jdk>fjkfjkj
                                             <font style="vertical-align: inherit;">Dato Alumno</font>
                                         </font>
                                     </h5>
+
+
                                     <form class="">
+                                            @csrf
+
+                                        @foreach ($datos as $item)
                                         <div class="row m-3 ">
                                             <div class="column m-3 w-50">
-                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                <div class="position-relative form-group">
+                                                    <label for="form-control" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Apellido Paterno</font>
                                                         </font>
-                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
-                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control" value={{$item->apPaterno}}></div>
+                                                <div class="position-relative form-group">
+                                                    <label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Apellido Materno</font>
                                                         </font>
-                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
-                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control" value={{$item->apMaterno}}></div>
+                                                <div class="position-relative form-group">
+                                                    <label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Nombre</font>
                                                         </font>
-                                                    </label><input name="text" id="nombre" type="text" class="form-control"></div>
-                                                <div class="position-relative form-group"><label for="exampleSelect" class="">
+                                                    </label><input name="text" id="nombre" type="text" class="form-control" value={{$item->nombre}}></div>
+                                                <div class="position-relative form-group">
+                                                    <label for="exampleSelect" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Genero</font>
                                                         </font>
-                                                    </label><select name="select" id="exampleSelect" class="form-control">
-                                                        <option>
-                                                        </option>
+                                                    </label>
+                                                    <select name="select" id="exampleSelect" class="form-control" >
+                                                        <option selected>Masculino</option>
+                                                        <option >Femenino</option>
                                                     </select></div>
                                             </div>
                                             <div class="column m-3">
@@ -100,17 +93,17 @@ fggf>jdk>fjkfjkj
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Direccion</font>
                                                         </font>
-                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control" value={{$item->direccion}}></div>
                                                 <div class="position-relative form-group"><label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">celular</font>
                                                         </font>
-                                                    </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                    </label><input name="text" id="apMaterno" type="text" class="form-control" value={{$item->celular}}></div>
                                                 <div class="position-relative form-group"><label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
                                                             <font style="vertical-align: inherit;">Fecha Nacimiento</font>
                                                         </font>
-                                                    </label><input name="text" id="nombre" type="date" class="form-control"></div>
+                                                    </label><input name="text" id="nombre" type="date" class="form-control"  value={{$item->feNacimiento}}></div>
                                             </div>
                                         </div>
                                         <button class="mt-1 btn btn-primary">
@@ -118,7 +111,8 @@ fggf>jdk>fjkfjkj
                                                 <font style="vertical-align: inherit;">Registrar</font>
                                             </font>
                                         </button>
-                                    </form>
+                                    <!--</form>-->
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
@@ -128,7 +122,7 @@ fggf>jdk>fjkfjkj
                                             <font style="vertical-align: inherit;">Dato Apoderado</font>
                                         </font>
                                     </h5>
-                                    <form class="">
+                                    <!--<form class="">-->
                                         <div class="row m-3">
                                             <div class="column m-3 w-50">
                                                 <div class="position-relative form-group"><label for="form-control" class="">
@@ -186,7 +180,7 @@ fggf>jdk>fjkfjkj
                                                 <font style="vertical-align: inherit;">Registrar</font>
                                             </font>
                                         </button>
-                                    </form>
+                                    <!--</form>-->
                                 </div>
                             </div>
                             <div class="tab-pane show" id="tab-eg115-2" role="tabpanel">
@@ -196,7 +190,7 @@ fggf>jdk>fjkfjkj
                                             <font style="vertical-align: inherit;">Matricula</font>
                                         </font>
                                     </h5>
-                                    <form class="">
+                                    <!--<form class="">-->
                                         <div class="row m-3 ">
                                             <div class="column m-3 w-50">
                                                 <div class="position-relative form-group"><label for="exampleSelect" class="">
@@ -261,6 +255,9 @@ fggf>jdk>fjkfjkj
                     </div>
                 </div>
             </div>
+            <!--**************************************************FIN_Formulario*********************************************************-->
+
         </div>
     </div>
-</div>
+<!--</div> -->
+@endsection

@@ -149,8 +149,7 @@
                                     <li>
                                         <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
-                                            Matricula
-
+                                            Matriculaa
                                         </a>
                                     </li>
                                     <li>

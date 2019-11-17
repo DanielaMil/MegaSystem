@@ -17,5 +17,10 @@ Route::get('/a', 'AplicacionController@Inicio2')->name('inicio2');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
+//Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
+
+// **********************MATRICULA*******************************
+route::get('/matricula','AplicacionController@Matricula')->name('matricula01');
+route::post('/matricula','AplicacionController@DatosMatricula')->name('matricula02');
+//************************FIN_MATRICULA******************************* */
 
