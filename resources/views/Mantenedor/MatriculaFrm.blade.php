@@ -19,7 +19,7 @@ fggf>jdk>fjkfjkj
                         </font>
                     </label><input name="txtDni" type="text" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Buscar</button>
+                <button type="submit" class="btn btn-primary" >Buscar</button>
                <!-- <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Buscar
                 </button> -->
@@ -27,7 +27,8 @@ fggf>jdk>fjkfjkj
         </div>
     </div>
 @endsection 
-    
+
+ 
 <!--
 @section('js')
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
