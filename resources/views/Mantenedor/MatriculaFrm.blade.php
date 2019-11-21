@@ -489,22 +489,22 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Fecha</font>
                                                                 </font>
-                                                            </label><input name="text" id="nombre" type="date" class="form-control"></div>
+                                                            </label><input name="txtFechaMa" id="nombre" type="date" class="form-control"></div>
                                                         <div class="position-relative form-group"><label for="form-control" class="">
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Promotor</font>
                                                                 </font>
-                                                            </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                            </label><input name="txtPromotor" id="apMaterno" type="text" class="form-control"></div>
                                                         <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Nº Recibo</font>
                                                                 </font>
-                                                            </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                            </label><input name="txtRecibo" id="apMaterno" type="text" class="form-control"></div>
                                                         <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Importe</font>
                                                                 </font>
-                                                            </label><input name="text" id="nombre" type="text" class="form-control"></div>
+                                                            </label><input name="txtImporte" id="nombre" type="text" class="form-control"></div>
                                                     </div>
                                                     <div class="column m-3" style="width: 20em;">
                                                         <div class="position-relative form-group"><label for="exampleSelect" class="">
@@ -519,12 +519,12 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Costo Matricula</font>
                                                                 </font>
-                                                            </label><input name="text" id="apMaterno" type="text" class="form-control"></div>
+                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control"></div>
                                                         <div class="position-relative form-group"><label for="exampleText" class="">
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Observacion</font>
                                                                 </font>
-                                                            </label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
+                                                            </label><textarea name="txtObservacion" id="exampleText" class="form-control"></textarea></div>
                                                     </div>
                                                 </div>
                                                 <button class="mt-1 btn btn-primary">
