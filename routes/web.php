@@ -21,8 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // **********************MATRICULA*******************************
 route::get('/matricula','AplicacionController@Matricula')->name('matricula01');
-route::post('/matricula','AplicacionController@DatosMatricula')->name('matricula02');
-
+route::post('/matricula/buscarAlumno','AplicacionController@DatosMatricula')->name('matricula02');
+route::post('/matricula','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
