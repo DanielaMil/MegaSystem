@@ -6,35 +6,15 @@
 fggf>jdk>fjkfjkj
 @endsection
 
-@section('content')
-    <div class="card">
-        <div class="card-body mx-auto" style="width: 500px;">
-            <div class="form-inline">
-                <!-- <form class="form-inline" >-->
-                @csrf
-                                   
-                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                    <label class="mr-sm-2">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">DNI</font>
-                        </font>
-                    </label><input name="txtDni" id="txtDni1" type="text" class="form-control">
-                </div>
-                
-                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX">Buscar</button>
-                <!-- <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Buscar
-                    </button> -->
-                </div>
-        </div>
-    </div>    
+@section('content')   
     
     <input type="hidden" id="urlAJAX" value="{{route('matricula02')}}">
     <div class="load" style="display: none">cargando....</div>
 
             <h5 class="msj_ALU" style="display: none">*No se encontro datos de Alumno</h5>
             <!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog modal-lg" style="    margin: 0!important;
+                max-width: 1500px;" role="document">
                     <div class="modal-content">
                         <!--******************Encabezado***************ss*-->
                         <div class="modal-header">
@@ -81,20 +61,40 @@ fggf>jdk>fjkfjkj
                                                 <form class="">
                                                     @csrf
                                                     <!--**********Datos de Alumnos*************-->
+                                                    <div >
+                                                        <div class="card-body mx-auto style=width: 80px " > 
+                                                            <div  class="form-inline">
+                                                                <!-- <form class="form-inline" >-->
+                                                                @csrf
+                                                                                     
+                                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                    <label class="mr-sm-2">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">DNI</font>
+                                                                        </font>
+                                                                    </label>
+                                                                    <input name="txtDni" id="txtDni1" type="text"  class="form-control">
+                                                                    <!--<input name="txtDni" id="txtDni1" type="text" style="width: 160px" class="form-control">-->
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX" style="width: 160px">Buscar</button>
+                                                                <!-- <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                        Buscar
+                                                                    </button> -->
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+
                                                     <div class="row m-3 ">
                                                         <div class="column m-3" style="width: 20em;">
-                                                            <div class="position-relative form-group">
-                                                                <label for="form-control" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Dni</font>
-                                                                    </font>
-                                                                </label><input name="txtDniAl" id="txtDniAl" type="text" class="form-control"></div>
+                                                            
                                                             <div class="position-relative form-group">
                                                                 <label for="form-control" class="">
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Paterno</font>
                                                                     </font>
-                                                                </label><input name="txtApellidoPaAl" id="txtApellidoPaAl" type="text" class="form-control"></div>
+                                                                </label><input name="txtApellidoPaAl" id="txtApellidoPaAl" type="text" class="form-control">
+                                                            </div>
                                                             <div class="position-relative form-group">
                                                                 <label for="examplePassword" class="">
                                                                     <font style="vertical-align: inherit;">
@@ -310,26 +310,28 @@ fggf>jdk>fjkfjkj
                         
                         if(response.estado == true){
                             var alu = response.datos[0];
-                            $('#apPaterno_ALU').val(alu.apPaterno);
-                            $('#apPaterno_ALU').attr('disabled',true);
-                            $('#apMaterno_ALU').val(alu.apMaterno);
-                            $('#apMaterno_ALU').attr('disabled',true);
-                            $('#nombre_AL').val(alu.nombre);
-                            $('#nombre_AL').attr('disabled',true);
-                            $('#direccion_AL').val(alu.direccion);
-                            $('#direccion_AL').attr('disabled',true);
-                            $('#celular_AL').val(alu.celular);
-                            $('#celular_AL').attr('disabled',true);
-                            $('#fechaNacimiento_ALU').attr('disabled',true);
+                            $('#txtDniAl').val(alu.dni);
+                            $('#txtDniAl').attr('disabled',true);
+                            $('#txtApellidoPaAl').val(alu.apPaterno);
+                            $('#txtApellidoPaAl').attr('disabled',true);
+                            $('#txtApellidoMaAl').val(alu.apMaterno);
+                            $('#txtApellidoMaAl').attr('disabled',true);
+                            $('#txtNombreAl').val(alu.nombre);
+                            $('#txtNombreAl').attr('disabled',true);
+                            $('#txtDireccionAl').val(alu.direccion);
+                            $('#txtDireccionAl').attr('disabled',true);
+                            $('#txtCelularAl').val(alu.celular);
+                            $('#txtCelularAl').attr('disabled',true);
+                            $('#txtFechaNaAl').attr('disabled',true);
                             $('#celular_AL').attr('disabled',true);
 
-                            $('#cboGeneroAl_ALU').attr('disabled',true);
-                            var option = $('#cboGeneroAl_ALU option');
+                            $('#cboGeneroAl').attr('disabled',true);
+                            var option = $('#cboGeneroAl option');
                             for (var i=0;i < option.length ;i++) {
                                 var ban = (option.eq(i).val() == alu.genero)?true:false;
                                 option.eq(i).attr('selected',ban);
                             }
-                            $('#fechaNacimiento_ALU').val(alu.feNacimiento);
+                            $('#txtFechaNaAl').val(alu.feNacimiento);
                         }else{
                             if(response.cod == 100){
                                 alert('Cantidad de caracteres no valido')
@@ -342,7 +344,7 @@ fggf>jdk>fjkfjkj
                         // $('.load').css({display:'none'});
                     },
                     error:function (error) {  
-
+                        
                     },
                     complete:function () {  
 
