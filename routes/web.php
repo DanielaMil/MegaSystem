@@ -19,9 +19,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
 
-// **********************MATRICULA*******************************
+// **********************MATRICULA********************************
 route::get('/matricula','AplicacionController@Matricula')->name('matricula01');
-route::post('/matricula/buscarAlumno','AplicacionController@DatosMatricula')->name('matricula02');
+route::post('/matricula/buscarAlumno','AplicacionController@buscarAL')->name('matricula_AL');
+route::post('/matricula/buscarApoderado','AplicacionController@buscarAP')->name('matricula_AP');
 route::post('/matricula','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
 //************************FIN_MATRICULA******************************** */
 
