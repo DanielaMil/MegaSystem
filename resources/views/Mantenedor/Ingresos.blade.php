@@ -17,8 +17,13 @@
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script>
     $(document).ready(function() {
+        var urlAJAX_AL = $('#urlAJAX_AL').val();
 
-    });
+        $.ajax({
+            type:"post",
+            url:AJAX_AL
+        })
+    })
 </script>
 @endsection
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
