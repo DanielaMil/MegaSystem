@@ -17,7 +17,7 @@ class AplicacionController extends Controller
         return view('Mantenedor/Registrar');
     }
 */
-    //********************Matricula********************* */
+    //********************Matricula********************** */
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -39,7 +39,6 @@ class AplicacionController extends Controller
                 ];
                 return response()->json($data);
             }else{
-                
                 $data = [
                     'estado' => false,
                     'cod' => 101
