@@ -93,6 +93,28 @@ class AplicacionController extends Controller
         }
     }
 
+    public function cargarGrupo(Type $var)
+    {   $letra = "letra";
+
+        $datosGrupo = DB::select("call listarGrupo(?)",array($letra));
+        return response()->json(true);
+
+        if($datosGrupo){
+            $datas = [
+                'estado' => true,
+                'cod' => 200,
+                'datosGrupo' => $datas
+            ];
+            return response()->json($datas);
+        }else{
+            
+            $datas = [
+                'estado' => false,
+                'cod' => 101
+            ];
+        return response()->json($datas);
+        }
+    }
 
     public function matriculaRegistro(REQUEST $dato){
         $txtDni_Al        =$dato->txtDni_Al;
@@ -131,8 +153,6 @@ class AplicacionController extends Controller
             ];
         return response()->json($datas);
         }
-
-
     }
 
     //********************FIN_Matricula********************* */

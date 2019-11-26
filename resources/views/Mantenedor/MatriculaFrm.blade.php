@@ -242,6 +242,13 @@ fggf>jdk>fjkfjkj
                                                     <div class="column m-3" style="width: 4.5em;">
                                                         
                                                         <div class="mt-3 position-relative form-check">
+                                                            <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
+
+                                                            <div id="info">
+
+
+
+                                                            </div>
                                                             
                                                             <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
                                                             <label for="exampleCheck" class="form-check-label">
@@ -323,6 +330,31 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('js')
+    <script>
+    var resultado = document.getElementById("info");
+    function ajax_get_json(){
+        var xmlhttp;
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                //resultado.innerHTML = xmlhttp.responseText;
+                alert(xmlhttp.responseText);
+            }
+        }
+        //value="{{route('matriculaRegistro')}}"
+        xmlhttp.open("GET",value="{{route('cargarGrupo')}}",true);
+        //xmlhttp.open("GET","{{route('cargarGrupo')}}",true);
+        //xmlhttp.send();
+        
+    }
+    ajax_get_json();
+    </script>
+
     <script>
         function validarSiNumero(numero){
             if (!/^([0-9])*$/.test(numero))
