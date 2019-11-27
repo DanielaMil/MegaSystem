@@ -55,9 +55,6 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <!--<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ingresosModal">
-                                        <i class="metismenu-icon pe-7s-graph1"></i>
-                                    </button>-->
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
                                         <i class="metismenu-icon pe-7s-graph1"></i>
                                     </button>
