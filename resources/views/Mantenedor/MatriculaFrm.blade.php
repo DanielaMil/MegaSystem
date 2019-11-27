@@ -13,12 +13,9 @@ fggf>jdk>fjkfjkj
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
                     <div class="modal-content">
-                        <!--******************Encabezado***************ss*-->
+                        <!--******************Encabezado****************-->
                         <div class="modal-header">
                             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
                         </div>
                         <!--*******************FIN_Encabezado****************-->
                         <!--**************************************************Formulario*********************************************************-->
@@ -27,55 +24,40 @@ fggf>jdk>fjkfjkj
                                 <div class="card-header card-header-tab-animation">
                                     <ul class="nav nav-justified">
                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link active show">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Alumno</font>
-                                                </font>
+                                                Alumno
                                             </a></li>
                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Apoderado</font>
-                                                </font>
+                                                Apoderado
                                             </a></li>
                                         <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-2" class="nav-link show">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Matricula</font>
-                                                </font>
+                                                Matricula
                                             </a></li>
                                     </ul>
                                 </div>
-            
                                 <!--Formularios de Alumno Apoderado Matricula--->
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
                                             <div class="card-body">
                                                 <h5 class="card-title">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
-                                                    </font>
+                                                    Ingresar Datos
                                                 </h5>
-            
                                                 <div>
-                                                    @csrf
                                                     <!--**********Datos de Alumnos*************-->
                                                     <div class="card-body mx-auto style=width: 50px" > 
                                                         <div  class="form-inline">
                                                             <!-- <form class="form-inline" >-->
-                                                            @csrf  
+                                                            @csrf
                                                             <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-
                                                             <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
                                                                 <label class="mr-sm-2">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">DNI</font>
-                                                                    </font>
+                                                                    DNI
                                                                 </label>
                                                                 <input name="txtDni_Al" id="txtDni_Al" type="text"  class="form-control">
                                                             </div>
-                                                            
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AL" value="{{route('matricula_AL')}}">
-                                                            <div class="load" style="display: none">cargando....</div>
+                                                            <div class="load" style="display: none">Cargando....</div>
                                                         </div>
                                                     </div> 
 
@@ -239,51 +221,30 @@ fggf>jdk>fjkfjkj
                                                 <div>
                                                     <!--**********Datos de Matricula*************-->
                                                 <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 4.5em;">
-                                                        
+                                                    <div class="column m-3" style="width: 9em;">
                                                         <div class="mt-3 position-relative form-check">
+                                                            <br>
                                                             <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
-
                                                             <div id="info">
-
-
-
                                                             </div>
-                                                            
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
+                                                            <br>
                                                             <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        EXCEL
-                                                                    </font>
-                                                                </font>
+                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
+                                                                    EXCEL  
                                                             </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
                                                             <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        WORD
-                                                                    </font>
-                                                                </font>
+                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
+                                                                    OFIMATICA  
                                                             </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
                                                             <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        Powerpoint
-                                                                    </font>
-                                                                </font>
+                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
+                                                                    BARBERÍA  
                                                             </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
                                                             <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        Informatica
-                                                                    </font>
-                                                                </font>
+                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
+                                                                    OTROS  
                                                             </label>
                                                         </div>
-                                                    
                                                     </div>
                                                     <div class="column m-3" style="width: 10em;">
                                                         <div class="position-relative form-group"><label for="form-control" class="">
@@ -337,36 +298,11 @@ fggf>jdk>fjkfjkj
             alert("El valor " + numero + " no es un número");
         }
 
-    var resultado = document.getElementById("info");
-        function ajax_get_json(){
-            var xmlhttp;
-            if(window.XMLHttpRequest){
-                xmlhttp = new XMLHttpRequest();
-            }else{
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function(){
-                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                    //resultado.innerHTML = xmlhttp.responseText;
-                    alert(xmlhttp.responseText);
-                }
-            }
-            //value="{{route('matriculaRegistro')}}"
-            xmlhttp.open("GET",value="{{route('cargarGrupo')}}",true);
-            //xmlhttp.open("GET","{{route('cargarGrupo')}}",true);
-            xmlhttp.send();
-            
-        }
-    //ajax_get_json();
-
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
     <script>
         $(document).ready(function() {
-
-            
 
             //buscarAlumno
             function buscarAlumno() {
@@ -465,8 +401,6 @@ fggf>jdk>fjkfjkj
                 var txtDireccion_AP = $('#txtDireccion_AP').val();
                 var txtCelular_AP = $('#txtCelular_AP').val();
                 var txtParentesco_AP = $('#txtParentesco_AP').val();
-
-
                 var urlregistroAJAX = $('#urlregistroAJAX').val();
                 $.ajax({
                     type: "post",
@@ -501,11 +435,9 @@ fggf>jdk>fjkfjkj
 
                 });
             }
-
             $('#btn_registrarAjax').click(function () { 
                 registrarAJAX();
             })
-
         });
     </script>
  @endsection 
