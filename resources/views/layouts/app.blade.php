@@ -86,8 +86,8 @@
                                 <li class="app-sidebar__heading">Dashboards</li>
                                 <li>
                                     <a href="index.html" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>
-                                        Dashboard Example 1
+                                        <i class="metismenu-icon pe-7s-home"></i>
+                                        INICIO
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading">UI Components</li>
@@ -105,14 +105,14 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{url('/pagos')}}">
                                                 <i class="metismenu-icon">
-                                                </i>Alumnos
+                                                </i>Pagos
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-cash"></i>
                                         Tesoreria
@@ -126,7 +126,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                     </div>

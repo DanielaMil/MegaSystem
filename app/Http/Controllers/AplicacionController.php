@@ -155,8 +155,8 @@ class AplicacionController extends Controller
     }
 
     //********************FIN_Matricula********************* */
-    public function Ingresos(REQUEST $request)
+    public function Pagos(REQUEST $request)
     {
-        return view('Mantenedor.Ingresos');
+        return view('Mantenedor.Pagos');
     }
 }
