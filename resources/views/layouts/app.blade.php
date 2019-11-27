@@ -135,8 +135,8 @@
                             <li class="app-sidebar__heading">Dashboards</li>
                             <li>
                                 <a href="" class="mm-active">
-                                    <i class="metismenu-icon pe-7s-rocket"></i>
-                                    Dashboard Example 1
+                                    <i class="metismenu-icon pe-7s-home"></i>
+                                    INICIO
                                 </a>
                             </li>
                             <li class="app-sidebar__heading">UI Components</li>
@@ -150,13 +150,13 @@
                                     <li>
                                         <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
-                                            Matriculaa
+                                            Matrícula
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="elements-dropdowns.html">
+                                        <a href="{{url('/pagos')}}">
                                             <i class="metismenu-icon">
-                                            </i>Alumno
+                                            </i>Pagos
                                         </a>
                                     </li>
                                     <!--<li>
@@ -194,7 +194,7 @@
                                             <i class="metismenu-icon">
                                             </i>Utilities
                                         </a>
-                                    </li>-->
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -209,7 +209,7 @@
                                             <i class="metismenu-icon">
                                             </i>Ingresos
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <!--<li>
                                         <a href="components-accordions.html">
                                             <i class="metismenu-icon">
