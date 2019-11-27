@@ -28,4 +28,4 @@ route::get('/matricula/cargarGrupo','AplicacionController@cargarGrupo')->name('c
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
-Route::get('/pagos', 'AplicacionController@Pagos')->name('pagos');
+Route::get('/ingresos', 'AplicacionController@Ingresos')->name('ingresos');
