@@ -239,76 +239,11 @@ fggf>jdk>fjkfjkj
                                                 <div>
                                                     <!--**********Datos de Matricula*************-->
                                                 <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 4.5em;">
+                                                       <div class="container">
+                                                        <div id ></div>
+                                                       </div>
                                                         
-                                                        <div class="mt-3 position-relative form-check">
-                                                            <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
-
-                                                            <div id="info">
-
-
-
-                                                            </div>
-                                                            
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        EXCEL
-                                                                    </font>
-                                                                </font>
-                                                            </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        WORD
-                                                                    </font>
-                                                                </font>
-                                                            </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        Powerpoint
-                                                                    </font>
-                                                                </font>
-                                                            </label>
-                                                            <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        Informatica
-                                                                    </font>
-                                                                </font>
-                                                            </label>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
+                                                       
                                                 </div>
 
                                                 <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
