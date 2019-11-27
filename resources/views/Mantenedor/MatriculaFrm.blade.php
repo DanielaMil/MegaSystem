@@ -13,7 +13,7 @@ fggf>jdk>fjkfjkj
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
                     <div class="modal-content">
-                        <!--******************Encabezado***************ss*-->
+                        <!--******************Encabezado****************-->
                         <div class="modal-header">
                             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
                         </div>
@@ -47,6 +47,7 @@ fggf>jdk>fjkfjkj
                                                     <div class="card-body mx-auto style=width: 50px" > 
                                                         <div  class="form-inline">
                                                             <!-- <form class="form-inline" >-->
+                                                            @csrf
                                                             <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
                                                             <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
                                                                 <label class="mr-sm-2">
@@ -297,36 +298,11 @@ fggf>jdk>fjkfjkj
             alert("El valor " + numero + " no es un número");
         }
 
-    var resultado = document.getElementById("info");
-        function ajax_get_json(){
-            var xmlhttp;
-            if(window.XMLHttpRequest){
-                xmlhttp = new XMLHttpRequest();
-            }else{
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function(){
-                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                    //resultado.innerHTML = xmlhttp.responseText;
-                    alert(xmlhttp.responseText);
-                }
-            }
-            //value="{{route('matriculaRegistro')}}"
-            xmlhttp.open("GET",value="{{route('cargarGrupo')}}",true);
-            //xmlhttp.open("GET","{{route('cargarGrupo')}}",true);
-            xmlhttp.send();
-            
-        }
-    //ajax_get_json();
-
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
     <script>
         $(document).ready(function() {
-
-            
 
             //buscarAlumno
             function buscarAlumno() {
