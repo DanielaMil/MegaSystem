@@ -3,7 +3,7 @@
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|---------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -28,4 +28,4 @@ route::get('/matricula/cargarGrupo','AplicacionController@cargarGrupo')->name('c
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
-Route::get('/ingresos', 'AplicacionController@Ingresos')->name('ingresos');
+Route::get('/pagos', 'AplicacionController@Pagos')->name('pagos');

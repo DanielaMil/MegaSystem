@@ -20,7 +20,7 @@ fggf>jdk>fjkfjkj
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <!--******************FIN_Encabezado****************-->
+                        <!--*******************FIN_Encabezado****************-->
                         <!--**************************************************Formulario*********************************************************-->
                         <div class="modal-body">
                             <div class="mb-3 card">
@@ -265,36 +265,36 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('js')
-    <script>
-    var resultado = document.getElementById("info");
-    function ajax_get_json(){
-        var xmlhttp;
-        if(window.XMLHttpRequest){
-            xmlhttp = new XMLHttpRequest();
-        }else{
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                //resultado.innerHTML = xmlhttp.responseText;
-                alert(xmlhttp.responseText);
-            }
-        }
-        //value="{{route('matriculaRegistro')}}"
-        xmlhttp.open("GET",value="{{route('cargarGrupo')}}",true);
-        //xmlhttp.open("GET","{{route('cargarGrupo')}}",true);
-        //xmlhttp.send();
-        
-    }
-    ajax_get_json();
-    </script>
-
+    
     <script>
         function validarSiNumero(numero){
             if (!/^([0-9])*$/.test(numero))
             alert("El valor " + numero + " no es un número");
         }
+
+    var resultado = document.getElementById("info");
+        function ajax_get_json(){
+            var xmlhttp;
+            if(window.XMLHttpRequest){
+                xmlhttp = new XMLHttpRequest();
+            }else{
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function(){
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    //resultado.innerHTML = xmlhttp.responseText;
+                    alert(xmlhttp.responseText);
+                }
+            }
+            //value="{{route('matriculaRegistro')}}"
+            xmlhttp.open("GET",value="{{route('cargarGrupo')}}",true);
+            //xmlhttp.open("GET","{{route('cargarGrupo')}}",true);
+            xmlhttp.send();
+            
+        }
+    //ajax_get_json();
+
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
