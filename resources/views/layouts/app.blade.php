@@ -164,6 +164,7 @@
 <script type="text/javascript" src="./assets/scripts/main.js"></script></body>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    @yield('js')
 </html>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
