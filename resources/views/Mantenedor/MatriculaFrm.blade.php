@@ -56,7 +56,7 @@ fggf>jdk>fjkfjkj
                                                                 <input name="txtDni_Al" id="txtDni_Al" type="text"  class="form-control">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                                            <input type="hidden" id="urlAJAX_AL" value="{{route('matricula_AL')}}">
+                                                            <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
                                                             <div class="load" style="display: none">Cargando....</div>
                                                         </div>
                                                     </div> 
@@ -151,7 +151,7 @@ fggf>jdk>fjkfjkj
                                                             </div>
                                                             
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
-                                                            <input type="hidden" id="urlAJAX_AP" value="{{route('matricula_AP')}}">
+                                                            <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
                                                             <div class="load" style="display: none">cargando....</div>
                                                         </div>
                                                     </div> 
@@ -226,50 +226,19 @@ fggf>jdk>fjkfjkj
                                                             <br>
                                                             <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
                                                             <div id="info">
+
+
                                                             </div>
                                                             <br>
+
                                                             <label for="exampleCheck" class="form-check-label">
                                                                 <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
                                                                     EXCEL  
                                                             </label>
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
-                                                                    OFIMATICA  
-                                                            </label>
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
-                                                                    BARBERÍA  
-                                                            </label>
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
-                                                                    OTROS  
-                                                            </label>
+                                                            
                                                         </div>
                                                     </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Costo Matricula</font>
-                                                                </font>
-                                                            </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
@@ -291,7 +260,7 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('js')
-<script type="text/javascript" src="./assets/scripts/main.js"></script></body>
+<!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
     <script>
