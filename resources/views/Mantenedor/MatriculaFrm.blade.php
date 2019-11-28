@@ -12,54 +12,54 @@ fggf>jdk>fjkfjkj
 <!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
-    <div class="modal-content">
-        <!--******************Encabezado****************-->
-        <div class="modal-header">
-            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
-        </div>
-        <!--*******************FIN_Encabezado****************-->
-        <!--**************************************************Formulario*********************************************************-->
-        <div class="modal-body">
-            <div class="mb-3 card">
-                <div class="card-header card-header-tab-animation">
-                    <ul class="nav nav-justified">
-                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link active show">
-                                Alumno
-                            </a></li>
-                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">
-                                Apoderado
-                            </a></li>
-                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-2" class="nav-link show">
-                                Matricula
-                            </a></li>
-                    </ul>
-                </div>
-                <!--Formularios de Alumno Apoderado Matricula--->
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Ingresar Datos
-                                </h5>
-                                <div>
-                                    <!--**********Datos de Alumnos*************-->
-                                    <div class="card-body mx-auto style=width: 50px">
-                                        <div class="form-inline">
-                                            <!-- <form class="form-inline" >-->
-                                            @csrf
-                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                <label class="mr-sm-2">
-                                                    DNI
-                                                </label>
-                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                            <input type="hidden" id="urlAJAX_AL" value="{{route('matricula_AL')}}">
-                                            <div class="load" style="display: none">Cargando....</div>
-                                        </div>
-                                    </div>
+                    <div class="modal-content">
+                        <!--******************Encabezado****************-->
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
+                        </div>
+                        <!--*******************FIN_Encabezado****************-->
+                        <!--**************************************************Formulario*********************************************************-->
+                        <div class="modal-body">
+                            <div class="mb-3 card">
+                                <div class="card-header card-header-tab-animation">
+                                    <ul class="nav nav-justified">
+                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link active show">
+                                                Alumno
+                                            </a></li>
+                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">
+                                                Apoderado
+                                            </a></li>
+                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-2" class="nav-link show">
+                                                Matricula
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <!--Formularios de Alumno Apoderado Matricula--->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    Ingresar Datos
+                                                </h5>
+                                                <div>
+                                                    <!--**********Datos de Alumnos*************-->
+                                                    <div class="card-body mx-auto style=width: 50px" > 
+                                                        <div  class="form-inline">
+                                                            <!-- <form class="form-inline" >-->
+                                                            @csrf
+                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
+                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                <label class="mr-sm-2">
+                                                                    DNI
+                                                                </label>
+                                                                <input name="txtDni_Al" id="txtDni_Al" type="text"  class="form-control">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
+                                                            <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
+                                                            <div class="load" style="display: none">Cargando....</div>
+                                                        </div>
+                                                    </div> 
 
                                     <div class="row m-3 ">
                                         <div class="column m-3" style="width: 18em;">
@@ -162,6 +162,7 @@ fggf>jdk>fjkfjkj
                                             </div>
                                         </div>
 
+<<<<<<< HEAD
                                         <div class="row m-3 ">
                                             <div class="column m-3" style="width: 17em;">
                                                 <div class="position-relative form-group">
@@ -185,6 +186,46 @@ fggf>jdk>fjkfjkj
                                                         </font>
                                                     </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" class="form-control">
                                                 </div>
+=======
+                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                <label class="mr-sm-2">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <font style="vertical-align: inherit;">DNI</font>
+                                                                    </font>
+                                                                </label>
+                                                                <input name="txtDni_AP" id="txtDni_AP" type="text"  class="form-control">
+                                                            </div>
+                                                            
+                                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
+                                                            <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                                            <div class="load" style="display: none">cargando....</div>
+                                                        </div>
+                                                    </div> 
+    
+                                                    <div class="row m-3 ">
+                                                        <div class="column m-3" style="width: 17em;">
+                                                            <div class="position-relative form-group">
+                                                                <label for="form-control" class="">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <font style="vertical-align: inherit;">Apellido Paterno*</font>
+                                                                    </font>
+                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="position-relative form-group">
+                                                                    <label for="form-control" class="">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">parentesco</font>
+                                                                        </font>
+                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="position-relative form-group">
+                                                                    <label for="form-control" class="">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">Direccion*</font>
+                                                                        </font>
+                                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" class="form-control">
+                                                            </div>
+>>>>>>> d1624f82187e32f310e4039302c3cb248df88587
 
                                             </div>
                                             <div class="column m-3" style="width: 17em;">
@@ -257,6 +298,7 @@ fggf>jdk>fjkfjkj
                                                     <font style="vertical-align: inherit;">
                                                         <font style="vertical-align: inherit;">Costo Matricula</font>
                                                     </font>
+<<<<<<< HEAD
                                                 </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
                                             </div>
                                         </div>
@@ -266,6 +308,35 @@ fggf>jdk>fjkfjkj
                                                         <font style="vertical-align: inherit;">Costo Matricula</font>
                                                     </font>
                                                 </label><input name="txtCosto" id="apMaterno" type="text" class="form-control">
+=======
+                                                </h5>
+                                                <div>
+                                                    <!--**********Datos de Matricula*************-->
+                                                <div class="row m-3 ">
+                                                    <div class="column m-3" style="width: 9em;">
+                                                        <div class="mt-3 position-relative form-check">
+                                                            <br>
+                                                            <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
+                                                            <div id="info">
+
+
+                                                            </div>
+                                                            <br>
+
+                                                            <label for="exampleCheck" class="form-check-label">
+                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
+                                                                    EXCEL  
+                                                            </label>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
+                                                <input type="hidden" id="urlregistroAJAX" value="{{route('matriculaRegistro')}}"> 
+
+>>>>>>> d1624f82187e32f310e4039302c3cb248df88587
                                             </div>
                                         </div>
                                         <div class="column m-3" style="width: 10em;">
@@ -297,8 +368,12 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('js')
+<<<<<<< HEAD
 <script type="text/javascript" src="./assets/scripts/main.js"></script>
 </body>
+=======
+<!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
+>>>>>>> d1624f82187e32f310e4039302c3cb248df88587
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 <script>

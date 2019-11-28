@@ -161,7 +161,8 @@
                 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-<script type="text/javascript" src="./assets/scripts/main.js"></script></body>
+</body>
+    <!--<script type="text/javascript" src="./assets/scripts/main.js"></script>-->
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     @yield('js')
