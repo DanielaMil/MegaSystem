@@ -11,7 +11,7 @@
  Target Server Version : 100131
  File Encoding         : 65001
 
- Date: 25/11/2019 22:47:59
+ Date: 27/11/2019 23:13:48
 */
 
 SET NAMES utf8mb4;
@@ -142,10 +142,10 @@ CREATE TABLE `cuota`  (
   `idCuota` int(4) NOT NULL AUTO_INCREMENT,
   `importe` float(4, 2) NULL DEFAULT NULL,
   `feEmision` datetime(0) NULL DEFAULT NULL,
-  `idMatricula` int(4) NULL DEFAULT NULL,
+  `nuRecibo` int(4) NULL DEFAULT NULL,
   `idPago` int(4) NULL DEFAULT NULL,
   PRIMARY KEY (`idCuota`) USING BTREE,
-  INDEX `idMatricula`(`idMatricula`) USING BTREE,
+  INDEX `idMatricula`(`nuRecibo`) USING BTREE,
   INDEX `idPago`(`idPago`) USING BTREE,
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`idPago`) REFERENCES `pago` (`idPago`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
@@ -183,6 +183,7 @@ CREATE TABLE `grupo`  (
   `hoInicio` time(2) NULL DEFAULT NULL,
   `hoFin` time(2) NULL DEFAULT NULL,
   `dia` char(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `feInicio` date NULL DEFAULT NULL,
   PRIMARY KEY (`idGrupo`) USING BTREE,
   INDEX `idCurso`(`idCurso`) USING BTREE,
   INDEX `idCiclo`(`idCiclo`) USING BTREE,
@@ -193,9 +194,9 @@ CREATE TABLE `grupo`  (
 -- ----------------------------
 -- Records of grupo
 -- ----------------------------
-INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 5, '00:00:09.00', '00:00:01.00', 'Sábado');
-INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 6:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado');
-INSERT INTO `grupo` VALUES (5, 'A (9:00am - 1:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado');
+INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 5, '00:00:09.00', '00:00:01.00', 'Sábado', NULL);
+INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 6:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado', NULL);
+INSERT INTO `grupo` VALUES (5, 'A (9:00am - 1:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', NULL);
 
 -- ----------------------------
 -- Table structure for matricula
