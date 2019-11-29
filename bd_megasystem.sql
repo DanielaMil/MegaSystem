@@ -3,12 +3,12 @@
 
  Source Server         : jcjMysql
  Source Server Type    : MySQL
- Source Server Version : 100134
+ Source Server Version : 100131
  Source Host           : localhost:3306
  Source Schema         : bd_megasystem
 
  Target Server Type    : MySQL
- Target Server Version : 100134
+ Target Server Version : 100131
  File Encoding         : 65001
 
  Date: 29/11/2019 10:17:57
