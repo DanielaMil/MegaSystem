@@ -3,15 +3,15 @@
 
  Source Server         : jcjMysql
  Source Server Type    : MySQL
- Source Server Version : 100131
+ Source Server Version : 100134
  Source Host           : localhost:3306
  Source Schema         : bd_megasystem
 
  Target Server Type    : MySQL
- Target Server Version : 100131
+ Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 29/11/2019 10:17:57
+ Date: 29/11/2019 16:03:44
 */
 
 SET NAMES utf8mb4;
@@ -153,14 +153,17 @@ CREATE TABLE `grupo`  (
   INDEX `idCiclo`(`idCiclo`) USING BTREE,
   CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`idCiclo`) REFERENCES `ciclo` (`idCiclo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of grupo
 -- ----------------------------
 INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 5, '00:00:09.00', '00:00:01.00', 'Sábado', 'sdfsdf');
-INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 6:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado', 'sdf');
-INSERT INTO `grupo` VALUES (5, 'A (9:00am - 1:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', 'sdfsdf');
+INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 18:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado', 'sdf');
+INSERT INTO `grupo` VALUES (5, 'A (9:00am - 13:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', 'sdfsdf');
+INSERT INTO `grupo` VALUES (6, 'A (8:00am - 12:30pm)', 8, 3, 50, 2, 3, '08:00:39.00', '12:30:58.00', 'Domingo', 'asdf');
+INSERT INTO `grupo` VALUES (7, 'A (7:30am - 11:30pm)', 7, 3, 50, 2, 3, '11:00:40.00', '12:00:43.00', 'Domingo', 'saf');
+INSERT INTO `grupo` VALUES (8, 'B (8:30am - 13:00pm)', 7, 4, 55, 2, 5, '11:01:25.00', '15:01:28.00', 'Sábado', 'as');
 
 -- ----------------------------
 -- Table structure for matricula
@@ -224,6 +227,21 @@ BEGIN
 	IF (LENGTH(_auxDni) = 8) THEN
 		SELECT * FROM alumno WHERE alumno.dni = _auxDni;
 	END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for buscarApoderado
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `buscarApoderado`;
+delimiter ;;
+CREATE PROCEDURE `buscarApoderado`(IN `_dni` VARCHAR(10))
+BEGIN
+	IF (LENGTH(_dni) = 8) THEN
+		SELECT * FROM apoderado WHERE apoderado.dni = _dni;
+	END IF;
+
 END
 ;;
 delimiter ;
