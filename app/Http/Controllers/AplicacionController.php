@@ -63,7 +63,7 @@ class AplicacionController extends Controller
         $_numcade = strlen($_auxdni);
         
         if ($_numcade == 8) {
-            $datos = DB::select("call buscarAlumnodni(?)", array($_auxdni));
+            $datos = DB::select("call buscarApoderado(?)", array($_auxdni));
             
             if(count($datos) > 0){
                 $data = [

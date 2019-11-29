@@ -219,28 +219,72 @@ fggf>jdk>fjkfjkj
                                                 </h5>
                                                 <div>
 <!--**************************************************************************Datos de Matricula****************************************************************-->
+                                               
                                                 <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 9em;">
-                                                        <div class="mt-3 position-relative form-check">
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <th></th>
-                                                                        <th>CURSO</th>
-                                                                        <th>GRUPO</th>
-                                                                        <th>PAGO</th>
-                                                                    </thead>
-                                                                    <tbody id="tbody">
-                                                                        
-                                                                    </tbody>
-                                                                </table>
-                                                                <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}">           
+                                                    <div class="column m-3" style="width: 30em;">
+                                                        <div class="column m-3" style="width: 5em;">
+                                                            <div class="mt-3 position-relative form-check">
+                                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <th></th>
+                                                                            <th>CURSO</th>
+                                                                            <th>GRUPO</th>
+                                                                            <th>PAGO</th>
+                                                                        </thead>
+                                                                        <tbody id="tbody">
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}">           
+                                                                </div>
+                                                                                                                            
                                                             </div>
-                                                                                                                     
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="column m-3" style="width: 25em;">
+                                                        <h6>Pago de Matricula s/50.00</h6>
+                                                        <label>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Importe</font>
+                                                            </font>
+                                                        </label>
+                                                        <input name="txt" id="txtNombre_AP" type="text" class="form-control" style="width: 25%">
+                                                        <br/>
+                                                        <h6>Pago de Mensualidad s/60.00</h6>
+                                                        <label>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Razón del descuento</font>
+                                                            </font>
+                                                        </label>
+                                                        <textarea name="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí tus comentarios"></textarea>
+                                                        <label>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Descuetno</font>
+                                                            </font>
+                                                        </label>
+                                                        <input name="txt" id="txtNombre_AP" type="text" class="form-control" style="width: 25%">
+
+
+                                                    </div>
+
+                                                    <div class="column m-3" style="width: 17em;">
+                                                        <div class="position-relative form-group">
+                                                            <label for="examplePassword" class="">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">Recibo*</font>
+                                                                </font>
+                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
+                                                            <label for="examplePassword" class="">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">Promotor</font>
+                                                                </font>
+                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+
 
                                                 <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
                                                  
@@ -292,6 +336,7 @@ fggf>jdk>fjkfjkj
                        var tabla;
                         for(var i=0;i < response.datosC.length;i++){
                             tabla+='<tr><td><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"></td>'
+
                                     +'<td>'+response.datosC[i].nombre+'</td>'
                                     +'<td><select name="estado" class="form-control" style="width: 200px">'
                                             for(var j=0;j < response.datosG.length;j++){
@@ -395,8 +440,67 @@ fggf>jdk>fjkfjkj
                 buscarAlumno();
             });
 
-            function buscarApoderado(){
+            function buscarApoderado() {
+                
+                var urlAJAX_AP = $('#urlAJAX_AP').val();
+                var txtDNI = $('#txtDni_AP').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAX_AP,
+                    data:{
+                        txtDni :txtDNI
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        //verificar los datos que recive del apoderado *************************************************************
+                        if(response.estado == true){
+                            var alu = response.datos[0];
+                            $('#txtDni_AP').val(alu.dni);
+                            //$('#txtDni_Al').attr('disabled',true);
+                            $('#txtApellidopa_Ap').val(alu.apPaterno);
+                            $('#txtApellidopa_Ap').attr('disabled',true);
+                            $('#txtApellidoMa_AP').val(alu.apMaterno);
+                            $('#txtApellidoMa_AP').attr('disabled',true);
+                            $('#txtNombre_AP').val(alu.nombre);
+                            $('#txtNombre_AP').attr('disabled',true);
+                            $('#txtDireccion_AP').val(alu.direccion);
+                            $('#txtDireccion_AP').attr('disabled',true);
+                            $('#txtCelular_AP').val(alu.celular);
+                            $('#txtCelular_AP').attr('disabled',true);
+                            $('#txtParentesco_AP').val(alu.celular);
+                            $('#txtParentesco_AP').attr('disabled',true);
+                            
+                        }else{
+                            if(response.cod == 100){
+                                alert('Cantidad de caracteres no valido')
+                            }
+                            if (response.cod == 101) {
+                                $('.msj_ALU').css({display:'block'});
+                                LimpiarFormularioALU();
+                            }
+                        }
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    },
+                    complete:function () {  
+                    }
+                });
             }
+
+
+            $('#btn_buscarAJAX_AP').click(function () {  
+                buscarApoderado();
+            });
+
 
             function registrarAJAX() {
                 //Datos de Alumno
@@ -456,4 +560,5 @@ fggf>jdk>fjkfjkj
             })
         });
     </script>
+    
  @endsection 
