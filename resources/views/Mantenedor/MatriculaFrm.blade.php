@@ -77,12 +77,12 @@ fggf>jdk>fjkfjkj
                                                                 </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px">
                                                             </div>
                                                             <div class="position-relative form-group">
-                                                                    <label for="form-control" class="">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Direccion*</font>
-                                                                        </font>
-                                                                    </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" class="form-control">
-                                                                </div>
+                                                                <label for="form-control" class="">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <font style="vertical-align: inherit;">Direccion*</font>
+                                                                    </font>
+                                                                </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" class="form-control">
+                                                            </div>
                                                         </div>
                                                         <div class="column m-3" style="width: 18em;">
                                                                 <div class="position-relative form-group"><label for="form-control" class="">
@@ -92,15 +92,15 @@ fggf>jdk>fjkfjkj
                                                                     </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control">
                                                                 </div>
                                                                 <div class="position-relative form-group">
-                                                                        <label for="exampleSelect" class="">
-                                                                            <font style="vertical-align: inherit;">
-                                                                                <font style="vertical-align: inherit;">Genero</font>
-                                                                            </font>
-                                                                        </label>
-                                                                        <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px">
-                                                                            <option selected value="0">Masculino</option>
-                                                                            <option value="1">Femenino</option>
-                                                                        </select>
+                                                                    <label for="exampleSelect" class="">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">Genero</font>
+                                                                        </font>
+                                                                    </label>
+                                                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px">
+                                                                        <option selected value="0">Masculino</option>
+                                                                        <option value="1">Femenino</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         <div class="column m-3" style="width: 18em;">
@@ -219,30 +219,32 @@ fggf>jdk>fjkfjkj
                                                     </font>
                                                 </h5>
                                                 <div>
-                                                    <!--**********Datos de Matricula*************-->
+<!--**************************************************************************Datos de Matricula****************************************************************-->
                                                 <div class="row m-3 ">
                                                     <div class="column m-3" style="width: 9em;">
                                                         <div class="mt-3 position-relative form-check">
-                                                            <br>
-                                                            <button type="button" onclick="ajax_get_json()">Mostrar Datos</button>
-                                                            <div id="info">
-
-
+                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <th></th>
+                                                                        <th>CURSO</th>
+                                                                        <th>GRUPO</th>
+                                                                        <th>PAGO</th>
+                                                                    </thead>
+                                                                    <tbody id="tbody">
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                                <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}">           
                                                             </div>
-                                                            <br>
-
-                                                            <label for="exampleCheck" class="form-check-label">
-                                                                <input name="check" id="exampleCheck" type="checkbox" class="form-check-input">    
-                                                                    EXCEL  
-                                                            </label>
-                                                            
+                                                                                                                     
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
 
                                                 <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
-                                                <input type="hidden" id="urlregistroAJAX" value="{{route('matriculaRegistro')}}"> 
+                                                 
                                             </div>
                                             </div>
                                         </div>
@@ -269,6 +271,53 @@ fggf>jdk>fjkfjkj
 
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+    <!--Listado de grupos-->
+    <script>
+        var resultado = document.getElementById("info");
+
+        function tabla() {
+                var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
+           
+                $.ajax({
+                    type: "post",
+                    url: urlAJAX_ListarGrupo,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                       var tabla;
+                        for(var i=0;i < response.datosC.length;i++){
+                            tabla+='<tr><td><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"></td>'
+                                    +'<td>'+response.datosC[i].nombre+'</td>'
+                                    +'<td><select name="estado" class="form-control" style="width: 200px">'
+                                            for(var j=0;j < response.datosG.length;j++){
+                                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                                    tabla+='<option>'+response.datosG[j].descripcion+'</option>'
+                                                }
+                                            }
+                               tabla+='</select></td>'
+                                    +'<td><button id="seleccionar">pago</button></td></tr>';  
+                        }
+                        $('#tbody').html(tabla);
+                    },
+                    error:function (error) {  
+                    },
+                    complete:function () {  
+                    }
+                });
+            }
+
+            //$('#btn_listarGrupo').click(function () {  
+                tabla();
+            //});
+
+
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -338,7 +387,6 @@ fggf>jdk>fjkfjkj
             }
 
             function LimpiarFormularioALU() {  
-                
                 $('#apPaterno_ALU').val('');
                 $('#apPaterno_ALU').attr('disabled',false);
                 $('#apMaterno_ALU').val('');

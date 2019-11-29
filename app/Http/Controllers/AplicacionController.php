@@ -88,31 +88,54 @@ class AplicacionController extends Controller
             ];
             return response()->json($data);
             /// return view('Mantenedor.MatriculaFrm');
-            //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);
+            //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
         }
     }
 
-    public function cargarGrupo(Type $var)
-    {   $letra = "letra";
-
-        $datosGrupo = DB::select("call listarGrupo(?)",array($letra));
-        return response()->json(true);
-
-        if($datosGrupo){
-            $datas = [
+    public function listarGrupo(Request $dato)
+    {   
+        $datosCurso = DB::select("call listarCurso()",array());
+        $datosGrupo = DB::select("call listarGrupos()",array());
+        if(count($datosCurso) > 0){
+            $dataC = [
                 'estado' => true,
                 'cod' => 200,
-                'datosGrupo' => $datas
+                'datosC' => $datosCurso
             ];
-            return response()->json($datas);
+
+            $dataG = [
+                'estado' => true,
+                'cod' => 200,
+                'datosG' => $datosGrupo
+            ];
+            $dataC+=$dataG;
+            return response()->json($dataC);
+
+            //return response()->json($dataG);
         }else{
             
-            $datas = [
+            $data = [
                 'estado' => false,
                 'cod' => 101
             ];
-        return response()->json($datas);
+        return response()->json($data);
         }
+//datos del grupo
+  /*      if(count($datosGrupo) > 0){
+            $data = [
+                'estado' => true,
+                'cod' => 200,
+                'datosG' => $datosGrupo
+            ];
+            return response()->json($data);
+        }else{
+            
+            $data = [
+                'estado' => false,
+                'cod' => 101
+            ];
+        return response()->json($data);
+        }*/
     }
 
     public function matriculaRegistro(REQUEST $dato){
