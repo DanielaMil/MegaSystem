@@ -53,7 +53,7 @@ fggf>jdk>fjkfjkj
                                                                 <label class="mr-sm-2">
                                                                     DNI
                                                                 </label>
-                                                                <input name="txtDni_Al" id="txtDni_Al" type="text"  class="form-control">
+                                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
@@ -67,7 +67,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Paterno*</font>
                                                                     </font>
-                                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control">
+                                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                             </div>
                                                             <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                     <font style="vertical-align: inherit;">
@@ -88,7 +88,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Materno*</font>
                                                                     </font>
-                                                                    </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control">
+                                                                    </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                                 </div>
                                                                 <div class="position-relative form-group">
                                                                     <label for="exampleSelect" class="">
@@ -108,7 +108,7 @@ fggf>jdk>fjkfjkj
                                                                         <font style="vertical-align: inherit;">
                                                                             <font style="vertical-align: inherit;">Nombre*</font>
                                                                         </font>
-                                                                    </label><input name="txtNombre_Al" id="txtNombreAl" type="text" class="form-control">
+                                                                    </label><input name="txtNombre_Al" id="txtNombreAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                                 </div>
                                                             <div class="position-relative form-group">
                                                                 <label for="examplePassword" class="">
@@ -116,8 +116,9 @@ fggf>jdk>fjkfjkj
                                                                         <font style="vertical-align: inherit;">celular</font>
                                                                     </font>
                                                                 </label>
-                                                                <!--<input name="txtCelular_Al" id="txtCelularAl" type="text" class="form-control" style="width: 170px">-->
-                                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" style="width: 170px" onChange="validarSiNumero(value);">
+                                                                
+<!--<input name="txtCelular_Al" id="txtCelularAl" type="text" class="form-control" style="width: 170px">-->
+                                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -146,7 +147,7 @@ fggf>jdk>fjkfjkj
                                                                         <font style="vertical-align: inherit;">DNI</font>
                                                                     </font>
                                                                 </label>
-                                                                <input name="txtDni_AP" id="txtDni_AP" type="text"  class="form-control">
+                                                                <input name="txtDni_AP" id="txtDni_AP" type="text"  class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
                                                             </div>
                                                             
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
@@ -162,14 +163,14 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Paterno*</font>
                                                                     </font>
-                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" class="form-control">
+                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                     <label for="form-control" class="">
                                                                         <font style="vertical-align: inherit;">
                                                                             <font style="vertical-align: inherit;">parentesco</font>
                                                                         </font>
-                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" class="form-control">
+                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                     <label for="form-control" class="">
@@ -185,13 +186,13 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Apellido Materno*</font>
                                                                 </font>
-                                                                </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" class="form-control">
+                                                                </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                             </div>
                                                             <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">celular</font>
                                                                     </font>
-                                                                </label><input name="txtCelular_AP" id="txtCelular_AP" type="text" class="form-control" style="width: 170px">
+                                                                </label><input name="txtCelular_AP" id="txtCelular_AP" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)">
                                                             </div>
                                                         </div>
                                                         <div class="column m-3" style="width: 17em;">
@@ -200,7 +201,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Nombre*</font>
                                                                     </font>
-                                                                </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
+                                                                </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                             </div>
                                                             
                                                         </div>
@@ -307,11 +308,43 @@ fggf>jdk>fjkfjkj
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
     <script>
-        function validarSiNumero(numero){
-            if (!/^([0-9])*$/.test(numero))
-            alert("El valor " + numero + " no es un número");
+        function soloLetras(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
         }
 
+        function soloNumeros(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " 0123456789";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <!--Listado de grupos-->
@@ -319,42 +352,42 @@ fggf>jdk>fjkfjkj
         var resultado = document.getElementById("info");
 
         function tabla() {
-                var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
-           
-                $.ajax({
-                    type: "post",
-                    url: urlAJAX_ListarGrupo,
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function (response) {
-                        // $('.load').css({display:'block'});
-                    },
-                    success: function (response) {
-                        console.log(response);
-                       var tabla;
-                        for(var i=0;i < response.datosC.length;i++){
-                            tabla+='<tr><td><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"></td>'
+            var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
+        
+            $.ajax({
+                type: "post",
+                url: urlAJAX_ListarGrupo,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    var tabla;
+                    for(var i=0;i < response.datosC.length;i++){
+                        tabla+='<tr><td><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"></td>'
 
-                                    +'<td>'+response.datosC[i].nombre+'</td>'
-                                    +'<td><select name="estado" class="form-control" style="width: 200px">'
-                                            for(var j=0;j < response.datosG.length;j++){
-                                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                    tabla+='<option>'+response.datosG[j].descripcion+'</option>'
-                                                }
+                                +'<td>'+response.datosC[i].nombre+'</td>'
+                                +'<td><select name="estado" class="form-control" style="width: 200px">'
+                                        for(var j=0;j < response.datosG.length;j++){
+                                            if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                                tabla+='<option>'+response.datosG[j].descripcion+'</option>'
                                             }
-                               tabla+='</select></td>'
-                                    +'<td><button id="seleccionar">pago</button></td></tr>';  
-                        }
-                        $('#tbody').html(tabla);
-                    },
-                    error:function (error) {  
-                    },
-                    complete:function () {  
+                                        }
+                            tabla+='</select></td>'
+                                +'<td><button id="seleccionar">pago</button></td></tr>';  
                     }
-                });
-            }
+                    $('#tbody').html(tabla);
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
 
             //$('#btn_listarGrupo').click(function () {  
                 tabla();
