@@ -122,6 +122,28 @@ class AplicacionController extends Controller
         }
     }
 
+    public function listarMensualidad(Request $dato)
+    {
+        $txtIdGrupo = $dato->txtIdGrupo;
+        
+        $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($txtIdGrupo));
+        
+        if(count($datosGrupo) > 0){
+            $data = [
+                'estado' => true,
+                'cod' => 200,
+                'datosGrupo' => $datosGrupo
+            ];
+            return response()->json($data);
+        }else{
+            $data = [
+                'estado' => false,
+                'cod' => 101
+            ];
+        return response()->json($data);
+        }
+    }
+
     public function matriculaRegistro(REQUEST $dato){
         $auxIdAl         =$dato->auxIdAl;
         $txtDni_Al        =$dato->txtDni_Al;
@@ -132,7 +154,7 @@ class AplicacionController extends Controller
         $txtDireccionAl  =$dato->txtDireccionAl;
         $txtCelularAl    =$dato->txtCelularAl;
         $txtFechaNaAl    =$dato->txtFechaNaAl;
-        if ($auxIdAl === ''){
+        if ($auxIdAl == ''){
             $datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
             $Alumno = DB::select("call buscarAlumnodni(?)", array($txtDni_Al));
             $auxIdAl = $Alumno[0]->idAlumno;
@@ -147,16 +169,18 @@ class AplicacionController extends Controller
         $txtCelular_AP    =$dato->txtCelular_AP;
         $txtParentesco_AP =$dato->txtParentesco_AP;
 
-        if ($auxIdApoderado === ''){
+        if ($auxIdApoderado == ''){
             $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
             $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
             $auxIdApoderado = $Apoderado[0]->idApoderado;
         }
 
+        //$Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array(NULL,$auxIdApoderado,$auxIdAl,NULL));
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
+
+           // $nuevo = $dato->cursos[$i]["idCurso"];
             $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idCurso"],$auxIdApoderado,$auxIdAl,NULL));
         }
-        
         
         return response()->json(true);
         if($datos){

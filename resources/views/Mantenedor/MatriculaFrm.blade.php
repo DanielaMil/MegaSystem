@@ -8,7 +8,8 @@ fggf>jdk>fjkfjkj
 
 @section('content')   
     
-            <h5 class="msj_ALU" style="display: none">*No se encontro datos de Alumno</h5>
+            <h5 class="msj_ALU" style="display: none">*No se encontro datos del Alumno</h5>
+            <h5 class="msj_APO" style="display: none">*No se encontro datos del Apoderado</h5>
             <!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
@@ -79,7 +80,7 @@ fggf>jdk>fjkfjkj
                                                             <div class="position-relative form-group">
                                                                 <label for="form-control" class="">
                                                                     <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Direccion*</font>
+                                                                        <font style="vertical-align: inherit;">Direccion</font>
                                                                     </font>
                                                                 </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" class="form-control">
                                                             </div>
@@ -265,6 +266,7 @@ fggf>jdk>fjkfjkj
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="column m-3" style="width: 10em;"></div>
                                                     <div class="column m-3" style="width: 25em;">
                                                         <label>
                                                             <font style="vertical-align: inherit;">
@@ -300,28 +302,61 @@ fggf>jdk>fjkfjkj
                                                             </font>
                                                         </label>
                                                         <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">
-
-
+<!--------------------------------------------------------------------------- Mara el listado de las mensualidades-->
+                                                        <div class="column m-3" style="width: 95em;">
+                                                            <table class="table02">
+                                                                <thead>
+                                                                    <th>MES</th>
+                                                                    <th>MONTO</th>
+                                                                    <th>FECHA VENCIMIENTO</th>
+                                                                </thead>
+                                                                <tbody id="tbody02">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                                    
+                                                            
+                                                            
+                                                        </div>
+                                                        <div class="row m-3 ">
+                                                            <div class="column m-3" style="width: 25em;">
+                                                            </div>
+                                                            <div class="column m-3" style="width: 5em;">
+                                                            </div>
+                                                            <div class="column m-3" style="width: 10em;">
+                                                                <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Guardar</button>
+                                                                <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="column m-3" style="width: 17em;">
-                                                        <div class="position-relative form-group">
-                                                            <label for="examplePassword" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Recibo*</font>
-                                                                </font>
-                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
-                                                            <label for="examplePassword" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Promotor</font>
-                                                                </font>
-                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                    <div class="row m-3 ">
+                                                        <div class="column m-3" style="width: 15em;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">N° Recibo*</font>
+                                                            </font>
+                                                            <input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="column m-3" style="width: 20em;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Promotor</font>
+                                                            </font>
+                                                            <input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
-                                                 <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+                                                <div class="row m-3 ">
+                                                    <div class="column m-3" style="width: 25em;">
+                                                    </div>
+                                                    <div class="column m-3" style="width: 5em;">
+                                                        <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
+                                                        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+                                                    </div>
+                                                    <div class="column m-3" style="width: 10em;">
+                                                        <button type="button" class="btn btn-primary" id="btnCancelar">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                             </div>
                                         </div>
@@ -450,6 +485,53 @@ fggf>jdk>fjkfjkj
         }
 
         tabla();
+
+        
+        function tabla02() {
+            var urlAJAX_ListarMensualidad = $('#urlAJAX_ListarMensualidad').val();
+        
+            $.ajax({
+                type: "post",
+                url: urlAJAX_ListarMensualidad,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    var tabla;
+                    for(var i=0;i < response.datosC.length;i++){
+                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+
+                                +'<td>'+response.datosC[i].nombre+'</td>'
+                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 200px">'
+                                        for(var j=0;j < response.datosG.length;j++){
+                                            if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
+                                            }
+                                        }
+                            tabla+='</select></td>'
+                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
+                    }
+                    $('#tbody').html(tabla);
+                    SeleccionarCuros();
+                    SeleccionarGrupo();
+                    PagarCurso();
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+        $('#btnGuardarTablaAjax').click(function () {  
+            tabla02();
+        });
+        
+
 
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
@@ -618,7 +700,6 @@ fggf>jdk>fjkfjkj
                             
                             $('#auxIdAl').val(alu.idAlumno);
                             $('#txtDni_Al').val(alu.dni);
-                            //$('#txtDni_Al').attr('disabled',true);
                             $('#txtApellidoPaAl').val(alu.apPaterno);
                             $('#txtApellidoPaAl').attr('disabled',true);
                             $('#txtApellidoMaAl').val(alu.apMaterno);
@@ -626,9 +707,9 @@ fggf>jdk>fjkfjkj
                             $('#txtNombreAl').val(alu.nombre);
                             $('#txtNombreAl').attr('disabled',true);
                             $('#txtDireccionAl').val(alu.direccion);
-                            //$('#txtDireccionAl').attr('disabled',true);
+                            $('#txtDireccionAl').attr('disabled',true);
                             $('#txtCelularAl').val(alu.celular);
-                            //$('#txtCelularAl').attr('disabled',true);
+                            $('#txtCelularAl').attr('disabled',true);
                             $('#txtFechaNaAl').attr('disabled',true);
 
                             $('#cboGeneroAl').attr('disabled',true);
@@ -639,6 +720,7 @@ fggf>jdk>fjkfjkj
                             }
                             $('#txtFechaNaAl').val(alu.feNacimiento);
                         }else{
+                            
                             if(response.cod == 100){
                                 alert('Cantidad de caracteres no valido')
                             }
@@ -657,9 +739,21 @@ fggf>jdk>fjkfjkj
             }
 
             function LimpiarFormularioALU() {  
-                $('#apPaterno_ALU').val('');
-                $('#apPaterno_ALU').attr('disabled',false);
-                $('#apMaterno_ALU').val('');
+                $('#auxIdAl').val('');
+                $('#txtApellidoPaAl').val('');
+                $('#txtApellidoPaAl').attr('disabled',false);
+                $('#txtApellidoMaAl').val('');
+                $('#txtApellidoMaAl').attr('disabled',false);
+                $('#txtNombreAl').val('');
+                $('#txtNombreAl').attr('disabled',false);
+                $('#txtDireccionAl').val('');
+                $('#txtDireccionAl').attr('disabled',false);
+                $('#txtCelularAl').val('');
+                $('#txtCelularAl').attr('disabled',false);
+                $('#txtFechaNaAl').val('');
+                $('#txtFechaNaAl').attr('disabled',false);
+                $('#cboGeneroAl').val('');
+                $('#cboGeneroAl').attr('disabled',false);
             }
 
             $('#btn_buscarAJAX_AL').click(function () {  
@@ -699,9 +793,9 @@ fggf>jdk>fjkfjkj
                             $('#txtNombre_AP').val(alu.nombre);
                             $('#txtNombre_AP').attr('disabled',true);
                             $('#txtDireccion_AP').val(alu.direccion);
-                            //$('#txtDireccion_AP').attr('disabled',true);
+                            $('#txtDireccion_AP').attr('disabled',true);
                             $('#txtCelular_AP').val(alu.celular);
-                            //$('#txtCelular_AP').attr('disabled',true);
+                            $('#txtCelular_AP').attr('disabled',true);
                             $('#txtParentesco_AP').val(alu.celular);
                             $('#txtParentesco_AP').attr('disabled',true);
                             
@@ -710,8 +804,8 @@ fggf>jdk>fjkfjkj
                                 alert('Cantidad de caracteres no valido')
                             }
                             if (response.cod == 101) {
-                                $('.msj_ALU').css({display:'block'});
-                                LimpiarFormularioALU();
+                                $('.msj_APO').css({display:'block'});
+                                LimpiarFormularioApoderado();
                             }
                         }
                         // $('.load').css({display:'none'});
@@ -723,7 +817,8 @@ fggf>jdk>fjkfjkj
                 });
             }
 
-            function LimpiarFormularioApoderado() {  
+            function LimpiarFormularioApoderado() {
+                $('#auxIdApoderado').val('');  
                 $('#txtApellidopa_Ap').val('');
                 $('#txtApellidopa_Ap').attr('disabled',false);
                 $('#txtApellidoMa_AP').val('');
