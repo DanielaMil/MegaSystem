@@ -442,7 +442,7 @@ fggf>jdk>fjkfjkj
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");
         var mensualidadGeneral = 0.00;
-
+        var auxIdGrupo = 0;
         function tabla() {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
         
@@ -489,10 +489,13 @@ fggf>jdk>fjkfjkj
         
         function tabla02() {
             var urlAJAX_ListarMensualidad = $('#urlAJAX_ListarMensualidad').val();
-        
+            var auxIdGrupo01 = auxIdGrupo;
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarMensualidad,
+                data:{
+                    auxIdGrupo01 :auxIdGrupo01
+                },
                 dataType: 'json',
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -502,24 +505,12 @@ fggf>jdk>fjkfjkj
                 },
                 success: function (response) {
                     console.log(response);
-                    var tabla;
-                    for(var i=0;i < response.datosC.length;i++){
-                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+                    var tabla01;
+                    var alu = response.datosGrupo[0];
 
-                                +'<td>'+response.datosC[i].nombre+'</td>'
-                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 200px">'
-                                        for(var j=0;j < response.datosG.length;j++){
-                                            if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
-                                            }
-                                        }
-                            tabla+='</select></td>'
-                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
-                    }
-                    $('#tbody').html(tabla);
-                    SeleccionarCuros();
-                    SeleccionarGrupo();
-                    PagarCurso();
+                    tabla01+='<tr><td>'+response.datosGrupo[0].idGrupo+'</td></tr>'        
+
+                    $('#tbody').html(tabla01);
                 },
                 error:function (error) {  
                 },
@@ -595,6 +586,7 @@ fggf>jdk>fjkfjkj
 
                     if (pos != -1) {
                         arrayCursosMatriculados[pos].idGrupo = e.val();
+                        auxIdGrupo = arrayCursosMatriculados[pos].idGrupo;
                     }
                     console.log(arrayCursosMatriculados);
                     

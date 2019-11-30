@@ -124,7 +124,7 @@ class AplicacionController extends Controller
 
     public function listarMensualidad(Request $dato)
     {
-        $txtIdGrupo = $dato->txtIdGrupo;
+        $txtIdGrupo = $dato->auxIdGrupo01;
         
         $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($txtIdGrupo));
         
