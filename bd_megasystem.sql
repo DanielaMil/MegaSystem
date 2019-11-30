@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : jcjMysql
+ Source Server         : jcj
  Source Server Type    : MySQL
  Source Server Version : 100134
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 30/11/2019 08:13:58
+ Date: 30/11/2019 13:03:34
 */
 
 SET NAMES utf8mb4;
@@ -32,14 +32,14 @@ CREATE TABLE `alumno`  (
   `feNacimiento` date NULL DEFAULT NULL,
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idAlumno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of alumno
 -- ----------------------------
-INSERT INTO `alumno` VALUES (41, '70409311', 'José Luis', 'Cruz', 'Julcarima', b'0', '948759936', '1997-05-02', 'Arica #1247');
-INSERT INTO `alumno` VALUES (42, '14785236', 'Christian', 'Carrasco', 'García', b'1', '134165498', '1994-11-12', 'miraflores');
-INSERT INTO `alumno` VALUES (43, '12312312', 'qweqwe', 'qdeqwe', 'qweqwe', b'1', '312313', '2019-11-05', 'qweqwe');
+INSERT INTO `alumno` VALUES (44, '70409311', 'sdfsd', 'dsfsdf', 'sdfsdf', b'1', '23232', '2019-11-12', 'sdfsdf');
+INSERT INTO `alumno` VALUES (45, '12121212', 'sdfsdf', 'dsfsdf', 'sdfsdf', b'1', '324234', '2019-11-12', 'fsdfds');
+INSERT INTO `alumno` VALUES (46, '22323232', 'sdfsdf', 'dfsd', 'sdfsdf', b'1', '34234', '2019-11-13', 'sdfsdf');
 
 -- ----------------------------
 -- Table structure for apoderado
@@ -55,14 +55,17 @@ CREATE TABLE `apoderado`  (
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `parentesco` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idApoderado`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of apoderado
 -- ----------------------------
-INSERT INTO `apoderado` VALUES (20, '12345678', 'Anibal', 'Cruz', 'Ruiz', '1234568', 'Piura', 'Papá');
-INSERT INTO `apoderado` VALUES (21, '96325874', 'Eros', 'Córdoba', 'Córdoba', '321654987', 'lima', 'Tio');
-INSERT INTO `apoderado` VALUES (22, '23123123', 'weqeqw', 'qweqweq', 'qweqweq', '321312312', 'qweqwe2e', 'qweqw');
+INSERT INTO `apoderado` VALUES (23, '23123123', 'sdfsdf', 'sdfsdf', 'sdfsdf', '1234568', 'sdfsdf', 'sdfsdf');
+INSERT INTO `apoderado` VALUES (24, '23423423', 'sdfsdf', 'dfsdf', 'sdfsd', '234234', 'sdfsdf', 'sdfsdf');
+INSERT INTO `apoderado` VALUES (25, '12312312', 'sdfsdf', 'dsfsdfsd', 'sdfsdf', '213123', 'sdfsdf', 'sdfsdfsdf');
+INSERT INTO `apoderado` VALUES (26, '34343434', 'sdfsdfsdf', 'sfsdfsdfsdf', 'sdfsdfsd', '343434', 'sdfsdfsdf', 'dfsdf');
+INSERT INTO `apoderado` VALUES (27, '23423423', 'aaaa', 'aaaaa', 'aaaa', '234234', 'sdfsdf', 'sdf');
+INSERT INTO `apoderado` VALUES (28, '12121212', 'sdfsdf', 'sdfsdfsdf', 'sdfsdf', '345345345', 'sdfsdfsdf', 'erfdfsd');
 
 -- ----------------------------
 -- Table structure for ciclo
@@ -154,7 +157,7 @@ CREATE TABLE `grupo`  (
   `hoInicio` time(2) NULL DEFAULT NULL,
   `hoFin` time(2) NULL DEFAULT NULL,
   `dia` char(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `feInicio` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `feInicio` date NULL DEFAULT NULL,
   PRIMARY KEY (`idGrupo`) USING BTREE,
   INDEX `idCurso`(`idCurso`) USING BTREE,
   INDEX `idCiclo`(`idCiclo`) USING BTREE,
@@ -165,12 +168,12 @@ CREATE TABLE `grupo`  (
 -- ----------------------------
 -- Records of grupo
 -- ----------------------------
-INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 5, '00:00:09.00', '00:00:01.00', 'Sábado', 'sdfsdf');
-INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 18:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado', 'sdf');
-INSERT INTO `grupo` VALUES (5, 'A (9:00am - 13:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', 'sdfsdf');
-INSERT INTO `grupo` VALUES (6, 'A (8:00am - 12:30pm)', 8, 3, 50, 2, 3, '08:00:39.00', '12:30:58.00', 'Domingo', 'asdf');
-INSERT INTO `grupo` VALUES (7, 'A (7:30am - 11:30pm)', 7, 3, 50, 2, 3, '11:00:40.00', '12:00:43.00', 'Domingo', 'saf');
-INSERT INTO `grupo` VALUES (8, 'B (8:30am - 13:00pm)', 7, 4, 55, 2, 5, '11:01:25.00', '15:01:28.00', 'Sábado', 'as');
+INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 5, '00:00:09.00', '00:00:01.00', 'Sábado', '2019-11-28');
+INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 18:00pm)', 5, 4, 64, 2, 4, '00:00:02.00', '00:00:06.00', 'Sábado', '2019-11-27');
+INSERT INTO `grupo` VALUES (5, 'A (9:00am - 13:00pm)', 6, 3, 48, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', '2019-11-13');
+INSERT INTO `grupo` VALUES (6, 'A (8:00am - 12:30pm)', 8, 3, 50, 2, 3, '08:00:39.00', '12:30:58.00', 'Domingo', '2019-11-25');
+INSERT INTO `grupo` VALUES (7, 'A (7:30am - 11:30pm)', 7, 3, 50, 2, 3, '11:00:40.00', '12:00:43.00', 'Domingo', '2019-11-04');
+INSERT INTO `grupo` VALUES (8, 'B (8:30am - 13:00pm)', 7, 4, 55, 2, 5, '11:01:25.00', '15:01:28.00', 'Sábado', '2019-11-18');
 
 -- ----------------------------
 -- Table structure for matricula
@@ -192,56 +195,21 @@ CREATE TABLE `matricula`  (
   CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_3` FOREIGN KEY (`idApoderado`) REFERENCES `apoderado` (`idApoderado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_4` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of matricula
 -- ----------------------------
-INSERT INTO `matricula` VALUES (14, '2019-11-30 03:52:45', NULL, 22, 42, NULL);
-INSERT INTO `matricula` VALUES (15, '2019-11-30 03:54:32', NULL, NULL, 41, NULL);
-INSERT INTO `matricula` VALUES (16, '2019-11-30 03:55:30', NULL, NULL, 41, NULL);
-INSERT INTO `matricula` VALUES (17, '2019-11-30 04:02:45', NULL, NULL, 41, NULL);
-INSERT INTO `matricula` VALUES (18, '2019-11-30 04:04:05', NULL, NULL, 41, NULL);
-INSERT INTO `matricula` VALUES (19, '2019-11-30 05:52:09', NULL, NULL, 41, NULL);
-INSERT INTO `matricula` VALUES (20, '2019-11-30 05:57:46', NULL, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (21, '2019-11-30 05:58:02', NULL, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (22, '2019-11-30 06:00:23', NULL, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (23, '2019-11-30 06:05:03', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (24, '2019-11-30 06:05:03', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (25, '2019-11-30 06:06:06', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (26, '2019-11-30 06:06:06', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (27, '2019-11-30 06:06:06', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (28, '2019-11-30 06:06:24', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (29, '2019-11-30 06:06:24', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (30, '2019-11-30 06:06:24', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (31, '2019-11-30 06:06:47', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (32, '2019-11-30 06:06:47', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (33, '2019-11-30 06:06:47', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (34, '2019-11-30 06:06:47', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (35, '2019-11-30 06:14:50', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (36, '2019-11-30 06:14:50', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (37, '2019-11-30 06:14:50', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (38, '2019-11-30 06:14:50', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (39, '2019-11-30 06:14:51', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (40, '2019-11-30 06:14:51', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (41, '2019-11-30 06:14:51', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (42, '2019-11-30 06:14:51', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (43, '2019-11-30 06:15:48', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (44, '2019-11-30 06:15:48', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (45, '2019-11-30 06:15:48', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (46, '2019-11-30 06:15:48', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (47, '2019-11-30 06:15:49', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (48, '2019-11-30 06:15:49', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (49, '2019-11-30 06:15:49', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (50, '2019-11-30 06:15:49', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (51, '2019-11-30 06:15:51', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (52, '2019-11-30 06:15:51', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (53, '2019-11-30 06:15:51', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (54, '2019-11-30 06:15:51', 8, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (55, '2019-11-30 06:15:51', 5, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (56, '2019-11-30 06:15:51', 7, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (57, '2019-11-30 06:15:51', 6, 20, 41, NULL);
-INSERT INTO `matricula` VALUES (58, '2019-11-30 06:15:51', 8, 20, 41, NULL);
+INSERT INTO `matricula` VALUES (59, '2019-11-30 11:03:36', NULL, 25, 44, NULL);
+INSERT INTO `matricula` VALUES (60, '2019-11-30 11:06:15', 5, 26, 45, NULL);
+INSERT INTO `matricula` VALUES (61, '2019-11-30 11:13:33', NULL, 24, 46, NULL);
+INSERT INTO `matricula` VALUES (62, '2019-11-30 11:17:10', 5, 28, 44, NULL);
+INSERT INTO `matricula` VALUES (63, '2019-11-30 11:20:14', 5, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (64, '2019-11-30 11:21:22', 5, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (65, '2019-11-30 11:22:04', 5, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (66, '2019-11-30 11:22:04', 6, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (67, '2019-11-30 11:22:27', 5, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (68, '2019-11-30 11:22:27', 6, 23, 44, NULL);
 
 -- ----------------------------
 -- Table structure for pago
@@ -338,6 +306,18 @@ BEGIN
 	SELECT * FROM concepto
 	WHERE concepto.descripcion = _tipo;
 
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for mostrarMesesPagos
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `mostrarMesesPagos`;
+delimiter ;;
+CREATE PROCEDURE `mostrarMesesPagos`(IN `_idGrupo` INT)
+BEGIN
+	SELECT * FROM grupo WHERE grupo.idGrupo = _idGrupo;
 END
 ;;
 delimiter ;
