@@ -25,6 +25,7 @@ route::post('/matricula/buscarAlumno','AplicacionController@buscarAL')->name('bu
 route::post('/matricula/buscarApoderado','AplicacionController@buscarAP')->name('buscar_AP');
 route::post('/matricula','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
 route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
+route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');

@@ -120,25 +120,10 @@ class AplicacionController extends Controller
             ];
         return response()->json($data);
         }
-//datos del grupo
-  /*      if(count($datosGrupo) > 0){
-            $data = [
-                'estado' => true,
-                'cod' => 200,
-                'datosG' => $datosGrupo
-            ];
-            return response()->json($data);
-        }else{
-            
-            $data = [
-                'estado' => false,
-                'cod' => 101
-            ];
-        return response()->json($data);
-        }*/
     }
 
     public function matriculaRegistro(REQUEST $dato){
+        $auxIdAl         =$dato->auxIdAl;
         $txtDni_Al        =$dato->txtDni_Al;
         $txtApellidoPaAl =$dato->txtApellidoPaAl;
         $txtApellidoMaAl =$dato->txtApellidoMaAl;
@@ -147,8 +132,13 @@ class AplicacionController extends Controller
         $txtDireccionAl  =$dato->txtDireccionAl;
         $txtCelularAl    =$dato->txtCelularAl;
         $txtFechaNaAl    =$dato->txtFechaNaAl;
-        $datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
+        if ($auxIdAl === ''){
+            $datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
+            $Alumno = DB::select("call buscarAlumnodni(?)", array($txtDni_Al));
+            $auxIdAl = $Alumno[0]->idAlumno;
+        }
         
+        $auxIdApoderado   =$dato->auxIdApoderado;
         $txtDni_AP        =$dato->txtDni_AP;
         $txtApellidopa_Ap =$dato->txtApellidopa_Ap;
         $txtApellidoMa_AP =$dato->txtApellidoMa_AP;
@@ -157,8 +147,17 @@ class AplicacionController extends Controller
         $txtCelular_AP    =$dato->txtCelular_AP;
         $txtParentesco_AP =$dato->txtParentesco_AP;
 
-        $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
+        if ($auxIdApoderado === ''){
+            $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
+            $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
+            $auxIdApoderado = $Apoderado[0]->idApoderado;
+        }
 
+        for ($i=0; $i <count($dato->cursos) ; $i++) { 
+            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idCurso"],$auxIdApoderado,$auxIdAl,NULL));
+        }
+        
+        
         return response()->json(true);
         if($datos){
             $datas = [
@@ -174,6 +173,36 @@ class AplicacionController extends Controller
                 'cod' => 101
             ];
         return response()->json($datas);
+        }
+    }
+
+    public function buscarMontoMatricula(REQUEST $request){
+        $concepto01 = "Matricula";
+        $concepto02 = "Mensualidad";
+        $montoMatricula = DB::select("call montoPagoConcepto(?)",array( $concepto01));
+        $montoMensualidad = DB::select("call montoPagoConcepto(?)",array( $concepto02));
+
+        if(count($montoMatricula) > 0){
+            $dataMatricula = [
+                'estado' => true,
+                'cod' => 200,
+                'datosMa' => $montoMatricula
+            ];
+            $dataMensualidad = [
+                'estado' => true,
+                'cod' => 200,
+                'datosMe' => $montoMensualidad
+            ];
+            $dataMatricula += $dataMensualidad;
+
+            return response()->json($dataMatricula);
+        }else{
+            
+            $data = [
+                'estado' => false,
+                'cod' => 101
+            ];
+            return response()->json($data);
         }
     }
 

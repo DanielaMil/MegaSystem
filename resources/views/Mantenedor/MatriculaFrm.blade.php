@@ -57,6 +57,7 @@ fggf>jdk>fjkfjkj
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
+                                                            <input type="hidden" id="auxIdAl" >  
                                                             <div class="load" style="display: none">Cargando....</div>
                                                         </div>
                                                     </div> 
@@ -161,10 +162,11 @@ fggf>jdk>fjkfjkj
                                                             
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                                            <input type="hidden" id="auxIdApoderado" value="">  
                                                             <div class="load" style="display: none">cargando....</div>
                                                         </div>
                                                     </div> 
-    
+                                                            
                                                     <div class="row m-3 ">
                                                         <div class="column m-3" style="width: 17em;">
                                                             <div class="position-relative form-group">
@@ -264,21 +266,34 @@ fggf>jdk>fjkfjkj
                                                         </div>
                                                     </div>
                                                     <div class="column m-3" style="width: 25em;">
-                                                        <h6>Pago de Matricula s/50.00</h6>
+                                                        <label>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Pago de Matricula</font>
+                                                            </font>
+                                                        </label>
+                                                        <input name="txt" id="txtMatricula" type="text" style="width: 80px" ><br>
+                                                        <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">        
                                                         <label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Importe</font>
                                                             </font>
                                                         </label>
                                                         <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
+                                                        
                                                         <br/>
-                                                        <h6>Pago de Mensualidad s/60.00</h6>
+                                                        <label>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Pago de Mensualidad</font>
+                                                            </font>
+                                                        </label>
+                                                        <input name="txt" id="txtMensualidad" type="text" style="width: 80px" ><br>
+                                                                    
                                                         <label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Razón del descuento</font>
                                                             </font>
                                                         </label>
-                                                        <textarea name="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí tus comentarios"></textarea>
+                                                        <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí tus comentarios"></textarea>
                                                         <label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Descuetno</font>
@@ -306,7 +321,7 @@ fggf>jdk>fjkfjkj
                                                 </div>
 
                                                 <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
-                                                 
+                                                 <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
                                             </div>
                                             </div>
                                         </div>
@@ -387,7 +402,11 @@ fggf>jdk>fjkfjkj
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <!--Listado de grupos-->
     <script>
+        
+        var arrayCursosMatriculados = [];
+        var UbicacionPago = -1;
         var resultado = document.getElementById("info");
+        var mensualidadGeneral = 0.00;
 
         function tabla() {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
@@ -406,19 +425,22 @@ fggf>jdk>fjkfjkj
                     console.log(response);
                     var tabla;
                     for(var i=0;i < response.datosC.length;i++){
-                        tabla+='<tr><td><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"></td>'
+                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
-                                +'<td><select name="estado" class="form-control" style="width: 200px">'
+                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 200px">'
                                         for(var j=0;j < response.datosG.length;j++){
                                             if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                tabla+='<option>'+response.datosG[j].descripcion+'</option>'
+                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
                                             }
                                         }
                             tabla+='</select></td>'
-                                +'<td><button id="seleccionar">pago</button></td></tr>';  
+                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
                     }
                     $('#tbody').html(tabla);
+                    SeleccionarCuros();
+                    SeleccionarGrupo();
+                    PagarCurso();
                 },
                 error:function (error) {  
                 },
@@ -427,11 +449,143 @@ fggf>jdk>fjkfjkj
             });
         }
 
-            //$('#btn_listarGrupo').click(function () {  
-                tabla();
-            //});
+        tabla();
+
+        function SeleccionarCuros() {
+            var selectCurso = $('.checkCurso');
+            var selectGrupo = $('.codigoGrupo');
+            var mensualidad = $('#txtMensualidad');
+            var matricula = $('#txtMatricula');
+            var comentario = $('#txtComentario');
+            
+            selectCurso.each(function (index,element) {
+                var e = $(this);
+
+                e.click(function () {
+
+                    if (e.attr('ban') == 1) {
+                        var pos = -1;
+                        for (var i = 0; i < arrayCursosMatriculados.length; i++) {
+                            if (arrayCursosMatriculados[i].idCurso == e.attr('Key')) {
+                                pos = i;
+                            }
+                        }
+                        arrayCursosMatriculados.splice(pos,1);
+                        console.log(arrayCursosMatriculados);
+                        
+                        e.attr('ban',0);
+                    }else{
+                        arrayCursosMatriculados.push(
+                            {
+                                idCurso:    e.attr('Key'),
+                                idGrupo:    selectGrupo.eq(index).val(),
+                                importe:    0.00,
+                                pagoMens:   parseFloat(mensualidadGeneral),
+                                pagoMatr:   parseFloat(matricula.val()),
+                                razon:      "",
+                                descuento:  0.00
+                            }
+                        );
+                        console.log(arrayCursosMatriculados);
+                        e.attr('ban',1);
+                    }
+                    // alert(index);
+                    
+                    
+                });
+            });
+        }
+
+        function SeleccionarGrupo() {
+            var selectCurso = $('.checkCurso');
+            var selectGrupo = $('.codigoGrupo');
+
+            selectGrupo.each(function (index,element) {
+                var e = $(this);
+
+                e.change(function () {
+                    var pos = -1;
+                    for (var i = 0; i < arrayCursosMatriculados.length; i++) {
+                        if (arrayCursosMatriculados[i].idCurso == selectCurso.eq(index).attr('Key')) {
+                            pos = i;
+                        }
+                    }
+
+                    if (pos != -1) {
+                        arrayCursosMatriculados[pos].idGrupo = e.val();
+                    }
+                    console.log(arrayCursosMatriculados);
+                    
+                });
+            });
+        }
+
+        function PagarCurso() {
+            var btnPagar = $('.btnPagarCurso');
+            var selectCurso = $('.checkCurso');
+            btnPagar.each(function (index, element) {
+                var e = $(this);
+                
+                e.click(function () {
+                    
+                    var pos = -1;
+                    for (var i = 0; i < arrayCursosMatriculados.length; i++) {
+                        if (arrayCursosMatriculados[i].idCurso == selectCurso.eq(index).attr('Key')) {
+                            pos = i;
+                            UbicacionPago = i;
+                        }
+                    }
+                    // alert(pos)
+                    if (pos != -1) {
+                        $('#txtImporte').val(Number(arrayCursosMatriculados[pos].importe).toFixed(2));
+                        $('#txtDescuento').val(Number(arrayCursosMatriculados[pos].descuento).toFixed(2));
+                        $('#txtMensualidad').val(Number(arrayCursosMatriculados[pos].pagoMens).toFixed(2));
+                        $('#txtComentario').val(arrayCursosMatriculados[pos].razon)
+                        // $('#txtImporte').attr('value',arrayCursosMatriculados[pos].importe); 
+                    }
+                });
+            });
+        }
 
 
+        function ActualizarImporte() {
+            var IDImporte = $('#txtImporte');
+            
+            IDImporte.change(function () {
+                // alert(UbicacionPago)
+                arrayCursosMatriculados[UbicacionPago].importe = IDImporte.val();
+            });
+        }
+
+        ActualizarImporte();
+
+        function ActualizarDescueto() {
+            var IDDescueto = $('#txtDescuento');
+            var mensualidad = $('#txtMensualidad');
+            var comentario =  $('#txtComentario');
+            IDDescueto.change(function () {
+                // alert(UbicacionPago)
+                var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
+                mensualidad.val(Number(newMenualidad).toFixed(2));
+                arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                arrayCursosMatriculados[UbicacionPago].razon = comentario;
+                console.log(arrayCursosMatriculados);
+                
+            });
+        }
+
+        ActualizarDescueto();
+
+        function ActualizarComentario() {
+            var Comentario = $('#txtComentario');
+            
+            Comentario.change(function () {
+                // alert(UbicacionPago)
+                arrayCursosMatriculados[UbicacionPago].razon = Comentario.val();
+            });
+        }
+        ActualizarComentario();
     </script>
 
     <script>
@@ -461,6 +615,8 @@ fggf>jdk>fjkfjkj
                         
                         if(response.estado == true){
                             var alu = response.datos[0];
+                            
+                            $('#auxIdAl').val(alu.idAlumno);
                             $('#txtDni_Al').val(alu.dni);
                             //$('#txtDni_Al').attr('disabled',true);
                             $('#txtApellidoPaAl').val(alu.apPaterno);
@@ -533,6 +689,7 @@ fggf>jdk>fjkfjkj
                         //verificar los datos que recive del apoderado *************************************************************
                         if(response.estado == true){
                             var alu = response.datos[0];
+                            $('#auxIdApoderado').val(alu.idApoderado);
                             $('#txtDni_AP').val(alu.dni);
                             //$('#txtDni_Al').attr('disabled',true);
                             $('#txtApellidopa_Ap').val(alu.apPaterno);
@@ -591,7 +748,10 @@ fggf>jdk>fjkfjkj
 
 
             function registrarAJAX() {
-                //Datos de Alumno
+                //Datos de Alumno auxIdApoderado-auxIdAl
+                
+                var auxIdAl = $('#auxIdAl').val();
+
                 var txtDni_Al = $('#txtDni_Al').val();
                 var txtApellidoPaAl = $('#txtApellidoPaAl').val();
                 var txtApellidoMaAl = $('#txtApellidoMaAl').val();
@@ -602,6 +762,8 @@ fggf>jdk>fjkfjkj
                 var txtFechaNaAl = $('#txtFechaNaAl').val();
 
                 //DAtos del Apoderado 
+                var auxIdApoderado = $('#auxIdApoderado').val();
+
                 var txtDni_AP = $('#txtDni_AP').val();
                 var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
                 var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
@@ -610,10 +772,13 @@ fggf>jdk>fjkfjkj
                 var txtCelular_AP = $('#txtCelular_AP').val();
                 var txtParentesco_AP = $('#txtParentesco_AP').val();
                 var urlregistroAJAX = $('#urlregistroAJAX').val();
+
                 $.ajax({
                     type: "post",
                     url: urlregistroAJAX,
                     data:{
+                       
+                        auxIdAl         :auxIdAl,
                         txtDni_Al       :txtDni_Al,
                         txtApellidoPaAl :txtApellidoPaAl,
                         txtApellidoMaAl :txtApellidoMaAl,
@@ -622,15 +787,16 @@ fggf>jdk>fjkfjkj
                         txtDireccionAl  :txtDireccionAl,
                         txtCelularAl    :txtCelularAl,
                         txtFechaNaAl    :txtFechaNaAl,
-
+                        auxIdApoderado   :auxIdApoderado,
                         txtDni_AP        :txtDni_AP,
                         txtApellidopa_Ap :txtApellidopa_Ap,
                         txtApellidoMa_AP :txtApellidoMa_AP,
                         txtNombre_AP     :txtNombre_AP,
                         txtDireccion_AP  :txtDireccion_AP,
                         txtCelular_AP    :txtCelular_AP,
-                        txtParentesco_AP :txtParentesco_AP
+                        txtParentesco_AP :txtParentesco_AP,
 
+                        cursos : arrayCursosMatriculados
                     },
                     dataType: 'json',
                     headers: {
@@ -647,6 +813,47 @@ fggf>jdk>fjkfjkj
                 registrarAJAX();
             })
         });
+    </script>
+    
+    <script>
+            $(document).ready(function() {
+    
+                //buscarAlumno
+                function MontoMatricula() {
+                    
+                    var urlAJAX_montoMatricula = $('#urlAJAX_montoMatricula').val();
+
+                    $.ajax({
+                        type: "post",
+                        url: urlAJAX_montoMatricula,
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        beforeSend: function (response) {
+                            // $('.load').css({display:'block'});
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            //$('#txtMatricula').val(mat.moTotal);
+                            var alu01 = response.datosMa[0];
+                            var alu02 = response.datosMe[0];
+                            mensualidadGeneral = alu02.moTotal;
+                            $('#txtMatricula').val(alu01.moTotal);
+                            $('#txtMatricula').attr('disabled',true);
+                            $('#txtMensualidad').val(alu02.moTotal);
+                            $('#txtMensualidad').attr('disabled',true);
+                        },
+                        error:function (error) {  
+                        },
+                        complete:function () {  
+                        }
+                    });
+                }
+     
+                MontoMatricula();
+            });
+                
     </script>
     
  @endsection 
