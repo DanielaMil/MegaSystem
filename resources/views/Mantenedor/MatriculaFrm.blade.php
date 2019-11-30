@@ -125,8 +125,9 @@ fggf>jdk>fjkfjkj
                                                         </div>
                                                         <div class="column m-3" style="width: 5em;">
 
-                                                        <a data-toggle="tab" href="#tab-eg115-1" class="nav-link active show"><button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button></a>
+                                                         <button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button>
                                                         
+                                                        <!--<a data-toggle="tab" href="#tab-eg115-1" class="nav-link show"><button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button></a>-->
                                                     </div>
                                                     </div>
                                                 </div>
@@ -183,7 +184,7 @@ fggf>jdk>fjkfjkj
                                                             <div class="position-relative form-group">
                                                                     <label for="form-control" class="">
                                                                         <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Direccion*</font>
+                                                                            <font style="vertical-align: inherit;">Direccion</font>
                                                                         </font>
                                                                     </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" class="form-control">
                                                             </div>
@@ -216,17 +217,18 @@ fggf>jdk>fjkfjkj
                                                     </div>
                                                 </div>
                                                 </div>
-                                            </div>
-                                            <div class="row m-3 ">
-                                                <div class="column m-3" style="width: 45em;">
-                                                </div>
-                                                <div class="column m-3" style="width: 3em;">
-                                                        <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
+                                                <div class="row m-3 ">
+                                                        <div class="column m-3" style="width: 45em;">
+                                                        </div>
+                                                        <div class="column m-3" style="width: 3em;">
+                                                                <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
+                                                            </div>
+                                                        <div class="column m-3" style="width: 3em;">
+                                                            <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
+                                                        </div>
                                                     </div>
-                                                <div class="column m-3" style="width: 3em;">
-                                                    <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
-                                                </div>
                                             </div>
+                                            
                                         </div>
 
                                         <div class="tab-pane show" id="tab-eg115-2" role="tabpanel">
@@ -268,7 +270,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">Importe</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtNombre_AP" type="text" class="form-control" style="width: 25%">
+                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
                                                         <br/>
                                                         <h6>Pago de Mensualidad s/60.00</h6>
                                                         <label>
@@ -282,7 +284,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">Descuetno</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtNombre_AP" type="text" class="form-control" style="width: 25%">
+                                                        <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">
 
 
                                                     </div>
@@ -298,7 +300,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Promotor</font>
                                                                 </font>
-                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
+                                                            </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -350,6 +352,26 @@ fggf>jdk>fjkfjkj
             especiales = "8-37-39-46";
 
             tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
+
+        function montos(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " .0123456789";
+            especiales = "8-37-39-46";
+            tecla_especial = false
+
+
             for(var i in especiales){
                 if(key == especiales[i]){
                     tecla_especial = true;
@@ -616,7 +638,7 @@ fggf>jdk>fjkfjkj
                     },
                     success:function(response){
                         console.log(response);
-                        
+                        alert("Se registro los datos correctamente");
                     },
 
                 });
