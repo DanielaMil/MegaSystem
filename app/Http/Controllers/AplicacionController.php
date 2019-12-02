@@ -195,20 +195,22 @@ class AplicacionController extends Controller
            $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($dato->cursos[$i]["idGrupo"]));
 
             for($j=0;$j < ($datosGrupo[0]->duMeses) ; $j++ ){
-                $cantidadMeses +=1;
+                $cantidadMeses = $cantidadMeses + 1;
                 //Para registrar la mensualidad
-                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feVencimiento,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],j+1));
-                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],null,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],null,$cantidadMeses));
+                //return response()->json($datosGrupo);
+                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],j+1));
+                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
                 
             }
         }
         
         return response()->json(true);
-        if($datos){
+        if($dataMensualidad){
             $datas = [
                 'estado' => true,
                 'cod' => 200,
-                'datos' => $datas
+                'datos' => $dataMensualidad
             ];
             return response()->json($datas);
         }else{

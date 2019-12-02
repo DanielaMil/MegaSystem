@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 01/12/2019 22:46:48
+ Date: 01/12/2019 23:56:16
 */
 
 SET NAMES utf8mb4;
@@ -62,7 +62,7 @@ CREATE TABLE `apoderado`  (
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `parentesco` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idApoderado`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of apoderado
@@ -72,6 +72,8 @@ INSERT INTO `apoderado` VALUES (37, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb
 INSERT INTO `apoderado` VALUES (38, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
 INSERT INTO `apoderado` VALUES (39, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
 INSERT INTO `apoderado` VALUES (40, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
+INSERT INTO `apoderado` VALUES (41, '12345678', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `apoderado` VALUES (42, '12345678', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ciclo
@@ -128,7 +130,7 @@ CREATE TABLE `cuota`  (
   INDEX `idMatricula`(`idMatricula`) USING BTREE,
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`idConcepto`) REFERENCES `concepto` (`idConcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `cuota_ibfk_2` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 123 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 152 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of cuota
@@ -207,6 +209,35 @@ INSERT INTO `cuota` VALUES (119, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
 INSERT INTO `cuota` VALUES (120, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
 INSERT INTO `cuota` VALUES (121, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
 INSERT INTO `cuota` VALUES (122, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
+INSERT INTO `cuota` VALUES (123, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (124, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (125, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (126, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (127, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (128, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (129, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (130, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (131, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (132, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (133, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (134, 50.00, NULL, 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (135, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (136, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (137, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (138, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (139, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (140, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (141, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (142, 50.00, '2019-11-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (143, 50.00, '2019-05-02', 3, 262, 20.00, b'0', 'jvjhv', 10.00);
+INSERT INTO `cuota` VALUES (144, 50.00, '2019-05-02', 3, 262, 20.00, b'0', 'jvjhv', 10.00);
+INSERT INTO `cuota` VALUES (145, 50.00, '2019-07-02', 3, 262, 20.00, b'0', 'jvjhv', 10.00);
+INSERT INTO `cuota` VALUES (146, 50.00, '2019-07-02', 3, 262, 20.00, b'0', 'jvjhv', 10.00);
+INSERT INTO `cuota` VALUES (147, 50.00, '2019-08-02', 3, 262, 20.00, b'0', 'jvjhv', 10.00);
+INSERT INTO `cuota` VALUES (148, 50.00, '2019-12-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (149, 50.00, '2020-01-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (150, 50.00, '2020-02-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
+INSERT INTO `cuota` VALUES (151, 50.00, '2020-03-28', 3, NULL, 50.00, b'0', 'jhvbjhb', 10.00);
 
 -- ----------------------------
 -- Table structure for curso
@@ -279,7 +310,7 @@ CREATE TABLE `matricula`  (
   CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_3` FOREIGN KEY (`idApoderado`) REFERENCES `apoderado` (`idApoderado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_4` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 205 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 264 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of matricula
@@ -324,6 +355,65 @@ INSERT INTO `matricula` VALUES (201, '2019-12-01 22:43:57', 3, 36, 56, NULL);
 INSERT INTO `matricula` VALUES (202, '2019-12-01 22:43:57', 3, 36, 56, NULL);
 INSERT INTO `matricula` VALUES (203, '2019-12-01 22:43:58', 3, 36, 56, NULL);
 INSERT INTO `matricula` VALUES (204, '2019-12-01 22:46:11', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (205, '2019-12-01 22:53:05', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (206, '2019-12-01 22:54:52', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (207, '2019-12-01 22:55:59', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (208, '2019-12-01 22:56:28', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (209, '2019-12-01 23:02:05', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (210, '2019-12-01 23:02:32', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (211, '2019-12-01 23:03:04', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (212, '2019-12-01 23:03:18', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (213, '2019-12-01 23:03:50', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (214, '2019-12-01 23:04:44', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (215, '2019-12-01 23:06:23', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (216, '2019-12-01 23:07:37', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (217, '2019-12-01 23:07:39', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (218, '2019-12-01 23:07:40', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (219, '2019-12-01 23:08:36', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (220, '2019-12-01 23:08:38', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (221, '2019-12-01 23:08:38', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (222, '2019-12-01 23:09:07', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (223, '2019-12-01 23:09:15', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (224, '2019-12-01 23:09:16', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (225, '2019-12-01 23:10:11', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (226, '2019-12-01 23:10:12', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (227, '2019-12-01 23:10:16', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (228, '2019-12-01 23:10:17', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (229, '2019-12-01 23:10:44', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (230, '2019-12-01 23:10:44', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (231, '2019-12-01 23:10:44', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (232, '2019-12-01 23:11:04', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (233, '2019-12-01 23:11:55', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (234, '2019-12-01 23:12:35', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (235, '2019-12-01 23:13:09', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (236, '2019-12-01 23:14:04', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (237, '2019-12-01 23:14:05', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (238, '2019-12-01 23:14:06', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (239, '2019-12-01 23:15:55', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (240, '2019-12-01 23:16:45', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (241, '2019-12-01 23:17:50', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (242, '2019-12-01 23:17:52', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (243, '2019-12-01 23:17:54', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (244, '2019-12-01 23:17:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (245, '2019-12-01 23:17:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (246, '2019-12-01 23:17:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (247, '2019-12-01 23:17:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (248, '2019-12-01 23:17:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (249, '2019-12-01 23:17:57', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (250, '2019-12-01 23:18:15', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (251, '2019-12-01 23:18:25', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (252, '2019-12-01 23:18:25', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (253, '2019-12-01 23:18:25', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (254, '2019-12-01 23:18:26', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (255, '2019-12-01 23:18:26', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (256, '2019-12-01 23:18:27', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (257, '2019-12-01 23:18:27', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (258, '2019-12-01 23:18:27', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (259, '2019-12-01 23:18:27', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (260, '2019-12-01 23:19:24', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (261, '2019-12-01 23:19:25', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (262, '2019-12-01 23:19:34', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (263, '2019-12-01 23:50:01', 3, 36, 56, NULL);
 
 -- ----------------------------
 -- Table structure for pago
@@ -440,6 +530,17 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for mostrarConcepto
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `mostrarConcepto`;
+delimiter ;;
+CREATE PROCEDURE `mostrarConcepto`()
+  NO SQL 
+SELECT concepto.descripcion, concepto.moTotal, concepto.idConcepto from concepto WHERE concepto.idConcepto <=3
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for mostrarMesesPagos
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `mostrarMesesPagos`;
@@ -447,6 +548,25 @@ delimiter ;;
 CREATE PROCEDURE `mostrarMesesPagos`(IN `_idGrupo` INT)
 BEGIN
 	SELECT * FROM grupo WHERE grupo.idGrupo = _idGrupo;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for nombreDni
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `nombreDni`;
+delimiter ;;
+CREATE PROCEDURE `nombreDni`(IN `DNI` CHAR(9))
+  NO SQL 
+BEGIN
+    SELECT
+        concat(alumno.nombre,' ',alumno.apPaterno ,' ',alumno.apMaterno) nombreCompleto, curso.nombre, grupo.descripcion, matricula.idMatricula
+    FROM
+        alumno INNER JOIN matricula on matricula.idAlumno = alumno.idAlumno 		INNER JOIN grupo on grupo.idGrupo = matricula.idGrupo 
+        INNER JOIN curso on curso.idCurso =  grupo.idCurso
+    WHERE
+        alumno.dni = DNI;
 END
 ;;
 delimiter ;
@@ -505,6 +625,19 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for registrarCuotaIngreso
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `registrarCuotaIngreso`;
+delimiter ;;
+CREATE PROCEDURE `registrarCuotaIngreso`(IN `monto` FLOAT(4,2), IN `feVencimiento` DATE, IN `idConcepto` INT(4), IN `idMatricula` INT(4), IN `saldo` FLOAT(4,2), IN `raDescuento` VARCHAR(200), IN `moDescuento` FLOAT(4,2))
+  NO SQL 
+BEGIN
+insert into cuota(cuota.monto, cuota.feVencimiento, cuota.idConcepto, cuota.idMatricula, cuota.saldo, cuota.raDescuento, cuota.moDescuento) VALUES(monto, feVencimiento, idConcepto, idMatricula, saldo, raDescuento, moDescuento);
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for RegistroCuotas
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `RegistroCuotas`;
@@ -512,11 +645,11 @@ delimiter ;;
 CREATE PROCEDURE `RegistroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
 BEGIN
 	
-	#DECLARE _auxFecha Date;
+	DECLARE _auxFecha Date;
 	
-	#set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL _numero MONTH));
+	set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL ´_numero´ MONTH));
 	
-		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_feVencimiento,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
+		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_auxFecha,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
 	
 	
 	
