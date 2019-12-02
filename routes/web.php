@@ -31,4 +31,13 @@ route::post('/matricula/listarMensualidad','AplicacionController@listarMensualid
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
-Route::get('/pagos', 'AplicacionController@Pagos')->name('pagos');
+
+//********************PAGOS****** */
+Route::get('/pagos', 'pagosController@Pagos')->name('pago');
+Route::post('/pagos/buscarAlumno', 'pagosController@buscarAl')->name('buscarAlumnos');
+Route::post('/pagos/llenarCombo', 'pagosController@llenarCombo')->name('llenar');
+Route::post('/pagos/registrar', 'pagosController@registrarCuota')->name('registroCuota');
+
+Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listarCuotas');
+
+Route::post('/pagos/registrarPagos', 'pagosController@registrarPagos')->name('registrarPagos');
