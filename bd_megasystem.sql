@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 01/12/2019 21:41:10
+ Date: 01/12/2019 22:46:48
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `alumno`  (
   `feNacimiento` date NULL DEFAULT NULL,
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idAlumno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 66 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of alumno
@@ -43,6 +43,10 @@ INSERT INTO `alumno` VALUES (58, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa'
 INSERT INTO `alumno` VALUES (59, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
 INSERT INTO `alumno` VALUES (60, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
 INSERT INTO `alumno` VALUES (61, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES (62, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES (63, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES (64, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES (65, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for apoderado
@@ -124,7 +128,7 @@ CREATE TABLE `cuota`  (
   INDEX `idMatricula`(`idMatricula`) USING BTREE,
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`idConcepto`) REFERENCES `concepto` (`idConcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `cuota_ibfk_2` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 123 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of cuota
@@ -199,6 +203,10 @@ INSERT INTO `cuota` VALUES (115, 50.00, NULL, 3, NULL, 50.00, b'0', 'dfgdfg', 10
 INSERT INTO `cuota` VALUES (116, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
 INSERT INTO `cuota` VALUES (117, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
 INSERT INTO `cuota` VALUES (118, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (119, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
+INSERT INTO `cuota` VALUES (120, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
+INSERT INTO `cuota` VALUES (121, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
+INSERT INTO `cuota` VALUES (122, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for curso
@@ -271,13 +279,51 @@ CREATE TABLE `matricula`  (
   CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_3` FOREIGN KEY (`idApoderado`) REFERENCES `apoderado` (`idApoderado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_4` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 167 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 205 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of matricula
 -- ----------------------------
 INSERT INTO `matricula` VALUES (165, '2019-12-01 20:19:09', 4, 36, 56, NULL);
 INSERT INTO `matricula` VALUES (166, '2019-12-01 20:19:09', 5, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (167, '2019-12-01 22:35:42', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (168, '2019-12-01 22:35:43', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (169, '2019-12-01 22:35:45', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (170, '2019-12-01 22:35:46', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (171, '2019-12-01 22:36:38', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (172, '2019-12-01 22:36:39', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (173, '2019-12-01 22:36:40', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (174, '2019-12-01 22:36:41', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (175, '2019-12-01 22:38:25', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (176, '2019-12-01 22:38:25', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (177, '2019-12-01 22:38:26', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (178, '2019-12-01 22:39:47', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (179, '2019-12-01 22:39:48', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (180, '2019-12-01 22:39:49', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (181, '2019-12-01 22:40:45', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (182, '2019-12-01 22:41:20', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (183, '2019-12-01 22:41:21', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (184, '2019-12-01 22:41:23', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (185, '2019-12-01 22:41:49', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (186, '2019-12-01 22:41:50', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (187, '2019-12-01 22:41:51', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (188, '2019-12-01 22:41:51', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (189, '2019-12-01 22:41:51', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (190, '2019-12-01 22:42:20', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (191, '2019-12-01 22:42:20', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (192, '2019-12-01 22:42:21', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (193, '2019-12-01 22:42:29', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (194, '2019-12-01 22:42:34', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (195, '2019-12-01 22:43:36', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (196, '2019-12-01 22:43:37', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (197, '2019-12-01 22:43:37', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (198, '2019-12-01 22:43:38', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (199, '2019-12-01 22:43:56', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (200, '2019-12-01 22:43:57', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (201, '2019-12-01 22:43:57', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (202, '2019-12-01 22:43:57', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (203, '2019-12-01 22:43:58', 3, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (204, '2019-12-01 22:46:11', 3, 36, 56, NULL);
 
 -- ----------------------------
 -- Table structure for pago
@@ -466,11 +512,11 @@ delimiter ;;
 CREATE PROCEDURE `RegistroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
 BEGIN
 	
-	DECLARE _auxFecha Date;
+	#DECLARE _auxFecha Date;
 	
-	set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL _numero MONTH));
+	#set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL _numero MONTH));
 	
-		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_auxFecha,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
+		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_feVencimiento,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
 	
 	
 	

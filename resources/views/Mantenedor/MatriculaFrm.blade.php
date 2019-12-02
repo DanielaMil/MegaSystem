@@ -300,7 +300,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">Importe</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="" onkeypress="return montos(event)">
+                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
                                                         
                                                         <br/>
                                                         <label>
@@ -487,7 +487,7 @@ fggf>jdk>fjkfjkj
                                             }
                                         }
                             tabla+='</select></td>'
-                                +'<td><button  class="btnPagarCurso">pago</button></td></tr>';  
+                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
                     }
                     $('#tbody').html(tabla);
                     SeleccionarCuros();
@@ -552,7 +552,7 @@ fggf>jdk>fjkfjkj
             $('#txtComentario').attr('disabled',true);
             $('#txtDescuento').attr('disabled',true);
         }
-        //bloquearMatricula()
+        bloquearMatricula()
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
@@ -583,7 +583,7 @@ fggf>jdk>fjkfjkj
                     }else{
                             /*$('#txtImporte').attr('disabled',false);
                             $('#txtImporte').val('');
-                            $('#txtComentario').attr('disabled',false);
+                           $('#txtComentario').attr('disabled',false);
                             $('#txtComentario').val('');
                             $('#txtDescuento').attr('disabled',false);
                             $('#txtDescuento').val('');*/
@@ -645,17 +645,15 @@ fggf>jdk>fjkfjkj
             var btnPagar = $('.btnPagarCurso');
             var selectCurso = $('.checkCurso');
 
-            
+            $('#txtImporte').attr('disabled',false);
+            $('#txtImporte').val('');
+            $('#txtComentario').attr('disabled',false);
+            $('#txtComentario').val('');
+            $('#txtDescuento').attr('disabled',false);
+            $('#txtDescuento').val('');
 
             btnPagar.each(function (index, element) {
                 var e = $(this);
-
-                /*$('#txtImporte').attr('disabled',false);
-                $('#txtImporte').val('');
-                $('#txtComentario').attr('disabled',false);
-                $('#txtComentario').val('');
-                $('#txtDescuento').attr('disabled',false);
-                $('#txtDescuento').val('');*/
                 
                 e.click(function () {
                     

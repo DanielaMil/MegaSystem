@@ -187,7 +187,7 @@ class AplicacionController extends Controller
         */
         
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
-            $cantidadMeses = 0;
+            $cantidadMeses = 0; 
             $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,NULL));
 
            $idMatricula = DB::select("call ultimaMatricula()",array());
@@ -198,7 +198,7 @@ class AplicacionController extends Controller
                 $cantidadMeses +=1;
                 //Para registrar la mensualidad
                 //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feVencimiento,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],j+1));
-                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],null,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],null,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],null,$cantidadMeses));
                 
             }
         }
