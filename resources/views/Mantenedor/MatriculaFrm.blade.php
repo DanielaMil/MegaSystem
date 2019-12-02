@@ -462,27 +462,30 @@ fggf>jdk>fjkfjkj
 
         var numero = document.getElementById('numero');
 
-        function calcular() {
+        //function calcular() {
         //la fecha
-        var TuFecha = new Date('01/01/2018');
+        //var TuFecha = new Date('01/01/2018');
         
         //dias a sumar
-        var dias = parseInt(numero.value);
+        //var dias = parseInt(numero.value);
         
         //nueva fecha sumada
-        TuFecha.setDate(TuFecha.getDate() + dias);
+        //TuFecha.setDate(TuFecha.getDate() + dias);
         //formato de salida para la fecha
-        resultado.innerText = TuFecha.getDate() + '/' +
-            (TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
-        }
+        //resultado.innerText = TuFecha.getDate() + '/' +
+        //    (TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
+        //}
 
-        function tabla() {
+        function tabla(param) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
         
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarGrupo,
                 dataType: 'json',
+                data:{
+                    dni :param
+                },
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -518,7 +521,7 @@ fggf>jdk>fjkfjkj
             });
         }
 
-        tabla();
+        //tabla();
 
         function tabla02() {
             var urlAJAX_ListarMensualidad = $('#urlAJAX_ListarMensualidad').val();
@@ -544,12 +547,18 @@ fggf>jdk>fjkfjkj
                     var tabla01;
                     var alu = response.datosGrupo[0];
                     for(var j=0;j < alu.duMeses;j++){
-                        var fechaaux = alu.feInicio;
+                        //*******
+                        var e = new Date(alu.feInicio);
+                        e.setMonth(e.getMonth() + (j+1));
+
+                        //********
+                        //var fechaaux = alu.feInicio;
 
                         tabla01+='<tr><td>'+(j+1)+'°'+'</td>'
                         +'<td>'+auxMonto+'</td>'
-                        +'<td>'+ fechaaux +'</td></tr>'      
+                        +'<td>'+"fecha: "+e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate() +'</td></tr>'      
                     }
+                   
                     $('#tbody02').html(tabla01);
                 },
                 error:function (error) {  
@@ -558,6 +567,7 @@ fggf>jdk>fjkfjkj
                 }
             });
         }
+
         $('#btnGuardarTablaAjax').click(function () {  
             tabla02();
         });
@@ -567,6 +577,7 @@ fggf>jdk>fjkfjkj
             $('#txtComentario').attr('disabled',true);
             $('#txtDescuento').attr('disabled',true);
         }
+        
         bloquearMatricula()
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
@@ -659,7 +670,6 @@ fggf>jdk>fjkfjkj
         function PagarCurso() {
             var btnPagar = $('.btnPagarCurso');
             var selectCurso = $('.checkCurso');
-
             $('#txtImporte').attr('disabled',false);
             $('#txtImporte').val('');
             $('#txtComentario').attr('disabled',false);
@@ -672,6 +682,7 @@ fggf>jdk>fjkfjkj
                 
                 e.click(function () {
                     
+                    $('#tbody02').html('');
                     var pos = -1;
                     for (var i = 0; i < arrayCursosMatriculados.length; i++) {
                         if (arrayCursosMatriculados[i].idCurso == selectCurso.eq(index).attr('Key')) {
@@ -690,7 +701,6 @@ fggf>jdk>fjkfjkj
                 });
             });
         }
-
 
         function ActualizarImporte() {
             var IDImporte = $('#txtImporte');
@@ -733,7 +743,6 @@ fggf>jdk>fjkfjkj
             });
         }
         ActualizarComentario();
-
 
         //buscarAlumno
         function buscarAlumno() {
@@ -781,8 +790,9 @@ fggf>jdk>fjkfjkj
                             option.eq(i).attr('selected',ban);
                         }
                         $('#txtFechaNaAl').val(alu.feNacimiento);
+                        tabla(alu.dni);
                     }else{
-                        
+                        tabla(null);
                         if(response.cod == 100){
                             alert('Cantidad de caracteres no valido')
                         }
@@ -822,6 +832,7 @@ fggf>jdk>fjkfjkj
 
         $('#btn_buscarAJAX_AL').click(function () {  
             buscarAlumno();
+
         });
 
         function buscarApoderado() {
@@ -934,8 +945,8 @@ fggf>jdk>fjkfjkj
             var urlregistroAJAX = $('#urlregistroAJAX').val();
 
             //datos para las cuotas
-            
-
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
 
             $.ajax({
                 type: "post",
@@ -951,6 +962,7 @@ fggf>jdk>fjkfjkj
                     txtDireccionAl  :txtDireccionAl,
                     txtCelularAl    :txtCelularAl,
                     txtFechaNaAl    :txtFechaNaAl,
+
                     auxIdApoderado   :auxIdApoderado,
                     txtDni_AP        :txtDni_AP,
                     txtApellidopa_Ap :txtApellidopa_Ap,
@@ -959,6 +971,9 @@ fggf>jdk>fjkfjkj
                     txtDireccion_AP  :txtDireccion_AP,
                     txtCelular_AP    :txtCelular_AP,
                     txtParentesco_AP :txtParentesco_AP,
+
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
 
                     cursos : arrayCursosMatriculados
                 },
@@ -974,10 +989,10 @@ fggf>jdk>fjkfjkj
 
             });
         }
+
         $('#btn_registrarAjax').click(function () { 
             registrarAJAX();
         })
-
     
         function MontoMatricula() {
             

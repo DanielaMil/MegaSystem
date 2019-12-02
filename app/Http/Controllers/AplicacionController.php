@@ -185,22 +185,43 @@ class AplicacionController extends Controller
         razon:      "",
         descuento:  0.00
         */
+        $txtRecibo = $dato->txtRecibo;
+        $txtDniPromotor = $dato->txtDniPromotor;
+        
         
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $cantidadMeses = 0; 
             $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,NULL));
 
-           $idMatricula = DB::select("call ultimaMatricula()",array());
+            //registro de la matriculasCuota
+            $idMatricula01 = DB::select("call ultimaMatricula()",array());
+            $auxFecha = DB::select("call fechaActual()", array()); 
+            $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($dato->cursos[$i]["idGrupo"]));
 
-           $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($dato->cursos[$i]["idGrupo"]));
+            $val = ($dato->cursos[$i]["importe"]);
+            $auxSaldo = 50 - $val;
+           
+            if ($auxSaldo == 0) {
+                $estado = 1;
+            }else{
+                $estado = 0;
+            }
+            
+            $dataMensualidad01 = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($val,$datosGrupo[0]->feInicio,2,$idMatricula01[0]->idMatricula,$auxSaldo,$estado,NULL,NULL,0));    
+           
+            $ultimaCuotaMatricula = DB::select("call ultimaCuotaMatricula()",array());
+            
+            //return response()->json($ultimaCuotaMatricula[0]->idCuota);
+            
+            $pago01  = DB::select("call registrarPagos(?,?,?)",array($val,$txtRecibo,$ultimaCuotaMatricula[0]->idCuota));
 
             for($j=0;$j < ($datosGrupo[0]->duMeses) ; $j++ ){
+                
                 $cantidadMeses = $cantidadMeses + 1;
                 //Para registrar la mensualidad
-                //return response()->json($datosGrupo);
-                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],j+1));
-                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
-                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                $idMatricula = DB::select("call ultimaMatricula()",array());
+               
+                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
                 
             }
         }
