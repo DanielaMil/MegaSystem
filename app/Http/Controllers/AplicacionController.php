@@ -125,6 +125,7 @@ class AplicacionController extends Controller
     public function listarMensualidad(Request $dato)
     {
         $txtIdGrupo = $dato->auxIdGrupo01;
+        //$txtIdGrupo = 5;
         
         $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($txtIdGrupo));
         
@@ -174,12 +175,32 @@ class AplicacionController extends Controller
             $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
             $auxIdApoderado = $Apoderado[0]->idApoderado;
         }
-
-        //$Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array(NULL,$auxIdApoderado,$auxIdAl,NULL));
+        //Registro de Matricula y Cuotas
+        /*
+        idCurso:    e.attr('Key'),
+        idGrupo:    selectGrupo.eq(index).val(),
+        importe:    0.00,
+        pagoMens:   parseFloat(mensualidadGeneral),
+        pagoMatr:   parseFloat(matricula.val()),
+        razon:      "",
+        descuento:  0.00
+        */
+        
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
+            $cantidadMeses = 0;
+            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,NULL));
 
-           // $nuevo = $dato->cursos[$i]["idCurso"];
-            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idCurso"],$auxIdApoderado,$auxIdAl,NULL));
+           $idMatricula = DB::select("call ultimaMatricula()",array());
+
+           $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($dato->cursos[$i]["idGrupo"]));
+
+            for($j=0;$j < ($datosGrupo[0]->duMeses) ; $j++ ){
+                $cantidadMeses +=1;
+                //Para registrar la mensualidad
+                //$dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feVencimiento,3,$idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],j+1));
+                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],null,3,null,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                
+            }
         }
         
         return response()->json(true);

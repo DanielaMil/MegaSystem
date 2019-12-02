@@ -8,8 +8,8 @@ fggf>jdk>fjkfjkj
 
 @section('content')   
     
-            <h5 class="msj_ALU" style="display: none">*No se encontro datos del Alumno</h5>
-            <h5 class="msj_APO" style="display: none">*No se encontro datos del Apoderado</h5>
+            <!--<h5 class="msj_ALU" style="display: none">*No se encontro datos del Alumno</h5>-->
+           <!-- <h5 class="msj_APO" style="display: none">*No se encontro datos del Apoderado</h5>-->
             <!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
@@ -246,7 +246,7 @@ fggf>jdk>fjkfjkj
                                                
                                                 <div class="row m-3 ">
                                                     <div class="column m-3" style="width: 30em;">
-                                                        <div class="column m-3" style="width: 5em;">
+                                                        <div class="column m-3" style="width: 25em;">
                                                             <div class="mt-3 position-relative form-check">
                                                                 <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
                                                                     <table class="table">
@@ -259,14 +259,34 @@ fggf>jdk>fjkfjkj
                                                                         <tbody id="tbody">
                                                                             
                                                                         </tbody>
+                                                                        <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
+                                                                        
                                                                     </table>
-                                                                    <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}">           
+                                                                    <div class="row m-7 ">
+                                                                            <div class="column m-3" style="width: 15em;">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    <font style="vertical-align: inherit;">N° Recibo*</font>
+                                                                                </font>
+                                                                                <input name="txtRecibo" id="txtRecibo" type="text" class="form-control">
+                                                                            </div>
+                                                                            <div class="column m-3" style="width: 10em;">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    <font style="vertical-align: inherit;">DNI_Promotor</font>
+                                                                                </font>
+                                                                                <input name="txtDniPromotor" id="txtDniPromotor" type="text" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                                            </div>
+                                                                            <div class="column m-3" style="width: 30em;">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    <font style="vertical-align: inherit;">Nombre</font>
+                                                                                </font>
+                                                                                <input name="txtNombrePromotor" id="txtNombrePromotor" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                            </div>
+                                                                        </div>
                                                                 </div>
                                                                                                                             
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="column m-3" style="width: 10em;"></div>
                                                     <div class="column m-3" style="width: 25em;">
                                                         <label>
                                                             <font style="vertical-align: inherit;">
@@ -280,7 +300,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">Importe</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
+                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="" onkeypress="return montos(event)">
                                                         
                                                         <br/>
                                                         <label>
@@ -303,20 +323,19 @@ fggf>jdk>fjkfjkj
                                                         </label>
                                                         <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">
 <!--------------------------------------------------------------------------- Mara el listado de las mensualidades-->
-                                                        <div class="column m-3" style="width: 95em;">
-                                                            <table class="table02">
-                                                                <thead>
-                                                                    <th>MES</th>
-                                                                    <th>MONTO</th>
-                                                                    <th>FECHA VENCIMIENTO</th>
-                                                                </thead>
-                                                                <tbody id="tbody02">
-                                                                    
-                                                                </tbody>
-                                                            </table>
-                                                                    
-                                                            
-                                                            
+                                                        <div class="column m-3" style="width: 50em;">
+                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                <table class="table02">
+                                                                    <thead>
+                                                                        <th>MES</th>
+                                                                        <th>MONTO</th>
+                                                                        <th>FECHA VENCIMIENTO</th>
+                                                                    </thead>
+                                                                    <tbody id="tbody02">
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
                                                         <div class="row m-3 ">
                                                             <div class="column m-3" style="width: 25em;">
@@ -324,31 +343,25 @@ fggf>jdk>fjkfjkj
                                                             <div class="column m-3" style="width: 5em;">
                                                             </div>
                                                             <div class="column m-3" style="width: 10em;">
-                                                                <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Guardar</button>
+                                                                <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Generar</button>
                                                                 <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="row m-3 ">
-                                                        <div class="column m-3" style="width: 15em;">
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">N° Recibo*</font>
-                                                            </font>
-                                                            <input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control">
-                                                        </div>
-                                                        <div class="column m-3" style="width: 20em;">
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Promotor</font>
-                                                            </font>
-                                                            <input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="row m-3 ">
                                                     <div class="column m-3" style="width: 25em;">
                                                     </div>
                                                     <div class="column m-3" style="width: 5em;">
+                                                        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+                                                      
+                                                        <!-- Button trigger modal -->
+
+
+                                                        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
                                                         <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
                                                         <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
                                                     </div>
@@ -375,7 +388,9 @@ fggf>jdk>fjkfjkj
 <!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
+
     <script>
+
         function soloLetras(e){
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
@@ -442,7 +457,9 @@ fggf>jdk>fjkfjkj
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");
         var mensualidadGeneral = 0.00;
-        var auxIdGrupo = 0;
+        var auxIdGrupo = 0 ;
+        var auxMonto = 60.00;
+
         function tabla() {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
         
@@ -470,11 +487,12 @@ fggf>jdk>fjkfjkj
                                             }
                                         }
                             tabla+='</select></td>'
-                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
+                                +'<td><button  class="btnPagarCurso">pago</button></td></tr>';  
                     }
                     $('#tbody').html(tabla);
                     SeleccionarCuros();
                     SeleccionarGrupo();
+
                     PagarCurso();
                 },
                 error:function (error) {  
@@ -486,10 +504,12 @@ fggf>jdk>fjkfjkj
 
         tabla();
 
-        
         function tabla02() {
             var urlAJAX_ListarMensualidad = $('#urlAJAX_ListarMensualidad').val();
             var auxIdGrupo01 = auxIdGrupo;
+            //$fecha_actual = date("10-10-2010");
+            //echo date("d-m-Y",strtotime($fecha_actual."+ 1 days"));
+
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarMensualidad,
@@ -501,16 +521,21 @@ fggf>jdk>fjkfjkj
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
                 beforeSend: function (response) {
-                    // $('.load').css({display:'block'});
+                    // $('.load').css({display:'block'}); alu.feInicio
                 },
                 success: function (response) {
                     console.log(response);
                     var tabla01;
                     var alu = response.datosGrupo[0];
+                    for(var j=0;j < alu.duMeses;j++){
+                        //var fecha = new Date(2015, 11, 31);
+                        var fechaaux = alu.feInicio;
 
-                    tabla01+='<tr><td>'+response.datosGrupo[0].idGrupo+'</td></tr>'        
-
-                    $('#tbody').html(tabla01);
+                    tabla01+='<tr><td>'+(j+1)+'°'+'</td>'
+                    +'<td>'+auxMonto+'</td>'
+                    +'<td>'+ fechaaux +'</td></tr>'      
+                    }
+                    $('#tbody02').html(tabla01);
                 },
                 error:function (error) {  
                 },
@@ -522,14 +547,20 @@ fggf>jdk>fjkfjkj
             tabla02();
         });
         
-
-
+        function bloquearMatricula() { 
+            $('#txtImporte').attr('disabled',true);
+            $('#txtComentario').attr('disabled',true);
+            $('#txtDescuento').attr('disabled',true);
+        }
+        //bloquearMatricula()
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
             var mensualidad = $('#txtMensualidad');
             var matricula = $('#txtMatricula');
             var comentario = $('#txtComentario');
+
+   
             
             selectCurso.each(function (index,element) {
                 var e = $(this);
@@ -541,6 +572,8 @@ fggf>jdk>fjkfjkj
                         for (var i = 0; i < arrayCursosMatriculados.length; i++) {
                             if (arrayCursosMatriculados[i].idCurso == e.attr('Key')) {
                                 pos = i;
+                                auxIdGrupo = arrayCursosMatriculados[i].idGrupo;
+                                //alert(auxIdGrupo);
                             }
                         }
                         arrayCursosMatriculados.splice(pos,1);
@@ -548,6 +581,13 @@ fggf>jdk>fjkfjkj
                         
                         e.attr('ban',0);
                     }else{
+                            /*$('#txtImporte').attr('disabled',false);
+                            $('#txtImporte').val('');
+                            $('#txtComentario').attr('disabled',false);
+                            $('#txtComentario').val('');
+                            $('#txtDescuento').attr('disabled',false);
+                            $('#txtDescuento').val('');*/
+
                         arrayCursosMatriculados.push(
                             {
                                 idCurso:    e.attr('Key'),
@@ -558,9 +598,15 @@ fggf>jdk>fjkfjkj
                                 razon:      "",
                                 descuento:  0.00
                             }
+                          
+                            
                         );
+                        auxIdGrupo = selectGrupo.eq(index).val();
+                        //alert(auxIdGrupo);
                         console.log(arrayCursosMatriculados);
                         e.attr('ban',1);
+
+                            
                     }
                     // alert(index);
                     
@@ -572,10 +618,12 @@ fggf>jdk>fjkfjkj
         function SeleccionarGrupo() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
+            
+            
 
             selectGrupo.each(function (index,element) {
                 var e = $(this);
-
+              
                 e.change(function () {
                     var pos = -1;
                     for (var i = 0; i < arrayCursosMatriculados.length; i++) {
@@ -586,9 +634,8 @@ fggf>jdk>fjkfjkj
 
                     if (pos != -1) {
                         arrayCursosMatriculados[pos].idGrupo = e.val();
-                        auxIdGrupo = arrayCursosMatriculados[pos].idGrupo;
+                        auxIdGrupo = e.val();
                     }
-                    console.log(arrayCursosMatriculados);
                     
                 });
             });
@@ -597,8 +644,18 @@ fggf>jdk>fjkfjkj
         function PagarCurso() {
             var btnPagar = $('.btnPagarCurso');
             var selectCurso = $('.checkCurso');
+
+            
+
             btnPagar.each(function (index, element) {
                 var e = $(this);
+
+                /*$('#txtImporte').attr('disabled',false);
+                $('#txtImporte').val('');
+                $('#txtComentario').attr('disabled',false);
+                $('#txtComentario').val('');
+                $('#txtDescuento').attr('disabled',false);
+                $('#txtDescuento').val('');*/
                 
                 e.click(function () {
                     
@@ -645,6 +702,8 @@ fggf>jdk>fjkfjkj
                 arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
                 arrayCursosMatriculados[UbicacionPago].razon = comentario;
                 console.log(arrayCursosMatriculados);
+
+                auxMonto = newMenualidad;
                 
             });
         }
@@ -657,289 +716,290 @@ fggf>jdk>fjkfjkj
             Comentario.change(function () {
                 // alert(UbicacionPago)
                 arrayCursosMatriculados[UbicacionPago].razon = Comentario.val();
+              
             });
         }
         ActualizarComentario();
-    </script>
-
-    <script>
-        $(document).ready(function() {
-
-            //buscarAlumno
-            function buscarAlumno() {
-                
-                var urlAJAX_AL = $('#urlAJAX_AL').val();
-                var txtDNI = $('#txtDni_Al').val();
-                
-                $.ajax({
-                    type: "post",
-                    url: urlAJAX_AL,
-                    data:{
-                        txtDni :txtDNI
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function (response) {
-                        // $('.load').css({display:'block'});
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        
-                        if(response.estado == true){
-                            var alu = response.datos[0];
-                            
-                            $('#auxIdAl').val(alu.idAlumno);
-                            $('#txtDni_Al').val(alu.dni);
-                            $('#txtApellidoPaAl').val(alu.apPaterno);
-                            $('#txtApellidoPaAl').attr('disabled',true);
-                            $('#txtApellidoMaAl').val(alu.apMaterno);
-                            $('#txtApellidoMaAl').attr('disabled',true);
-                            $('#txtNombreAl').val(alu.nombre);
-                            $('#txtNombreAl').attr('disabled',true);
-                            $('#txtDireccionAl').val(alu.direccion);
-                            $('#txtDireccionAl').attr('disabled',true);
-                            $('#txtCelularAl').val(alu.celular);
-                            $('#txtCelularAl').attr('disabled',true);
-                            $('#txtFechaNaAl').attr('disabled',true);
-
-                            $('#cboGeneroAl').attr('disabled',true);
-                            var option = $('#cboGeneroAl option');
-                            for (var i=0;i < option.length ;i++) {
-                                var ban = (option.eq(i).val() == alu.genero)?true:false;
-                                option.eq(i).attr('selected',ban);
-                            }
-                            $('#txtFechaNaAl').val(alu.feNacimiento);
-                        }else{
-                            
-                            if(response.cod == 100){
-                                alert('Cantidad de caracteres no valido')
-                            }
-                            if (response.cod == 101) {
-                                $('.msj_ALU').css({display:'block'});
-                                LimpiarFormularioALU();
-                            }
-                        }
-                        // $('.load').css({display:'none'});
-                    },
-                    error:function (error) {  
-                    },
-                    complete:function () {  
-                    }
-                });
-            }
-
-            function LimpiarFormularioALU() {  
-                $('#auxIdAl').val('');
-                $('#txtApellidoPaAl').val('');
-                $('#txtApellidoPaAl').attr('disabled',false);
-                $('#txtApellidoMaAl').val('');
-                $('#txtApellidoMaAl').attr('disabled',false);
-                $('#txtNombreAl').val('');
-                $('#txtNombreAl').attr('disabled',false);
-                $('#txtDireccionAl').val('');
-                $('#txtDireccionAl').attr('disabled',false);
-                $('#txtCelularAl').val('');
-                $('#txtCelularAl').attr('disabled',false);
-                $('#txtFechaNaAl').val('');
-                $('#txtFechaNaAl').attr('disabled',false);
-                $('#cboGeneroAl').val('');
-                $('#cboGeneroAl').attr('disabled',false);
-            }
-
-            $('#btn_buscarAJAX_AL').click(function () {  
-                buscarAlumno();
-            });
-
-            function buscarApoderado() {
-                
-                var urlAJAX_AP = $('#urlAJAX_AP').val();
-                var txtDNI = $('#txtDni_AP').val();
-                
-                $.ajax({
-                    type: "post",
-                    url: urlAJAX_AP,
-                    data:{
-                        txtDni :txtDNI
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function (response) {
-                        // $('.load').css({display:'block'});
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        //verificar los datos que recive del apoderado *************************************************************
-                        if(response.estado == true){
-                            var alu = response.datos[0];
-                            $('#auxIdApoderado').val(alu.idApoderado);
-                            $('#txtDni_AP').val(alu.dni);
-                            //$('#txtDni_Al').attr('disabled',true);
-                            $('#txtApellidopa_Ap').val(alu.apPaterno);
-                            $('#txtApellidopa_Ap').attr('disabled',true);
-                            $('#txtApellidoMa_AP').val(alu.apMaterno);
-                            $('#txtApellidoMa_AP').attr('disabled',true);
-                            $('#txtNombre_AP').val(alu.nombre);
-                            $('#txtNombre_AP').attr('disabled',true);
-                            $('#txtDireccion_AP').val(alu.direccion);
-                            $('#txtDireccion_AP').attr('disabled',true);
-                            $('#txtCelular_AP').val(alu.celular);
-                            $('#txtCelular_AP').attr('disabled',true);
-                            $('#txtParentesco_AP').val(alu.celular);
-                            $('#txtParentesco_AP').attr('disabled',true);
-                            
-                        }else{
-                            if(response.cod == 100){
-                                alert('Cantidad de caracteres no valido')
-                            }
-                            if (response.cod == 101) {
-                                $('.msj_APO').css({display:'block'});
-                                LimpiarFormularioApoderado();
-                            }
-                        }
-                        // $('.load').css({display:'none'});
-                    },
-                    error:function (error) {  
-                    },
-                    complete:function () {  
-                    }
-                });
-            }
-
-            function LimpiarFormularioApoderado() {
-                $('#auxIdApoderado').val('');  
-                $('#txtApellidopa_Ap').val('');
-                $('#txtApellidopa_Ap').attr('disabled',false);
-                $('#txtApellidoMa_AP').val('');
-                $('#txtApellidoMa_AP').attr('disabled',false);
-                $('#txtNombre_AP').val('');
-                $('#txtNombre_AP').attr('disabled',false);
-                $('#txtDireccion_AP').val('');
-                $('#txtDireccion_AP').attr('disabled',false);
-                $('#txtCelular_AP').val('');
-                $('#txtCelular_AP').attr('disabled',false);
-                $('#txtParentesco_AP').val('');
-                $('#txtParentesco_AP').attr('disabled',false);
-            }
-
-            $('#btn_limpiarAP').click(function () {  
-                LimpiarFormularioApoderado();
-            });
-
-            $('#btn_buscarAJAX_AP').click(function () {  
-                buscarApoderado();
-            });
 
 
-            function registrarAJAX() {
-                //Datos de Alumno auxIdApoderado-auxIdAl
-                
-                var auxIdAl = $('#auxIdAl').val();
-
-                var txtDni_Al = $('#txtDni_Al').val();
-                var txtApellidoPaAl = $('#txtApellidoPaAl').val();
-                var txtApellidoMaAl = $('#txtApellidoMaAl').val();
-                var txtNombreAl = $('#txtNombreAl').val();
-                var cboGeneroAl = $('#cboGeneroAl').val();
-                var txtDireccionAl = $('#txtDireccionAl').val();
-                var txtCelularAl = $('#txtCelularAl').val();
-                var txtFechaNaAl = $('#txtFechaNaAl').val();
-
-                //DAtos del Apoderado 
-                var auxIdApoderado = $('#auxIdApoderado').val();
-
-                var txtDni_AP = $('#txtDni_AP').val();
-                var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
-                var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
-                var txtNombre_AP = $('#txtNombre_AP').val();
-                var txtDireccion_AP = $('#txtDireccion_AP').val();
-                var txtCelular_AP = $('#txtCelular_AP').val();
-                var txtParentesco_AP = $('#txtParentesco_AP').val();
-                var urlregistroAJAX = $('#urlregistroAJAX').val();
-
-                $.ajax({
-                    type: "post",
-                    url: urlregistroAJAX,
-                    data:{
-                       
-                        auxIdAl         :auxIdAl,
-                        txtDni_Al       :txtDni_Al,
-                        txtApellidoPaAl :txtApellidoPaAl,
-                        txtApellidoMaAl :txtApellidoMaAl,
-                        txtNombreAl     :txtNombreAl,
-                        cboGeneroAl     :cboGeneroAl,
-                        txtDireccionAl  :txtDireccionAl,
-                        txtCelularAl    :txtCelularAl,
-                        txtFechaNaAl    :txtFechaNaAl,
-                        auxIdApoderado   :auxIdApoderado,
-                        txtDni_AP        :txtDni_AP,
-                        txtApellidopa_Ap :txtApellidopa_Ap,
-                        txtApellidoMa_AP :txtApellidoMa_AP,
-                        txtNombre_AP     :txtNombre_AP,
-                        txtDireccion_AP  :txtDireccion_AP,
-                        txtCelular_AP    :txtCelular_AP,
-                        txtParentesco_AP :txtParentesco_AP,
-
-                        cursos : arrayCursosMatriculados
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success:function(response){
-                        console.log(response);
-                        alert("Se registro los datos correctamente");
-                    },
-
-                });
-            }
-            $('#btn_registrarAjax').click(function () { 
-                registrarAJAX();
-            })
-        });
-    </script>
-    
-    <script>
-            $(document).ready(function() {
-    
-                //buscarAlumno
-                function MontoMatricula() {
+        //buscarAlumno
+        function buscarAlumno() {
+            
+            var urlAJAX_AL = $('#urlAJAX_AL').val();
+            var txtDNI = $('#txtDni_Al').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlAJAX_AL,
+                data:{
+                    txtDni :txtDNI
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
                     
-                    var urlAJAX_montoMatricula = $('#urlAJAX_montoMatricula').val();
+                    if(response.estado == true){
+                        var alu = response.datos[0];
+                        
+                        $('#auxIdAl').val(alu.idAlumno);
+                        $('#txtDni_Al').val(alu.dni);
+                        $('#txtApellidoPaAl').val(alu.apPaterno);
+                        $('#txtApellidoPaAl').attr('disabled',true);
+                        $('#txtApellidoMaAl').val(alu.apMaterno);
+                        $('#txtApellidoMaAl').attr('disabled',true);
+                        $('#txtNombreAl').val(alu.nombre);
+                        $('#txtNombreAl').attr('disabled',true);
+                        $('#txtDireccionAl').val(alu.direccion);
+                        $('#txtDireccionAl').attr('disabled',true);
+                        $('#txtCelularAl').val(alu.celular);
+                        $('#txtCelularAl').attr('disabled',true);
+                        $('#txtFechaNaAl').attr('disabled',true);
 
-                    $.ajax({
-                        type: "post",
-                        url: urlAJAX_montoMatricula,
-                        dataType: 'json',
-                        headers: {
-                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        beforeSend: function (response) {
-                            // $('.load').css({display:'block'});
-                        },
-                        success: function (response) {
-                            console.log(response);
-                            //$('#txtMatricula').val(mat.moTotal);
-                            var alu01 = response.datosMa[0];
-                            var alu02 = response.datosMe[0];
-                            mensualidadGeneral = alu02.moTotal;
-                            $('#txtMatricula').val(alu01.moTotal);
-                            $('#txtMatricula').attr('disabled',true);
-                            $('#txtMensualidad').val(alu02.moTotal);
-                            $('#txtMensualidad').attr('disabled',true);
-                        },
-                        error:function (error) {  
-                        },
-                        complete:function () {  
+                        $('#cboGeneroAl').attr('disabled',true);
+                        var option = $('#cboGeneroAl option');
+                        for (var i=0;i < option.length ;i++) {
+                            var ban = (option.eq(i).val() == alu.genero)?true:false;
+                            option.eq(i).attr('selected',ban);
                         }
-                    });
+                        $('#txtFechaNaAl').val(alu.feNacimiento);
+                    }else{
+                        
+                        if(response.cod == 100){
+                            alert('Cantidad de caracteres no valido')
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                            alert("Alumno No encontrado");
+                            LimpiarFormularioALU();
+                        }
+                    }
+                    // $('.load').css({display:'none'});
+                },
+                error:function (error) {  
+                   
+                },
+                complete:function () {  
                 }
-     
-                MontoMatricula();
             });
+        }
+
+        function LimpiarFormularioALU() {  
+            $('#auxIdAl').val('');
+            $('#txtApellidoPaAl').val('');
+            $('#txtApellidoPaAl').attr('disabled',false);
+            $('#txtApellidoMaAl').val('');
+            $('#txtApellidoMaAl').attr('disabled',false);
+            $('#txtNombreAl').val('');
+            $('#txtNombreAl').attr('disabled',false);
+            $('#txtDireccionAl').val('');
+            $('#txtDireccionAl').attr('disabled',false);
+            $('#txtCelularAl').val('');
+            $('#txtCelularAl').attr('disabled',false);
+            $('#txtFechaNaAl').val('');
+            $('#txtFechaNaAl').attr('disabled',false);
+            //$('#cboGeneroAl').val('');
+            $('#cboGeneroAl').attr('disabled',false);
+        }
+
+        $('#btn_buscarAJAX_AL').click(function () {  
+            buscarAlumno();
+        });
+
+        function buscarApoderado() {
+            
+            var urlAJAX_AP = $('#urlAJAX_AP').val();
+            var txtDNI = $('#txtDni_AP').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlAJAX_AP,
+                data:{
+                    txtDni :txtDNI
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    //verificar los datos que recive del apoderado *************************************************************
+                    if(response.estado == true){
+                        var alu = response.datos[0];
+                        $('#auxIdApoderado').val(alu.idApoderado);
+                        $('#txtDni_AP').val(alu.dni);
+                        //$('#txtDni_Al').attr('disabled',true);
+                        $('#txtApellidopa_Ap').val(alu.apPaterno);
+                        $('#txtApellidopa_Ap').attr('disabled',true);
+                        $('#txtApellidoMa_AP').val(alu.apMaterno);
+                        $('#txtApellidoMa_AP').attr('disabled',true);
+                        $('#txtNombre_AP').val(alu.nombre);
+                        $('#txtNombre_AP').attr('disabled',true);
+                        $('#txtDireccion_AP').val(alu.direccion);
+                        $('#txtDireccion_AP').attr('disabled',true);
+                        $('#txtCelular_AP').val(alu.celular);
+                        $('#txtCelular_AP').attr('disabled',true);
+                        $('#txtParentesco_AP').val(alu.celular);
+                        $('#txtParentesco_AP').attr('disabled',true);
+                        
+                    }else{
+                        if(response.cod == 100){
+                            alert('Cantidad de caracteres no valido')
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_APO').css({display:'block'});
+                            alert("Apoderado No encontrado");
+                            LimpiarFormularioApoderado();
+                        }
+                    }
+                    // $('.load').css({display:'none'});
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+
+        function LimpiarFormularioApoderado() {
+            $('#auxIdApoderado').val('');  
+            $('#txtApellidopa_Ap').val('');
+            $('#txtApellidopa_Ap').attr('disabled',false);
+            $('#txtApellidoMa_AP').val('');
+            $('#txtApellidoMa_AP').attr('disabled',false);
+            $('#txtNombre_AP').val('');
+            $('#txtNombre_AP').attr('disabled',false);
+            $('#txtDireccion_AP').val('');
+            $('#txtDireccion_AP').attr('disabled',false);
+            $('#txtCelular_AP').val('');
+            $('#txtCelular_AP').attr('disabled',false);
+            $('#txtParentesco_AP').val('');
+            $('#txtParentesco_AP').attr('disabled',false);
+        }
+
+        $('#btn_limpiarAP').click(function () {  
+            LimpiarFormularioApoderado();
+        });
+
+        $('#btn_buscarAJAX_AP').click(function () {  
+            buscarApoderado();
+        });
+
+
+        function registrarAJAX() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            //DAtos del Apoderado 
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+            var urlregistroAJAX = $('#urlregistroAJAX').val();
+
+            //datos para las cuotas
+            
+
+
+            $.ajax({
+                type: "post",
+                url: urlregistroAJAX,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                    cursos : arrayCursosMatriculados
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    alert("Se registro los datos correctamente");
+                   
+                },
+
+            });
+        }
+        $('#btn_registrarAjax').click(function () { 
+            registrarAJAX();
+        })
+
+    
+        function MontoMatricula() {
+            
+            var urlAJAX_montoMatricula = $('#urlAJAX_montoMatricula').val();
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_montoMatricula,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    //$('#txtMatricula').val(mat.moTotal);
+                    var alu01 = response.datosMa[0];
+                    var alu02 = response.datosMe[0];
+                    mensualidadGeneral = alu02.moTotal;
+                    $('#txtMatricula').val(alu01.moTotal);
+                    $('#txtMatricula').attr('disabled',true);
+                    $('#txtMensualidad').val(alu02.moTotal);
+                    $('#txtMensualidad').attr('disabled',true);
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+
+        MontoMatricula();
+           
                 
     </script>
     

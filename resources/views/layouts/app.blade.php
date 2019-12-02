@@ -10,6 +10,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('template/architectui-html-free/main.css')}}" rel="stylesheet">
+
 </head>
 
 
