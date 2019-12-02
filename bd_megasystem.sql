@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : jcj
+ Source Server         : jcjMysql
  Source Server Type    : MySQL
  Source Server Version : 100134
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 30/11/2019 13:03:34
+ Date: 01/12/2019 21:41:10
 */
 
 SET NAMES utf8mb4;
@@ -32,14 +32,17 @@ CREATE TABLE `alumno`  (
   `feNacimiento` date NULL DEFAULT NULL,
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idAlumno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of alumno
 -- ----------------------------
-INSERT INTO `alumno` VALUES (44, '70409311', 'sdfsd', 'dsfsdf', 'sdfsdf', b'1', '23232', '2019-11-12', 'sdfsdf');
-INSERT INTO `alumno` VALUES (45, '12121212', 'sdfsdf', 'dsfsdf', 'sdfsdf', b'1', '324234', '2019-11-12', 'fsdfds');
-INSERT INTO `alumno` VALUES (46, '22323232', 'sdfsdf', 'dfsd', 'sdfsdf', b'1', '34234', '2019-11-13', 'sdfsdf');
+INSERT INTO `alumno` VALUES (56, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
+INSERT INTO `alumno` VALUES (57, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
+INSERT INTO `alumno` VALUES (58, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
+INSERT INTO `alumno` VALUES (59, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
+INSERT INTO `alumno` VALUES (60, '70409311', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', b'1', '23423', '2019-12-04', 'sadasd23');
+INSERT INTO `alumno` VALUES (61, NULL, NULL, NULL, NULL, b'1', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for apoderado
@@ -55,17 +58,16 @@ CREATE TABLE `apoderado`  (
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `parentesco` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idApoderado`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of apoderado
 -- ----------------------------
-INSERT INTO `apoderado` VALUES (23, '23123123', 'sdfsdf', 'sdfsdf', 'sdfsdf', '1234568', 'sdfsdf', 'sdfsdf');
-INSERT INTO `apoderado` VALUES (24, '23423423', 'sdfsdf', 'dfsdf', 'sdfsd', '234234', 'sdfsdf', 'sdfsdf');
-INSERT INTO `apoderado` VALUES (25, '12312312', 'sdfsdf', 'dsfsdfsd', 'sdfsdf', '213123', 'sdfsdf', 'sdfsdfsdf');
-INSERT INTO `apoderado` VALUES (26, '34343434', 'sdfsdfsdf', 'sfsdfsdfsdf', 'sdfsdfsd', '343434', 'sdfsdfsdf', 'dfsdf');
-INSERT INTO `apoderado` VALUES (27, '23423423', 'aaaa', 'aaaaa', 'aaaa', '234234', 'sdfsdf', 'sdf');
-INSERT INTO `apoderado` VALUES (28, '12121212', 'sdfsdf', 'sdfsdfsdf', 'sdfsdf', '345345345', 'sdfsdfsdf', 'erfdfsd');
+INSERT INTO `apoderado` VALUES (36, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
+INSERT INTO `apoderado` VALUES (37, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
+INSERT INTO `apoderado` VALUES (38, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
+INSERT INTO `apoderado` VALUES (39, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
+INSERT INTO `apoderado` VALUES (40, '12345678', 'bbbbbbbbbbbb', 'bbbb', 'bbbbbbb', '2323', 'dfgdfg', 'dfgd');
 
 -- ----------------------------
 -- Table structure for ciclo
@@ -114,7 +116,7 @@ CREATE TABLE `cuota`  (
   `idConcepto` int(4) NULL DEFAULT NULL,
   `idMatricula` int(4) NULL DEFAULT NULL,
   `saldo` float(4, 2) NULL DEFAULT NULL,
-  `pagado` bit(1) NULL DEFAULT NULL,
+  `pagado` bit(1) NOT NULL COMMENT '0 aún debe 1 cuota pagada',
   `raDescuento` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `moDescuento` float(4, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`idCuota`) USING BTREE,
@@ -122,7 +124,81 @@ CREATE TABLE `cuota`  (
   INDEX `idMatricula`(`idMatricula`) USING BTREE,
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`idConcepto`) REFERENCES `concepto` (`idConcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `cuota_ibfk_2` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of cuota
+-- ----------------------------
+INSERT INTO `cuota` VALUES (49, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (50, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (51, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (52, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (53, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (54, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (55, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (56, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (57, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (58, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (59, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (60, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (61, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (62, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (63, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (64, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (65, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (66, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (67, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (68, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (69, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (70, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (71, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (72, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (73, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (74, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (75, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (76, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (77, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (78, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (79, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (80, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (81, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (82, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (83, 50.00, NULL, 3, NULL, 50.00, b'0', 'sdfsdf10', 10.00);
+INSERT INTO `cuota` VALUES (84, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (85, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (86, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (87, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (88, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (89, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (90, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (91, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (92, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (93, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (94, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (95, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (96, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (97, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (98, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (99, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (100, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (101, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (102, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (103, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (104, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (105, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (106, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (107, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (108, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (109, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (110, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (111, 50.00, NULL, 3, NULL, 50.00, b'0', 'sfsdf', 10.00);
+INSERT INTO `cuota` VALUES (112, 50.00, NULL, 3, NULL, 50.00, b'0', 'dfgdfg', 10.00);
+INSERT INTO `cuota` VALUES (113, 50.00, NULL, 3, NULL, 50.00, b'0', 'dfgdfg', 10.00);
+INSERT INTO `cuota` VALUES (114, 50.00, NULL, 3, NULL, 50.00, b'0', 'dfgdfg', 10.00);
+INSERT INTO `cuota` VALUES (115, 50.00, NULL, 3, NULL, 50.00, b'0', 'dfgdfg', 10.00);
+INSERT INTO `cuota` VALUES (116, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (117, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
+INSERT INTO `cuota` VALUES (118, 60.00, NULL, 3, NULL, 60.00, b'0', NULL, 0.00);
 
 -- ----------------------------
 -- Table structure for curso
@@ -195,21 +271,13 @@ CREATE TABLE `matricula`  (
   CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_3` FOREIGN KEY (`idApoderado`) REFERENCES `apoderado` (`idApoderado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_4` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 167 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of matricula
 -- ----------------------------
-INSERT INTO `matricula` VALUES (59, '2019-11-30 11:03:36', NULL, 25, 44, NULL);
-INSERT INTO `matricula` VALUES (60, '2019-11-30 11:06:15', 5, 26, 45, NULL);
-INSERT INTO `matricula` VALUES (61, '2019-11-30 11:13:33', NULL, 24, 46, NULL);
-INSERT INTO `matricula` VALUES (62, '2019-11-30 11:17:10', 5, 28, 44, NULL);
-INSERT INTO `matricula` VALUES (63, '2019-11-30 11:20:14', 5, 23, 44, NULL);
-INSERT INTO `matricula` VALUES (64, '2019-11-30 11:21:22', 5, 23, 44, NULL);
-INSERT INTO `matricula` VALUES (65, '2019-11-30 11:22:04', 5, 23, 44, NULL);
-INSERT INTO `matricula` VALUES (66, '2019-11-30 11:22:04', 6, 23, 44, NULL);
-INSERT INTO `matricula` VALUES (67, '2019-11-30 11:22:27', 5, 23, 44, NULL);
-INSERT INTO `matricula` VALUES (68, '2019-11-30 11:22:27', 6, 23, 44, NULL);
+INSERT INTO `matricula` VALUES (165, '2019-12-01 20:19:09', 4, 36, 56, NULL);
+INSERT INTO `matricula` VALUES (166, '2019-12-01 20:19:09', 5, 36, 56, NULL);
 
 -- ----------------------------
 -- Table structure for pago
@@ -249,6 +317,7 @@ CREATE PROCEDURE `buscarAlumnodni`(IN `_auxDni` VARCHAR(10))
 BEGIN
 	IF (LENGTH(_auxDni) = 8) THEN
 		SELECT * FROM alumno WHERE alumno.dni = _auxDni;
+		
 	END IF;
 END
 ;;
@@ -292,6 +361,20 @@ CREATE PROCEDURE `listarGrupos`()
 BEGIN
 	SELECT * FROM grupo;
 
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for listarMeses
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `listarMeses`;
+delimiter ;;
+CREATE PROCEDURE `listarMeses`(IN `_feNacimiento` date)
+BEGIN
+select DATE_ADD(_feNacimiento, INTERVAL 1 month);
+select DATE_ADD(_feNacimiento, INTERVAL 2 month);
+select DATE_ADD(_feNacimiento, INTERVAL 3 month);
 END
 ;;
 delimiter ;
@@ -376,6 +459,26 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for RegistroCuotas
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `RegistroCuotas`;
+delimiter ;;
+CREATE PROCEDURE `RegistroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
+BEGIN
+	
+	DECLARE _auxFecha Date;
+	
+	set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL _numero MONTH));
+	
+		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_auxFecha,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
+	
+	
+	
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for RegistroMatricula
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `RegistroMatricula`;
@@ -383,6 +486,23 @@ delimiter ;;
 CREATE PROCEDURE `RegistroMatricula`(IN `_idGrupo` INT,IN `_idApoderado` INT,IN `_idAlumno` INT,IN `_idPromotor` INT)
 BEGIN
 	INSERT INTO matricula(fecha,idGrupo,idApoderado,idAlumno,idPromotor) VALUES(NOW(),_idGrupo,_idApoderado,_idAlumno,_idPromotor);
+	
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for ultimaMatricula
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ultimaMatricula`;
+delimiter ;;
+CREATE PROCEDURE `ultimaMatricula`()
+BEGIN
+#declare set
+	select idMatricula 
+	from Matricula 
+	order by idGrupo desc limit 1;
+
 END
 ;;
 delimiter ;
