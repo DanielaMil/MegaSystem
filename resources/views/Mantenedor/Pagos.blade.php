@@ -170,9 +170,11 @@
             </div>
         </div>
     </div>
+</div>   
 @endsection
 
 @section('js')
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
 <script>
