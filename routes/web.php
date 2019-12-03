@@ -39,6 +39,7 @@ Route::get('/pagos', 'pagosController@Pagos')->name('pago');
 Route::post('/pagos/buscarAlumno', 'pagosController@buscarAl')->name('buscarAlumnos');
 Route::post('/pagos/llenarCombo', 'pagosController@llenarCombo')->name('llenar');
 Route::post('/pagos/registrar', 'pagosController@registrarCuota')->name('registroCuota');
+Route::post('/pagos/id', 'pagosController@obtenerID')->name('obtenerID');
 
 Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listarCuotas');
 
