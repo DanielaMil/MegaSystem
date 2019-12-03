@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : jcj
+ Source Server         : jcjMysql
  Source Server Type    : MySQL
  Source Server Version : 100134
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 02/12/2019 19:55:14
+ Date: 02/12/2019 22:47:46
 */
 
 SET NAMES utf8mb4;
@@ -314,6 +314,22 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for listarCuotas
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `listarCuotas`;
+delimiter ;;
+CREATE PROCEDURE `listarCuotas`(IN `_idMatricula` INT(4))
+BEGIN
+	SELECT
+        *
+    FROM cuota c INNER JOIN concepto co ON c.idConcepto = co.idConcepto
+    WHERE
+        c.idMatricula = _idMatricula;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for listarCurso
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `listarCurso`;
@@ -414,23 +430,6 @@ END
 delimiter ;
 
 -- ----------------------------
--- Function structure for nuevo
--- ----------------------------
-DROP FUNCTION IF EXISTS `nuevo`;
-delimiter ;;
-CREATE FUNCTION `nuevo`(num INTEGER)
- RETURNS int(11)
-BEGIN
-declare 
-	total,cont int default 1;
-
-
-RETURN cade;
-END
-;;
-delimiter ;
-
--- ----------------------------
 -- Procedure structure for registrarAlumno
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registrarAlumno`;
@@ -480,28 +479,34 @@ END
 delimiter ;
 
 -- ----------------------------
--- Procedure structure for registrarPagos
+-- Procedure structure for registrarPago
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `registrarPagos`;
+DROP PROCEDURE IF EXISTS `registrarPago`;
 delimiter ;;
-CREATE PROCEDURE `registrarPagos`(IN `_importe` FLOAT(4,2), IN `_nuRecibo` VARCHAR(30), IN `_idCuota` INT)
+CREATE PROCEDURE `registrarPago`(IN _importe FLOAT, IN _nrecibo VARCHAR(12), IN _idcuota INT)
 BEGIN
+	DECLARE cant INT;
+	SET cant = (SELECT COUNT(*) FROM pago p WHERE p.nuRecibo = _nrecibo);
+	IF cant > 0 THEN
+			SELECT 'Recibo Ya Existe';
+	ELSE
+		INSERT INTO pago(importe,feEmision,nuRecibo,idCuota) VALUES(_importe,NOW(),_nrecibo,_idcuota);
+		UPDATE cuota c SET c.pagado = 1 WHERE  (SELECT SUM(p.importe) FROM pago p WHERE p.idCuota = _idcuota) >= C.monto and c.idCuota = _idcuota;
+		UPDATE cuota c SET c.saldo = c.saldo - _importe  WHERE  c.idCuota = _idcuota;
+		SELECT 'Correcto';
+	END IF;
 
-#DECLARE auxFecha datetime;
-#set auxFecha = NOW();
-	#SELECT auxFecha;
-	INSERT INTO pago(importe, feEmision, nuRecibo, idCuota) VALUES(_importe,  NOW(),_nuRecibo,_idCuota);
-
+	
 END
 ;;
 delimiter ;
 
 -- ----------------------------
--- Procedure structure for RegistroCuotas
+-- Procedure structure for registroCuotas
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `RegistroCuotas`;
+DROP PROCEDURE IF EXISTS `registroCuotas`;
 delimiter ;;
-CREATE PROCEDURE `RegistroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
+CREATE PROCEDURE `registroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
 BEGIN
 	
 	DECLARE _auxFecha Date;
@@ -517,11 +522,11 @@ END
 delimiter ;
 
 -- ----------------------------
--- Procedure structure for RegistroMatricula
+-- Procedure structure for registroMatricula
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `RegistroMatricula`;
+DROP PROCEDURE IF EXISTS `registroMatricula`;
 delimiter ;;
-CREATE PROCEDURE `RegistroMatricula`(IN `_idGrupo` INT,IN `_idApoderado` INT,IN `_idAlumno` INT,IN `_idPromotor` INT)
+CREATE PROCEDURE `registroMatricula`(IN `_idGrupo` INT,IN `_idApoderado` INT,IN `_idAlumno` INT,IN `_idPromotor` INT)
 BEGIN
 
 	INSERT INTO matricula(fecha,idGrupo,idApoderado,idAlumno,idPromotor) VALUES(NOW(),_idGrupo,_idApoderado,_idAlumno,_idPromotor);

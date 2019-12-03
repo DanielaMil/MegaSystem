@@ -17,7 +17,7 @@ class AplicacionController extends Controller
         return view('Mantenedor/Registrar');
     }
 */
-    //********************Matricula************************ */
+    //********************Matricula************************* */
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -178,7 +178,7 @@ class AplicacionController extends Controller
 
         
         //Registro de Matricula y Cuotas
-        /*
+        /*registrarPagos
         idCurso:    e.attr('Key'),
         idGrupo:    selectGrupo.eq(index).val(),
         importe:    0.00,
@@ -200,7 +200,7 @@ class AplicacionController extends Controller
                 
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $cantidadMeses = 0; 
-            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,$idPromotor));
+            $Matricula = DB::select("call registroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,$idPromotor));
 
             //registro de la matriculasCuota
             $idMatricula01 = DB::select("call ultimaMatricula()",array());
@@ -216,13 +216,13 @@ class AplicacionController extends Controller
                 $estado = 0;
             }
             
-            $dataMensualidad01 = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($val,$datosGrupo[0]->feInicio,2,$idMatricula01[0]->idMatricula,$auxSaldo,$estado,NULL,NULL,0));    
+            $dataMensualidad01 = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array($val,$datosGrupo[0]->feInicio,2,$idMatricula01[0]->idMatricula,$auxSaldo,$estado,NULL,NULL,0));    
            
             $ultimaCuotaMatricula = DB::select("call ultimaCuotaMatricula()",array());
             
             //return response()->json($ultimaCuotaMatricula[0]->idCuota);
             
-            $pago01  = DB::select("call registrarPagos(?,?,?)",array($val,$txtRecibo,$ultimaCuotaMatricula[0]->idCuota));
+            $pago01  = DB::select("call registrarPago(?,?,?)",array($val,$txtRecibo,$ultimaCuotaMatricula[0]->idCuota));
 
             for($j=0;$j < ($datosGrupo[0]->duMeses) ; $j++ ){
                 
@@ -230,7 +230,7 @@ class AplicacionController extends Controller
                 //Para registrar la mensualidad
                 $idMatricula = DB::select("call ultimaMatricula()",array());
                
-                $dataMensualidad = DB::select("call RegistroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                $dataMensualidad = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
                 
             }
         }

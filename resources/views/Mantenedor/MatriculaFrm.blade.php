@@ -14,7 +14,7 @@ fggf>jdk>fjkfjkj
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
                     <div class="modal-content">
-                        <!--******************Encabezado*****************-->
+                        <!--******************Encabezado******************-->
                         <div class="modal-header">
                             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
                         </div>
