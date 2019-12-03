@@ -15,9 +15,9 @@
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
+        <div class="app-header header-shadow bg-primary header-text-light">
             <div class="app-header__logo">
-                <div class="logo-src"></div>
+                <div class="logo-src" style="background-repeat: no-repeat; width: 60%; height: 60%;margin-left: auto; margin-right: auto;"></div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -46,11 +46,11 @@
                     </button>
                 </span>
             </div>    <div class="app-header__content">
-                <!--Todo lo que va al lado del menu amborguesa-->
+                <!--Todo lo que va al lado del menu hamborguesa-->
             </div>
         </div>        
         <div class="app-main">
-            <div class="app-sidebar sidebar-shadow">
+            <div class="app-sidebar sidebar-shadow bg-vicious-stance sidebar-text-light"">
                 <div class="app-header__logo">
                     <div class="logo-src"></div>
                     <div class="header__pane ml-auto">
@@ -90,7 +90,7 @@
                                     INICIO
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">UI Components</li>
+                            <li class="app-sidebar__heading">Opciones</li>
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-study"></i>
@@ -101,7 +101,7 @@
                                     <li>
                                         <a href="{{url('/matricula')}}">
                                             <i class="metismenu-icon"></i>
-                                            Matricula
+                                            Matrícula
                                         </a>
                                     </li>
                                     <li>
@@ -123,39 +123,7 @@
                 </div>
                 <div class="app-wrapper-footer">
                     <div class="app-footer">
-                        <div class="app-footer__inner">
-                            <div class="app-footer-left">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 2
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="app-footer-right">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 3
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0);" class="nav-link">
-                                            <div class="badge badge-success mr-1 ml-0">
-                                                <small>NEW</small>
-                                            </div>
-                                            Footer Link 4
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>    
             </div>
