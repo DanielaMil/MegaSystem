@@ -64,18 +64,16 @@
                         <label for="exampleSelect" class="">Concepto</label>
                         <select name="select" id="opciones" class="form-control">
                         </select>
-                        <label for="examplePassword" class="">Fecha</label>
-                        <input name="text" id="txtFecha" type="date" class="form-control">
                         <label for="examplePassword" class="">Pago</label>
                         <input name="text" id="txtPago" type="text" class="form-control">
+                        <label for="examplePassword" class="">Descuento</label>
+                        <input name="text" id="txtDescuento" type="text" class="form-control">
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
                         <input name="text" id="txtNuroRecibo" type="text" class="form-control">
                         <label for="examplePassword" class="">Costo Total</label>
                         <input name="text" id="txtMonto" type="text" class="form-control">
-                        <label for="examplePassword" class="">Descuento</label>
-                        <input name="text" id="txtDescuento" type="text" class="form-control">
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Observacion</label>
@@ -84,7 +82,7 @@
             </div>
         </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >
                     Cancelar
                 </button>
                 <button type="button" id="btnRegistrarModal" data-dismiss="" class="btn btn-primary" >
@@ -174,6 +172,7 @@
 @endsection
 
 @section('js')
+
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
 
@@ -235,7 +234,7 @@
                                     +'</button>'
                                     +'</td>'
                                     +'<td>'
-                                    +'<button type="button" class="btn mr-2 mb-2 btn-primary" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-example-modal-md">'
+                                    +'<button type="button" class="btn btn-primary" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-example-modal-md">'
                                     +'<i class="metismenu-icon pe-7s-graph1"></i>'
                                     +'</button>'
                                     +'</td>'
@@ -364,8 +363,25 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
-                        console.log('Se Registró')
-                        //aqui va 
+                        toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": true,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+} 
                     },
                     error:function (XMLHttpRequest, textStatus, errorThrown) {  
                         console.log('Error')
@@ -379,18 +395,18 @@
             function registrarCta(){
 
             }
+            
             function abrirModal(){
                 $('#btnRegistrarModal').attr('data-dismiss','');
             }
+            var aux1=0;
             function validacionTediosa(){
                 var recibo = $('#txtNuroRecibo').val();
                 var monto = $('#txtMonto').val();
                 var descuento = $('#txtDesuento').val();
                 var pago = $('#txtPago').val();
-                var aux = monto - descuento;
-                //que el descuento no exceda al monto y que el pago no sea mayor al monto - descuento 
+                aux1 = 0;
                 if(recibo!= ''){
-                    band = true;
                     } else{
                         toastr["error"]("Por Favor Ingrese la Serie del Recibo.", "Error")
                         toastr.options = {
@@ -410,10 +426,9 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    band = false;
+                    aux1++;
                 }
                 if(monto!=''){
-                    band =  true;
                     }else{
                         toastr["error"]("Por Favor Ingrese el Monto.", "Error")
                         toastr.options = {
@@ -433,10 +448,10 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    band = false;
+                    aux1++;
                 }
                 if(descuento!=''){
-                    band =  true;
+                    descuento=0;
                 }else{
                     toastr["error"]("Por Favor Ingrese el Descuento.", "Error")
                         toastr.options = {
@@ -456,10 +471,10 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    band = false;
+                    aux1++;
                 }
                 if(pago!=''){
-                    band =  true;
+                    
                 }else{
                     toastr["error"]("Por Favor Ingrese el Pago.", "Error")
                         toastr.options = {
@@ -479,20 +494,58 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    band = false;
-                }       
-                if(pago <= aux){
-                    band = true ;
+                    aux1++;
+                }
+            
+                aux = parseFloat( $('#txtMonto').val()) - parseFloat( $('#txtDescuento').val()); 
+                alert(aux); 
+                if(parseFloat( $('#txtPago').val()) <= aux){
+                    
                 }else{
-                    //alert('El Pago no puede ser mayor que el monto');
-                    band = false;
+                    toastr["error"]("El Pago no puede ser mayor que el monto restando el descuento.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    aux1++;
                 }
                 if(descuento <= monto){
-                    band = true;
+                    
                     }else{
-                    //alert('El Descuento no puede ser mayor que el monto');
-                    band = false;
+                    toastr["error"]("El Descuento no puede ser mayor que el monto.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    aux1++;
                 }
+                alert(aux1);
                      
             }
             function cerrarModal(){
@@ -501,7 +554,7 @@
             $('#btnRegistrarModal').click(function(){
                 abrirModal();
                 validacionTediosa();
-                if(band == true){
+                if(aux1==0){
                     registrarCuota();
                     cerrarModal();
                 }else{
@@ -514,6 +567,9 @@
                 if (verification.length == 8) {
                     buscarAlumno();    
                 }else{
+                    var nada = '';
+                    $('#tbCursos').html(nada);
+                    $('#nombreCompleto').val(''); 
                     toastr["error"]("El número de Carácteres válidos es de 8 y Usted está ingresando "+ verification.length + ' Por Favor Ingrese una cántidad válida.' , "Error!")
                     toastr.options = {
                         "closeButton": false,
@@ -535,6 +591,15 @@
                 }
             });
             $('#dniAlumno').on('input', function () { 
+                this.value = this.value.replace(/[^0-9]/g,'');
+            });
+            $('#txtMonto').on('input', function () { 
+                this.value = this.value.replace(/[^0-9]/g,'');
+            });
+            $('#txtPago').on('input', function () { 
+                this.value = this.value.replace(/[^0-9]/g,'');
+            });
+            $('#txtDescuento').on('input', function () { 
                 this.value = this.value.replace(/[^0-9]/g,'');
             });
             llenarCombo();
