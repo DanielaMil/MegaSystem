@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 route::get('/matricula/inicio','AplicacionController@Matricula')->name('matricula01');
 route::post('/matricula/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
 route::post('/matricula/buscarApoderado','AplicacionController@buscarAP')->name('buscar_AP');
+route::post('/matricula/buscarPromotor','AplicacionController@buscarPromotor')->name('buscar_Promotor');
+
 route::post('/matricula','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
 route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
 route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');

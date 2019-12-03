@@ -69,20 +69,20 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Paterno*</font>
                                                                     </font>
-                                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Fecha Nacimiento</font>
                                                                     </font>
-                                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)">
+                                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)" disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                 <label for="form-control" class="">
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Direccion</font>
                                                                     </font>
-                                                                </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" class="form-control">
+                                                                </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" class="form-control" disabled="true">
                                                             </div>
                                                         </div>
                                                         <div class="column m-3" style="width: 18em;">
@@ -90,7 +90,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Materno*</font>
                                                                     </font>
-                                                                    </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                    </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                                 </div>
                                                                 <div class="position-relative form-group">
                                                                     <label for="exampleSelect" class="">
@@ -98,7 +98,7 @@ fggf>jdk>fjkfjkj
                                                                             <font style="vertical-align: inherit;">Genero</font>
                                                                         </font>
                                                                     </label>
-                                                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px">
+                                                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
                                                                         <option selected value="0">Masculino</option>
                                                                         <option value="1">Femenino</option>
                                                                     </select>
@@ -110,7 +110,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Nombre*</font>
                                                                     </font>
-                                                                </label><input name="txtNombre_Al" id="txtNombreAl" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                </label><input name="txtNombre_Al" id="txtNombreAl" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                 <label for="examplePassword" class="">
@@ -118,18 +118,28 @@ fggf>jdk>fjkfjkj
                                                                         <font style="vertical-align: inherit;">celular</font>
                                                                     </font>
                                                                 </label>
-                                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)">
+                                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row m-3 ">
                                                         <div class="column m-3" style="width: 50em;">
                                                         </div>
+                                                        <div class="column m-3" style="width: 3em;">
+                                                            <button type="button" class="btn btn-primary" id="btn_limpiarAL" >Nuevo</button>
+                                                        </div>
                                                         <div class="column m-3" style="width: 5em;">
-
                                                          <button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button>
+
+                                                        <!--<div class="column m-3" style="width: 45em;">
+                                                        </div>
+                                                        <div class="column m-3" style="width: 3em;">
+                                                                <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
+                                                            </div>
+                                                        <div class="column m-3" style="width: 3em;">
+                                                            <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
+                                                        </div>-->
                                                         
-                                                        <!--<a data-toggle="tab" href="#tab-eg115-1" class="nav-link show"><button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button></a>-->
                                                     </div>
                                                     </div>
                                                 </div>
@@ -164,6 +174,7 @@ fggf>jdk>fjkfjkj
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
                                                             <input type="hidden" id="auxIdApoderado" value="">  
+                                                            
                                                             <div class="load" style="display: none">cargando....</div>
                                                         </div>
                                                     </div> 
@@ -175,21 +186,21 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Apellido Paterno*</font>
                                                                     </font>
-                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                     <label for="form-control" class="">
                                                                         <font style="vertical-align: inherit;">
                                                                             <font style="vertical-align: inherit;">Parentesco</font>
                                                                         </font>
-                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group">
                                                                     <label for="form-control" class="">
                                                                         <font style="vertical-align: inherit;">
                                                                             <font style="vertical-align: inherit;">Direccion</font>
                                                                         </font>
-                                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" class="form-control">
+                                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" class="form-control" disabled="true">
                                                             </div>
 
                                                         </div>
@@ -198,13 +209,13 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">Apellido Materno*</font>
                                                                 </font>
-                                                                </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
                                                             </div>
                                                             <div class="position-relative form-group"><label for="examplePassword" class="">
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Celular</font>
                                                                     </font>
-                                                                </label><input name="txtCelular_AP" id="txtCelular_AP" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)">
+                                                                </label><input name="txtCelular_AP" id="txtCelular_AP" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
                                                             </div>
                                                         </div>
                                                         <div class="column m-3" style="width: 17em;">
@@ -213,7 +224,7 @@ fggf>jdk>fjkfjkj
                                                                     <font style="vertical-align: inherit;">
                                                                         <font style="vertical-align: inherit;">Nombre*</font>
                                                                     </font>
-                                                                </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                </label><input name="txtNombre_AP" id="txtNombre_AP" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                             </div>
                                                             
                                                         </div>
@@ -221,15 +232,15 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                                 </div>
                                                 <div class="row m-3 ">
-                                                        <div class="column m-3" style="width: 45em;">
-                                                        </div>
-                                                        <div class="column m-3" style="width: 3em;">
-                                                                <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
-                                                            </div>
-                                                        <div class="column m-3" style="width: 3em;">
-                                                            <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
-                                                        </div>
+                                                    <div class="column m-3" style="width: 45em;">
                                                     </div>
+                                                    <div class="column m-3" style="width: 3em;">
+                                                            <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
+                                                        </div>
+                                                    <div class="column m-3" style="width: 3em;">
+                                                        <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -269,17 +280,33 @@ fggf>jdk>fjkfjkj
                                                                                 </font>
                                                                                 <input name="txtRecibo" id="txtRecibo" type="text" class="form-control">
                                                                             </div>
-                                                                            <div class="column m-3" style="width: 10em;">
-                                                                                <font style="vertical-align: inherit;">
-                                                                                    <font style="vertical-align: inherit;">DNI_Promotor</font>
-                                                                                </font>
-                                                                                <input name="txtDniPromotor" id="txtDniPromotor" type="text" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                                            </div>
+                                                                            <!--- busqieda del apoderado--->
+                                                                            <div class="card-body mx-auto style=width: 50px" > 
+                                                                                <div  class="form-inline">
+                                                                                    <!-- <form class="form-inline" >-->
+                                                                                    @csrf 
+                        
+                                                                                    <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                                        <label class="mr-sm-2">
+                                                                                            <font style="vertical-align: inherit;">
+                                                                                                <font style="vertical-align: inherit;">DNI_Promotor</font>
+                                                                                            </font>
+                                                                                        </label>
+                                                                                        <input name="txtDniPromotor" id="txtDniPromotor" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                                                    </div>
+                                                                                    
+                                                                                    <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
+                                                                                    <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
+                                                                                </div>
+                                                                            </div> 
+                                                                            
+                                                                            <!----->
+                                                                            
                                                                             <div class="column m-3" style="width: 30em;">
                                                                                 <font style="vertical-align: inherit;">
                                                                                     <font style="vertical-align: inherit;">Nombre</font>
                                                                                 </font>
-                                                                                <input name="txtNombrePromotor" id="txtNombrePromotor" type="text" class="form-control" onkeypress="return soloLetras(event)">
+                                                                                <input name="txtNombrePromotor" id="txtNombrePromotor" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
                                                                             </div>
                                                                         </div>
                                                                 </div>
@@ -355,12 +382,6 @@ fggf>jdk>fjkfjkj
                                                     <div class="column m-3" style="width: 25em;">
                                                     </div>
                                                     <div class="column m-3" style="width: 5em;">
-                                                        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
-                                                      
-                                                        <!-- Button trigger modal -->
-
-
-                                                        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
 
                                                         <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
                                                         <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
@@ -448,6 +469,7 @@ fggf>jdk>fjkfjkj
                 return false;
             }
         }
+
     </script>
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <!--Listado de grupos-->
@@ -579,6 +601,7 @@ fggf>jdk>fjkfjkj
         }
         
         bloquearMatricula()
+
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
@@ -742,6 +765,7 @@ fggf>jdk>fjkfjkj
               
             });
         }
+
         ActualizarComentario();
 
         //buscarAlumno
@@ -830,9 +854,59 @@ fggf>jdk>fjkfjkj
             $('#cboGeneroAl').attr('disabled',false);
         }
 
+       // $('#btn_limpiarAL').click(function () {  
+       //     LimpiarFormularioALU();
+       // });
+
         $('#btn_buscarAJAX_AL').click(function () {  
             buscarAlumno();
+        });
 
+        function buscarPromotor01(){
+            var urlAJAX_Promotor = $('#urlAJAX_Promotor').val();
+            var txtDniPromotor = $('#txtDniPromotor').val();
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_Promotor,
+                data:{
+                    txtDniPromotor :txtDniPromotor
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    //verificar los datos que recive del apoderado *************************************************************
+                    if(response.estado == true){
+                        var alu = response.datos[0];
+                        $('#txtNombrePromotor').val(alu.nombre+' '+alu.apPaterno+' '+alu.apMaterno);
+                                            
+                    }else{
+                        if(response.cod == 100){
+                            alert('Cantidad de caracteres no valido')
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_APO').css({display:'block'});
+                            alert("Promotor No encontrado");
+                            LimpiarFormularioApoderado();
+                        }
+                    }
+                    // $('.load').css({display:'none'});
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+
+        $('#btnBuscarPromotor').click(function () {  
+            buscarPromotor01();
         });
 
         function buscarApoderado() {
@@ -1027,8 +1101,7 @@ fggf>jdk>fjkfjkj
         }
 
         MontoMatricula();
-           
-                
+                          
     </script>
     
  @endsection 

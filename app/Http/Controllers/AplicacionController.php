@@ -175,6 +175,8 @@ class AplicacionController extends Controller
             $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
             $auxIdApoderado = $Apoderado[0]->idApoderado;
         }
+
+        
         //Registro de Matricula y Cuotas
         /*
         idCurso:    e.attr('Key'),
@@ -184,14 +186,21 @@ class AplicacionController extends Controller
         pagoMatr:   parseFloat(matricula.val()),
         razon:      "",
         descuento:  0.00
+        ultimo
         */
         $txtRecibo = $dato->txtRecibo;
         $txtDniPromotor = $dato->txtDniPromotor;
-        
-        
+
+        if ($txtDniPromotor == '') {
+            $idPromotor = NULL;
+        }else{
+            $datosPromotor =  DB::select("call buscarPromotor(?)", array($txtDniPromotor));
+            $idPromotor = $datosPromotor[0]->idPromotor;
+        }
+                
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $cantidadMeses = 0; 
-            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,NULL));
+            $Matricula = DB::select("call RegistroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,$idPromotor));
 
             //registro de la matriculasCuota
             $idMatricula01 = DB::select("call ultimaMatricula()",array());
@@ -226,7 +235,6 @@ class AplicacionController extends Controller
             }
         }
         
-        return response()->json(true);
         if($dataMensualidad){
             $datas = [
                 'estado' => true,
@@ -272,6 +280,43 @@ class AplicacionController extends Controller
             ];
             return response()->json($data);
         }
+    }
+
+    public function buscarPromotor(REQUEST $dato)
+    {
+        $txtDniPromotor = $dato->txtDniPromotor;
+        $_numcade = strlen($txtDniPromotor);
+
+        //if ($txtDniPromotor == 8) {
+            $datos = DB::select("call buscarPromotor(?)", array($txtDniPromotor));
+            
+            if(count($datos) > 0){
+                $data = [
+                    'estado' => true,
+                    'cod' => 200,
+                    'datos' => $datos
+                ];
+                return response()->json($data);
+            }else{
+                
+                $data = [
+                    'estado' => false,
+                    'cod' => 101
+                ];
+            return response()->json($data);
+            }
+            // return view('Mantenedor.MatriculaFrm', ['datos' => $datos]);
+        /*} else {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+            /// return view('Mantenedor.MatriculaFrm');
+            //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
+        }*/
+
+
     }
 
     //********************FIN_Matricula********************* */
