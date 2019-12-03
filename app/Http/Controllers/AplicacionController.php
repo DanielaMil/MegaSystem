@@ -291,7 +291,7 @@ class AplicacionController extends Controller
         $txtDniPromotor = $dato->txtDniPromotor;
         $_numcade = strlen($txtDniPromotor);
 
-        //if ($txtDniPromotor == 8) {
+        if ($_numcade == 8) {
             $datos = DB::select("call buscarPromotor(?)", array($txtDniPromotor));
             
             if(count($datos) > 0){
@@ -310,7 +310,7 @@ class AplicacionController extends Controller
             return response()->json($data);
             }
             // return view('Mantenedor.MatriculaFrm', ['datos' => $datos]);
-        /*} else {
+        } else {
             $data = [
                 'estado' => false,
                 'cod'    => 100
@@ -318,7 +318,7 @@ class AplicacionController extends Controller
             return response()->json($data);
             /// return view('Mantenedor.MatriculaFrm');
             //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
-        }*/
+        }
 
 
     }

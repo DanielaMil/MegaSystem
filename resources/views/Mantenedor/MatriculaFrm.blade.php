@@ -458,19 +458,7 @@ fggf>jdk>fjkfjkj
 
         var numero = document.getElementById('numero');
 
-        //function calcular() {
-        //la fecha
-        //var TuFecha = new Date('01/01/2018');
-        
-        //dias a sumar
-        //var dias = parseInt(numero.value);
-        
-        //nueva fecha sumada
-        //TuFecha.setDate(TuFecha.getDate() + dias);
-        //formato de salida para la fecha
-        //resultado.innerText = TuFecha.getDate() + '/' +
-        //    (TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
-        //}
+        //--------------Tablas---------------------------------
 
         function tabla(param) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
@@ -516,8 +504,6 @@ fggf>jdk>fjkfjkj
                 }
             });
         }
-
-        //tabla();
 
         function tabla02() {
             var urlAJAX_ListarMensualidad = $('#urlAJAX_ListarMensualidad').val();
@@ -576,6 +562,7 @@ fggf>jdk>fjkfjkj
         
         bloquearMatricula()
 
+        //--------------SELECCIONAR DATOS-----------------------
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
@@ -698,7 +685,7 @@ fggf>jdk>fjkfjkj
                 });
             });
         }
-
+        //--------------ACTUALIZACIONES-------------------------
         function ActualizarImporte() {
             var IDImporte = $('#txtImporte');
             
@@ -744,7 +731,7 @@ fggf>jdk>fjkfjkj
 
         ActualizarComentario();
 
-        //buscarAlumno
+        //-----------------ALUMNO----------------------
         function buscarAlumno() {
             
             var urlAJAX_AL = $('#urlAJAX_AL').val();
@@ -767,6 +754,26 @@ fggf>jdk>fjkfjkj
                     console.log(response);
                     
                     if(response.estado == true){
+                        toastr["success"]("encontrado", "Alumno")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+
                         var alu = response.datos[0];
                         
                         $('#auxIdAl').val(alu.idAlumno);
@@ -794,11 +801,48 @@ fggf>jdk>fjkfjkj
                     }else{
                         tabla(null);
                         if(response.cod == 100){
-                            alert('Cantidad de caracteres no valido')
+                            toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            LimpiarFormularioALU();
                         }
                         if (response.cod == 101) {
                            // $('.msj_ALU').css({display:'block'});
-                            alert("Alumno No encontrado");
+                           toastr["error"]("No se encuentra registrado", "Alumno")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
                             LimpiarFormularioALU();
                         }
                     }
@@ -830,14 +874,12 @@ fggf>jdk>fjkfjkj
             $('#cboGeneroAl').attr('disabled',false);
         }
 
-       // $('#btn_limpiarAL').click(function () {  
-       //     LimpiarFormularioALU();
-       // });
 
         $('#btn_buscarAJAX_AL').click(function () {  
             buscarAlumno();
         });
 
+        //--------------------PROMOTOR---------------------
         function buscarPromotor01(){
             var urlAJAX_Promotor = $('#urlAJAX_Promotor').val();
             var txtDniPromotor = $('#txtDniPromotor').val();
@@ -848,6 +890,7 @@ fggf>jdk>fjkfjkj
                 data:{
                     txtDniPromotor :txtDniPromotor
                 },
+
                 dataType: 'json',
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -857,19 +900,80 @@ fggf>jdk>fjkfjkj
                 },
                 success: function (response) {
                     console.log(response);
-                    //verificar los datos que recive del apoderado *************************************************************
+
                     if(response.estado == true){
+                        toastr["success"]("encontrado", "Promotor")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                         var alu = response.datos[0];
                         $('#txtNombrePromotor').val(alu.nombre+' '+alu.apPaterno+' '+alu.apMaterno);
                                             
                     }else{
                         if(response.cod == 100){
-                            alert('Cantidad de caracteres no valido')
+                           toastr["warning"]("en el DNI del promotor", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            $('#txtNombrePromotor').attr('disabled',false);
+                            $('#txtNombrePromotor').val('');
+                            $('#txtNombrePromotor').attr('disabled',true);
                         }
                         if (response.cod == 101) {
                            // $('.msj_APO').css({display:'block'});
-                            alert("Promotor No encontrado");
-                            LimpiarFormularioApoderado();
+                           toastr["error"]("No se encuentra registrado", "Promotor")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+
+                            $('#txtNombrePromotor').attr('disabled',false);
+                            $('#txtNombrePromotor').val('');
+                            $('#txtNombrePromotor').attr('disabled',true);
                         }
                     }
                     // $('.load').css({display:'none'});
@@ -885,6 +989,7 @@ fggf>jdk>fjkfjkj
             buscarPromotor01();
         });
 
+        //------------------APODERADO----------------
         function buscarApoderado() {
             
             var urlAJAX_AP = $('#urlAJAX_AP').val();
@@ -907,6 +1012,25 @@ fggf>jdk>fjkfjkj
                     console.log(response);
                     //verificar los datos que recive del apoderado *************************************************************
                     if(response.estado == true){
+                        toastr["success"]("encontrado", "Apoderado")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                         var alu = response.datos[0];
                         $('#auxIdApoderado').val(alu.idApoderado);
                         $('#txtDni_AP').val(alu.dni);
@@ -926,11 +1050,48 @@ fggf>jdk>fjkfjkj
                         
                     }else{
                         if(response.cod == 100){
-                            alert('Cantidad de caracteres no valido')
+                            toastr["warning"]("en el DNI del apoderado", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            LimpiarFormularioApoderado();
                         }
                         if (response.cod == 101) {
                            // $('.msj_APO').css({display:'block'});
-                            alert("Apoderasssdo No encontrado");
+                           toastr["error"]("No se encuentra registrado", "Apoderado")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
                             LimpiarFormularioApoderado();
                         }
                     }
@@ -967,6 +1128,39 @@ fggf>jdk>fjkfjkj
             buscarApoderado();
         });
 
+        function MontoMatricula() {
+            
+            var urlAJAX_montoMatricula = $('#urlAJAX_montoMatricula').val();
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_montoMatricula,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+                    //$('#txtMatricula').val(mat.moTotal);
+                    var alu01 = response.datosMa[0];
+                    var alu02 = response.datosMe[0];
+                    mensualidadGeneral = alu02.moTotal;
+                    $('#txtMatricula').val(alu01.moTotal);
+                    $('#txtMatricula').attr('disabled',true);
+                    $('#txtMensualidad').val(alu02.moTotal);
+                    $('#txtMensualidad').attr('disabled',true);
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+
+        MontoMatricula();
 
         function registrarAJAX() {
             //Datos de Alumno auxIdApoderado-auxIdAl
@@ -1043,40 +1237,6 @@ fggf>jdk>fjkfjkj
         $('#btn_registrarAjax').click(function () { 
             registrarAJAX();
         })
-    
-        function MontoMatricula() {
-            
-            var urlAJAX_montoMatricula = $('#urlAJAX_montoMatricula').val();
-
-            $.ajax({
-                type: "post",
-                url: urlAJAX_montoMatricula,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                beforeSend: function (response) {
-                    // $('.load').css({display:'block'});
-                },
-                success: function (response) {
-                    console.log(response);
-                    //$('#txtMatricula').val(mat.moTotal);
-                    var alu01 = response.datosMa[0];
-                    var alu02 = response.datosMe[0];
-                    mensualidadGeneral = alu02.moTotal;
-                    $('#txtMatricula').val(alu01.moTotal);
-                    $('#txtMatricula').attr('disabled',true);
-                    $('#txtMensualidad').val(alu02.moTotal);
-                    $('#txtMensualidad').attr('disabled',true);
-                },
-                error:function (error) {  
-                },
-                complete:function () {  
-                }
-            });
-        }
-
-        MontoMatricula();
                           
     </script>
     
