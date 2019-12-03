@@ -10,6 +10,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('template/architectui-html-free/main.css')}}" rel="stylesheet">
+    <link href="{{asset('template/architectui-html-free/toastr.css')}}" rel="stylesheet">
 
 </head>
 
@@ -165,6 +166,7 @@
 </body>
     <!--<script type="text/javascript" src="./assets/scripts/main.js"></script>-->
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+    <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     @yield('js')
 </html>

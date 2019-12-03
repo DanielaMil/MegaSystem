@@ -175,7 +175,7 @@
 
 @section('js')
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
-<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
 
 <script>
     $(document).ready(function() {
@@ -204,7 +204,24 @@
                     },
                     success: function (response) {
                         if(response.estado == true){
-                            alert('Alumno Encontrado');//aqui se puede cambiar por una notificacion :(
+                            toastr["success"]("Se encontró al Alumno Identificado con el DNI: " + DNI + '.', "Éxito!")
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
                             var alu = response.datos[0];
                             $('#nombreCompleto').attr('disabled',true);
                             $('#nombreCompleto').val(alu.nombreCompleto); 
@@ -228,7 +245,24 @@
                             obtenerMatricula();
                             ListarCursoXMatricula();
                         }else{
-                            alert('No se encontró el Alumno con el DNI: ' + DNI);
+                            toastr["error"]("No se Encontró al Alumno Identificado con el DNI: " + DNI + '.', "Error!")
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
                             var nada = '';
                             $('#tbCursos').html(nada);
                             $('#nombreCompleto').val(''); 
@@ -236,7 +270,24 @@
                         $('.load').css({display:'none'});
                     },
                     error:function (error) {  
-                        alert('Algo Salió mal, por favor consulte con el Administrador');
+                        toastr["warning"]("Algo salió mal, por favor consulte con el Administrador.", "Alerta!")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
                     },
                     complete:function () {  
                     }
@@ -336,12 +387,113 @@
                 var monto = $('#txtMonto').val();
                 var descuento = $('#txtDesuento').val();
                 var pago = $('#txtPago').val();
+                var aux = monto - descuento;
+                //que el descuento no exceda al monto y que el pago no sea mayor al monto - descuento 
                 if(recibo!= ''){
                     band = true;
-                } else{
-                    alert('Por Favor Ingrese el Número del Recibo');
+                    } else{
+                        toastr["error"]("Por Favor Ingrese la Serie del Recibo.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
                     band = false;
                 }
+                if(monto!=''){
+                    band =  true;
+                    }else{
+                        toastr["error"]("Por Favor Ingrese el Monto.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    band = false;
+                }
+                if(descuento!=''){
+                    band =  true;
+                }else{
+                    toastr["error"]("Por Favor Ingrese el Descuento.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    band = false;
+                }
+                if(pago!=''){
+                    band =  true;
+                }else{
+                    toastr["error"]("Por Favor Ingrese el Pago.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    band = false;
+                }       
+                if(pago <= aux){
+                    band = true ;
+                }else{
+                    //alert('El Pago no puede ser mayor que el monto');
+                    band = false;
+                }
+                if(descuento <= monto){
+                    band = true;
+                    }else{
+                    //alert('El Descuento no puede ser mayor que el monto');
+                    band = false;
+                }
+                     
             }
             function cerrarModal(){
                 $('#btnRegistrarModal').attr('data-dismiss','modal');
@@ -362,7 +514,24 @@
                 if (verification.length == 8) {
                     buscarAlumno();    
                 }else{
-                    alert('El Número de Caracteres es de 8 y Usted está Ingresando '+ verification.length);
+                    toastr["error"]("El número de Carácteres válidos es de 8 y Usted está ingresando "+ verification.length + ' Por Favor Ingrese una cántidad válida.' , "Error!")
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
                 }
             });
             $('#dniAlumno').on('input', function () { 
@@ -374,9 +543,6 @@
                     idMatricula = $(this).val();
                 });
             }
-
-            
-
             
             function validar(){
                 if ($('#txtMonto').val() == 0) {
