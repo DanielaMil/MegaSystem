@@ -484,20 +484,6 @@ fggf>jdk>fjkfjkj
 
         var numero = document.getElementById('numero');
 
-        //function calcular() {
-        //la fecha
-        //var TuFecha = new Date('01/01/2018');
-        
-        //dias a sumar
-        //var dias = parseInt(numero.value);
-        
-        //nueva fecha sumada
-        //TuFecha.setDate(TuFecha.getDate() + dias);
-        //formato de salida para la fecha
-        //resultado.innerText = TuFecha.getDate() + '/' +
-        //    (TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
-        //}
-
         function tabla(param) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
         
@@ -730,7 +716,9 @@ fggf>jdk>fjkfjkj
             
             IDImporte.change(function () {
                 // alert(UbicacionPago)
-                arrayCursosMatriculados[UbicacionPago].importe = IDImporte.val();
+                //arrayCursosMatriculados[UbicacionPago].importe = IDImporte.val();
+                arrayCursosMatriculados[UbicacionPago].importe = parseFloat(IDImporte.val());
+
             });
         }
 
