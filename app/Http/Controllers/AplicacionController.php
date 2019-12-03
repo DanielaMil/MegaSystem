@@ -325,3 +325,4 @@ class AplicacionController extends Controller
         return view('Mantenedor.Pagos');
     }
 }
+
