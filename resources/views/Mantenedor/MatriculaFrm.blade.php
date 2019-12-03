@@ -378,9 +378,8 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('js')
-<!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
-<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
-<script src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 
     <script>
 
@@ -443,6 +442,7 @@ fggf>jdk>fjkfjkj
         }
 
     </script>
+    
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
     <!--Listado de grupos-->
     <script>
