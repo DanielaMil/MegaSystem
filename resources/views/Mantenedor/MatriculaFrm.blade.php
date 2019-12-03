@@ -14,7 +14,7 @@ fggf>jdk>fjkfjkj
                 <div class="modal-dialog modal-lg" style="    margin: 0!important;
                 max-width: 1500px;" role="document">
                     <div class="modal-content">
-                        <!--******************Encabezado******************-->
+                        <!--******************Encabezado*****************-->
                         <div class="modal-header">
                             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
                         </div>
@@ -122,26 +122,7 @@ fggf>jdk>fjkfjkj
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row m-3 ">
-                                                        <div class="column m-3" style="width: 50em;">
-                                                        </div>
-                                                        <div class="column m-3" style="width: 3em;">
-                                                            <button type="button" class="btn btn-primary" id="btn_limpiarAL" >Nuevo</button>
-                                                        </div>
-                                                        <div class="column m-3" style="width: 5em;">
-                                                         <button type="button" class="btn btn-primary" id="btn_sgte">Siguiente</button>
-
-                                                        <!--<div class="column m-3" style="width: 45em;">
-                                                        </div>
-                                                        <div class="column m-3" style="width: 3em;">
-                                                                <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
-                                                            </div>
-                                                        <div class="column m-3" style="width: 3em;">
-                                                            <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
-                                                        </div>-->
-                                                        
-                                                    </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 
@@ -231,16 +212,7 @@ fggf>jdk>fjkfjkj
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 45em;">
-                                                    </div>
-                                                    <div class="column m-3" style="width: 3em;">
-                                                            <button type="button" class="btn btn-primary" id="btn_limpiarAP" >Nuevo</button>
-                                                        </div>
-                                                    <div class="column m-3" style="width: 3em;">
-                                                        <button type="button" class="btn btn-primary" id="btn_sgte" >Siguiente</button>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                             
                                         </div>
@@ -484,9 +456,23 @@ fggf>jdk>fjkfjkj
 
         var numero = document.getElementById('numero');
 
+        //function calcular() {
+        //la fecha
+        //var TuFecha = new Date('01/01/2018');
+        
+        //dias a sumar
+        //var dias = parseInt(numero.value);
+        
+        //nueva fecha sumada
+        //TuFecha.setDate(TuFecha.getDate() + dias);
+        //formato de salida para la fecha
+        //resultado.innerText = TuFecha.getDate() + '/' +
+        //    (TuFecha.getMonth() + 1) + '/' + TuFecha.getFullYear();
+        //}
+
         function tabla(param) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
-        
+            var txtDNI = $('#txtDni_Al').val();
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarGrupo,
@@ -716,9 +702,9 @@ fggf>jdk>fjkfjkj
             
             IDImporte.change(function () {
                 // alert(UbicacionPago)
-                //arrayCursosMatriculados[UbicacionPago].importe = IDImporte.val();
-                arrayCursosMatriculados[UbicacionPago].importe = parseFloat(IDImporte.val());
-
+               // arrayCursosMatriculados[UbicacionPago].importe = IDImporte.val();
+               arrayCursosMatriculados[UbicacionPago].importe = parseFloat(IDImporte.val());
+                
             });
         }
 
@@ -734,7 +720,7 @@ fggf>jdk>fjkfjkj
                 mensualidad.val(Number(newMenualidad).toFixed(2));
                 arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
                 arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
-                arrayCursosMatriculados[UbicacionPago].razon = comentario;
+                arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
                 console.log(arrayCursosMatriculados);
 
                 auxMonto = newMenualidad;
