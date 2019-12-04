@@ -19,7 +19,7 @@ fggf>jdk>fjkfjkj
                             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
                         </div>
                         <!--*******************FIN_Encabezado****************-->
-                        <!--**************************************************Formulario*********************************************************-->
+                        <!--**************************************************Formulario**********************************************************-->
                         <div class="modal-body">
                             <div class="mb-3 card">
                                 <div class="card-header card-header-tab-animation">
@@ -161,6 +161,8 @@ fggf>jdk>fjkfjkj
                                                             
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                                            <input type="hidden" id="urlCantidadAJAXAP" value="{{route('cantidadNumerosAP')}}">
+                                                            
                                                             <input type="hidden" id="auxIdApoderado" value="">  
                                                             
                                                             <div class="load" style="display: none">cargando....</div>
@@ -582,7 +584,7 @@ var email = document.getElementById("txtDni_Al");
                     });
 */
 
-        function cantidadDni() {
+        function cantidadDni_AL() {
             var txtDni_Al = $('#txtDni_Al');
             var urlCantidadAJAX = $('#urlCantidadAJAX').val();
             var auxDni = $('#txtDni_Al').val();
@@ -650,9 +652,77 @@ var email = document.getElementById("txtDni_Al");
             });
         }
 
-        cantidadDni();
+        cantidadDni_AL();
+
+        function cantidadDni_AP() {
+            var txtDni_Al = $('#txtDni_AP');
+            var urlCantidadAJAX = $('#urlCantidadAJAXAP').val();
+            var auxDni = $('#txtDni_Al').val();
+            
+            txtDni_Al.change(function () {
+                var urlAJAX_AL = $('#urlAJAX_AP').val();
+                var txtDNI = $('#txtDni_AP').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAX_AL,
+                    data:{
+                        txtDni :txtDNI
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        if(response.estado == true){
+                            //encotro dni del alumno
+                        }else{
+                            if(response.cod == 100){
+                                //cantidad de caracteres menor al de 8
+                                toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
+                            if (response.cod == 101) {
+                                 // No se encuentra el dni del alumno
+                           
+                            }
+                        }
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
 
 
+            });
+        }
+
+        cantidadDni_AP();
 
         //--------------SELECCIONAR DATOS-----------------------
         function SeleccionarCuros() {

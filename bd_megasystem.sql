@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 02/12/2019 22:47:46
+ Date: 04/12/2019 14:29:32
 */
 
 SET NAMES utf8mb4;
@@ -32,12 +32,7 @@ CREATE TABLE `alumno`  (
   `feNacimiento` date NULL DEFAULT NULL,
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idAlumno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of alumno
--- ----------------------------
-INSERT INTO `alumno` VALUES (72, '70409311', 'José Luis', 'Cruz', 'Julcarima', b'1', '948759936', '1997-05-02', 'Arica#1247');
+) ENGINE = InnoDB AUTO_INCREMENT = 85 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for apoderado
@@ -53,12 +48,7 @@ CREATE TABLE `apoderado`  (
   `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `parentesco` char(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idApoderado`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of apoderado
--- ----------------------------
-INSERT INTO `apoderado` VALUES (48, '12345678', 'Anibal', 'Cruz', 'Ruiz', '1234568', 'Piura', 'Papá');
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for ciclo
@@ -87,7 +77,7 @@ CREATE TABLE `concepto`  (
   `descripcion` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `moTotal` float(4, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`idConcepto`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of concepto
@@ -95,6 +85,8 @@ CREATE TABLE `concepto`  (
 INSERT INTO `concepto` VALUES (1, 'Certificado', 20.00);
 INSERT INTO `concepto` VALUES (2, 'Matricula', 50.00);
 INSERT INTO `concepto` VALUES (3, 'Mensualidad', 60.00);
+INSERT INTO `concepto` VALUES (4, 'Carnet', 2.00);
+INSERT INTO `concepto` VALUES (5, 'Otros', 0.00);
 
 -- ----------------------------
 -- Table structure for cuota
@@ -115,16 +107,7 @@ CREATE TABLE `cuota`  (
   INDEX `idMatricula`(`idMatricula`) USING BTREE,
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`idConcepto`) REFERENCES `concepto` (`idConcepto`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `cuota_ibfk_2` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 394 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of cuota
--- ----------------------------
-INSERT INTO `cuota` VALUES (389, 30.00, '2019-11-28', 2, 523, 20.00, b'0', NULL, NULL);
-INSERT INTO `cuota` VALUES (390, 45.00, '2019-12-28', 3, 523, 45.00, b'0', 'se de va a descontar 15 soles', 15.00);
-INSERT INTO `cuota` VALUES (391, 45.00, '2020-01-28', 3, 523, 45.00, b'0', 'se de va a descontar 15 soles', 15.00);
-INSERT INTO `cuota` VALUES (392, 45.00, '2020-02-28', 3, 523, 45.00, b'0', 'se de va a descontar 15 soles', 15.00);
-INSERT INTO `cuota` VALUES (393, 45.00, '2020-03-28', 3, 523, 45.00, b'0', 'se de va a descontar 15 soles', 15.00);
+) ENGINE = InnoDB AUTO_INCREMENT = 725 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for curso
@@ -134,15 +117,17 @@ CREATE TABLE `curso`  (
   `idCurso` int(4) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idCurso`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of curso
 -- ----------------------------
-INSERT INTO `curso` VALUES (5, 'Word');
-INSERT INTO `curso` VALUES (6, 'Excel');
-INSERT INTO `curso` VALUES (7, 'Power Point');
-INSERT INTO `curso` VALUES (8, 'Computación');
+INSERT INTO `curso` VALUES (5, 'Ofimática');
+INSERT INTO `curso` VALUES (6, 'Diseño Gráfico');
+INSERT INTO `curso` VALUES (7, 'Excel Intermedio-Ava');
+INSERT INTO `curso` VALUES (8, 'Cosmetología Básica');
+INSERT INTO `curso` VALUES (9, 'Cosmetología Avanzad');
+INSERT INTO `curso` VALUES (10, 'Barbería');
 
 -- ----------------------------
 -- Table structure for grupo
@@ -165,17 +150,21 @@ CREATE TABLE `grupo`  (
   INDEX `idCiclo`(`idCiclo`) USING BTREE,
   CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`idCiclo`) REFERENCES `ciclo` (`idCiclo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of grupo
 -- ----------------------------
-INSERT INTO `grupo` VALUES (3, 'A (9:00am - 1:00pm)', 5, 4, 64, 2, 4, '00:00:09.00', '00:00:01.00', 'Sábado', '2019-11-28');
-INSERT INTO `grupo` VALUES (4, 'B (2:00pm - 18:00pm)', 5, 4, 64, 2, 6, '00:00:02.00', '00:00:06.00', 'Sábado', '2019-11-27');
-INSERT INTO `grupo` VALUES (5, 'A (9:00am - 13:00pm)', 6, 3, 48, 2, 2, '00:00:09.00', '00:00:01.00', 'Sábado', '2019-11-13');
-INSERT INTO `grupo` VALUES (6, 'A (8:00am - 12:30pm)', 8, 3, 50, 2, 3, '08:00:39.00', '12:30:58.00', 'Domingo', '2019-11-25');
-INSERT INTO `grupo` VALUES (7, 'A (7:30am - 11:30pm)', 7, 3, 50, 2, 2, '11:00:40.00', '12:00:43.00', 'Domingo', '2019-11-04');
-INSERT INTO `grupo` VALUES (8, 'B (8:30am - 13:00pm)', 7, 4, 55, 2, 10, '11:01:25.00', '15:01:28.00', 'Sábado', '2019-11-18');
+INSERT INTO `grupo` VALUES (19, 'sab(8:00AM-11:00AM)', 6, 4, 3, 2, 20, '08:00:00.00', '11:00:00.00', 'Sábado', '2019-11-02');
+INSERT INTO `grupo` VALUES (20, 'sab(11:00AM-2:00PM)', 6, 4, 3, 2, 20, '11:00:00.00', '14:00:00.00', 'Sábado', '2019-11-02');
+INSERT INTO `grupo` VALUES (21, 'sab(2:00PM-5:00PM)', 6, 4, 3, 2, 20, '14:00:00.00', '17:00:00.00', 'Sábado', '2019-11-02');
+INSERT INTO `grupo` VALUES (22, 'Dom(8:00AM-11:00AM)', 7, 4, 3, 2, 20, '08:00:00.00', '11:00:00.00', 'Domingo', '2019-11-02');
+INSERT INTO `grupo` VALUES (23, 'Dom(2:00PM-5:00PM)', 7, 4, 3, 2, 20, '14:00:00.00', '17:00:00.00', 'Domingo', '2019-11-01');
+INSERT INTO `grupo` VALUES (24, 'sab(10:00AM-1:00PM)', 8, 4, 3, 2, 20, '10:00:00.00', '01:00:00.00', 'Sabado', '2019-11-02');
+INSERT INTO `grupo` VALUES (25, 'Dom(2:00PM-5:00PM)', 8, 4, 3, 2, 20, '14:00:00.00', '17:00:00.00', 'Domingo', '2019-11-02');
+INSERT INTO `grupo` VALUES (26, 'sab(2:00PM-5:00PM)', 9, 4, 3, 2, 20, '14:00:00.00', '17:00:00.00', 'Sabado', '2019-11-02');
+INSERT INTO `grupo` VALUES (27, 'sab(9:00AM-12:00AM)', 9, 4, 3, 2, 20, '09:00:00.00', '12:00:00.00', 'Sabado', '2019-11-02');
+INSERT INTO `grupo` VALUES (28, 'sab(9:00AM-12:00AM)', 10, 4, 3, 2, 20, '09:00:00.00', '12:00:00.00', 'Sabado', '2019-11-02');
 
 -- ----------------------------
 -- Table structure for matricula
@@ -197,12 +186,7 @@ CREATE TABLE `matricula`  (
   CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_3` FOREIGN KEY (`idApoderado`) REFERENCES `apoderado` (`idApoderado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `matricula_ibfk_4` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idGrupo`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 524 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of matricula
--- ----------------------------
-INSERT INTO `matricula` VALUES (523, '2019-12-02 19:50:28', 3, 48, 72, 1);
+) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for pago
@@ -218,12 +202,7 @@ CREATE TABLE `pago`  (
   INDEX `idMatricula`(`nuRecibo`) USING BTREE,
   INDEX `idPago`(`idCuota`) USING BTREE,
   CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`idCuota`) REFERENCES `cuota` (`idCuota`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of pago
--- ----------------------------
-INSERT INTO `pago` VALUES (14, 30.00, '2019-12-02 19:50:29', '4444', 389);
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for promotor
@@ -268,6 +247,32 @@ BEGIN
 
 		SELECT * FROM apoderado WHERE apoderado.dni = _dni;
 
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for buscarCiclo
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `buscarCiclo`;
+delimiter ;;
+CREATE PROCEDURE `buscarCiclo`()
+BEGIN
+	
+	SELECT * FROM  ciclo WHERE ciclo.activo = 1;
+
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for buscarMatriculaIDAlumno
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `buscarMatriculaIDAlumno`;
+delimiter ;;
+CREATE PROCEDURE `buscarMatriculaIDAlumno`(in _idAlumno INT)
+BEGIN
+	SELECT * FROM matricula WHERE idAlumno = _idAlumno;
 END
 ;;
 delimiter ;
@@ -352,7 +357,7 @@ delimiter ;;
 CREATE PROCEDURE `listarGrupos`()
 BEGIN
 	SELECT * FROM grupo
-	WHERE vacante > 0;
+	WHERE vacante > 0 ;
 
 END
 ;;
@@ -487,7 +492,7 @@ CREATE PROCEDURE `registrarPago`(IN _importe FLOAT, IN _nrecibo VARCHAR(12), IN 
 BEGIN
 	DECLARE cant INT;
 	SET cant = (SELECT COUNT(*) FROM pago p WHERE p.nuRecibo = _nrecibo);
-	IF cant > 0 THEN
+	IF cant < 0 THEN
 			SELECT 'Recibo Ya Existe';
 	ELSE
 		INSERT INTO pago(importe,feEmision,nuRecibo,idCuota) VALUES(_importe,NOW(),_nrecibo,_idcuota);
@@ -506,15 +511,14 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registroCuotas`;
 delimiter ;;
-CREATE PROCEDURE `registroCuotas`(IN `_monto` FLOAT,IN `_feVencimiento` date,IN `_idConcepto` INT,IN `_idMatricula` INT,IN `_saldo` FLOAT,IN `_pagado` INT,IN `_raDescuento` VARCHAR(60),IN `_moDescuento` FLOAT,IN ´_numero´ int)
+CREATE PROCEDURE `registroCuotas`(IN _monto FLOAT,IN _feVencimiento date,IN _idConcepto INT,IN _idMatricula INT,IN _saldo FLOAT,IN _pagado INT,IN _raDescuento VARCHAR(60),IN _moDescuento FLOAT,IN _numero int)
 BEGIN
 	
 	DECLARE _auxFecha Date;
 	
-	set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL ´_numero´ MONTH));
+	set _auxFecha = DATE(DATE_ADD(_feVencimiento, INTERVAL _numero MONTH));
 	
 		INSERT INTO cuota(monto,feVencimiento,idConcepto,idMatricula,saldo,pagado,raDescuento,moDescuento) VALUES(_monto,_auxFecha,_idConcepto,_idMatricula,_saldo,_pagado,_raDescuento,_moDescuento);
-	
 	
 	
 END

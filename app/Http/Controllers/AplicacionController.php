@@ -328,7 +328,7 @@ class AplicacionController extends Controller
         $_numcade = strlen($auxDni);
 
         if ($_numcade == 8) {
-            $datos = DB::select("call buscarPromotor(?)", array($txtDniPromotor));
+            $datos = DB::select("call buscarAlumno(?)", array($auxDni));
             
             if(count($datos) > 0){
                 $data = [
@@ -357,6 +357,43 @@ class AplicacionController extends Controller
 
 
     }
+
+    public function cantidadCaracterAP(REQUEST $dato)
+    {
+        $auxDni = $dato->txtDni;
+        $_numcade = strlen($auxDni);
+
+        if ($_numcade == 8) {
+            $datos = DB::select("call buscarApoderado(?)", array($auxDni));
+            
+            if(count($datos) > 0){
+                $data = [
+                    'estado' => true,
+                    'cod' => 200,
+                    'datos' => $datos
+                ];
+                return response()->json($data);
+            }else{
+                
+                $data = [
+                    'estado' => false,
+                    'cod' => 101
+                ];
+            return response()->json($data);
+            }
+        } else {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+            /// return view('Mantenedor.MatriculaFrm');
+            //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
+        }
+
+
+    }
+
 
     //********************FIN_Matricula********************* */
     public function Pagos(REQUEST $request)

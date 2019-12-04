@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
 
-// **********************MATRICULA**********************************
+// **********************MATRICULA***********************************
 route::get('/matricula/inicio','AplicacionController@Matricula')->name('matricula01');
 route::post('/matricula/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
 route::post('/matricula/buscarApoderado','AplicacionController@buscarAP')->name('buscar_AP');
@@ -30,6 +30,7 @@ route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('
 route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
 route::post('/matricula/listarMensualidad','AplicacionController@listarMensualidad')->name('listarMensualidad');
 route::post('/matricula/cantidad','AplicacionController@cantidadCaracter')->name('cantidadNumeros');
+route::post('/matricula/cantidadAp','AplicacionController@cantidadCaracterAP')->name('cantidadNumerosAP');
 
 //************************FIN_MATRICULA******************************** */
 
