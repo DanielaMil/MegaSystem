@@ -29,6 +29,7 @@ route::post('/matricula','AplicacionController@matriculaRegistro')->name('matric
 route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
 route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
 route::post('/matricula/listarMensualidad','AplicacionController@listarMensualidad')->name('listarMensualidad');
+route::post('/matricula/cantidad','AplicacionController@cantidadCaracter')->name('cantidadNumeros');
 
 //************************FIN_MATRICULA******************************** */
 

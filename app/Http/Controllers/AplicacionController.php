@@ -319,6 +319,41 @@ class AplicacionController extends Controller
             /// return view('Mantenedor.MatriculaFrm');
             //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
         }
+    }
+
+    //cantidad de caracteres en dni del alumno  
+    public function cantidadCaracter(REQUEST $dato)
+    {
+        $auxDni = $dato->txtDni;
+        $_numcade = strlen($auxDni);
+
+        if ($_numcade == 8) {
+            $datos = DB::select("call buscarPromotor(?)", array($txtDniPromotor));
+            
+            if(count($datos) > 0){
+                $data = [
+                    'estado' => true,
+                    'cod' => 200,
+                    'datos' => $datos
+                ];
+                return response()->json($data);
+            }else{
+                
+                $data = [
+                    'estado' => false,
+                    'cod' => 101
+                ];
+            return response()->json($data);
+            }
+        } else {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+            /// return view('Mantenedor.MatriculaFrm');
+            //return view('Mantenedor.MatriculaFrm', ['_auxdni' => $_auxdni]);response
+        }
 
 
     }

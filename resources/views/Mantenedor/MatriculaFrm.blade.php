@@ -54,10 +54,12 @@ fggf>jdk>fjkfjkj
                                                                 <label class="mr-sm-2">
                                                                     DNI
                                                                 </label>
-                                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8"  onkeypress="return soloNumeros(event)">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
+                                                            <input type="hidden" id="urlCantidadAJAX" value="{{route('cantidadNumeros')}}">
+                                                            
                                                             <input type="hidden" id="auxIdAl" >  
                                                             <div class="load" style="display: none">Cargando....</div>
                                                         </div>
@@ -92,6 +94,11 @@ fggf>jdk>fjkfjkj
                                                                     </font>
                                                                     </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                                 </div>
+                                                                <!--<form>
+                                                                    <label for="mail">Quisiera que me proporcionaras tu dirección de correo electrónico</label>
+                                                                    <input type="email" id="mail" name="mail">
+                                                                    <button>Enviar</button>
+                                                                  </form>-->
                                                                 <div class="position-relative form-group">
                                                                     <label for="exampleSelect" class="">
                                                                         <font style="vertical-align: inherit;">
@@ -99,8 +106,8 @@ fggf>jdk>fjkfjkj
                                                                         </font>
                                                                     </label>
                                                                     <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
-                                                                        <option selected value="0">Masculino</option>
-                                                                        <option value="1">Femenino</option>
+                                                                        <option selected value="1">Masculino</option>
+                                                                        <option value="0">Femenino</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -561,6 +568,91 @@ fggf>jdk>fjkfjkj
         }
         
         bloquearMatricula()
+        //-------------VALIDAR CARACTERES DNI ALUMNO-----------------------
+
+/*
+var email = document.getElementById("txtDni_Al");
+
+                   txtDni_Al.addEventListener("keyup", function (event) {
+                    if (txtDni_Al.validity.typeMismatch) {
+                        txtDni_Al.setCustomValidity("¡Wey son 9 dígitos ... entiende ");
+                    } else {
+                        txtDni_Al.setCustomValidity("");
+                    }
+                    });
+*/
+
+        function cantidadDni() {
+            var txtDni_Al = $('#txtDni_Al');
+            var urlCantidadAJAX = $('#urlCantidadAJAX').val();
+            var auxDni = $('#txtDni_Al').val();
+            
+            txtDni_Al.change(function () {
+                var urlAJAX_AL = $('#urlAJAX_AL').val();
+                var txtDNI = $('#txtDni_Al').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAX_AL,
+                    data:{
+                        txtDni :txtDNI
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        if(response.estado == true){
+                            //encotro dni del alumno
+                        }else{
+                            if(response.cod == 100){
+                                //cantidad de caracteres menor al de 8
+                                toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
+                            if (response.cod == 101) {
+                                 // No se encuentra el dni del alumno
+                           
+                            }
+                        }
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+
+
+            });
+        }
+
+        cantidadDni();
+
+
 
         //--------------SELECCIONAR DATOS-----------------------
         function SeleccionarCuros() {
@@ -873,7 +965,6 @@ fggf>jdk>fjkfjkj
             //$('#cboGeneroAl').val('');
             $('#cboGeneroAl').attr('disabled',false);
         }
-
 
         $('#btn_buscarAJAX_AL').click(function () {  
             buscarAlumno();
