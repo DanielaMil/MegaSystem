@@ -321,7 +321,7 @@ class AplicacionController extends Controller
         }
     }
 
-    //cantidad de caracteres en dni del alumno  
+    //cantidad de caracteres en dni del alumno   cantidadCelAp
     public function cantidadCaracter(REQUEST $dato)
     {
         $auxDni = $dato->txtDni;
@@ -394,6 +394,49 @@ class AplicacionController extends Controller
 
     }
 
+    public function cantidadCelAp(REQUEST $dato)
+    {
+        $txrCel = $dato->txtCel;
+        $_numcade = strlen($txrCel);
+
+        if ($_numcade == 9) {
+            
+        } else {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+    }
+
+    public function validarImporte(REQUEST $dato)
+    {
+        $monImporte = $dato->monImporte;
+        $monMatricula = $dato->monMatricula;
+
+        if ($monImporte > $monMatricula) {
+            $data = [
+                'estado' => false,
+                'cod'    => 101
+            ];
+            return response()->json($data);
+        }
+    }
+
+    public function validarDescuento(REQUEST $dato)
+    {
+        $monDescuento = $dato->monDescuento;
+        $monMensual = $dato->monMensual;
+
+        if ($monDescuento > $monMensual) {
+            $data = [
+                'estado' => false,
+                'cod'    => 101
+            ];
+            return response()->json($data);
+        }
+    }
 
     //********************FIN_Matricula********************* */
     public function Pagos(REQUEST $request)

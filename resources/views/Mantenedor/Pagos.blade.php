@@ -93,6 +93,7 @@
     </div>
 </div>
 <!-- --------daniela-------------->
+
 <div class="modal fade bd-pagos-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -143,10 +144,24 @@
                                     <br>
                                     <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                     <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend"><span class="input-group-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S/</font></font></span></div>
-                                            <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control">
-                                            <div class="input-group-append"><span class="input-group-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.00</font></font></span></div>
+                                        <div class="input-group-prepend"><span class="input-group-text">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">
+                                                    S/
+                                                </font>
+                                            </font></span>
                                         </div>
+                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        .00
+                                                    </font>
+                                                </font>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </form>
                                 <hr style="margin-top:0">
                                 <div class="d-block text-center card-footer">
@@ -437,6 +452,7 @@
                 var pagado = $('#txtPago').val();
                 var razon = $('#txtObservacion').val();
                 var saldo = (monto - descuento - pagado);
+
                 alert(saldo);
                 $.ajax({
                     type: "post",
@@ -769,10 +785,9 @@
                     }
                 });
                 
-              }
+            }
 
             $('.pagosCuotas').click(function () {  
-
             });
 
            function formularioPagar() {
@@ -816,17 +831,19 @@
                     }
                }
            });
+
            var banResponsive = 0;
+
             $('.hamburger').click(function () {  
-            if (banResponsive == 0) {
-                $('.app-theme-white').addClass('closed-sidebar');
-                $('.hamburger').addClass('is-active');
-                banResponsive = 1;
-            }else{
-                $('.app-theme-white').removeClass('closed-sidebar');
-                $('.hamburger').removeClass('is-active');
-                banResponsive = 0;
-            }
+                if (banResponsive == 0) {
+                    $('.app-theme-white').addClass('closed-sidebar');
+                    $('.hamburger').addClass('is-active');
+                    banResponsive = 1;
+                }else{
+                    $('.app-theme-white').removeClass('closed-sidebar');
+                    $('.hamburger').removeClass('is-active');
+                    banResponsive = 0;
+                }
             });
             // ================================
 

@@ -58,7 +58,6 @@ fggf>jdk>fjkfjkj
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
-                                                            <input type="hidden" id="urlCantidadAJAX" value="{{route('cantidadNumeros')}}">
                                                             
                                                             <input type="hidden" id="auxIdAl" >  
                                                             <div class="load" style="display: none">Cargando....</div>
@@ -126,6 +125,8 @@ fggf>jdk>fjkfjkj
                                                                     </font>
                                                                 </label>
                                                                 <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                                                <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
+                                                           
                                                             </div>
                                                         </div>
                                                     </div>
@@ -161,7 +162,6 @@ fggf>jdk>fjkfjkj
                                                             
                                                             <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
                                                             <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
-                                                            <input type="hidden" id="urlCantidadAJAXAP" value="{{route('cantidadNumerosAP')}}">
                                                             
                                                             <input type="hidden" id="auxIdApoderado" value="">  
                                                             
@@ -206,6 +206,7 @@ fggf>jdk>fjkfjkj
                                                                         <font style="vertical-align: inherit;">Celular</font>
                                                                     </font>
                                                                 </label><input name="txtCelular_AP" id="txtCelular_AP" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                                                <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
                                                             </div>
                                                         </div>
                                                         <div class="column m-3" style="width: 17em;">
@@ -302,21 +303,47 @@ fggf>jdk>fjkfjkj
                                                             </font>
                                                         </label>
                                                         <input name="txt" id="txtMatricula" type="text" style="width: 80px" ><br>
-                                                        <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">        
-                                                        <label>
+                                                        <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">     
+                                                        
+                                                        <div class="column m-3" style="width: 8em;">
+                                                            <label for="form-control" class="" style="font-weight: bold">Importe</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-prepend"><span class="input-group-text">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            S/
+                                                                        </font>
+                                                                    </font></span>
+                                                                </div>
+                                                                <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
+                                                                <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" onkeypress="return montos(event)">
+                                                                <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">
+                                                                                .00
+                                                                            </font>
+                                                                        </font>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                      <!--  <label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Importe</font>
                                                             </font>
                                                         </label>
                                                         <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
-                                                        
+                                                    -->
                                                         <br/>
                                                         <label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Pago de Mensualidad</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtMensualidad" type="text" style="width: 80px" ><br>
+                                                        <input name="txt" id="txtMensualidad" type="text" style="width: 5em" ><br>
                                                                     
                                                         <label>
                                                             <font style="vertical-align: inherit;">
@@ -324,13 +351,38 @@ fggf>jdk>fjkfjkj
                                                             </font>
                                                         </label>
                                                         <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí tus comentarios"></textarea>
-                                                        <label>
+                                                        <!--<label>
                                                             <font style="vertical-align: inherit;">
                                                                 <font style="vertical-align: inherit;">Descuetno</font>
                                                             </font>
                                                         </label>
-                                                        <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">
-<!--------------------------------------------------------------------------- Mara el listado de las mensualidades-->
+                                                        <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">-->
+<!--------------------------------------------------------------------------- Para el listado de las mensualidades-->
+                                                        <div class="column m-3" style="width: 8em;">
+                                                            <label for="form-control" class="" style="font-weight: bold">Descuento</label>
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group-prepend"><span class="input-group-text">
+                                                                    <font style="vertical-align: inherit;">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            S/
+                                                                        </font>
+                                                                    </font></span>
+                                                                </div>
+                                                                <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
+                                                                <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" onkeypress="return montos(event)">
+                                                                <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">
+                                                                        <font style="vertical-align: inherit;">
+                                                                            <font style="vertical-align: inherit;">
+                                                                                .00
+                                                                            </font>
+                                                                        </font>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="column m-3" style="width: 50em;">
                                                             <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
                                                                 <table class="table02">
@@ -583,11 +635,9 @@ var email = document.getElementById("txtDni_Al");
                     }
                     });
 */
-
+        //----------------VALIDAR/CANTIDAD DE DATOS------------------------
         function cantidadDni_AL() {
             var txtDni_Al = $('#txtDni_Al');
-            var urlCantidadAJAX = $('#urlCantidadAJAX').val();
-            var auxDni = $('#txtDni_Al').val();
             
             txtDni_Al.change(function () {
                 var urlAJAX_AL = $('#urlAJAX_AL').val();
@@ -656,8 +706,6 @@ var email = document.getElementById("txtDni_Al");
 
         function cantidadDni_AP() {
             var txtDni_Al = $('#txtDni_AP');
-            var urlCantidadAJAX = $('#urlCantidadAJAXAP').val();
-            var auxDni = $('#txtDni_Al').val();
             
             txtDni_Al.change(function () {
                 var urlAJAX_AL = $('#urlAJAX_AP').val();
@@ -684,7 +732,7 @@ var email = document.getElementById("txtDni_Al");
                         }else{
                             if(response.cod == 100){
                                 //cantidad de caracteres menor al de 8
-                                toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+                                toastr["warning"]("en el DNI del apoderado", "Cantidad de caracteres inválido")
 
                                 toastr.options = {
                                 "closeButton": false,
@@ -723,6 +771,262 @@ var email = document.getElementById("txtDni_Al");
         }
 
         cantidadDni_AP();
+
+        function cantidadDni_CEL() {
+            var txtCelularAP = $('#txtCelular_AP');
+            
+            txtCelularAP.change(function () {
+                var urlAJAXCEL = $('#urlAJAX_cantidadCelularAP').val();
+                var txtCel = $('#txtCelular_AP').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAXCEL,
+                    data:{
+                        txtCel :txtCel
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                        }
+                        
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+
+
+            });
+        }
+
+        cantidadDni_CEL();
+
+        function cantidadDni_CEL01() {
+            var txtCelularAl = $('#txtCelularAl');
+            
+            txtCelularAl.change(function () {
+                var urlAJAXCEL = $('#urlAJAX_cantidadAL').val();
+                var txtCel = $('#txtCelularAl').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAXCEL,
+                    data:{
+                        txtCel :txtCel
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                        }
+                        
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+
+
+            });
+        }
+
+        cantidadDni_CEL01();
+
+        function validarImporte() {
+            var txtImporte = $('#txtImporte');
+            
+            txtImporte.change(function () {
+                var urlAJAXVal = $('#urlAJAX_monto').val();
+                var monImporte = $('#txtImporte').val();
+                var monMatricula = $('#txtMatricula').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAXVal,
+                    data:{
+                        monImporte :monImporte,
+                        monMatricula :monMatricula
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                                                
+                        if(response.cod == 101){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("mayor al pago de la Matrícula", "Importe")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtImporte').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+                        
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+
+
+            });
+        }
+
+        validarImporte();
+
+        function validarDescuento() {
+            var txtDescuento = $('#txtDescuento');
+            
+            txtDescuento.change(function () {
+                var urlAJAXVal = $('#urlAJAX_desc').val();
+                var monDescuento = $('#txtDescuento').val();
+                var monMensual = $('#txtMensualidad').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: urlAJAXVal,
+                    data:{
+                        monDescuento :monDescuento,
+                        monMensual :monMensual
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                                                
+                        if(response.cod == 101){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("mayor al pago de la Mensualidad", "Descuento")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtDescuento').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+                        
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+
+
+            });
+        }
+
+        validarDescuento();
 
         //--------------SELECCIONAR DATOS-----------------------
         function SeleccionarCuros() {
@@ -982,7 +1286,7 @@ var email = document.getElementById("txtDni_Al");
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                             }
-                            LimpiarFormularioALU();
+                            //LimpiarFormularioALU();
                         }
                         if (response.cod == 101) {
                            // $('.msj_ALU').css({display:'block'});
@@ -1230,7 +1534,7 @@ var email = document.getElementById("txtDni_Al");
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                             }
-                            LimpiarFormularioApoderado();
+                            //LimpiarFormularioApoderado();
                         }
                         if (response.cod == 101) {
                            // $('.msj_APO').css({display:'block'});

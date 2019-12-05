@@ -3,7 +3,7 @@
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|----------------------------------------------------------------------------
+|-----------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -29,8 +29,10 @@ route::post('/matricula','AplicacionController@matriculaRegistro')->name('matric
 route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
 route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
 route::post('/matricula/listarMensualidad','AplicacionController@listarMensualidad')->name('listarMensualidad');
-route::post('/matricula/cantidad','AplicacionController@cantidadCaracter')->name('cantidadNumeros');
-route::post('/matricula/cantidadAp','AplicacionController@cantidadCaracterAP')->name('cantidadNumerosAP');
+route::post('/matricula/cantidad','AplicacionController@cantidadCelAp')->name('cantidadCelularAP');
+route::post('/matricula/validarImporte','AplicacionController@validarImporte')->name('validarImporte');
+route::post('/matricula/validarDescuento','AplicacionController@validarDescuento')->name('validarDescuento');
+
 
 //************************FIN_MATRICULA******************************** */
 
