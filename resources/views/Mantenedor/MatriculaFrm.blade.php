@@ -316,7 +316,7 @@ fggf>jdk>fjkfjkj
                                                                     </font></span>
                                                                 </div>
                                                                 <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
-                                                                <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" onkeypress="return montos(event)">
+                                                                <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
                                                                 <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text">
@@ -369,7 +369,7 @@ fggf>jdk>fjkfjkj
                                                                     </font></span>
                                                                 </div>
                                                                 <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
-                                                                <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" onkeypress="return montos(event)">
+                                                                <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
                                                                 <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text">
@@ -1172,14 +1172,15 @@ var email = document.getElementById("txtDni_Al");
             IDDescueto.change(function () {
                 // alert(UbicacionPago)
                 var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
-                mensualidad.val(Number(newMenualidad).toFixed(2));
-                arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
-                arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
-                arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
-                console.log(arrayCursosMatriculados);
+                if (newMenualidad>=0){
+                    mensualidad.val(Number(newMenualidad).toFixed(2));
+                    arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                    arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                    arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
+                    console.log(arrayCursosMatriculados);
 
-                auxMonto = newMenualidad;
-                
+                    auxMonto = newMenualidad;
+                }
             });
         }
 
