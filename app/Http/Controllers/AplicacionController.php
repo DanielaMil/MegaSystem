@@ -11,13 +11,11 @@ class AplicacionController extends Controller
     {
         return view('layouts/app');
     }
-    /*
-    public function Inicio2(REQUEST $request)
+    /*public function Inicio2(REQUEST $request)
     {
         return view('Mantenedor/Registrar');
-    }
-    */
-    //********************Matricula*************************** */
+    }*/
+    //********************Matricula*****************************/
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -92,8 +90,9 @@ class AplicacionController extends Controller
         }
     }
 
-    public function listarGrupo(Request $dato)
+    /*public function listarGrupo(Request $dato)
     {   
+        $auxdni = $dato->auxDni;
         $datosCurso = DB::select("call listarCurso()",array());
         $datosGrupo = DB::select("call listarGrupos()",array());
         
@@ -110,6 +109,45 @@ class AplicacionController extends Controller
                 'datosG' => $datosGrupo
             ];
             $dataC+=$dataG;
+            return response()->json($dataC);
+
+            //return response()->json($dataG);
+        }else{
+            
+            $data = [
+                'estado' => false,
+                'cod' => 101
+            ];
+        return response()->json($data);
+        }
+    }*/
+    public function listarGrupo(Request $dato)
+    {   
+        $auxdni = $dato->auxdeni;
+        $datosGrupoNoDisponible = DB::select("call listarGruposNoDisponible(?)", array($auxdni));
+        $datosCurso = DB::select("call listarCurso()",array());
+        $datosGrupo = DB::select("call listarGrupos()",array());
+
+        if(count($datosCurso) > 0){
+            $dataC = [
+                'estado' => true,
+                'cod' => 200,
+                'datosC' => $datosCurso
+            ];
+
+            $dataG = [
+                'estado' => true,
+                'cod' => 200,
+                'datosG' => $datosGrupo
+            ];
+
+            $dataGND = [
+                'estado' => true,
+                'cod' => 200,
+                'datosGND' => $datosGrupoNoDisponible
+            ];
+
+            $dataC+=$dataG + $dataGND;
             return response()->json($dataC);
 
             //return response()->json($dataG);
@@ -171,24 +209,17 @@ class AplicacionController extends Controller
         $txtCelular_AP    =$dato->txtCelular_AP;
         $txtParentesco_AP =$dato->txtParentesco_AP;
 
-        if ($auxIdApoderado == ''){
-            $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
-            $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
-            $auxIdApoderado = $Apoderado[0]->idApoderado;
+        if ($txtDni_AP == ''){
+            $auxIdApoderado = null;
+        }else{
+            if ($auxIdApoderado == ''){
+                $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
+                $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
+                $auxIdApoderado = $Apoderado[0]->idApoderado;
+            }
         }
 
         
-        //Registro de Matricula y Cuotas
-        /*registrarPagos
-        idCurso:    e.attr('Key'),
-        idGrupo:    selectGrupo.eq(index).val(),
-        importe:    0.00,
-        pagoMens:   parseFloat(mensualidadGeneral),
-        pagoMatr:   parseFloat(matricula.val()),
-        razon:      "",
-        descuento:  0.00
-        ultimo
-        */
         $txtRecibo = $dato->txtRecibo;
         $txtDniPromotor = $dato->txtDniPromotor;
 
@@ -321,7 +352,6 @@ class AplicacionController extends Controller
         }
     }
 
-    //cantidad de caracteres en dni del alumno   cantidadCelAp
     public function cantidadCaracter(REQUEST $dato)
     {
         $auxDni = $dato->txtDni;
@@ -438,7 +468,6 @@ class AplicacionController extends Controller
         }
     }
 
-    //********************FIN_Matricula********************* */
     public function Pagos(REQUEST $request)
     {
         return view('Mantenedor.Pagos');

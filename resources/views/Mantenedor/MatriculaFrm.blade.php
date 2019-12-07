@@ -7,430 +7,379 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('content')   
-    
-            <!--<h5 class="msj_ALU" style="display: none">*No se encontro datos del Alumno</h5>-->
-           <!-- <h5 class="msj_APO" style="display: none">*No se encontro datos del Apoderado</h5>-->
-            <!--<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-                <div class="modal-dialog modal-lg" style="    margin: 0!important;
-                max-width: 1500px;" role="document">
-                    <div class="modal-content">
-                        <!--*******************Encabezado*****************-->
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
-                        </div>
-                        <!--*******************FIN_Encabezado****************-->
-                        <!--**************************************************Formulario**********************************************************-->
-                        <div class="modal-body">
-                            <div class="mb-3 card">
-                                <div class="card-header card-header-tab-animation">
-                                    <ul class="nav nav-justified">
-                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link active show">
-                                                Alumno
-                                            </a></li>
-                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">
-                                                Apoderado
-                                            </a></li>
-                                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-2" class="nav-link show">
-                                                Matricula
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <!--Formularios de Alumno Apoderado Matricula--->
-                                <div class="card-body">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Ingresar Datos
-                                                </h5>
-                                                <div>
-                                                    <!--**********Datos de Alumnos*************-->
-                                                    <div class="card-body mx-auto style=width: 50px" > 
-                                                        <div  class="form-inline">
-                                                            <!-- <form class="form-inline" >-->
-                                                            @csrf
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                <label class="mr-sm-2">
-                                                                    DNI
-                                                                </label>
-                                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                                            <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
-                                                            
-                                                            <input type="hidden" id="auxIdAl" >  
-                                                            <div class="load" style="display: none">Cargando....</div>
-                                                        </div>
-                                                    </div> 
-                                                    <div class="row m-3 ">
-                                                        <div class="column m-3" style="width: 18em;">
-                                                            <div class="position-relative form-group">
-                                                                <label for="form-control" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Apellido Paterno*</font>
-                                                                    </font>
-                                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group"><label for="examplePassword" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Fecha Nacimiento</font>
-                                                                    </font>
-                                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)" disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group">
-                                                                <label for="form-control" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Direccion</font>
-                                                                    </font>
-                                                                </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" autocomplete="off" class="form-control" disabled="true">
-                                                            </div>
-                                                        </div>
-                                                        <div class="column m-3" style="width: 18em;">
-                                                                <div class="position-relative form-group"><label for="form-control" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Apellido Materno*</font>
-                                                                    </font>
-                                                                    </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                                </div>
-                                                                <!--<form>
-                                                                    <label for="mail">Quisiera que me proporcionaras tu dirección de correo electrónico</label>
-                                                                    <input type="email" id="mail" name="mail">
-                                                                    <button>Enviar</button>
-                                                                  </form>-->
-                                                                <div class="position-relative form-group">
-                                                                    <label for="exampleSelect" class="">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Genero</font>
-                                                                        </font>
-                                                                    </label>
-                                                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
-                                                                        <option selected value="1">Masculino</option>
-                                                                        <option value="0">Femenino</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        <div class="column m-3" style="width: 18em;">
-                                                            <div class="position-relative form-group">
-                                                                <label for="examplePassword" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Nombre*</font>
-                                                                    </font>
-                                                                </label><input name="txtNombre_Al" id="txtNombreAl" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group">
-                                                                <label for="examplePassword" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">celular</font>
-                                                                    </font>
-                                                                </label>
-                                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
-                                                                <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
-                                                           
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+<div class="modal-dialog modal-lg" style="    margin: 0!important; max-width: 1500px;" role="document">
+    <div class="modal-content">
+        <!--*******************Encabezado*****************-->
+        <div class="modal-header">
+            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
+        </div>
+        <!--*******************FIN_Encabezado****************-->
+        <!--***************************************Formulario****************************************-->
+        <div class="modal-body">
+            <div class="mb-3 card">
+                <div class="card-header card-header-tab-animation">
+                    <ul class="nav nav-justified">
+                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link active show">
+                            Alumno
+                        </a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">
+                            Apoderado
+                        </a></li>
+                        <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-2" class="nav-link show">
+                            Matricula
+                        </a></li>
+                    </ul>
+                </div>
+                <!--Formularios de Alumno Apoderado Matricula--->
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="tab-eg115-0" role="tabpanel">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Ingresar Datos
+                                </h5>
+                                <div>
+                                    <!--**********Datos de Alumnos*************-->
+                                    <div class="card-body mx-auto style=width: 50px" > 
+                                        <div  class="form-inline">
+                                            @csrf
+                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
+                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                <label class="mr-sm-2">
+                                                    DNI
+                                                </label>
+                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
                                             </div>
-
-                                        </div>
-                                        <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
-                                                    </font>
-                                                </h5>
-                                                <div>
-                                                    <!--**********Datos de Apoderado*************-->
-                                                <div class="row m-3">
-                                                    <div class="card-body mx-auto style=width: 50px" > 
-                                                        <div  class="form-inline">
-                                                            <!-- <form class="form-inline" >-->
-                                                            @csrf  
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                <label class="mr-sm-2">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">DNI</font>
-                                                                    </font>
-                                                                </label>
-                                                                <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                            </div>
-                                                            
-                                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
-                                                            <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
-                                                            
-                                                            <input type="hidden" id="auxIdApoderado" value="">  
-                                                            
-                                                            <div class="load" style="display: none">cargando....</div>
-                                                        </div>
-                                                    </div> 
-                                                            
-                                                    <div class="row m-3 ">
-                                                        <div class="column m-3" style="width: 17em;">
-                                                            <div class="position-relative form-group">
-                                                                <label for="form-control" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Apellido Paterno*</font>
-                                                                    </font>
-                                                                </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group">
-                                                                    <label for="form-control" class="">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Parentesco</font>
-                                                                        </font>
-                                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group">
-                                                                    <label for="form-control" class="">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Direccion</font>
-                                                                        </font>
-                                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" autocomplete="off" class="form-control" disabled="true">
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="column m-3" style="width: 17em;">
-                                                            <div class="position-relative form-group"><label for="form-control" class="">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">Apellido Materno*</font>
-                                                                </font>
-                                                                </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
-                                                            </div>
-                                                            <div class="position-relative form-group"><label for="examplePassword" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Celular</font>
-                                                                    </font>
-                                                                </label><input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
-                                                                <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="column m-3" style="width: 17em;">
-                                                            <div class="position-relative form-group">
-                                                                <label for="examplePassword" class="">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Nombre*</font>
-                                                                    </font>
-                                                                </label><input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                               
-                                            </div>
+                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
+                                            <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
                                             
+                                            <input type="hidden" id="auxIdAl" >  
+                                            <div class="load" style="display: none">Cargando....</div>
                                         </div>
-
-                                        <div class="tab-pane show" id="tab-eg115-2" role="tabpanel">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
+                                    </div> 
+                                    <div class="row m-3 ">
+                                        <div class="column m-3" style="width: 18em;">
+                                            <div class="position-relative form-group">
+                                                <label for="form-control" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
+                                                        <font style="vertical-align: inherit;">Apellido Paterno*</font>
                                                     </font>
-                                                </h5>
-                                                <div>
-<!--**************************************************************************Datos de Matricula****************************************************************-->
-                                                <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 30em;">
-                                                        <div class="column m-3" style="width: 25em;">
-                                                            <div class="mt-3 position-relative form-check">
-                                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <th></th>
-                                                                            <th>CURSO</th>
-                                                                            <th>GRUPO</th>
-                                                                            <th>PAGO</th>
-                                                                            <th>VACANTES</th>
-                                                                        </thead>
-                                                                        <tbody id="tbody">
-                                                                            
-                                                                        </tbody>
-                                                                        <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                                                                        
-                                                                    </table>
-                                                                    <div class="row m-7 ">
-                                                                            <div class="column m-3" style="width: 15em;">
-                                                                                <font style="vertical-align: inherit;">
-                                                                                    <font style="vertical-align: inherit;">N° Recibo*</font>
-                                                                                </font>
-                                                                                <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" class="form-control">
-                                                                            </div>
-                                                                            <!--- busqieda del apoderado--->
-                                                                            <div class="card-body mx-auto style=width: 50px" > 
-                                                                                <div  class="form-inline">
-                                                                                    <!-- <form class="form-inline" >-->
-                                                                                    @csrf 
-                                                                                    <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                                        <label class="mr-sm-2">
-                                                                                            <font style="vertical-align: inherit;">
-                                                                                                <font style="vertical-align: inherit;">DNI_Promotor</font>
-                                                                                            </font>
-                                                                                        </label>
-                                                                                        <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                                                    </div>
-                                                                                    
-                                                                                    <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
-                                                                                    <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
-                                                                                </div>
-                                                                            </div> 
-                                                                            <!----->
-                                                                            <div class="column m-3" style="width: 30em;">
-                                                                                <font style="vertical-align: inherit;">
-                                                                                    <font style="vertical-align: inherit;">Nombre</font>
-                                                                                </font>
-                                                                                <input name="txtNombrePromotor" id="txtNombrePromotor" autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
-                                                                            </div>
-                                                                        </div>
-                                                                </div>                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 25em;">
-                                                        <label>
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Pago de Matricula</font>
-                                                            </font>
-                                                        </label>
-                                                        <input name="txt" id="txtMatricula" type="text" style="width: 80px" ><br>
-                                                        <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">     
-                                                        
-                                                        <div class="column m-3" style="width: 8em;">
-                                                            <label for="form-control" class="" style="font-weight: bold">Importe</label>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-prepend"><span class="input-group-text">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            S/
-                                                                        </font>
-                                                                    </font></span>
-                                                                </div>
-                                                                <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
-                                                                <input name="txt" id="txtImporte" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
-                                                                <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">
-                                                                                .00
-                                                                            </font>
-                                                                        </font>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                      <!--  <label>
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Importe</font>
-                                                            </font>
-                                                        </label>
-                                                        <input name="txt" id="txtImporte" type="text" class="form-control" style="width: 25%" placeholder="50.00" onkeypress="return montos(event)">
-                                                    -->
-                                                        <br/>
-                                                        <label>
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Pago de Mensualidad</font>
-                                                            </font>
-                                                        </label>
-                                                        <input name="txt" id="txtMensualidad" type="text" style="width: 5em" ><br>
-                                                                    
-                                                        <label>
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Razón del descuento</font>
-                                                            </font>
-                                                        </label>
-                                                        <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" style="width: 250px"placeholder="Escribe aquí tus comentarios"></textarea>
-                                                        <!--<label>
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">Descuetno</font>
-                                                            </font>
-                                                        </label>
-                                                        <input name="txt" id="txtDescuento" type="text" class="form-control" style="width: 25%" placeholder="00.00" onkeypress="return montos(event)">-->
-<!--------------------------------------------------------------------------- Para el listado de las mensualidades-->
-                                                        <div class="column m-3" style="width: 8em;">
-                                                            <label for="form-control" class="" style="font-weight: bold">Descuento</label>
-                                                            <div class="input-group input-group-sm">
-                                                                <div class="input-group-prepend"><span class="input-group-text">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            S/
-                                                                        </font>
-                                                                    </font></span>
-                                                                </div>
-                                                                <!--<input placeholder="00" step="1" id="numbImporte" type="number" min="0"  class="form-control">-->
-                                                                <input name="txt" id="txtDescuento" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
-                                                                <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">
-                                                                                .00
-                                                                            </font>
-                                                                        </font>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="column m-3" style="width: 50em;">
-                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                <table class="table02">
-                                                                    <thead>
-                                                                        <th>MES</th>
-                                                                        <th>MONTO</th>
-                                                                        <th>FECHA VENCIMIENTO</th>
-                                                                    </thead>
-                                                                    <tbody id="tbody02">
-                                                                        
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row m-3 ">
-                                                            <div class="column m-3" style="width: 25em;">
-                                                            </div>
-                                                            <div class="column m-3" style="width: 5em;">
-                                                            </div>
-                                                            <div class="column m-3" style="width: 10em;">
-                                                                <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Generar</button>
-                                                                <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    
-                                                </div>
-                                                <div class="row m-3 ">
-                                                    <div class="column m-3" style="width: 25em;">
-                                                    </div>
-                                                    <div class="column m-3" style="width: 5em;">
-
-                                                        <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
-                                                        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
-                                                    </div>
-                                                    <div class="column m-3" style="width: 10em;">
-                                                        <button type="button" class="btn btn-primary" id="btnCancelar">Cancelar</button>
-                                                    </div>
-                                                </div>
-                                                
+                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" class="form-control" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
                                             </div>
+                                            <div class="position-relative form-group">
+                                                <label for="examplePassword" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Fecha Nacimiento</font>
+                                                    </font>
+                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)" disabled="true">
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="form-control" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Direccion</font>
+                                                    </font>
+                                                </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" autocomplete="off" class="form-control" disabled="true">
+                                            </div>
+                                        </div>
+                                        <div class="column m-3" style="width: 18em;">
+                                            <div class="position-relative form-group"><label for="form-control" class="">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Apellido Materno*</font>
+                                                </font>
+                                                </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleSelect" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Genero</font>
+                                                    </font>
+                                                </label>
+                                                <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
+                                                    <option selected value="1">Masculino</option>
+                                                    <option value="0">Femenino</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="column m-3" style="width: 18em;">
+                                            <div class="position-relative form-group">
+                                                <label for="examplePassword" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Nombre*</font>
+                                                    </font>
+                                                </label><input name="txtNombre_Al" id="txtNombreAl" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="examplePassword" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">celular</font>
+                                                    </font>
+                                                </label>
+                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                                <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
+                                    </font>
+                                </h5>
+                                <div>
+                                    <!--**********Datos de Apoderado*************-->
+                                    <div class="row m-3">
+                                        <div class="card-body mx-auto style=width: 50px" > 
+                                            <div  class="form-inline">
+                                                <!-- <form class="form-inline" >-->
+                                                @csrf  
+                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
+                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                    <label class="mr-sm-2">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">DNI</font>
+                                                        </font>
+                                                    </label>
+                                                    <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
+                                                <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                                <input type="hidden" id="auxIdApoderado" value="">  
+                                                <div class="load" style="display: none">cargando....</div>
+                                            </div>
+                                        </div> 
+                                        <div class="row m-3 ">
+                                            <div class="column m-3" style="width: 17em;">
+                                                <div class="position-relative form-group">
+                                                    <label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Apellido Paterno*</font>
+                                                        </font>
+                                                    </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                                </div>
+                                                <div class="position-relative form-group">
+                                                    <label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Parentesco</font>
+                                                        </font>
+                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                                </div>
+                                                <div class="position-relative form-group">
+                                                    <label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Direccion</font>
+                                                        </font>
+                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" autocomplete="off" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+                                            <div class="column m-3" style="width: 17em;">
+                                                <div class="position-relative form-group"><label for="form-control" class="">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Apellido Materno*</font>
+                                                    </font>
+                                                    </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
+                                                </div>
+                                                <div class="position-relative form-group"><label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Celular</font>
+                                                        </font>
+                                                    </label><input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                                    <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
+                                                </div>
+                                            </div>
+                                            <div class="column m-3" style="width: 17em;">
+                                                <div class="position-relative form-group">
+                                                    <label for="examplePassword" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Nombre*</font>
+                                                        </font>
+                                                    </label><input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--**************************************************FIN_Formulario*********************************************************-->
+                        <div class="tab-pane show" id="tab-eg115-2" role="tabpanel">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
+                                    </font>
+                                </h5>
+                                <div>
+                                    <!--**************************************Datos de Matricula***************************************************-->
+                                    <div class="row m-3 ">
+                                        <div class="column m-3" style="width: 30em;">
+                                            <div class="column m-3" style="width: 25em;">
+                                                <div class="mt-3 position-relative form-check">
+                                                    <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <th></th>
+                                                                <th>CURSO</th>
+                                                                <th>GRUPO</th>
+                                                                <th>PAGO</th>
+                                                                <th>VACANTES</th>
+                                                            </thead>
+                                                            <tbody id="tbody">
+                                                                
+                                                            </tbody>
+                                                            <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
+                                                        </table>
+                                                        <div class="row m-7 ">
+                                                            <div class="column m-3" style="width: 15em;">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">N° Recibo*</font>
+                                                                </font>
+                                                                <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="card-body mx-auto style=width: 50px" > 
+                                                                <div  class="form-inline">
+                                                                    @csrf 
+                                                                    <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                                        <label class="mr-sm-2">
+                                                                            <font style="vertical-align: inherit;">
+                                                                                <font style="vertical-align: inherit;">DNI_Promotor</font>
+                                                                            </font>
+                                                                        </label>
+                                                                        <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
+                                                                    <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
+                                                                </div>
+                                                            </div> 
+                                                            <div class="column m-3" style="width: 30em;">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">Nombre</font>
+                                                                </font>
+                                                                <input name="txtNombrePromotor" id="txtNombrePromotor" autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column m-3" style="width: 25em;">
+                                            <label>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Pago de Matricula</font>
+                                                </font>
+                                            </label>
+                                            <input name="txt" id="txtMatricula" type="text" style="width: 80px" ><br>
+                                            <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">     
+                                            <div class="column m-3" style="width: 8em;">
+                                                <label for="form-control" class="" style="font-weight: bold">Importe</label>
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend"><span class="input-group-text">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                S/
+                                                            </font>
+                                                        </font></span>
+                                                    </div>
+                                                    <input name="txt" id="txtImporte" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
+                                                    <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">
+                                                                    .00
+                                                                </font>
+                                                            </font>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <label>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Pago de Mensualidad</font>
+                                                </font>
+                                            </label>
+                                            <input name="txt" id="txtMensualidad" type="text" style="width: 5em" ><br>                                                                   
+                                            <label>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Razón del descuento</font>
+                                                </font>
+                                            </label>
+                                            <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" style="width: 250px"placeholder="Escribe aquí tus comentarios"></textarea>
+                                            <div class="column m-3" style="width: 8em;">
+                                                <label for="form-control" class="" style="font-weight: bold">Descuento</label>
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend"><span class="input-group-text">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                S/
+                                                            </font>
+                                                        </font></span>
+                                                    </div>
+                                                    <input name="txt" id="txtDescuento" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
+                                                    <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">
+                                                                    .00
+                                                                </font>
+                                                            </font>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="column m-3" style="width: 50em;">
+                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                    <table class="table02">
+                                                        <thead>
+                                                            <th>MES</th>
+                                                            <th>MONTO</th>
+                                                            <th>FECHA VENCIMIENTO</th>
+                                                        </thead>
+                                                        <tbody id="tbody02">
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="row m-3 ">
+                                                <div class="column m-3" style="width: 25em;">
+                                                </div>
+                                                <div class="column m-3" style="width: 5em;">
+                                                </div>
+                                                <div class="column m-3" style="width: 10em;">
+                                                    <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Generar</button>
+                                                    <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-3 ">
+                                        <div class="column m-3" style="width: 25em;">
+                                        </div>
+                                        <div class="column m-3" style="width: 5em;">
+
+                                            <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
+                                            <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+                                        </div>
+                                        <div class="column m-3" style="width: 10em;">
+                                            <button type="button" class="btn btn-primary" id="btnCancelar">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            <!--</div> -->
-
+            </div>
+        </div>
+        <!--*************************************FIN_Formulario*****************************************-->
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -516,16 +465,15 @@ fggf>jdk>fjkfjkj
 
         //--------------Tablas---------------------------------
 
-        function tabla(param) {
+        function tabla(auxdeni) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
-            var txtDNI = $('#txtDni_Al').val();
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarGrupo,
-                dataType: 'json',
                 data:{
-                    dni :param
+                    auxdeni :auxdeni
                 },
+                dataType: 'json',
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -541,9 +489,22 @@ fggf>jdk>fjkfjkj
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 200px">'
                                         for(var j=0;j < response.datosG.length;j++){
-                                            if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
+                                            
+                                            if(response.datosGND.length > 0){
+                                                for(var p=0;p < response.datosGND.length;p++){
+                                                    if ( response.datosG[i].idGrupo !=  response.datosGND[p].idGrupo){
+                                                    
+                                                        if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
+                                                            }
+                                                        }
+                                                    }
+                                            }else{ 
+                                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                                    tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
+                                                }
                                             }
+                                            
                                         }
                             tabla+='</select></td>'
                                 +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
@@ -617,19 +578,7 @@ fggf>jdk>fjkfjkj
         }
         
         bloquearMatricula()
-        //-------------VALIDAR CARACTERES DNI ALUMNO-----------------------
 
-/*
-var email = document.getElementById("txtDni_Al");
-
-                   txtDni_Al.addEventListener("keyup", function (event) {
-                    if (txtDni_Al.validity.typeMismatch) {
-                        txtDni_Al.setCustomValidity("¡Wey son 9 dígitos ... entiende ");
-                    } else {
-                        txtDni_Al.setCustomValidity("");
-                    }
-                    });
-*/
         //----------------VALIDAR/CANTIDAD DE DATOS------------------------
         function cantidadDni_AL() {
             var txtDni_Al = $('#txtDni_Al');
@@ -1689,7 +1638,8 @@ var email = document.getElementById("txtDni_Al");
                 success:function(response){
                     console.log(response);
                     alert("Se registro los datos correctamente");
-                   
+                   LimpiarFormularioALU();
+                   LimpiarFormularioApoderado();
                 },
 
             });
