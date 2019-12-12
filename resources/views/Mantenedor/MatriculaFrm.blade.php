@@ -9,7 +9,7 @@ fggf>jdk>fjkfjkj
 @section('content')   
 <div class="modal-dialog modal-lg" style="    margin: 0!important; max-width: 1500px;" role="document">
     <div class="modal-content">
-        <!--*******************Encabezado*****************-->
+        <!--*******************Encabezado******************-->
         <div class="modal-header">
             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
         </div>
@@ -116,6 +116,16 @@ fggf>jdk>fjkfjkj
                                                 </label>
                                                 <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
                                                 <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
+                                            </div>
+                                        </div>
+                                        <div class="row m-3 ">
+                                            <div class="column m-3" style="width: 37em;">
+                                            </div>
+                                            <div class="column m-3" style="width: 5em;">
+                                                <button type="button" class="btn btn-primary" id="btnAjax_Alumno">Registrar</button>
+                                            </div>
+                                            <div class="column m-3" style="width: 10em;">
+                                                <button type="button" class="btn btn-primary" id="btnCancelar">Cancelar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1571,6 +1581,11 @@ fggf>jdk>fjkfjkj
         }
 
         MontoMatricula();
+
+        function registrarAlumno(){
+
+            
+        }
 
         function registrarAJAX() {
             //Datos de Alumno auxIdApoderado-auxIdAl
