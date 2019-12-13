@@ -225,7 +225,7 @@ fggf>jdk>fjkfjkj
                                 <div>
                                     <!--**************************************Datos de Matricula***************************************************-->
                                     <div class="row m-3 ">
-                                        <div class="column m-3" style="width: 30em;">
+                                        <div class="column m-3" style="width: 34em;">
                                             <div class="column m-3" style="width: 25em;">
                                                 <div class="mt-3 position-relative form-check">
                                                     <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
@@ -235,7 +235,6 @@ fggf>jdk>fjkfjkj
                                                                 <th>CURSO</th>
                                                                 <th>GRUPO</th>
                                                                 <th>PAGO</th>
-                                                                <th>VACANTES</th>
                                                             </thead>
                                                             <tbody id="tbody">
                                                                 
@@ -275,7 +274,7 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="column m-3" style="width: 25em;">
+                                        <div class="column m-3" style="width: 22em;">
                                             <label>
                                                 <font style="vertical-align: inherit;">
                                                     <font style="vertical-align: inherit;">Pago de Matricula</font>
@@ -493,31 +492,45 @@ fggf>jdk>fjkfjkj
                 success: function (response) {
                     console.log(response);
                     var tabla;
+                    var estado ;
+                    var estadoc;
+                    var estadop;
+
                     for(var i=0;i < response.datosC.length;i++){
+                        estadoc =0;
+                        estadop=0;
+                        for(var j=0;j < response.datosG.length;j++){
+                            
+                            if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                for(var p=0;p < response.datosGND.length;p++){
+                                    if(response.datosG[j].idCurso ==  response.datosGND[p].idCurso){
+                                        estadop = 1;
+                                    }
+                                }
+                            }
+                        }
+                        if (estadop==0) {
+                    
                         tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
-                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 200px">'
-                                        for(var j=0;j < response.datosG.length;j++){
-                                            
-                                            if(response.datosGND.length > 0){
-                                                for(var p=0;p < response.datosGND.length;p++){
-                                                    if ( response.datosG[i].idGrupo !=  response.datosGND[p].idGrupo){
-                                                    
-                                                        if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                                tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
-                                                            }
-                                                        }
-                                                    }
-                                            }else{ 
-                                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                                    tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'</option>'
-                                                }
+                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
+                                for(var j=0;j < response.datosG.length;j++){
+                                    estado=0;
+                                    if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                        for(var p=0;p < response.datosGND.length;p++){
+                                            if(response.datosG[j].idGrupo ==  response.datosGND[p].idGrupo){
+                                                estado = 1;
                                             }
-                                            
                                         }
+                                        if (estado==0) {
+                                            tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'vac:'+response.datosG[j].vacante+'</option>'
+                                        }
+                                    }
+                                }
                             tabla+='</select></td>'
                                 +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
+                            }
                     }
                     $('#tbody').html(tabla);
                     SeleccionarCuros();
