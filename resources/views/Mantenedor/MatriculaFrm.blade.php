@@ -601,6 +601,12 @@ fggf>jdk>fjkfjkj
         
         bloquearMatricula()
 
+        function desbloquearMatricula(){
+            $('#txtImporte').attr('disabled',false);
+            $('#txtComentario').attr('disabled',false);
+            $('#txtDescuento').attr('disabled',false);
+        }
+
         //----------------VALIDAR/CANTIDAD DE DATOS------------------------
         function cantidadDni_AL() {
             var txtDni_Al = $('#txtDni_Al');
@@ -1006,8 +1012,8 @@ fggf>jdk>fjkfjkj
             
             selectCurso.each(function (index,element) {
                 var e = $(this);
-
                 e.click(function () {
+                    //desbloquearMatricula();
 
                     if (e.attr('ban') == 1) {
                         var pos = -1;
@@ -1086,17 +1092,19 @@ fggf>jdk>fjkfjkj
         function PagarCurso() {
             var btnPagar = $('.btnPagarCurso');
             var selectCurso = $('.checkCurso');
-            $('#txtImporte').attr('disabled',false);
+            //$('#txtImporte').attr('disabled',false);
             $('#txtImporte').val('');
-            $('#txtComentario').attr('disabled',false);
+           // $('#txtComentario').attr('disabled',false);
             $('#txtComentario').val('');
-            $('#txtDescuento').attr('disabled',false);
+           // $('#txtDescuento').attr('disabled',false);
             $('#txtDescuento').val('');
 
             btnPagar.each(function (index, element) {
+               // desbloquearMatricula();
                 var e = $(this);
                 
                 e.click(function () {
+                    desbloquearMatricula();
                     
                     $('#tbody02').html('');
                     var pos = -1;
@@ -1232,6 +1240,7 @@ fggf>jdk>fjkfjkj
                         $('#txtFechaNaAl').val(alu.feNacimiento);
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         tabla(alu.dni);
+                        bloquearMatricula();
                     }else{
                         tabla(null);
                         if(response.cod == 100){
