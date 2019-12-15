@@ -15,7 +15,7 @@ class AplicacionController extends Controller
     {
         return view('Mantenedor/Registrar');
     }*/
-    //*********************Matricula*****************************/
+    //*********************Matricula******************************/
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -471,5 +471,53 @@ class AplicacionController extends Controller
     public function Pagos(REQUEST $request)
     {
         return view('Mantenedor.Pagos');
+    }
+
+    public function guardar_Alumno(REQUEST $dato){
+        $auxIdAl         =$dato->auxIdAl;
+        $txtDni_Al        =$dato->txtDni_Al;
+        $txtApellidoPaAl =$dato->txtApellidoPaAl;
+        $txtApellidoMaAl =$dato->txtApellidoMaAl;
+        $txtNombreAl     =$dato->txtNombreAl;
+        $cboGeneroAl     =$dato->cboGeneroAl;
+        $txtDireccionAl  =$dato->txtDireccionAl;
+        $txtCelularAl    =$dato->txtCelularAl;
+        $txtFechaNaAl    =$dato->txtFechaNaAl;
+
+       // $txtDni_Al = $dato->txtDni_Al;
+        $_numcade = strlen($txtDni_Al);
+        
+        if ($_numcade == 8) {
+
+            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == ""){
+                // falra llenar campos obligatorios
+                $data = [ 
+                    'estado' => false,
+                    'cod' => 101
+                ];
+                return response()->json($data);
+
+            }else{
+                $datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));         
+                //if(count($datos) > 0){ //se guardo correctamente los datos 
+                    $data = [
+                        'estado' => true,
+                        'cod' => 200,
+                        'datos' => $datos
+                    ];
+                    return response()->json($data);
+               // }
+            }
+            // else{
+            //}//100 si la cadena no tiene 8 digitos
+        } else { 
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+        
+        
     }
 }

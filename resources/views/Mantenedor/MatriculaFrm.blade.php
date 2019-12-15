@@ -14,7 +14,7 @@ fggf>jdk>fjkfjkj
             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
         </div>
         <!--*******************FIN_Encabezado****************-->
-        <!--***************************************Formulario****************************************-->
+        <!--****************************************Formulario****************************************-->
         <div class="modal-body">
             <div class="mb-3 card">
                 <div class="card-header card-header-tab-animation">
@@ -118,6 +118,15 @@ fggf>jdk>fjkfjkj
                                                 <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
                                             </div>
                                         </div>
+                                        
+                                        <div class="row m-3 ">
+                                            <div class="column m-3" style="width: 55em;">
+                                            </div>
+                                            <div class="column m-3" style="width: 10em;">
+                                                <button type="button" class="btn btn-primary"disabled="true"  id="btn_guardar_Alumno">Guardar</button>
+                                                <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +224,7 @@ fggf>jdk>fjkfjkj
                                 <div>
                                     <!--**************************************Datos de Matricula***************************************************-->
                                     <div class="row m-3 ">
-                                        <div class="column m-3" style="width: 30em;">
+                                        <div class="column m-3" style="width: 33em;">
                                             <div class="column m-3" style="width: 25em;">
                                                 <div class="mt-3 position-relative form-check">
                                                     <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
@@ -225,7 +234,6 @@ fggf>jdk>fjkfjkj
                                                                 <th>CURSO</th>
                                                                 <th>GRUPO</th>
                                                                 <th>PAGO</th>
-                                                                <th>VACANTES</th>
                                                             </thead>
                                                             <tbody id="tbody">
                                                                 
@@ -1222,6 +1230,7 @@ fggf>jdk>fjkfjkj
                             option.eq(i).attr('selected',ban);
                         }
                         $('#txtFechaNaAl').val(alu.feNacimiento);
+                        $('#btn_guardar_Alumno').attr('disabled',true);
                         tabla(alu.dni);
                     }else{
                         tabla(null);
@@ -1269,6 +1278,7 @@ fggf>jdk>fjkfjkj
                             "hideMethod": "fadeOut"
                             }
                             LimpiarFormularioALU();
+                            $('#btn_guardar_Alumno').attr('disabled',false);
                         }
                     }
                     // $('.load').css({display:'none'});
@@ -1661,6 +1671,137 @@ fggf>jdk>fjkfjkj
 
         $('#btn_registrarAjax').click(function () { 
             registrarAJAX();
+        })
+
+        function registrar_Alumno() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
+            
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_Guardar_Datos_Alumno,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                        toastr["success"]("correctamente", "Se registro Alumno")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+
+                        var alu = response.datos[0];
+                        
+                        $('#txtApellidoPaAl').attr('disabled',true);
+                        $('#txtApellidoMaAl').attr('disabled',true);
+                        $('#txtNombreAl').attr('disabled',true);
+                        $('#txtDireccionAl').attr('disabled',true);
+                        $('#txtCelularAl').attr('disabled',true);
+                        $('#txtFechaNaAl').attr('disabled',true);
+
+                        $('#cboGeneroAl').attr('disabled',true);
+                       
+                        $('#btn_guardar_Alumno').attr('disabled',true);
+                        tabla(alu.dni);
+                    }else{
+                        tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Alumno').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+        $('#btn_guardar_Alumno').click(function () { 
+            registrar_Alumno();
         })
                           
     </script>
