@@ -224,7 +224,7 @@ fggf>jdk>fjkfjkj
                                 <div>
                                     <!--**************************************Datos de Matricula***************************************************-->
                                     <div class="row m-3 ">
-                                        <div class="column m-3" style="width: 33em;">
+                                        <div class="column m-3" style="width: 35em;">
                                             <div class="column m-3" style="width: 25em;">
                                                 <div class="mt-3 position-relative form-check">
                                                     <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
@@ -273,7 +273,7 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="column m-3" style="width: 25em;">
+                                        <div class="column m-3" style="width: 15em;">
                                                             
                                             <div class="card-body mx-auto style=width: 50px">
                                                 <div class="form-inline">
