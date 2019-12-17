@@ -274,13 +274,17 @@ fggf>jdk>fjkfjkj
                                             </div>
                                         </div>
                                         <div class="column m-3" style="width: 25em;">
-                                            <label>
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Pago de Matricula</font>
-                                                </font>
-                                            </label>
-                                            <input name="txt" id="txtMatricula" type="text" style="width: 80px" ><br>
-                                            <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">     
+                                                            
+                                            <div class="card-body mx-auto style=width: 50px">
+                                                <div class="form-inline">
+                                                    <label>
+                                                        <font style="font-weight: bold;">Pago de Matricula </font>
+                                                    </label>
+                                                    <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em" ><br>
+                                                    <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
+                                                </div>
+                                            </div>
+                                                
                                             <div class="column m-3" style="width: 8em;">
                                                 <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                                 <div class="input-group input-group-sm">
@@ -305,12 +309,16 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                             <br/>
-                                            <label>
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Pago de Mensualidad</font>
-                                                </font>
-                                            </label>
-                                            <input name="txt" id="txtMensualidad" type="text" style="width: 5em" ><br>                                                                   
+                                            <div class="card-body mx-auto style=width: 50px">
+                                                <div class="form-inline">
+                                                    <label>
+                                                        <font style="font-weight: bold">Pago de Mensualidad</font>
+                                                    </label>
+                                                    <input name="txt" id="txtMensualidad" class="form-control" type="text" style="width: 4em" ><br>                                                                   
+
+                                                </div>
+                                            </div>
+                                            
                                             <label>
                                                 <font style="vertical-align: inherit;">
                                                     <font style="vertical-align: inherit;">Razón del descuento</font>
@@ -475,6 +483,7 @@ fggf>jdk>fjkfjkj
 
         function tabla(auxdeni) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
+           
             $.ajax({
                 type: "post",
                 url: urlAJAX_ListarGrupo,
@@ -1242,7 +1251,7 @@ fggf>jdk>fjkfjkj
                         tabla(alu.dni);
                         bloquearMatricula();
                     }else{
-                        tabla(null);
+                        
                         if(response.cod == 100){
                             toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
 
@@ -1266,6 +1275,7 @@ fggf>jdk>fjkfjkj
                             //LimpiarFormularioALU();
                         }
                         if (response.cod == 101) {
+                            tabla(null);
                            // $('.msj_ALU').css({display:'block'});
                            toastr["error"]("No se encuentra registrado", "Alumno")
 
@@ -1749,7 +1759,7 @@ fggf>jdk>fjkfjkj
                         $('#txtDireccionAl').attr('disabled',true);
                         $('#txtCelularAl').attr('disabled',true);
                         $('#txtFechaNaAl').attr('disabled',true);
-
+                        $('#txtDni_Al').attr('disabled',true);
                         $('#cboGeneroAl').attr('disabled',true);
                        
                         $('#btn_guardar_Alumno').attr('disabled',true);
