@@ -65,15 +65,15 @@
                         <select name="select" id="opciones" class="form-control">
                         </select>
                         <label for="examplePassword" class="">Pago</label>
-                        <input name="text" id="txtPago" type="text" class="form-control">
+                        <input name="text" id="txtPago" type="text" class="form-control" placeholder="Pago">
                         <label for="examplePassword" class="">Descuento</label>
-                        <input name="text" id="txtDescuento" type="text" class="form-control">
+                        <input name="text" id="txtDescuento" type="text" class="form-control" placeholder="Descuento">
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
                         <input name="text" id="txtNuroRecibo" type="text" class="form-control">
                         <label for="examplePassword" class="">Costo Total</label>
-                        <input name="text" id="txtMonto" type="text" class="form-control">
+                        <input name="text" id="txtMonto" type="text" class="form-control" placeholder="0">
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <label>Observacion</label>
@@ -174,11 +174,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Cancelar</font>
-                        </font>
-                    </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >
+                    Cancelar
+                </button>
                 </div>
             </div>
         </div>
@@ -226,7 +224,7 @@
                     },
                     success: function (response) {
                         if(response.estado == true){
-                            toastr["success"]("Se encontró al Alumno Identificado con el DNI: " + DNI + '.', "Éxito!")
+                            toastr["success"]("Alumno Encontrado", "Éxito!")
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": true,
@@ -268,7 +266,7 @@
                             limpiarModalIngreso();
                             ListarCursoXMatricula();
                         }else{
-                            toastr["error"]("No se Encontró al Alumno Identificado con el DNI: " + DNI + '.', "Error!")
+                            toastr["error"]("ALumno no Encontrado", "Error!")
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": true,
@@ -369,7 +367,12 @@
                 var pagado = $('#txtPago').val();
                 var razon = $('#txtObservacion').val();
                 var saldo = (monto - descuento - pagado);
-                alert(saldo);
+                var pagado = '1';
+                if(saldo == 0){
+                    pagado = '0';
+                }else{
+                    pagado ='1';
+                }
                 $.ajax({
                     type: "post",
                     url: '/pagos/registrar',
@@ -380,7 +383,8 @@
                         feVencimiento:feVencimiento,
                         descuento:descuento,
                         razon:razon,
-                        saldo:saldo
+                        saldo:saldo,
+                        pagado:pagado
                     },
                     dataType: 'json',
                     headers: {
@@ -410,7 +414,7 @@
                         } 
                     },
                     error:function () {  
-                        console.log('Error')
+                        console.log('Error Aqui ')
                     },
                     complete:function (response) {  
                         
@@ -431,8 +435,7 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
-                        console.log(datos);
-
+                        alert(response.datos);
                     },
                     error:function () {  
                         console.log('Error');
@@ -442,65 +445,11 @@
                     }
                 });
             }
-            function registrarPago(){
+            function pagar(){
                 sacaridCuota();
-                var monto = $('#txtMonto').val();
-                var concepto = idConcepto;
-                var matricula = idMatricula;
-                var feVencimiento = null;
-                var descuento = $('#txtDescuento').val();
-                var pagado = $('#txtPago').val();
-                var razon = $('#txtObservacion').val();
-                var saldo = (monto - descuento - pagado);
-
-                alert(saldo);
-                $.ajax({
-                    type: "post",
-                    url: '/pagos/registrar',
-                    data:{
-                        monto:monto,
-                        concepto:concepto,
-                        matricula:matricula,
-                        feVencimiento:feVencimiento,
-                        descuento:descuento,
-                        razon:razon,
-                        saldo:saldo
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function (response) {
-                    },  
-                    success: function (response) {
-                        toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!")
-                        toastr.options = {
-                        "closeButton": false,   
-                        "debug": true,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        } 
-                    },
-                    error:function (XMLHttpRequest, textStatus, errorThrown) {  
-                        console.log('Error')
-                    },
-                    complete:function (response) {  
-                        
-                    }
-                });
-
+                
             }
+            
             
             function abrirModal(){
                 $('#btnRegistrarModal').attr('data-dismiss','');
@@ -509,10 +458,42 @@
             function validacionTediosa(){
                 var recibo = $('#txtNuroRecibo').val();
                 var monto = $('#txtMonto').val();
-                var descuento = $('#txtDesuento').val();
+                var descuento = $('#txtDescuento').val();
                 var pago = $('#txtPago').val();
                 aux1 = 0;
-                if(recibo!= ''){
+                band = false;
+                
+                if(pago!=''){
+                    band = true;
+                    if (pago == 0){
+                        band = false;
+                    }else{
+                        band = true;
+                    }
+                }else{
+                    pago=0;
+                    band = false;
+                    toastr["error"]("Por Favor Ingrese el Pago.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                }
+                if(!((recibo== '') && band)){
+
                     } else{
                         toastr["error"]("Por Favor Ingrese la Serie del Recibo.", "Error")
                         toastr.options = {
@@ -535,7 +516,10 @@
                     aux1++;
                 }
                 if(monto!=''){
+                    
+                    
                     }else{
+                        monto = 0;
                         toastr["error"]("Por Favor Ingrese el Monto.", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -557,8 +541,10 @@
                     aux1++;
                 }
                 if(descuento!=''){
-                    descuento=0;
+
+
                 }else{
+                    descuento=0;
                     toastr["error"]("Por Favor Ingrese el Descuento.", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -579,33 +565,9 @@
                         }
                     aux1++;
                 }
-                if(pago!=''){
-                    
-                }else{
-                    toastr["error"]("Por Favor Ingrese el Pago.", "Error")
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": true,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
-                    aux1++;
-                }
             
-                aux = parseFloat( $('#txtMonto').val()) - parseFloat( $('#txtDescuento').val()); 
-                alert(aux); 
-                if(parseFloat( $('#txtPago').val()) <= aux){
+                aux = parseFloat( monto - descuento); 
+                if(parseFloat( pago) <= aux){
                     
                 }else{
                     toastr["error"]("El Pago no puede ser mayor que el monto restando el descuento.", "Error")
@@ -628,7 +590,7 @@
                         }
                     aux1++;
                 }
-                if(descuento <= monto){
+                if(descuento < monto){
                     
                     }else{
                     toastr["error"]("El Descuento no puede ser mayor que el monto.", "Error")
@@ -651,7 +613,6 @@
                         }
                     aux1++;
                 }
-                alert(aux1);
                      
             }
             function cerrarModal(){
@@ -662,8 +623,10 @@
                 validacionTediosa();
                 if(aux1==0){
                     registrarCuota();
+                    if($('#txtPago').val() > 0){
+                        //registrarPago();
+                    }
                     cerrarModal();
-
                 }else{
                     
                 }
@@ -677,7 +640,7 @@
                     var nada = '';
                     $('#tbCursos').html(nada);
                     $('#nombreCompleto').val(''); 
-                    toastr["error"]("El número de Carácteres válidos es de 8 y Usted está ingresando "+ verification.length + ' Por Favor Ingrese una cántidad válida.' , "Error!")
+                    toastr["error"]("DNI contiene 8 caracteres" , "Error!")
                     toastr.options = {
                         "closeButton": false,
                         "debug": true,
@@ -709,6 +672,7 @@
             $('#txtDescuento').on('input', function () { 
                 this.value = this.value.replace(/[^0-9]/g,'');
             });
+            
             llenarCombo();
             function obtenerMatricula(){
                 $('#tbCursos button').click(function(){
@@ -737,6 +701,7 @@
                     listarCuotas(idMatricula);
                     $('#btnRegistrarPago').attr('disabled',true);
                     $('.titleConcepto').html('');
+                    
                  });
             }
             function listarCuotas(idMatricula) {
@@ -754,17 +719,24 @@
                     },
                     success: function (response) {
                         if(response.estado == true){
-                            
+                            $('#txtNroRecibo').val(''); 
+                            $('#numbImporte').val(''); 
                             var alu = response.datos[0];
                             
                             var html = '';
+                            var fecha = '';
                             for (var i = 0; i < response.datos.length; i++) {
+                                if(response.datos[i].feVencimiento == null){
+                                    fecha = 'No Aplica'
+                                }else{
+                                    fecha = response.datos[i].feVencimiento
+                                }
                                 html = html + '<tr>'
                                     +'<th scope="row">'+ (i+1) +'</th>'
                                     +'<td>' + response.datos[i].descripcion + '</td>'
                                     +'<td class="text-center">' + Number(response.datos[i].monto).toFixed(2) + '</td>'
                                     +'<td class="text-center">'+ Number(response.datos[i].saldo).toFixed(2) +'</td>'
-                                    +'<td class="text-center">'+ response.datos[i].feVencimiento  +'</td>'
+                                    +'<td class="text-center">'+ fecha +'</td>'
                                     +'<td class="text-center"><div class="badge '+((response.datos[i].pagado==0)?"badge-danger":"badge-success")+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+((response.datos[i].pagado==0)?"PENDIENTE":"PAGADO")+'</font></font></div></td>'
                                     +'<td class="text-center">'
                                     +'<button type="button"  class="btn mr-2 mb-2 btn-primary btnPagarCuota "'+((response.datos[i].pagado==0)?"":"disabled")+' saldoDeuda='+response.datos[i].saldo+' descripcion="'+response.datos[i].descripcion+'" value="'+response.datos[i].idCuota+'" >'
@@ -776,7 +748,6 @@
                             $('#tblCuotas').html(html);
                             formularioPagar();
                         }else{
-                            
                             var nada = '';
                             $('#tblCuotas').html(nada);
                             $('#nombreCompleto').val(''); 
@@ -786,12 +757,13 @@
                 });
                 
             }
-
             $('.pagosCuotas').click(function () {  
             });
 
            function formularioPagar() {
                 $('.btnPagarCuota').click(function () {
+                    $('#txtNroRecibo').val(''); 
+                    $('#numbImporte').val(''); 
                     descripConcepto = $(this).attr('descripcion');
                     idcuota = $(this).val();
                     saldoDeuda = $(this).attr('saldoDeuda');

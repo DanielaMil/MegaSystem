@@ -46,6 +46,25 @@ class pagosController extends Controller
             return response()->json($data);
         }
     }
+    public  function StorePago(Request $dato){
+        
+        $importe = $dato->importe;
+        $recibo = $dato->recibo;
+        $idcuota = $dato->idcuota;
+        
+        if (true) {
+            $datos = DB::select('call registrarPago(?,?,?)', array($importe,$recibo,$idcuota));
+            
+            return response()->json($datos);
+            
+        } else {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+    }
 
     public function llenarCombo(Request $dato){
             $datos = DB::select('call mostrarConcepto()');
@@ -79,7 +98,8 @@ class pagosController extends Controller
         $descuento= $dato->descuento;
         $razon= $dato->razon;
         $saldo= $dato->saldo;
-        $datos = DB::select("call registrarCuotaIngreso(?,?,?,?,?,?,?)",array($monto,$feVencimiento,$concepto,$matricula,$saldo,$razon,$descuento));
+        $pagado = $dato->pagado;
+        $datos = DB::select("call registrarCuotaIngreso(?,?,?,?,?,?,?,?)",array($monto,$feVencimiento,$concepto,$matricula,$saldo,$razon,$descuento,$pagado));
         return response()->json(true);
     }
 
