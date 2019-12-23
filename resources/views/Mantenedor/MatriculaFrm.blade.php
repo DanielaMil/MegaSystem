@@ -7,13 +7,11 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('content')   
-<div class="modal-dialog modal-lg" style="    margin: 0!important; max-width: 1500px;" role="document">
-    <div class="modal-content">
         <!--*******************Encabezado*****************-->
         <div class="modal-header">
             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
         </div>
-        <!--*******************FIN_Encabezado****************-->
+        <!--*******************FIN_Encabezado****************--->
         <!--****************************************Formulario****************************************-->
         <div class="modal-body">
             <div class="mb-3 card">
@@ -119,14 +117,15 @@ fggf>jdk>fjkfjkj
                                             </div>
                                         </div>
                                         
-                                        <div class="row m-3 ">
-                                            <div class="column m-3" style="width: 55em;">
-                                            </div>
-                                            <div class="column m-3" style="width: 10em;">
-                                                <button type="button" class="btn btn-primary"disabled="true"  id="btn_guardar_Alumno">Guardar</button>
-                                                <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-primary"disabled="true"  id="btn_guardar_Alumno">Guardar</button>
+                                            <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+                                            <button type="button" class="btn btn-primary"  id="">Limpiar</button>
                                         </div>
+                                        <div class="col-md-4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -135,13 +134,10 @@ fggf>jdk>fjkfjkj
                         <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
-                                    </font>
+                                    Ingresar Datos
                                 </h5>
                                 <div>
                                     <!--**********Datos de Apoderado*************-->
-                                    <div class="row m-3">
                                         <div class="card-body mx-auto style=width: 50px" > 
                                             <div  class="form-inline">
                                                 <!-- <form class="form-inline" >-->
@@ -210,7 +206,6 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -394,8 +389,7 @@ fggf>jdk>fjkfjkj
             </div>
         </div>
         <!--*************************************FIN_Formulario*****************************************-->
-    </div>
-</div>
+
 @endsection
 
 @section('js')
