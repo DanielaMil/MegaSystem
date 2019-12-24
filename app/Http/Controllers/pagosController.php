@@ -105,7 +105,7 @@ class pagosController extends Controller
 
     public function obtenerID(Request $dato){
         $datos = DB::select("call obtenerID()");
-        return response()->json(true);
+        return response()->json($datos);
     }
     
     public function listarCuotas(Request $dato)
