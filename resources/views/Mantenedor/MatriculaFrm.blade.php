@@ -121,9 +121,9 @@ fggf>jdk>fjkfjkj
                                     <div class="row">
                                         <div class="col-md-4"></div>
                                         <div class="col-md-4">
-                                            <button type="button" class="btn btn-primary"disabled="true"  id="btn_guardar_Alumno">Guardar</button>
+                                            <button type="button" class="btn btn-primary" disabled="true"  id="btn_guardar_Alumno">Guardar</button>
                                             <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
-                                            <button type="button" class="btn btn-primary"  id="">Limpiar</button>
+                                            <button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarAlumno">Limpiar</button>
                                         </div>
                                         <div class="col-md-4"></div>
                                     </div>
@@ -1222,6 +1222,7 @@ fggf>jdk>fjkfjkj
                         
                         $('#auxIdAl').val(alu.idAlumno);
                         $('#txtDni_Al').val(alu.dni);
+                        $('#txtDni_Al').attr('disabled',true);
                         $('#txtApellidoPaAl').val(alu.apPaterno);
                         $('#txtApellidoPaAl').attr('disabled',true);
                         $('#txtApellidoMaAl').val(alu.apMaterno);
@@ -1242,6 +1243,8 @@ fggf>jdk>fjkfjkj
                         }
                         $('#txtFechaNaAl').val(alu.feNacimiento);
                         $('#btn_guardar_Alumno').attr('disabled',true);
+                        
+                        $('#btnLimpiarAlumno').attr('disabled',false);
                         tabla(alu.dni);
                         bloquearMatricula();
                     }else{
@@ -1305,6 +1308,9 @@ fggf>jdk>fjkfjkj
         }
 
         function LimpiarFormularioALU() {  
+            $('#txtDni_Al').val('');
+            $('#txtDni_Al').attr('disabled',false);
+
             $('#auxIdAl').val('');
             $('#txtApellidoPaAl').val('');
             $('#txtApellidoPaAl').attr('disabled',false);
@@ -1816,7 +1822,10 @@ fggf>jdk>fjkfjkj
         $('#btn_guardar_Alumno').click(function () { 
             registrar_Alumno();
         })
-                          
+
+        $('#btnLimpiarAlumno').click(function () { 
+            LimpiarFormularioALU();
+        })                
     </script>
     
  @endsection 
