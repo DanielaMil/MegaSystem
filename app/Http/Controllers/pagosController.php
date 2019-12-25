@@ -99,8 +99,10 @@ class pagosController extends Controller
         $razon= $dato->razon;
         $saldo= $dato->saldo;
         $pagado = $dato->pagado;
-        $datos = DB::select("call registrarCuotaIngreso(?,?,?,?,?,?,?,?)",array($monto,$feVencimiento,$concepto,$matricula,$saldo,$razon,$descuento,$pagado));
-        return response()->json(true);
+        $importe = $dato->importe;
+        $recibo = $dato->recibo;
+        $datos = DB::select("call Nuevo(?,?,?,?,?,?,?,?,?,?)",array($monto,$feVencimiento,$concepto,$matricula,$saldo,$razon,$descuento,$pagado,$importe,$recibo));
+        return response()->json($datos);
     }
 
     public function obtenerID(Request $dato){
@@ -161,5 +163,11 @@ class pagosController extends Controller
             ];
             return response()->json($data);
         }
+    }
+    public function pagosIngresos(Request $dato){
+        $importe = $dato->importe;
+        $recibo = $dato->recibo;
+        $datos = DB::select('call pagosIngreso(?,?)', array($importe,$recibo));
+        return response()->json(true);
     }
 }
