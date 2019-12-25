@@ -89,7 +89,7 @@ fggf>jdk>fjkfjkj
                                             <div class="position-relative form-group">
                                                 <label for="exampleSelect" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Genero</font>
+                                                        <font style="vertical-align: inherit;">Genero*</font>
                                                     </font>
                                                 </label>
                                                 <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
@@ -205,6 +205,15 @@ fggf>jdk>fjkfjkj
                                                     </label><input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-primary" disabled="true"  id="btn_guardar_Apoderado">Guardar</button>
+                                                <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+                                                <button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarApoderado">Limpiar</button>
+                                            </div>
+                                            <div class="col-md-4"></div>
                                         </div>
                                 </div>
                             </div>
@@ -1308,8 +1317,6 @@ fggf>jdk>fjkfjkj
         }
 
         function LimpiarFormularioALU() {  
-            $('#txtDni_Al').val('');
-            $('#txtDni_Al').attr('disabled',false);
 
             $('#auxIdAl').val('');
             $('#txtApellidoPaAl').val('');
@@ -1545,6 +1552,10 @@ fggf>jdk>fjkfjkj
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                             }
+
+                            $('#btnLimpiarApoderado').attr('disabled',false);
+                            $('#btn_guardar_Apoderado').attr('disabled',false);
+
                             LimpiarFormularioApoderado();
                         }
                     }
@@ -1614,6 +1625,79 @@ fggf>jdk>fjkfjkj
         }
 
         MontoMatricula();
+
+        /*function registrarAJAX() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            //DAtos del Apoderado 
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+            var urlregistroAJAX = $('#urlregistroAJAX').val();
+
+            //datos para las cuotas
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
+
+            $.ajax({
+                type: "post",
+                url: urlregistroAJAX,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
+
+                    cursos : arrayCursosMatriculados
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    alert("Se registro los datos correctamente");
+                   LimpiarFormularioALU();
+                   LimpiarFormularioApoderado();
+                },
+
+            });
+        }*/
 
         function registrarAJAX() {
             //Datos de Alumno auxIdApoderado-auxIdAl
@@ -1763,6 +1847,7 @@ fggf>jdk>fjkfjkj
                         $('#cboGeneroAl').attr('disabled',true);
                        
                         $('#btn_guardar_Alumno').attr('disabled',true);
+                        $('#btnLimpiarAlumno').attr('disabled',false);
                         tabla(alu.dni);
                     }else{
                         tabla(null);
@@ -1825,7 +1910,150 @@ fggf>jdk>fjkfjkj
 
         $('#btnLimpiarAlumno').click(function () { 
             LimpiarFormularioALU();
-        })                
+            
+            $('#txtDni_Al').val('');
+            $('#txtDni_Al').attr('disabled',false);
+        }) 
+
+        function registrar_Apoderado() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+
+            var urlAJAX_Guardar_Datos_Apoderado = $('#urlAJAX_Guardar_Datos_Apoderado').val();
+            
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_Guardar_Datos_Apoderado,
+                data:{
+                    
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                        toastr["success"]("correctamente", "Se registro Apoderado")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+
+                        var alu = response.datos[0];
+                        
+                        $('#txtApellidopa_Ap').attr('disabled',true);
+                        $('#txtApellidoMa_AP').attr('disabled',true);
+                        $('#txtNombre_AP').attr('disabled',true);
+                        $('#txtDireccion_AP').attr('disabled',true);
+                        $('#txtCelular_AP').attr('disabled',true);
+                        $('#txtDni_AP').attr('disabled',true);
+                        $('#txtParentesco_AP').attr('disabled',true);
+                        
+
+                        $('#btn_guardar_Apoderado').attr('disabled',true);
+                        
+                        $('#btnLimpiarApoderado').attr('disabled',false);
+
+                        tabla(alu.dni);
+                    }else{
+                        tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en el DNI del Apoderado", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Apoderado').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+        $('#btn_guardar_Apoderado').click(function () { 
+            registrar_Apoderado();
+        })   
+        
+        $('#btnLimpiarApoderado').click(function () { 
+            LimpiarFormularioApoderado();
+            
+            $('#txtDni_AP').val('');
+            $('#txtDni_AP').attr('disabled',false);
+        }) 
     </script>
     
  @endsection 

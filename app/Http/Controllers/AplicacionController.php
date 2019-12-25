@@ -520,4 +520,52 @@ class AplicacionController extends Controller
         
         
     }
+
+    public function guardar_Apoderado(REQUEST $dato){
+
+        $auxIdApoderado   =$dato->auxIdApoderado;
+        $txtDni_AP        =$dato->txtDni_AP;
+        $txtApellidopa_Ap =$dato->txtApellidopa_Ap;
+        $txtApellidoMa_AP =$dato->txtApellidoMa_AP;
+        $txtNombre_AP     =$dato->txtNombre_AP;
+        $txtDireccion_AP  =$dato->txtDireccion_AP;
+        $txtCelular_AP    =$dato->txtCelular_AP;
+        $txtParentesco_AP =$dato->txtParentesco_AP;
+
+       // $txtDni_Al = $dato->txtDni_Al;
+        $_numcade = strlen($txtDni_AP);
+        
+        if ($_numcade == 8) {
+
+            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == ""){
+                // falra llenar campos obligatorios
+                $data = [ 
+                    'estado' => false,
+                    'cod' => 101
+                ];
+                return response()->json($data);
+
+            }else{
+                $datos = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP,));         
+                //if(count($datos) > 0){ //se guardo correctamente los datos 
+                    $data = [
+                        'estado' => true,
+                        'cod' => 200,
+                        'datos' => $datos
+                    ];
+                    return response()->json($data);
+               // }
+            }
+            // else{
+            //}//100 si la cadena no tiene 8 digitos
+        } else { 
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+        
+        
+    }
 }

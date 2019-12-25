@@ -33,6 +33,7 @@ route::post('/matricula/cantidad','AplicacionController@cantidadCelAp')->name('c
 route::post('/matricula/validarImporte','AplicacionController@validarImporte')->name('validarImporte');
 route::post('/matricula/validarDescuento','AplicacionController@validarDescuento')->name('validarDescuento');
 route::post('/matricula/guardar_Alumno','AplicacionController@guardar_Alumno')->name('guardar_Alumno');
+route::post('/matricula/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name('guardar_Apoderado');
 
 
 
