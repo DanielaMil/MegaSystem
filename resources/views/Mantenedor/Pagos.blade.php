@@ -7,7 +7,7 @@
             <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
                 <div class ="form-inline">                     
                     <div class="input-group">
-                       <input type="text" class="form-control" placeholder="DNI Alumno" id="dniAlumno" name="dniAlumno">
+                       <input type="text" class="form-control" placeholder="DNI Alumno" maxlength="8" id="dniAlumno" name="dniAlumno">
                         <div class="input-group-append">
                             <button class="btn btn-primary" id="btnBuscar">Buscar</button>
                             <input type="hidden" id="urlAJAX_AL" value="{{route('buscarAlumnos')}}">
@@ -194,7 +194,7 @@
             var idConcepto;
             var idMatricula;
             var descripConcepto;
-
+            var idAux;
             var idcuota;
             var saldoDeuda;
             var band = false;
@@ -313,7 +313,6 @@
                     complete:function () {  
                     }
                 });
-
             }
             function llenarCombo() {
                 var urlAJAX_AL = '/pagos/llenarCombo'  
@@ -363,19 +362,20 @@
                 var concepto = idConcepto;
                 var matricula = idMatricula;
                 var feVencimiento = null;
+                var pago = $('#txtPago').val();
                 var descuento = $('#txtDescuento').val();
-                var pagado = $('#txtPago').val();
                 var razon = $('#txtObservacion').val();
-                var saldo = (monto - descuento - pagado);
-                var pagado = '1';
+                var saldo = ((monto - descuento) - pago);
+                var pagado = 1;
                 if(saldo == 0){
-                    pagado = '0';
+                    pagado = 0;
                 }else{
-                    pagado ='1';
+                    pagado = 1;
                 }
+                //aca va el if pero no es 
                 $.ajax({
                     type: "post",
-                    url: '/pagos/registrar',
+                    url: '/pagos/registrarCuota',
                     data:{
                         monto:monto,
                         concepto:concepto,
@@ -393,7 +393,6 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
-                       // registrarPago();
                         toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!")
                         toastr.options = {
                         "closeButton": false,   
@@ -413,8 +412,8 @@
                         "hideMethod": "fadeOut"
                         } 
                     },
-                    error:function () {  
-                        console.log('Error Aqui ')
+                    error:function (error) {  
+                         
                     },
                     complete:function (response) {  
                         
@@ -435,7 +434,7 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
-                        alert(response.datos);
+                        idAux = response[0].idCuota;
                     },
                     error:function () {  
                         console.log('Error');
@@ -446,8 +445,43 @@
                 });
             }
             function pagar(){
-                sacaridCuota();
                 
+                alert(idAux  + 'antes de ');
+                $.ajax({
+                    type: "post",
+                    url: $('#urlAJAXregistrarPago').val(),
+                    data: {
+                        importe: $('#txtPago').val(),
+                        recibo: $('#txtNuroRecibo').val(),
+                        idcuota: idAux
+                    },
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                    alert(idAux + 'Aqui debe de mostrar el numero');
+                    },error:function (error) {  
+                        toastr["error"]("No se puede repetir el Numero de Recibo", "Error!")
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        } 
+                    }
+                });
             }
             
             
@@ -462,7 +496,6 @@
                 var pago = $('#txtPago').val();
                 aux1 = 0;
                 band = false;
-                
                 if(pago!=''){
                     band = true;
                     if (pago == 0){
@@ -565,9 +598,11 @@
                         }
                     aux1++;
                 }
-            
+                alert(monto);
+                alert(descuento);
                 aux = parseFloat( monto - descuento); 
-                if(parseFloat( pago) <= aux){
+                alert(aux);
+                if(parseFloat(pago) <= aux){
                     
                 }else{
                     toastr["error"]("El Pago no puede ser mayor que el monto restando el descuento.", "Error")
@@ -590,9 +625,10 @@
                         }
                     aux1++;
                 }
-                if(descuento < monto){
+                if(parseFloat(descuento) < parseFloat(monto)){
                     
                     }else{
+                    
                     toastr["error"]("El Descuento no puede ser mayor que el monto.", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -623,13 +659,16 @@
                 validacionTediosa();
                 if(aux1==0){
                     registrarCuota();
-                    if($('#txtPago').val() > 0){
-                        //registrarPago();
+                    var au = $('#txtPago').val();
+                    if(au>0){
+                        sacaridCuota();
+                        pagar();       
+                    }else{
+                        
                     }
-                    cerrarModal();
-                }else{
                     
                 }
+                cerrarModal();
             });
             
             $('#btnBuscar').click(function(){
@@ -775,6 +814,7 @@
            $('#btnRegistrarPago').click(function () {
 
                if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
+                //alert
                 alert('no debe ingresar saldo mayor');
                }else{
                 //    alert($('#numbImporte').val())
@@ -795,8 +835,26 @@
                                 //Pago REgistrado con éxito
                                 listarCuotas(idMatricula);
                                 $('#btnRegistrarPago').attr('disabled',true)
-                               
-                            }
+                            },error:function (error) {  
+                        toastr["error"]("No se puede repetir el Numero de Recibo", "Error!")
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        } 
+                    }
                         });
                     }else{
                         alert('Faltan Datos');

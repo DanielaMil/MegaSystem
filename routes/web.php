@@ -44,10 +44,8 @@ Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
 Route::get('/pagos', 'pagosController@Pagos')->name('pago');
 Route::post('/pagos/buscarAlumno', 'pagosController@buscarAl')->name('buscarAlumnos');
 Route::post('/pagos/llenarCombo', 'pagosController@llenarCombo')->name('llenar');
-Route::post('/pagos/registrar', 'pagosController@registrarCuota')->name('registroCuota');
+Route::post('/pagos/registrarCuota', 'pagosController@registrarCuota')->name('registrarCuota');
 Route::post('/pagos/id', 'pagosController@obtenerID')->name('obtenerID');
 Route::post('/pagos/pagar', 'pagosController@StorePago')->name('StorePago');
-
 Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listarCuotas');
-
 Route::post('/pagos/registrarPagos', 'pagosController@registrarPagos')->name('registrarPagos');
