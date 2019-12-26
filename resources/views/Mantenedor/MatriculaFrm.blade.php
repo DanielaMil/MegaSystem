@@ -69,7 +69,7 @@ fggf>jdk>fjkfjkj
                                                     <font style="vertical-align: inherit;">
                                                         <font style="vertical-align: inherit;">Fecha Nacimiento*</font>
                                                     </font>
-                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)" disabled="true">
+                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px"  onkeypress="return soloNumeros(event)" disabled="true">
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="form-control" class="">
@@ -239,9 +239,9 @@ fggf>jdk>fjkfjkj
                                     </font>
                                 </h5>
                                 <div>
-                                    <!--**************************************Datos de Matricula***************************************************-->
+                                    <!--**************************************Datos de Matricula***************************************************0.00-->
                                     <div class="row m-3 ">
-                                        <div class="column m-3" style="width: 35em;">
+                                        <div class="column m-3" style="width: 34em;">
                                             <div class="column m-3" style="width: 25em;">
                                                 <div class="mt-3 position-relative form-check">
                                                     <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
@@ -290,12 +290,12 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="column m-3" style="width: 15em;">
+                                        <div class="column m-3" style="width: 17em;">
                                                             
-                                            <div class="card-body mx-auto style=width: 50px">
+                                            <div class="card-body mx-auto style=width: 8em">
                                                 <div class="form-inline">
                                                     <label>
-                                                        <font style="font-weight: bold;">Pago de Matricula </font>
+                                                        <font style="font-weight: bold;">Pago Matricula </font>
                                                     </label>
                                                     <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em" ><br>
                                                     <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
@@ -329,7 +329,7 @@ fggf>jdk>fjkfjkj
                                             <div class="card-body mx-auto style=width: 50px">
                                                 <div class="form-inline">
                                                     <label>
-                                                        <font style="font-weight: bold">Pago de Mensualidad</font>
+                                                        <font style="font-weight: bold">Pago Mensualidad</font>
                                                     </label>
                                                     <input name="txt" id="txtMensualidad" class="form-control" type="text" style="width: 4em" ><br>                                                                   
 
@@ -385,22 +385,23 @@ fggf>jdk>fjkfjkj
                                                 <div class="column m-3" style="width: 5em;">
                                                 </div>
                                                 <div class="column m-3" style="width: 10em;">
-                                                    <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax">Generar</button>
+                                                    <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax"  disabled="true">Generar</button>
                                                     <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="row m-3 ">
                                         <div class="column m-3" style="width: 25em;">
                                         </div>
                                         <div class="column m-3" style="width: 5em;">
 
-                                            <button type="button" class="btn btn-primary" id="btn_registrarAjax">Registrar</button>
+                                            <button type="button" class="btn btn-primary" id="btn_registrarAjax" disabled="true" >Registrar</button>
                                             <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
                                         </div>
                                         <div class="column m-3" style="width: 10em;">
-                                            <button type="button" class="btn btn-primary" id="btnCancelar">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" id="btnCancelar" disabled="true" >Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1267,6 +1268,11 @@ fggf>jdk>fjkfjkj
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         
                         $('#btnLimpiarAlumno').attr('disabled',false);
+
+                        $('#btn_registrarAjax').attr('disabled',false);
+                        $('#btnGuardarTablaAjax').attr('disabled',false);
+                        $('#btnCancelar').attr('disabled',false);
+
                         tabla(alu.dni);
                         bloquearMatricula();
                     }else{
@@ -1462,7 +1468,7 @@ fggf>jdk>fjkfjkj
             buscarPromotor01();
         });
 
-        //------------------APODERADO----------------
+        //------------------APODERADO-----------------
         function buscarApoderado() {
             
             var urlAJAX_AP = $('#urlAJAX_AP').val();
@@ -1798,10 +1804,33 @@ fggf>jdk>fjkfjkj
                 },
                 success:function(response){
                     console.log(response);
-                    alert("Se registro los datos correctamente");
+                    Command: toastr["success"]("registrada correctamente", "Matrícula")
+
+                    toastr.options = {
+                    "closeButton": false,
+                    "debug": true,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                    }
                    LimpiarFormularioALU();
                    LimpiarFormularioApoderado();
                 },
+                error:function (error) {  
+                    alert("sdfsdfsf");
+                },
+                complete:function () {  
+                }
 
             });
         }
@@ -1938,6 +1967,7 @@ fggf>jdk>fjkfjkj
 
             });
         }
+
         $('#btn_guardar_Alumno').click(function () { 
             registrar_Alumno();
         })

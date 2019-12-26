@@ -15,7 +15,7 @@ class AplicacionController extends Controller
     {
         return view('Mantenedor/Registrar');
     }*/
-    //*********************Matricula******************************/
+    //*********************Matricula*******************************/
     public function Matricula(REQUEST $request)
     {
         return view('Mantenedor.MatriculaFrm');
@@ -195,7 +195,7 @@ class AplicacionController extends Controller
         $txtCelularAl    =$dato->txtCelularAl;
         $txtFechaNaAl    =$dato->txtFechaNaAl;
         if ($auxIdAl == ''){
-            $datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
+            //$datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
             $Alumno = DB::select("call buscarAlumnodni(?)", array($txtDni_Al));
             $auxIdAl = $Alumno[0]->idAlumno;
         }
@@ -213,7 +213,7 @@ class AplicacionController extends Controller
             $auxIdApoderado = null;
         }else{
             if ($auxIdApoderado == ''){
-                $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
+               // $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
                 $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
                 $auxIdApoderado = $Apoderado[0]->idApoderado;
             }
