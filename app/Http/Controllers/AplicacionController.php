@@ -11,6 +11,13 @@ class AplicacionController extends Controller
     {
         return view('layouts/app');
     }
+    
+    public function volverInicio(REQUEST $request)
+    {
+        $auxIdAl         =$request->auxIdAl;
+        return response()->json($auxIdAl);
+        return view('layouts/app');
+    }
     /*public function Inicio2(REQUEST $request)
     {
         return view('Mantenedor/Registrar');
@@ -18,6 +25,7 @@ class AplicacionController extends Controller
     //*********************Matricula*******************************/
     public function Matricula(REQUEST $request)
     {
+
         return view('Mantenedor.MatriculaFrm');
     }
 
@@ -232,6 +240,9 @@ class AplicacionController extends Controller
                 
         //***********************************INICIO DE MATRICULA CUOTAS  PAGOS DE LA MATRICULA ************************* */
         
+        $_numcade01 = strlen($txtRecibo);
+
+
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $auxImporte = 0.00;
             

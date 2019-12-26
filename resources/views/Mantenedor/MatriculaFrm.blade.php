@@ -391,18 +391,39 @@ fggf>jdk>fjkfjkj
                                             </div>
                                         </div>
                                     </div>
+                                    <!--   -->
+                                    <!-- Button trigger modal -->
+                                    <!-- Button trigger modal -->
                                     
+  
+
                                     <div class="row m-3 ">
                                         <div class="column m-3" style="width: 25em;">
                                         </div>
                                         <div class="column m-3" style="width: 5em;">
-
+                                            
+                                         <!--   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                Registrar01
+                                            </button>
+                                        -->
                                             <button type="button" class="btn btn-primary" id="btn_registrarAjax" disabled="true" >Registrar</button>
                                             <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+                                        
                                         </div>
                                         <div class="column m-3" style="width: 10em;">
-                                            <button type="button" class="btn btn-primary" id="btnCancelar" disabled="true" >Cancelar</button>
+                                            <a href="{{url('/matricula')}}">
+                                                <button type="button" class="btn btn-primary" id="btnCancelar" disabled="true" >Cancelar</button>
+                                            </a>
+
+
+                                           <!-- <a href="{{url('/matricula')}}">
+                                                <i class="metismenu-icon"></i>
+                                                Matrícula
+                                            </a>-->
                                         </div>
+
+                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -415,6 +436,34 @@ fggf>jdk>fjkfjkj
 
 @endsection
 
+@section('modal')
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            ¿Desea registrar Matrícula?
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+           <button type="button" class="btn btn-primary" id="btn_registrarAjax"  >Registrar</button>
+          <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+          
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">NO</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+
 @section('js')
 <!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
@@ -423,6 +472,36 @@ fggf>jdk>fjkfjkj
 <script src="{{asset('js/app.js')}}"></script>
 
     <script>
+        function confirmationM() 
+        {
+            if(confirm("Seguro que desea registrar Matrícula?")){
+                registrarAJAX();
+                LimpiarFormularioALU_dni02();
+                LimpiarFormularioApoderado_dni();
+                return true;
+                
+            }else{
+                return false;
+            }
+        }
+
+        $('#btn_registrarAjax').click(function () {  
+            confirmationM();
+        });
+
+        function confirmationC() 
+        {
+            if(confirm("Seguro que desea cancelar el Proceso?")){
+                
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        $('#btnCancelar').click(function () {  
+            confirmationC();
+        });
 
         function soloLetras(e){
             key = e.keyCode || e.which;
@@ -1823,8 +1902,8 @@ fggf>jdk>fjkfjkj
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                     }
-                   LimpiarFormularioALU();
-                   LimpiarFormularioApoderado();
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
                 },
                 error:function (error) {  
                     alert("Debe seleccionar almenos un curso");
@@ -1835,9 +1914,9 @@ fggf>jdk>fjkfjkj
             });
         }
 
-        $('#btn_registrarAjax').click(function () { 
+       /* $('#btn_registrarAjax').click(function () { 
             registrarAJAX();
-        })
+        })*/
 
         function registrar_Alumno() {
             //Datos de Alumno auxIdApoderado-auxIdAl
@@ -1994,7 +2073,32 @@ fggf>jdk>fjkfjkj
             $('#txtFechaNaAl').attr('disabled',true);
             //$('#cboGeneroAl').val('');
             $('#cboGeneroAl').attr('disabled',true);
+
+            
         }
+
+        function LimpiarFormularioALU_dni02() {  
+
+            $('#auxIdAl').val('');
+            $('#txtApellidoPaAl').val('');
+            $('#txtApellidoPaAl').attr('disabled',true);
+            $('#txtApellidoMaAl').val('');
+            $('#txtApellidoMaAl').attr('disabled',true);
+            $('#txtNombreAl').val('');
+            $('#txtNombreAl').attr('disabled',true);
+            $('#txtDireccionAl').val('');
+            $('#txtDireccionAl').attr('disabled',true);
+            $('#txtCelularAl').val('');
+            $('#txtCelularAl').attr('disabled',true);
+            $('#txtFechaNaAl').val('');
+            $('#txtFechaNaAl').attr('disabled',true);
+            //$('#cboGeneroAl').val('');
+            $('#cboGeneroAl').attr('disabled',true);
+
+            $('#txtDni_Al').val('');
+            $('#txtDni_Al').attr('disabled',false);
+        }
+
 
         $('#btnLimpiarAlumno').click(function () { 
             LimpiarFormularioALU_dni();
@@ -2137,6 +2241,8 @@ fggf>jdk>fjkfjkj
         $('#btn_guardar_Apoderado').click(function () { 
             registrar_Apoderado();
         })   
+
+        
         
        /* $('#btnLimpiarApoderado').click(function () { 
             LimpiarFormularioApoderado();
