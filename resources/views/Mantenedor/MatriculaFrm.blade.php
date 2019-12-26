@@ -262,7 +262,7 @@ fggf>jdk>fjkfjkj
                                                                 <font style="vertical-align: inherit;">
                                                                     <font style="vertical-align: inherit;">N° Recibo*</font>
                                                                 </font>
-                                                                <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" class="form-control">
+                                                                <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
                                                             </div>
                                                             <div class="card-body mx-auto style=width: 50px" > 
                                                                 <div  class="form-inline">
@@ -478,6 +478,7 @@ fggf>jdk>fjkfjkj
                 registrarAJAX();
                 LimpiarFormularioALU_dni02();
                 LimpiarFormularioApoderado_dni();
+                tabla(null);
                 return true;
                 
             }else{
@@ -1883,24 +1884,52 @@ fggf>jdk>fjkfjkj
                 },
                 success:function(response){
                     console.log(response);
-                    Command: toastr["success"]("registrada correctamente", "Matrícula")
+                    if(response.cod == 101){
 
-                    toastr.options = {
-                    "closeButton": false,
-                    "debug": true,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-center",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
+                        Command: toastr["success"]("registrada correctamente", "Matrícula")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+                    }else{
+                        
+                        if(response.cod == 100){
+                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+
                     }
                    //LimpiarFormularioALU();
                    //LimpiarFormularioApoderado();
@@ -1912,6 +1941,8 @@ fggf>jdk>fjkfjkj
                 }
 
             });
+
+       
         }
 
        /* $('#btn_registrarAjax').click(function () { 

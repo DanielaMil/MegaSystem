@@ -193,6 +193,12 @@ class AplicacionController extends Controller
     }
 
     public function matriculaRegistro(REQUEST $dato){
+        $txtRecibo = $dato->txtRecibo;
+        $txtDniPromotor = $dato->txtDniPromotor;
+
+        $_numcade01 = strlen($txtRecibo);
+        if ($_numcade01 == 8 ) {
+
         $auxIdAl         =$dato->auxIdAl;
         $txtDni_Al        =$dato->txtDni_Al;
         $txtApellidoPaAl =$dato->txtApellidoPaAl;
@@ -227,10 +233,9 @@ class AplicacionController extends Controller
             }
         }
 
-        
-        $txtRecibo = $dato->txtRecibo;
-        $txtDniPromotor = $dato->txtDniPromotor;
 
+
+        
         if ($txtDniPromotor == '') {
             $idPromotor = NULL;
         }else{
@@ -240,9 +245,7 @@ class AplicacionController extends Controller
                 
         //***********************************INICIO DE MATRICULA CUOTAS  PAGOS DE LA MATRICULA ************************* */
         
-        $_numcade01 = strlen($txtRecibo);
-
-
+                     
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $auxImporte = 0.00;
             
@@ -281,21 +284,29 @@ class AplicacionController extends Controller
             }
         }
         
-        if($dataMensualidad){
+        if($dataMensualidad01){
             $datas = [
-                'estado' => true,
+                'estado' => false,
                 'cod' => 200,
-                'datos' => $dataMensualidad
+                'datos' => $dataMensualidad01
             ];
             return response()->json($datas);
         }else{
             
             $datas = [
-                'estado' => false,
+                'estado' => true,
                 'cod' => 101
             ];
         return response()->json($datas);
         }
+    }else{
+        $data = [
+            'estado' => false,
+            'cod'    => 100
+        ];
+        return response()->json($data);
+    }
+
     }
 
     public function buscarMontoMatricula(REQUEST $request){
