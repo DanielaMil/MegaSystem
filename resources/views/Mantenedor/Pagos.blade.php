@@ -424,7 +424,6 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                         }
-                        
                     },
                     error:function (response) {  
                         console.log(response);
@@ -530,6 +529,7 @@
                 aux1 = 0;
                 band = false;
                 if(pago!=''){
+                    
                     band = true;
                     if (pago == '0'){
                         band = false;
@@ -538,6 +538,7 @@
                     }
                 }else{
                     pago=0;
+                    $('#txtPago').val('0');
                     band = false;
                     toastr["error"]("Por Favor Ingrese el Pago.", "Error")
                         toastr.options = {
@@ -558,10 +559,29 @@
                             "hideMethod": "fadeOut"
                         }
                 }
-                if(((recibo!= '') && band==true)){
-
-                    } else{
-                        toastr["error"]("Se requiere de un monto para poder registrar un pago.", "Error")
+                if(recibo=='' && band == true){
+                    toastr["error"]("Se requiere de Numero de Recibo Para concretar el Pago.", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    aux1++;
+                }
+                if (monto == 0){
+                    toastr["error"]("Por Favor Ingrese el Monto.", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
