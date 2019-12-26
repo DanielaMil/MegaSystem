@@ -49,7 +49,7 @@
 @endsection
 
 @section('modal')
-<div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+<div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false" id="zancu">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -174,7 +174,7 @@
 
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" >
+                <button type="button" id="btnCancelar" class="btn btn-secondary" data-dismiss="modal" >
                     Cancelar
                 </button>
                 </div>
@@ -359,7 +359,7 @@
 
             }
             function cerrarModal(){
-                $('#btnRegistrarModal').attr('data-dismiss','modal');
+                $('#zancu').modal("hide");
             }
             function registrarCuota() {
                 var monto = $('#txtMonto').val();
@@ -378,7 +378,6 @@
                 }else{
                     pagado = 0;
                 }
-                //aca va el if pero no es 
                 $.ajax({
                     type: "post",
                     url: '/pagos/registrarCuota',
@@ -401,6 +400,12 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
+                        //error no cierra el modal cuando registra 
+                        //cerrarModal();
+                        $('#zancu').removeClass('show');
+                        $('.modal-backdrop').removeClass('show');
+                        $('.modal-backdrop').removeClass('fade');
+                        $('.modal-backdrop').removeClass('modal-backdrop');
                         toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!");
                         toastr.options = {
                         "closeButton": false,   
@@ -419,13 +424,30 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                         }
-                        //error no cierra el modal cuando registra 
-                        cerrarModal();
+                        
                     },
-                    error:function (error) {  
-                        console.log(error);
+                    error:function (response) {  
+                        console.log(response);
                         modal = false;
-                        alert('modal es en el error false: '+ modal);
+                        //alert('Error, No puedes hacerlo');
+                        toastr["error"]("Error,Numero de documento Duplicado ", "Error!");
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                     },
                     complete:function (response) {  
 
@@ -609,10 +631,11 @@
                         }
                     aux1++;
                 }
-                alert(monto);
-                alert(descuento);
+                //alert(monto);
+                
+                //alert(descuento);
                 aux = parseFloat( monto - descuento); 
-                alert(aux);
+                //alert(aux);
                 if(parseFloat(pago) <= aux){
                     
                 }else{
@@ -638,9 +661,9 @@
                 }
                 if(parseFloat(descuento) <= parseFloat(monto)){
                     
-                    alert(descuento + 'y ' + monto);
+                  //  alert(descuento + 'y ' + monto);
                     }else{
-                        alert(descuento + 'y ' + monto);
+                        //alert(descuento + 'y ' + monto);
                     toastr["error"]("El Descuento no puede ser mayor  que el monto.", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -665,11 +688,11 @@
             }
             
             $('#btnRegistrarModal').click(function(){
-                abrirModal();
+                //abrirModal();
                 validacionTediosa();
                 if(aux1==0){
                     registrarCuota();
-                    alert('modal es desPues del registro true: ' + modal);
+                   // alert('modal es desPues del registro true: ' + modal);
                 }
                 
             });
