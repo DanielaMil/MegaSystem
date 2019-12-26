@@ -196,8 +196,8 @@ class AplicacionController extends Controller
         $txtRecibo = $dato->txtRecibo;
         $txtDniPromotor = $dato->txtDniPromotor;
 
-        $_numcade01 = strlen($txtRecibo);
-        if ($_numcade01 == 8 ) {
+        /*$_numcade01 = strlen($txtRecibo);
+        if ($_numcade01 == 8 ) {*/
 
         $auxIdAl         =$dato->auxIdAl;
         $txtDni_Al        =$dato->txtDni_Al;
@@ -235,7 +235,7 @@ class AplicacionController extends Controller
 
 
 
-        
+
         if ($txtDniPromotor == '') {
             $idPromotor = NULL;
         }else{
@@ -299,13 +299,13 @@ class AplicacionController extends Controller
             ];
         return response()->json($datas);
         }
-    }else{
+    /*}else{
         $data = [
             'estado' => false,
             'cod'    => 100
         ];
         return response()->json($data);
-    }
+    }*/
 
     }
 
