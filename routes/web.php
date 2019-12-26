@@ -36,7 +36,6 @@ route::post('/matricula/guardar_Alumno','AplicacionController@guardar_Alumno')->
 route::post('/matricula/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name('guardar_Apoderado');
 
 
-
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');

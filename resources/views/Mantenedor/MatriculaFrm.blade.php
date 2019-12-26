@@ -67,14 +67,14 @@ fggf>jdk>fjkfjkj
                                             <div class="position-relative form-group">
                                                 <label for="examplePassword" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Fecha Nacimiento</font>
+                                                        <font style="vertical-align: inherit;">Fecha Nacimiento*</font>
                                                     </font>
                                                 </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px" onkeypress="return soloNumeros(event)" disabled="true">
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="form-control" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Direccion</font>
+                                                        <font style="vertical-align: inherit;">Dirección*</font>
                                                     </font>
                                                 </label><input name="txtDireccionAl" id="txtDireccionAl" type="text" autocomplete="off" class="form-control" disabled="true">
                                             </div>
@@ -89,7 +89,7 @@ fggf>jdk>fjkfjkj
                                             <div class="position-relative form-group">
                                                 <label for="exampleSelect" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Genero*</font>
+                                                        <font style="vertical-align: inherit;">Género*</font>
                                                     </font>
                                                 </label>
                                                 <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
@@ -109,7 +109,7 @@ fggf>jdk>fjkfjkj
                                             <div class="position-relative form-group">
                                                 <label for="examplePassword" class="">
                                                     <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">celular</font>
+                                                        <font style="vertical-align: inherit;">Celular*</font>
                                                     </font>
                                                 </label>
                                                 <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
@@ -158,7 +158,7 @@ fggf>jdk>fjkfjkj
                                             </div>
                                         </div> 
                                         <div class="row m-3 ">
-                                            <div class="column m-3" style="width: 17em;">
+                                            <div class="column m-3" style="width: 18em;">
                                                 <div class="position-relative form-group">
                                                     <label for="form-control" class="">
                                                         <font style="vertical-align: inherit;">
@@ -169,19 +169,19 @@ fggf>jdk>fjkfjkj
                                                 <div class="position-relative form-group">
                                                     <label for="form-control" class="">
                                                         <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Parentesco</font>
+                                                            <font style="vertical-align: inherit;">Parentesco*</font>
                                                         </font>
                                                     </label><input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                                 </div>
                                                 <div class="position-relative form-group">
                                                     <label for="form-control" class="">
                                                         <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Direccion</font>
+                                                            <font style="vertical-align: inherit;">Dirección*</font>
                                                         </font>
-                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" autocomplete="off" class="form-control" disabled="true">
+                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text"  autocomplete="off" class="form-control" disabled="true">
                                                 </div>
                                             </div>
-                                            <div class="column m-3" style="width: 17em;">
+                                            <div class="column m-3" style="width: 18em;">
                                                 <div class="position-relative form-group"><label for="form-control" class="">
                                                     <font style="vertical-align: inherit;">
                                                         <font style="vertical-align: inherit;">Apellido Materno*</font>
@@ -190,13 +190,13 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                                 <div class="position-relative form-group"><label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Celular</font>
+                                                            <font style="vertical-align: inherit;">Celular*</font>
                                                         </font>
                                                     </label><input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
                                                     <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
                                                 </div>
                                             </div>
-                                            <div class="column m-3" style="width: 17em;">
+                                            <div class="column m-3" style="width: 18em;">
                                                 <div class="position-relative form-group">
                                                     <label for="examplePassword" class="">
                                                         <font style="vertical-align: inherit;">
@@ -206,6 +206,19 @@ fggf>jdk>fjkfjkj
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--<div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group">
+                                                    <label for="form-control" class="">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">Dirección</font>
+                                                        </font>
+                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" autocomplete="off" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>-->
                                         <div class="row">
                                             <div class="col-md-4"></div>
                                             <div class="col-md-4">
@@ -1508,6 +1521,7 @@ fggf>jdk>fjkfjkj
                         $('#txtParentesco_AP').val(alu.celular);
                         $('#txtParentesco_AP').attr('disabled',true);
                         
+                        $('#btnLimpiarApoderado').attr('disabled',false);
                     }else{
                         if(response.cod == 100){
                             toastr["warning"]("en el DNI del apoderado", "Cantidad de caracteres inválido")
@@ -1584,8 +1598,28 @@ fggf>jdk>fjkfjkj
             $('#txtParentesco_AP').attr('disabled',false);
         }
 
-        $('#btn_limpiarAP').click(function () {  
-            LimpiarFormularioApoderado();
+        function LimpiarFormularioApoderado_dni() {
+            $('#auxIdApoderado').val('');  
+            $('#txtApellidopa_Ap').val('');
+            $('#txtApellidopa_Ap').attr('disabled',true);
+            $('#txtApellidoMa_AP').val('');
+            $('#txtApellidoMa_AP').attr('disabled',true);
+            $('#txtNombre_AP').val('');
+            $('#txtNombre_AP').attr('disabled',true);
+            $('#txtDireccion_AP').val('');
+            $('#txtDireccion_AP').attr('disabled',true);
+            $('#txtCelular_AP').val('');
+            $('#txtCelular_AP').attr('disabled',true);
+            $('#txtParentesco_AP').val('');
+            $('#txtParentesco_AP').attr('disabled',true);
+        }
+
+        $('#btnLimpiarApoderado').click(function () {  
+            LimpiarFormularioApoderado_dni();
+
+            $('#txtDni_AP').val('');
+            $('#txtDni_AP').attr('disabled',false);
+
         });
 
         $('#btn_buscarAJAX_AP').click(function () {  
@@ -1908,11 +1942,32 @@ fggf>jdk>fjkfjkj
             registrar_Alumno();
         })
 
+        function LimpiarFormularioALU_dni() {  
+
+            $('#auxIdAl').val('');
+            $('#txtApellidoPaAl').val('');
+            $('#txtApellidoPaAl').attr('disabled',true);
+            $('#txtApellidoMaAl').val('');
+            $('#txtApellidoMaAl').attr('disabled',true);
+            $('#txtNombreAl').val('');
+            $('#txtNombreAl').attr('disabled',true);
+            $('#txtDireccionAl').val('');
+            $('#txtDireccionAl').attr('disabled',true);
+            $('#txtCelularAl').val('');
+            $('#txtCelularAl').attr('disabled',true);
+            $('#txtFechaNaAl').val('');
+            $('#txtFechaNaAl').attr('disabled',true);
+            //$('#cboGeneroAl').val('');
+            $('#cboGeneroAl').attr('disabled',true);
+        }
+
         $('#btnLimpiarAlumno').click(function () { 
-            LimpiarFormularioALU();
+            LimpiarFormularioALU_dni();
             
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
+
+            //$('#btnLimpiarAlumno').attr('disabled',true);
         }) 
 
         function registrar_Apoderado() {
@@ -2048,12 +2103,12 @@ fggf>jdk>fjkfjkj
             registrar_Apoderado();
         })   
         
-        $('#btnLimpiarApoderado').click(function () { 
+       /* $('#btnLimpiarApoderado').click(function () { 
             LimpiarFormularioApoderado();
             
             $('#txtDni_AP').val('');
             $('#txtDni_AP').attr('disabled',false);
-        }) 
+        }) */
     </script>
     
  @endsection 
