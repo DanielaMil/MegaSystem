@@ -378,17 +378,10 @@ fggf>jdk>fjkfjkj
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>
-                                            <div class="row m-3 ">
-                                                <div class="column m-3" style="width: 25em;">
-                                                </div>
-                                                <div class="column m-3" style="width: 5em;">
-                                                </div>
-                                                <div class="column m-3" style="width: 10em;">
-                                                    <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax"  disabled="true">Generar</button>
+                                                <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax"  disabled="true">Generar</button>
                                                     <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
-                                                </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <!--   -->
@@ -478,7 +471,10 @@ fggf>jdk>fjkfjkj
                 registrarAJAX();
                 LimpiarFormularioALU_dni02();
                 LimpiarFormularioApoderado_dni();
-                tabla(null);
+                MontoMatricula();
+                tabla('1');
+                auxIdGrupo=0;
+                tabla02();
                 return true;
                 
             }else{
@@ -611,11 +607,18 @@ fggf>jdk>fjkfjkj
                                     if(response.datosG[j].idCurso ==  response.datosGND[p].idCurso){
                                         estadop = 1;
                                     }
+
+                                    /*if(response.datosG[j].vacante < 1){
+                                        estadop = 1;
+                                    }*/
                                 }
+                                /*if(response.datosG[j].vacante == 0){
+                                        estadop = 1;
+                                }*/
                             }
                         }
                         if (estadop==0) {
-                    
+
                         tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
