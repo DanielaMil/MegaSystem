@@ -295,7 +295,7 @@ fggf>jdk>fjkfjkj
                                             <div class="card-body mx-auto style=width: 8em">
                                                 <div class="form-inline">
                                                     <label>
-                                                        <font style="font-weight: bold;">Pago Matricula </font>
+                                                        <font style="font-weight: bold;">Pago Matrícula </font>
                                                     </label>
                                                     <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em" ><br>
                                                     <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
@@ -1026,7 +1026,7 @@ fggf>jdk>fjkfjkj
 
         validarDescuento();
 
-        //--------------SELECCIONAR DATOS-----------------------
+        //--------------SELECCIONAR DATOS----------------------- sdfsdfsf
         function SeleccionarCuros() {
             var selectCurso = $('.checkCurso');
             var selectGrupo = $('.codigoGrupo');
@@ -1827,7 +1827,7 @@ fggf>jdk>fjkfjkj
                    LimpiarFormularioApoderado();
                 },
                 error:function (error) {  
-                    alert("sdfsdfsf");
+                    alert("Debe seleccionar almenos un curso");
                 },
                 complete:function () {  
                 }
@@ -1915,12 +1915,12 @@ fggf>jdk>fjkfjkj
                         $('#btn_registrarAjax').attr('disabled',false);
                         $('#btnGuardarTablaAjax').attr('disabled',false);
                         $('#btnCancelar').attr('disabled',false);
-                        
+
                         tabla(alu.dni);
                     }else{
                         tabla(null);
                         if(response.cod == 100){
-                            toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+                            toastr["warning"]("en datos del alumno", "Cantidad de caracteres inválido")
 
                             toastr.options = {
                             "closeButton": false,
@@ -2082,7 +2082,7 @@ fggf>jdk>fjkfjkj
                     }else{
                         tabla(null);
                         if(response.cod == 100){
-                            toastr["warning"]("en el DNI del Apoderado", "Cantidad de caracteres inválido")
+                            toastr["warning"]("en datos del Apoderado", "Cantidad de caracteres inválido")
 
                             toastr.options = {
                             "closeButton": false,

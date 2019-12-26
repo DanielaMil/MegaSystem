@@ -484,12 +484,13 @@ class AplicacionController extends Controller
         $txtCelularAl    =$dato->txtCelularAl;
         $txtFechaNaAl    =$dato->txtFechaNaAl;
 
-       // $txtDni_Al = $dato->txtDni_Al;
+       // $txtDni_Al = $dato->txtDni_Al; 
         $_numcade = strlen($txtDni_Al);
+        $_numcade01 = strlen($txtCelularAl);
         
-        if ($_numcade == 8) {
+        if ($_numcade == 8 && $_numcade01 == 9) {
 
-            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == ""){
+            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $txtCelularAl == ""){
                 // falra llenar campos obligatorios
                 $data = [ 
                     'estado' => false,
@@ -534,10 +535,11 @@ class AplicacionController extends Controller
 
        // $txtDni_Al = $dato->txtDni_Al;
         $_numcade = strlen($txtDni_AP);
+        $_numcade01 = strlen($txtCelular_AP);
         
-        if ($_numcade == 8) {
+        if ($_numcade == 8 && $_numcade01==9) {
 
-            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == ""){
+            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == "" || $txtDireccion_AP == "" || $txtCelular_AP == "" || $txtParentesco_AP == ""){
                 // falra llenar campos obligatorios
                 $data = [ 
                     'estado' => false,
