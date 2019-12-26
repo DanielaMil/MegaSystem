@@ -265,7 +265,7 @@ class AplicacionController extends Controller
                 //Para registrar la mensualidad
                 $idMatricula = DB::select("call ultimaMatricula()",array());
                
-                $dataMensualidad = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMatr"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
+                $dataMensualidad = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
                 
             }
         }

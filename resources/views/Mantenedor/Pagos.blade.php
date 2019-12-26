@@ -776,7 +776,7 @@
                                 html = html + '<tr>'
                                     +'<th scope="row">'+ (i+1) +'</th>'
                                     +'<td>' + response.datos[i].descripcion + '</td>'
-                                    +'<td class="text-center">' + Number(response.datos[i].moTotal).toFixed(2) + '</td>'
+                                    +'<td class="text-center">' + Number(response.datos[i].monto).toFixed(2) + '</td>'
                                     +'<td class="text-center">'+ Number(response.datos[i].saldo).toFixed(2) +'</td>'
                                     +'<td class="text-center">'+ fecha +'</td>'
                                     +'<td class="text-center"><div class="badge '+((response.datos[i].pagado==0)?"badge-danger":"badge-success")+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+((response.datos[i].pagado==0)?"PENDIENTE":"PAGADO")+'</font></font></div></td>'

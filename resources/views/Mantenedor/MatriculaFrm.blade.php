@@ -1911,6 +1911,11 @@ fggf>jdk>fjkfjkj
                        
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         $('#btnLimpiarAlumno').attr('disabled',false);
+
+                        $('#btn_registrarAjax').attr('disabled',false);
+                        $('#btnGuardarTablaAjax').attr('disabled',false);
+                        $('#btnCancelar').attr('disabled',false);
+                        
                         tabla(alu.dni);
                     }else{
                         tabla(null);
