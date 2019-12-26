@@ -194,10 +194,11 @@
             var idConcepto;
             var idMatricula;
             var descripConcepto;
-            var idAux;
+            // var idAux;
             var idcuota;
             var saldoDeuda;
             var band = false;
+            var modal = false;
             function limpiarModalIngreso(){
                 $('.btnRegistrarIngreso').click(function(){
                     $('#txtNuroRecibo').val('');
@@ -357,6 +358,9 @@
                 });
 
             }
+            function cerrarModal(){
+                $('#btnRegistrarModal').attr('data-dismiss','modal');
+            }
             function registrarCuota() {
                 var monto = $('#txtMonto').val();
                 var concepto = idConcepto;
@@ -367,10 +371,12 @@
                 var razon = $('#txtObservacion').val();
                 var saldo = ((monto - descuento) - pago);
                 var pagado = 1;
+                var importe= $('#txtPago').val();
+                var recibo = $('#txtNuroRecibo').val();
                 if(saldo == 0){
-                    pagado = 0;
-                }else{
                     pagado = 1;
+                }else{
+                    pagado = 0;
                 }
                 //aca va el if pero no es 
                 $.ajax({
@@ -384,7 +390,9 @@
                         descuento:descuento,
                         razon:razon,
                         saldo:saldo,
-                        pagado:pagado
+                        pagado:pagado,
+                        importe:importe,
+                        recibo:recibo
                     },
                     dataType: 'json',
                     headers: {
@@ -393,7 +401,7 @@
                     beforeSend: function (response) {
                     },  
                     success: function (response) {
-                        toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!")
+                        toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!");
                         toastr.options = {
                         "closeButton": false,   
                         "debug": true,
@@ -410,57 +418,60 @@
                         "hideEasing": "linear",
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
-                        } 
+                        }
+                        //error no cierra el modal cuando registra 
+                        cerrarModal();
                     },
                     error:function (error) {  
-                         
+                        console.log(error);
+                        modal = false;
+                        alert('modal es en el error false: '+ modal);
                     },
                     complete:function (response) {  
-                        
+
                     }
                 });
 
             }
-            function sacaridCuota(){
-                $.ajax({
-                    type: "post",
-                    url: '/pagos/id',
-                    data:{
-                    },
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function (response) {
-                    },  
-                    success: function (response) {
-                        idAux = response[0].idCuota;
-                    },
-                    error:function () {  
-                        console.log('Error');
-                    },
-                    complete:function (response) {  
+            //CREATE PROCEDURE `pagosIngreso`(IN `importe` FLOAT(6,2), IN `nuRecibo` VARCHAR(12)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN DECLARE aux int DEFAULT 0; SELECT cuota.idCuota into aux from cuota ORDER by idCuota DESC limit 1 ; INSERT INTO pago(importe,feEmision,nuRecibo,idCuota) VALUES(importe,NOW(),nuRecibo,aux); END
+            // {function sacaridCuota(){
+            //     $.ajax({
+            //         type: "post",
+            //         url: '/pagos/id',
+            //         data:{
+            //         },
+            //         dataType: 'json',
+            //         headers: {
+            //             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            //         },
+            //         beforeSend: function (response) {
+            //         },  
+            //         success: function (response) {
                         
-                    }
-                });
-            }
+            //         },
+            //         error:function () {  
+            //             console.log('Error');
+            //         },
+            //         complete:function (response) {  
+                        
+            //         }
+            //     });
+            // }}
             function pagar(){
-                
-                alert(idAux  + 'antes de ');
                 $.ajax({
                     type: "post",
-                    url: $('#urlAJAXregistrarPago').val(),
+                    url: '/pagos/pagosIngresos',
                     data: {
                         importe: $('#txtPago').val(),
-                        recibo: $('#txtNuroRecibo').val(),
-                        idcuota: idAux
+                        recibo: $('#txtNuroRecibo').val()
                     },
                     dataType: "json",
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (response) {
-                    alert(idAux + 'Aqui debe de mostrar el numero');
+                        alert('se Registro el Pago con éxito');
+                        cerrarModal();
                     },error:function (error) {  
                         toastr["error"]("No se puede repetir el Numero de Recibo", "Error!")
                         toastr.options = {
@@ -498,7 +509,7 @@
                 band = false;
                 if(pago!=''){
                     band = true;
-                    if (pago == 0){
+                    if (pago == '0'){
                         band = false;
                     }else{
                         band = true;
@@ -525,10 +536,10 @@
                             "hideMethod": "fadeOut"
                         }
                 }
-                if(!((recibo== '') && band)){
+                if(((recibo!= '') && band==true)){
 
                     } else{
-                        toastr["error"]("Por Favor Ingrese la Serie del Recibo.", "Error")
+                        toastr["error"]("Se requiere de un monto para poder registrar un pago.", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -625,11 +636,12 @@
                         }
                     aux1++;
                 }
-                if(parseFloat(descuento) < parseFloat(monto)){
+                if(parseFloat(descuento) <= parseFloat(monto)){
                     
+                    alert(descuento + 'y ' + monto);
                     }else{
-                    
-                    toastr["error"]("El Descuento no puede ser mayor que el monto.", "Error")
+                        alert(descuento + 'y ' + monto);
+                    toastr["error"]("El Descuento no puede ser mayor  que el monto.", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -651,24 +663,15 @@
                 }
                      
             }
-            function cerrarModal(){
-                $('#btnRegistrarModal').attr('data-dismiss','modal');
-            }
+            
             $('#btnRegistrarModal').click(function(){
                 abrirModal();
                 validacionTediosa();
                 if(aux1==0){
                     registrarCuota();
-                    var au = $('#txtPago').val();
-                    if(au>0){
-                        sacaridCuota();
-                        pagar();       
-                    }else{
-                        
-                    }
-                    
+                    alert('modal es desPues del registro true: ' + modal);
                 }
-                cerrarModal();
+                
             });
             
             $('#btnBuscar').click(function(){

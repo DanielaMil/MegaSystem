@@ -49,3 +49,4 @@ Route::post('/pagos/id', 'pagosController@obtenerID')->name('obtenerID');
 Route::post('/pagos/pagar', 'pagosController@StorePago')->name('StorePago');
 Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listarCuotas');
 Route::post('/pagos/registrarPagos', 'pagosController@registrarPagos')->name('registrarPagos');
+Route::post('/pagos/pagosIngresos', 'pagosController@pagosIngresos')->name('pagosIngresos');
