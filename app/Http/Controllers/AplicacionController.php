@@ -12,10 +12,8 @@ class AplicacionController extends Controller
         return view('layouts/app');
     }
     
-    public function volverInicio(REQUEST $request)
+    public function volverInicio()
     {
-        $auxIdAl         =$request->auxIdAl;
-        return response()->json($auxIdAl);
         return view('layouts/app');
     }
     /*public function Inicio2(REQUEST $request)

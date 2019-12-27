@@ -398,16 +398,14 @@ fggf>jdk>fjkfjkj
                                          <!--   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                 Registrar01
                                             </button>
-                                        -->
+                                        --><a href="{{url('/matricula')}}">
                                             <button type="button" class="btn btn-primary" id="btn_registrarAjax" disabled="true" >Registrar</button>
                                             <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
-                                        
+                                        </a>
                                         </div>
                                         <div class="column m-3" style="width: 10em;">
-                                            <a href="{{url('/matricula')}}">
                                                 <button type="button" class="btn btn-primary" id="btnCancelar" disabled="true" >Cancelar</button>
-                                            </a>
-
+                                            
 
                                            <!-- <a href="{{url('/matricula')}}">
                                                 <i class="metismenu-icon"></i>
@@ -472,9 +470,10 @@ fggf>jdk>fjkfjkj
                 LimpiarFormularioALU_dni02();
                 LimpiarFormularioApoderado_dni();
                 MontoMatricula();
-                tabla('1');
-                auxIdGrupo=0;
-                tabla02();
+                tabla(null);
+
+
+
                 return true;
                 
             }else{

@@ -38,7 +38,6 @@ route::post('/matricula/guardar_Apoderado','AplicacionController@guardar_Apodera
 route::post('/matricula/volverInicio','AplicacionController@volverInicio')->name('volverInicio');
 
 
-
 //************************FIN_MATRICULA******************************** */
 
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
