@@ -17,42 +17,76 @@ PATRICIA
             <div class="card-body">
                 <ul class="tabs-animated-shadow nav-justified tabs-animated nav">
                     <li class="nav-item">
-                        <a role="tab" class="nav-link show active" id="tab-c1-0" data-toggle="tab" href="#tab-animated1-alumno" aria-selected="true">
+                        <a role="tab" class="nav-link show active" id="tab-c1-0" data-toggle="tab" href="#tab-animated1-alumno" >
                             <span class="nav-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ALUMNO</font></font></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" class="nav-link show" id="tab-c1-1" data-toggle="tab" href="#tab-animated1-apoderado" aria-selected="false">
+                        <a role="tab" class="nav-link show" id="tab-c1-1" data-toggle="tab" href="#tab-animated1-apoderado" >
                             <span class="nav-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">APODERADO</font></font></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" class="nav-link show " id="tab-c1-2" data-toggle="tab" href="#tab-animated1-matricula" aria-selected="false">
+                        <a role="tab" class="nav-link show " id="tab-c1-2" data-toggle="tab" href="#tab-animated1-matricula" >
                             <span class="nav-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MATRÍCULA</font></font></span>
                         </a>
                     </li>
                 </ul>
+
                 <hr style="margin-top:0">
+
                 <div class="tab-content">
-                    <div class="tab-pane show" id="tab-animated1-alumno" role="tabpanel">
-                        <p class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem Ipsum ha sido el texto ficticio estándar de la industria desde el año 1500, cuando una impresora desconocida tomó una galera de tipo y la revolvió para hacer un libro de muestras de tipo. </font><font style="vertical-align: inherit;">Ha sobrevivido no solo cinco siglos, sino también el salto a la composición electrónica, permaneciendo esencialmente sin cambios.</font></font></p>
+                    <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
                         <form class="needs-validation" novalidate="">
+                            <div  class="form-inline">
+                                @csrf 
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-4">                                
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <label class="mr-sm-2">
+                                            DNI
+                                        </label>
+                                        <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
+                                        <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
+                                        <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
+                                        <input type="hidden" id="auxIdAl" >  
+                                        <div class="load" style="display: none">Cargando....</div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                    <label class="mr-sm-2">
+                                        DNI
+                                    </label>
+                                    <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
+                                <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
+                                
+                                <input type="hidden" id="auxIdAl" >  
+                                <div class="load" style="display: none">Cargando....</div>
+                            </div>
+                            
                             <div class="form-row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-4 mb-4">
                                     <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de pila</font></font></label>
                                     <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required="">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-4 mb-4">
                                     <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido</font></font></label>
                                     <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required="">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-4 mb-4">
                                     <label for="validationCustomUsername"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de usuario</font></font></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -88,17 +122,7 @@ PATRICIA
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">
-                                    <label class="form-check-label" for="invalidCheck"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                                        Acepta los términos y condiciones
-                                    </font></font></label>
-                                    <div class="invalid-feedback">
-                                        You must agree before submitting.
-                                    </div>
-                                </div>
-                            </div>
+                            <hr style="margin-top:0">
                             <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar formulario</font></font></button>
                         </form>
 
@@ -130,7 +154,7 @@ PATRICIA
                             <a href="javascript:void(0);" class="btn-wide btn btn-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRAR</font></font></a>
                         </div>
                     </div>
-                    <div class="tab-pane show active" id="tab-animated1-matricula" role="tabpanel">
+                    <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
                         <p class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se popularizó en la década de 1960 con el lanzamiento de las hojas de Letraset que contienen pasajes de Lorem Ipsum, y más recientemente con software de publicación de escritorio como Aldus PageMaker que incluye versiones de Lorem Ipsum.</font></font></p>
                         <div class="d-block text-center card-footer">
                             <a href="javascript:void(0);" class="btn-wide btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LIMPIAR</font></font></a>
