@@ -245,7 +245,7 @@ fggf>jdk>fjkfjkj
                                             <div class="column m-3" style="width: 25em;">
                                                 <div class="mt-3 position-relative form-check">
                                                     <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                        <table class="table">
+                                                        <!--<table class="table">
                                                             <thead>
                                                                 <th></th>
                                                                 <th>CURSO</th>
@@ -256,8 +256,8 @@ fggf>jdk>fjkfjkj
                                                                 
                                                             </tbody>
                                                             <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                                                        </table>
-                                                        <!--<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                        </table>-->
+                                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
 
                                                             <thead>
                                                                 <tr>
@@ -271,7 +271,7 @@ fggf>jdk>fjkfjkj
                                                                                                            
                                                             </tbody>
                                                             <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                                                        </table>-->
+                                                        </table>
                                                         <div class="row m-7 ">
                                                             <div class="column m-3" style="width: 15em;">
                                                                 <font style="vertical-align: inherit;">
