@@ -40,6 +40,7 @@ route::post('/matricula/volverInicio','AplicacionController@volverInicio')->name
 
 //************************FIN_MATRICULA******************************** */
 
+Route::get('/matricula2', 'AplicacionController@Matricula2')->name('matricula2');
 Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
 
 //********************PAGOS****** */

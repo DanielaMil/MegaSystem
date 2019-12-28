@@ -27,6 +27,12 @@ class AplicacionController extends Controller
         return view('Mantenedor.MatriculaFrm');
     }
 
+    public function Matricula2(REQUEST $request)
+    {
+
+        return view('Mantenedor.Matricula');
+    }
+
     public function buscarAL(Request $dato)
     {
         $_auxdni = $dato->txtDni;
