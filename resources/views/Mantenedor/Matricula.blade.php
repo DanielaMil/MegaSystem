@@ -59,21 +59,21 @@ PATRICIA
                             @csrf 
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtApellidoPaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno</font></font></label>
+                                    <label for="txtApellidoPaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input type="text" class="form-control" placeholder="" value="" required="" name="txtApellidoPa_Al" id="txtApellidoPaAl"  maxlength="20" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtApellidoMaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno</font></font></label>
+                                    <label for="txtApellidoMaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres</font></font></label>                                                                      
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>                                                                      
                                     <input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="invalid-feedback">
                                         Please choose a username.
@@ -82,14 +82,14 @@ PATRICIA
                             </div>
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtFechaNaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha Nacimiento</font></font></label>
+                                    <label for="txtFechaNaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha Nacimiento<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px"  onkeypress="return soloNumeros(event)" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="cboGeneroAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Género</font></font></label>
+                                    <label for="cboGeneroAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Género<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
                                         <option selected value="-1">-Seleccione-</option>
                                         <option value="1">Masculino</option>
@@ -110,7 +110,7 @@ PATRICIA
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-4 ml-5 ">
-                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtDireccionAl" id="txtDireccionAl" maxlength="40" type="text" autocomplete="off" class="form-control" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
@@ -153,21 +153,21 @@ PATRICIA
                             @csrf 
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtApellidopa_Ap" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno</font></font></label>
+                                    <label for="txtApellidopa_Ap" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtApellidoMa_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno</font></font></label>
+                                    <label for="txtApellidoMa_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 mx-auto ">
-                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres</font></font></label>                                                                      
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>                                                                      
                                     <input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="invalid-feedback">
                                         Please choose a username.
@@ -176,7 +176,7 @@ PATRICIA
                             </div>
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 ml-5 mr-4 pl-0">
-                                    <label for="txtParentesco_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parentesco</font></font></label>
+                                    <label for="txtParentesco_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parentesco<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
@@ -184,7 +184,7 @@ PATRICIA
                                 </div>
                                 
                                 <div class="col-md-3 mb-4 ml-5">
-                                    <label for="txtCelular_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular</font></font></label>
+                                    <label for="txtCelular_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
                                     <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
                                     <div class="invalid-feedback">
@@ -194,7 +194,7 @@ PATRICIA
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-4 ml-5 ">
-                                    <label for="txtDireccion_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+                                    <label for="txtDireccion_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtDireccion_AP" id="txtDireccion_AP" type="text"  autocomplete="off" class="form-control" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
@@ -279,9 +279,12 @@ PATRICIA
                                         <div class="form-inline form-control-sm">
                                             <label>
                                                 <font style="font-weight: bold; color:#3f6ad8">PAGO DE MENSUALIDAD : </font>
+                                                <label class="montoMensualidad" id="txtMensualidad"  style="font-weight: bold; color:#3f6ad8; text-align: center;"> mes</label>
                                             </label>
-                                            <label id="txtMensualidad"  style="font-weight: bold">                                  
-                                            </label>
+                                            <h3 class="titleConcepto" style="font-size: 20px;
+                                                    text-transform: uppercase;
+                                                    font-weight: bold;
+                                                    text-align: center;"></h3>
                                         </div>
 
                                         <label for="form-control" class="" style="font-weight: bold">Descuento</label>
@@ -617,8 +620,9 @@ PATRICIA
 
 
                             
-                        tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
-
+                       // tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
+                        tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+                        
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
                                 for(var j=0;j < response.datosG.length;j++){
