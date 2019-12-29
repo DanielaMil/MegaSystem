@@ -38,13 +38,13 @@ PATRICIA
                 <div class="tab-content">
                     <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
                         <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
-                        <form class="form-inline">   
+                        <div class="form-inline">   
                             @csrf      
                             <div class="mx-auto">
                                 <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
                                     <label for="examplePassword22" class="mr-sm-2" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DNI</font></font></label>
                                     <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
-                                    <button type="submit" id="btn_buscarAJAX_AL" class="btn btn-info" style="width: 80px">BUSCAR</button>
+                                    <button type="button" id="btn_buscarAJAX_AL" class="btn btn-info" style="width: 80px">BUSCAR</button>
                                 </div>
 
                                 <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">                                 
@@ -52,9 +52,10 @@ PATRICIA
                                 <div class="load" style="display: none">Cargando....</div>
                             </div>                  
                            
-                        </form>
-                        <br><br>    
-                        <form class="needs-validation " novalidate="" >
+                        </div>
+                        <br><br>   
+                        <!--   REGISTRO DE ALUMNO  --> 
+                        <div class="needs-validation " novalidate="" >
                             @csrf 
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 mx-auto ">
@@ -120,16 +121,19 @@ PATRICIA
                             <hr style="margin-top:1em">
                             <div class="text-center ">
                                 <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarAlumno">LIMPIAR</button>
-                                <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
-                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno">REGISTRAR</button>
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" data-target="#RegAlumno" data-toggle="modal">REGISTRAR</button>
+                                <!--<button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarAlumno">Limpiar</button>
+                                
+                                <button type="button" class="btn btn-primary" id="btn_guardar_Alumno" disabled="true" data-toggle="modal" data-target="#RegAlumno">
+                                    Guardar
+                                </button>-->
                             </div>
-                        </form>
-                       
+                        </div>
                     </div>
-
+                        <!-- REGISTRO DE APODERADO --> 
                     <div class="tab-pane show" id="tab-animated1-apoderado" role="tabpanel">
                         <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
-                        <form class="form-inline">   
+                        <div class="form-inline">   
                             @csrf      
                             <div class="mx-auto">
                                 <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
@@ -137,16 +141,15 @@ PATRICIA
                                     <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
                                     <button type="submit" class="btn btn-info" id="btn_buscarAJAX_AP" style="width: 80px">BUSCAR</button>
                                 </div>
-
                                 
                                 <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
                                 <input type="hidden" id="auxIdApoderado" value="">  
                                 <div class="load" style="display: none">cargando....</div>
                             </div>                  
                            
-                        </form>
+                        </div>
                         <br><br>    
-                        <form class="needs-validation " novalidate="" >
+                        <div class="needs-validation " novalidate="" >
                             @csrf 
                             <div class="form-row">
                                 <div class="col-md-3 mb-4 mx-auto ">
@@ -202,12 +205,11 @@ PATRICIA
                             <hr style="margin-top:1em">
                             <div class="text-center ">
                                 <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">LIMPIAR</button>
-                                <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
-                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado">REGISTRAR</button>
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" data-toggle="modal" data-target="#RegApoderado">REGISTRAR</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                    
+                        <!-- REGISTRO DE MATRICULA --> 
                     <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
                         <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
                         <div class="row">
@@ -320,83 +322,103 @@ PATRICIA
         </div>
         
         <!--*************************************FIN_Formulario*****************************************-->
-
-        
+       
 @endsection
 
 @section('modal')
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal Registro de Matricula -->
+<div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+        <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+            </button>
         </div>
         <div class="modal-body">
-            ¿Desea registrar Matrícula?
+            ¿Seguro que desea registrar matrícula?
         </div>
         <div class="modal-footer">
-          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-           <button type="button" class="btn btn-primary" id="btn_registrarAjax"  >Registrar</button>
-          <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
-          
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">NO</button>
-
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            <a href="{{url('/matricula')}}">
+            <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
+            </a>
+            <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-@endsection
+</div>
 
+<!---REGISTRAR ALUMNO----->
+<div class="modal fade" id="RegAlumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Seguro que desea registrar alumno?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
+            <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+            
+            <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!---REGISTRAR APODERADO   ----->
+<div class="modal fade" id="RegApoderado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Seguro que desea registrar apoderado?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalApoderado">Registrar</button> 
+            
+            <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+        </div>
+        </div>
+    </div>
+</div>
+@endsection
 
 @section('js')
 <!--<script type="text/javascript" src="./assets/scripts/main.js"></script></body>-->
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
+
+
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+
 <script src="{{asset('js/app.js')}}"></script>
 
-    <script>
-        function confirmationM() 
-        {
-            if(confirm("Seguro que desea registrar Matrícula?")){
-                registrarAJAX();
-                LimpiarFormularioALU_dni02();
-                LimpiarFormularioApoderado_dni();
-                MontoMatricula();
-                tabla(null);
-
-
-
-                return true;
-                
-            }else{
-                return false;
-            }
-        }
-
-        $('#btn_registrarAjax').click(function () {  
-            confirmationM();
-        });
-
-        function confirmationC() 
-        {
-            if(confirm("Seguro que desea cancelar el Proceso?")){
-                
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        $('#btnCancelar').click(function () {  
-            confirmationC();
-        });
-
+<script>
         function soloLetras(e){
+
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
             letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
@@ -414,7 +436,7 @@ PATRICIA
                 return false;
             }
         }
-
+    
         function soloNumeros(e){
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
@@ -454,20 +476,39 @@ PATRICIA
             }
         }
 
-    </script>
-    <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
-    <!--Listado de grupos-->
-    <script>
-        
+    $(document).ready(function() {
         var arrayCursosMatriculados = [];
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");
         var mensualidadGeneral = 0.00;
         var auxIdGrupo = 0 ;
         var auxMonto = 60.00;
+        var edadGlobal = 0;
 
         var numero = document.getElementById('numero');
 
+        $('#modalMatricula').click(function () {  
+
+            if (edadGlobal < 18) {
+                alert('Debes llenar datos del apoderado');
+            } else {
+                
+            }
+                registrarAJAX();
+                LimpiarFormularioALU_dni02();
+                LimpiarFormularioApoderado_dni();
+                MontoMatricula();
+        });
+
+        $('#modalAlumno').click(function () {  
+            registrar_Alumno();
+            edadAlumno();
+        });
+
+        $('#modalApoderado').click(function(){
+            registrar_Apoderado();
+        });
+        
         //--------------Tablas---------------------------------
 
         function tabla(auxdeni) {
@@ -503,19 +544,12 @@ PATRICIA
                                     if(response.datosG[j].idCurso ==  response.datosGND[p].idCurso){
                                         estadop = 1;
                                     }
-
-                                    /*if(response.datosG[j].vacante < 1){
-                                        estadop = 1;
-                                    }*/
                                 }
-                                /*if(response.datosG[j].vacante == 0){
-                                        estadop = 1;
-                                }*/
                             }
                         }
                         if (estadop==0) {
 
-                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+                        tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
@@ -533,7 +567,7 @@ PATRICIA
                                     }
                                 }
                             tabla+='</select></td>'
-                                +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
+                                +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
                             }
                     }
                     $('#tbody').html(tabla);
@@ -582,7 +616,9 @@ PATRICIA
 
                         tabla01+='<tr><td>'+(j+1)+'°'+'</td>'
                         +'<td>'+auxMonto+'</td>'
-                        +'<td>'+"fecha: "+e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate() +'</td></tr>'      
+                       // +'<td>'+e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate() +'</td></tr>'    
+                        +'<td>'+e.getDate() +"-"+ (e.getMonth()+1) +"-"+ e.getFullYear() +'</td></tr>'      
+
                     }
                    
                     $('#tbody02').html(tabla01);
@@ -1239,21 +1275,24 @@ PATRICIA
 
                         $('#cboGeneroAl').attr('disabled',true);
                         var option = $('#cboGeneroAl option');
+
                         for (var i=0;i < option.length ;i++) {
                             var ban = (option.eq(i).val() == alu.genero)?true:false;
                             option.eq(i).attr('selected',ban);
                         }
+
                         $('#txtFechaNaAl').val(alu.feNacimiento);
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         
+                        edadAlumno(alu.feNacimiento);
                         $('#btnLimpiarAlumno').attr('disabled',false);
 
                         $('#btn_registrarAjax').attr('disabled',false);
                         $('#btnGuardarTablaAjax').attr('disabled',false);
                         $('#btnCancelar').attr('disabled',false);
 
-                        tabla(alu.dni);
                         bloquearMatricula();
+                        tabla(alu.dni);
                     }else{
                         
                         if(response.cod == 100){
@@ -1329,7 +1368,7 @@ PATRICIA
             $('#txtCelularAl').attr('disabled',false);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',false);
-            //$('#cboGeneroAl').val('');
+            //$('#cboGeneroAl').val('-Seleccione-');
             $('#cboGeneroAl').attr('disabled',false);
         }
 
@@ -1844,10 +1883,7 @@ PATRICIA
        
         }
 
-       /* $('#btn_registrarAjax').click(function () { 
-            registrarAJAX();
-        })*/
-
+        /*Registrar*/
         function registrar_Alumno() {
             //Datos de Alumno auxIdApoderado-auxIdAl
             
@@ -1862,7 +1898,8 @@ PATRICIA
             var txtFechaNaAl = $('#txtFechaNaAl').val();
 
             var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
-            
+            //alert(cboGeneroAl);
+           // edadAlumno(('#txtFechaNaAl'));
 
             $.ajax({
                 type: "post",
@@ -1924,8 +1961,9 @@ PATRICIA
                         $('#btn_registrarAjax').attr('disabled',false);
                         $('#btnGuardarTablaAjax').attr('disabled',false);
                         $('#btnCancelar').attr('disabled',false);
-
-                        tabla(alu.dni);
+                        //alert(alu.feNacimiento);
+                        //edadAlumno(alu.feNacimiento);
+                        //tabla(alu.dni);
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -1982,10 +2020,6 @@ PATRICIA
             });
         }
 
-        $('#btn_guardar_Alumno').click(function () { 
-            registrar_Alumno();
-        })
-
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2001,8 +2035,10 @@ PATRICIA
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('');
-            $('#cboGeneroAl').attr('disabled',true);
+           // $('#cboGeneroAl').val('-Seleccione-');
+           $('#cboGeneroAl').attr('disabled',true);
+
+            $("#cboGeneroAl > option[value=-1]").attr("selected",true);
 
             
         }
@@ -2022,13 +2058,11 @@ PATRICIA
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('');
-            $('#cboGeneroAl').attr('disabled',true);
-
+            //$('#cboGeneroAl').val('-Seleccione-');
+            $("#cboGeneroAl > option[value=-1]").attr("selected",true);
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
         }
-
 
         $('#btnLimpiarAlumno').click(function () { 
             LimpiarFormularioALU_dni();
@@ -2168,18 +2202,36 @@ PATRICIA
 
             });
         }
-        $('#btn_guardar_Apoderado').click(function () { 
-            registrar_Apoderado();
-        })   
-
-        
-        
-       /* $('#btnLimpiarApoderado').click(function () { 
-            LimpiarFormularioApoderado();
+  
+        function edadAlumno(fecha){
+            //var fecha = $('#txtFechaNaAl').val();
             
-            $('#txtDni_AP').val('');
-            $('#txtDni_AP').attr('disabled',false);
-        }) */
-    </script>
+            //fecha.change(function () {
+                if (fecha == '') {
+                    
+                } else {
+                    var fechaNace = new Date(fecha);
+                    var fechaActual = new Date()
+
+                    var mes = fechaActual.getMonth();
+                    var dia = fechaActual.getDate();
+                    var año = fechaActual.getFullYear();
+
+                    fechaActual.setDate(dia);
+                    fechaActual.setMonth(mes);
+                    fechaActual.setFullYear(año);
+
+                    edad = Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365));
+
+                    $('#txtEdad').val(edad);
+
+                    edadGlobal = edad;
+                }
+            //})
+
+            
+        }
+})
+</script>
     
  @endsection 

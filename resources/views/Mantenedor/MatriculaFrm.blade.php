@@ -612,7 +612,7 @@ fggf>jdk>fjkfjkj
             }
         }
 
-    $(document).ready(function() {
+        $(document).ready(function() {
         var arrayCursosMatriculados = [];
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");

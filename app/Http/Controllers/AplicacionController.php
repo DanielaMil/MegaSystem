@@ -517,7 +517,7 @@ class AplicacionController extends Controller
         
         if ($_numcade == 8 && $_numcade01 == 9) {
 
-            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $txtCelularAl == ""){
+            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $txtCelularAl == "" || $cboGeneroAl == -1){
                 // falra llenar campos obligatorios
                 $data = [ 
                     'estado' => false,
