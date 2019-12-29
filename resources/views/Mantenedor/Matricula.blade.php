@@ -37,128 +37,282 @@ PATRICIA
 
                 <div class="tab-content">
                     <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
-                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
-                        <form class="needs-validation" novalidate="">
-                            <div  class="form-inline">
-                                @csrf 
-                                <div class="form-row">
-                                    <div class="col-md-4 mb-4">                                
-                                    </div>
-                                    <div class="col-md-4 mb-4">
-                                        <label class="mr-sm-2">
-                                            DNI
-                                        </label>
-                                        <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
-                                        <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                        <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
-                                        <input type="hidden" id="auxIdAl" >  
-                                        <div class="load" style="display: none">Cargando....</div>
-                                    </div>
-                                    <div class="col-md-4 mb-4">                                        
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                    <label class="mr-sm-2">
-                                        DNI
-                                    </label>
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
+                        <form class="form-inline">   
+                            @csrf      
+                            <div class="mx-auto">
+                                <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                    <label for="examplePassword22" class="mr-sm-2" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DNI</font></font></label>
                                     <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
+                                    <button type="submit" id="btn_buscarAJAX_AL" class="btn btn-info" style="width: 80px">BUSCAR</button>
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
-                                
+
+                                <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">                                 
                                 <input type="hidden" id="auxIdAl" >  
                                 <div class="load" style="display: none">Cargando....</div>
-                            </div>
-                            
+                            </div>                  
+                           
+                        </form>
+                        <br><br>    
+                        <form class="needs-validation " novalidate="" >
+                            @csrf 
                             <div class="form-row">
-                                <div class="col-md-4 mb-4">
-                                    <label for="validationCustom01"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de pila</font></font></label>
-                                    <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required="">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoPaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno</font></font></label>
+                                    <input type="text" class="form-control" placeholder="" value="" required="" name="txtApellidoPa_Al" id="txtApellidoPaAl"  maxlength="20" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-4">
-                                    <label for="validationCustom02"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido</font></font></label>
-                                    <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required="">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoMaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno</font></font></label>
+                                    <input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-4">
-                                    <label for="validationCustomUsername"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de usuario</font></font></label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@ @</font></font></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required="">
-                                        <div class="invalid-feedback">
-                                            Please choose a username.
-                                        </div>
-                                    </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres</font></font></label>                                                                      
+                                    <input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom03"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ciudad</font></font></label>
-                                    <input type="text" class="form-control" id="validationCustom03" placeholder="City" required="">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtFechaNaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha Nacimiento</font></font></label>
+                                    <input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px"  onkeypress="return soloNumeros(event)" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom04"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Estado</font></font></label>
-                                    <input type="text" class="form-control" id="validationCustom04" placeholder="State" required="">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="cboGeneroAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Género</font></font></label>
+                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
+                                        <option selected value="-1">-Seleccione-</option>
+                                        <option value="1">Masculino</option>
+                                        <option value="0">Femenino</option>
+                                    </select>
                                     <div class="invalid-feedback">
                                         Please provide a valid state.
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom05"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Código Postal</font></font></label>
-                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required="">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtCelularAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular</font></font></label>
+                                    <input type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                    <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
                                     <div class="invalid-feedback">
                                         Please provide a valid zip.
                                     </div>
                                 </div>
                             </div>
-                            <hr style="margin-top:0">
-                            <button class="btn btn-primary" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar formulario</font></font></button>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-4 ml-5 ">
+                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+                                    <input name="txtDireccionAl" id="txtDireccionAl" maxlength="40" type="text" autocomplete="off" class="form-control" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <hr style="margin-top:1em">
+                            <div class="text-center ">
+                                <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarAlumno">LIMPIAR</button>
+                                <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno">REGISTRAR</button>
+                            </div>
                         </form>
+                       
+                    </div>
 
-                        <script>
-                            // Example starter JavaScript for disabling form submissions if there are invalid fields
-                            (function() {
-                                'use strict';
-                                window.addEventListener('load', function() {
-                                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                    var forms = document.getElementsByClassName('needs-validation');
-                                    // Loop over them and prevent submission
-                                    var validation = Array.prototype.filter.call(forms, function(form) {
-                                        form.addEventListener('submit', function(event) {
-                                            if (form.checkValidity() === false) {
-                                                event.preventDefault();
-                                                event.stopPropagation();
-                                            }
-                                            form.classList.add('was-validated');
-                                        }, false);
-                                    });
-                                }, false);
-                            })();
-                        </script>
-                    </div>
                     <div class="tab-pane show" id="tab-animated1-apoderado" role="tabpanel">
-                        <p class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem Ipsum es simplemente un texto ficticio de la industria de impresión y composición tipográfica. </font><font style="vertical-align: inherit;">Lorem Ipsum ha sido el texto ficticio estándar de la industria desde el año 1500, cuando una impresora desconocida tomó una galera de tipo y la revolvió para hacer un libro de muestras de tipo. </font><font style="vertical-align: inherit;">Ha sobrevivido no solo cinco siglos, sino también el salto a la composición electrónica, permaneciendo esencialmente sin cambios.</font></font></p>
-                        <div class="d-block text-center card-footer">
-                            <a href="javascript:void(0);" class="btn-wide btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LIMPIAR</font></font></a>
-                            <a href="javascript:void(0);" class="btn-wide btn btn-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRAR</font></font></a>
-                        </div>
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
+                        <form class="form-inline">   
+                            @csrf      
+                            <div class="mx-auto">
+                                <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                    <label for="examplePassword22" class="mr-sm-2" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DNI</font></font></label>
+                                    <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                    <button type="submit" class="btn btn-info" id="btn_buscarAJAX_AP" style="width: 80px">BUSCAR</button>
+                                </div>
+
+                                
+                                <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                <input type="hidden" id="auxIdApoderado" value="">  
+                                <div class="load" style="display: none">cargando....</div>
+                            </div>                  
+                           
+                        </form>
+                        <br><br>    
+                        <form class="needs-validation " novalidate="" >
+                            @csrf 
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidopa_Ap" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno</font></font></label>
+                                    <input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoMa_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno</font></font></label>
+                                    <input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres</font></font></label>                                                                      
+                                    <input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 ml-5 mr-4">
+                                    <label for="txtParentesco_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parentesco</font></font></label>
+                                    <input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3 mb-4 ml-5">
+                                    <label for="txtCelular_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular</font></font></label>
+                                    <input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                    <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid zip.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-4 ml-5 ">
+                                    <label for="txtDireccion_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+                                    <input name="txtDireccion_AP" id="txtDireccion_AP" type="text"  autocomplete="off" class="form-control" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <hr style="margin-top:1em">
+                            <div class="text-center ">
+                                <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">LIMPIAR</button>
+                                <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado">REGISTRAR</button>
+                            </div>
+                        </form>
                     </div>
+                    
                     <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
-                        <p class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se popularizó en la década de 1960 con el lanzamiento de las hojas de Letraset que contienen pasajes de Lorem Ipsum, y más recientemente con software de publicación de escritorio como Aldus PageMaker que incluye versiones de Lorem Ipsum.</font></font></p>
-                        <div class="d-block text-center card-footer">
-                            <a href="javascript:void(0);" class="btn-wide btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LIMPIAR</font></font></a>
-                            <a href="javascript:void(0);" class="btn-wide btn btn-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRAR</font></font></a>
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
+                        <div class="row">
+                            <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
+                            <div class="col-md-9">
+                                <div class="main-card mb-3 card">  
+                                    <div class="table-responsive">
+                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></th>
+                                                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Curso</font></font></th>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Grupo</font></font></th>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Datos de Pago</font></font></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblCursos">
+                                                                                           
+                                            </tbody>
+                                        </table>
+                                    </div>     
+                                </div>
+                            </div>
+    
+                            <div class="col-md-3" style="    padding-left: 0px;">
+                                <div class="main-card mb-3 card" style="padding: 10px;" >
+                                    <h3 class="titleCurso" style="font-size: 20px;
+                                    text-transform: uppercase;
+                                    font-weight: bold;
+                                    text-align: center;"></h3>
+                                    <hr style="margin-top:0">
+                                    <form action="">
+                                        <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
+                                        <label for="form-control-sm" class="" style="font-weight: bold">N° Recibo</label>
+                                        <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm">
+                                        <br>
+                                        <label for="form-control" class="" style="font-weight: bold">Importe</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend"><span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        S/
+                                                    </font>
+                                                </font></span>
+                                            </div>
+                                            <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <hr style="margin-top:0">
+                                    <div class="d-block text-center card-footer">
+                                            {{-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button> --}}
+                                            <button class="btn-wide btn btn-success" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card card">
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-4 mx-auto mt-3">
+                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Recibo</font></font></label>
+                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-4 pr-0 mt-3">
+                                            <label for="txtDniPromotor" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Promotor</font></font></label>
+                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>                                                                                                                                  
+                                        </div>
+                                        <div class="col-md-1 mt-5 pt-0 pl-0">
+                                            <button type="submit" class="btn btn-info" id="btnBuscarPromotor" >Buscar</button>                                                                                  
+                                            <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
+                                        </div>
+                                        <div class="col-md-3 mb-2 mx-auto mt-4">
+                                            <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></label>                                                                      
+                                            <input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" placeholder="Nombre" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                            <div class="invalid-feedback">
+                                                Please choose a username.
+                                            </div>                                    
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>     
+                        </div>
+                        
+                        <hr style="margin-top:1em">
+                        <div class="text-center ">
+                            <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">CANCELAR</button>
+                            <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+                            <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado">REGISTRAR</button>
                         </div>
                     </div>
                 </div>
