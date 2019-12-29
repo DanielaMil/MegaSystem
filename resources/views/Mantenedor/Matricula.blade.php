@@ -262,7 +262,7 @@ PATRICIA
                                                     </font>
                                                 </font></span>
                                             </div>
-                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" autocomplete="off" class="form-control" onkeypress="return montos(event)">
+                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" autocomplete="off" class="form-control" onkeypress="return montos(event)" value="{{route('buscarMontoMatricula')}}">
                                             <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -1152,11 +1152,11 @@ PATRICIA
                             {
                                 idCurso:    e.attr('Key'),
                                 idGrupo:    selectGrupo.eq(index).val(),
-                                importe:    0.00,
+                                importe:    50,
                                 pagoMens:   parseFloat(mensualidadGeneral),
                                 pagoMatr:   parseFloat(matricula.val()),
                                 razon:      "",
-                                descuento:  0.00
+                                descuento:  00
                             }
                           
                             
@@ -1745,6 +1745,7 @@ PATRICIA
                     $('#txtMatricula').attr('disabled',true);
                     $('#txtMensualidad').val(alu02.moTotal);
                     $('#txtMensualidad').attr('disabled',true);
+                    $('#txtImporte').val(alu01.moTotal);
                 },
                 error:function (error) {  
                 },
