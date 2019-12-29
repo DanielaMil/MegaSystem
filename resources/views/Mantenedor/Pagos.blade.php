@@ -65,18 +65,39 @@
                         <select name="select" id="opciones" class="form-control">
                         </select>
                         <label for="examplePassword" class="">Pago</label>
-                        <input name="text" id="txtPago" type="text" class="form-control" placeholder="Pago">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend"><span class="input-group-text">S/</span>
+                            </div>
+                            <input placeholder="00" step="1" id="txtPago" type="number" maxlength="4" min="0" class="form-control">
+                            <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                         <label for="examplePassword" class="">Descuento</label>
-                        <input name="text" id="txtDescuento" type="text" class="form-control" placeholder="Descuento">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend"><span class="input-group-text">S/</span>
+                            </div>
+                            <input placeholder="00" step="1" id="txtDescuento" type="number" maxlength="4" min="0" class="form-control">
+                            <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
                         <input name="text" id="txtNuroRecibo" type="text" class="form-control">
                         <label for="examplePassword" class="">Costo Total</label>
-                        <input name="text" id="txtMonto" type="text" class="form-control" placeholder="0">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend"><span class="input-group-text">S/</span>
+                            </div>
+                            <input placeholder="00" step="1" id="txtMonto" type="number" maxlength="4" min="0" class="form-control">
+                            <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <label>Observacion</label>
+                        <label>Observación</label>
                         <textarea name="text" id="txtObservacion" class="form-control"></textarea>
                 </div>
             </div>
@@ -225,7 +246,7 @@
                     },
                     success: function (response) {
                         if(response.estado == true){
-                            toastr["success"]("Alumno Encontrado", "Éxito!")
+                            toastr["success"]("Alumno encontrado", "Éxito!")
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": true,
@@ -249,25 +270,25 @@
                             var html = '';
                             for (var i = 0; i < response.datos.length; i++) {
                                 html = html + '<tr>'
-                                    +'<th scope="row">'+ (i+1) +'</th>'
-                                    +'<td>' + response.datos[i].nombre + '</td>'
-                                    +'<td>' + response.datos[i].descripcion + '</td>'
-                                    +'<td><button type="button" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-pagos-modal-lg" class="btn btn-primary pagosCuotas"><i class="metismenu-icon pe-7s-cash"></i>'
-                                    +'</button>'
-                                    +'</td>'
-                                    +'<td>'
-                                    +'<button type="button" class="btn btnRegistrarIngreso btn-primary" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-example-modal-md">'
-                                    +'<i class="metismenu-icon pe-7s-graph1"></i>'
-                                    +'</button>'
-                                    +'</td>'
-                                    +'</tr>'
+                                +'<th scope="row">'+ (i+1) +'</th>'
+                                +'<td>' + response.datos[i].nombre + '</td>'
+                                +'<td>' + response.datos[i].descripcion + '</td>'
+                                +'<td><button type="button" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-pagos-modal-lg" class="btn btn-primary pagosCuotas"><i class="metismenu-icon pe-7s-cash"></i>'
+                                +'</button>'
+                                +'</td>'
+                                +'<td>'
+                                +'<button type="button" class="btn btnRegistrarIngreso btn-primary" value="'+response.datos[i].idMatricula+'" data-toggle="modal" data-target=".bd-example-modal-md">'
+                                +'<i class="metismenu-icon pe-7s-graph1"></i>'
+                                +'</button>'
+                                +'</td>'
+                                +'</tr>'
                             }   
                             $('#tbCursos').html(html);
                             obtenerMatricula();
                             limpiarModalIngreso();
                             ListarCursoXMatricula();
                         }else{
-                            toastr["error"]("ALumno no Encontrado", "Error!")
+                            toastr["error"]("ALumno no encontrado", "Error")
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": true,
@@ -292,7 +313,7 @@
                         $('.load').css({display:'none'});
                     },
                     error:function (error) {  
-                        toastr["warning"]("Algo salió mal, por favor consulte con el Administrador.", "Alerta!")
+                        toastr["warning"]("Algo salió mal, por favor consulte con el administrador.", "Alerta!")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -406,7 +427,7 @@
                         $('.modal-backdrop').removeClass('show');
                         $('.modal-backdrop').removeClass('fade');
                         $('.modal-backdrop').removeClass('modal-backdrop');
-                        toastr["success"]("Se Registró el Ingreso con éxito.", "Éxito!");
+                        toastr["success"]("Se registró el ingreso con éxito.", "Éxito!");
                         toastr.options = {
                         "closeButton": false,   
                         "debug": true,
@@ -429,7 +450,7 @@
                         console.log(response);
                         modal = false;
                         //alert('Error, No puedes hacerlo');
-                        toastr["error"]("Error,Numero de documento Duplicado ", "Error!");
+                        toastr["error"]("Error,número de documento duplicado ", "Error");
                         toastr.options = {
                         "closeButton": false,   
                         "debug": true,
@@ -494,7 +515,7 @@
                         alert('se Registro el Pago con éxito');
                         cerrarModal();
                     },error:function (error) {  
-                        toastr["error"]("No se puede repetir el Numero de Recibo", "Error!")
+                        toastr["error"]("No se puede repetir el número de recibo", "Error")
                         toastr.options = {
                         "closeButton": false,   
                         "debug": true,
@@ -540,7 +561,7 @@
                     pago=0;
                     $('#txtPago').val('0');
                     band = false;
-                    toastr["error"]("Por Favor Ingrese el Pago.", "Error")
+                    toastr["error"]("Por favor ingrese el pago", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -560,7 +581,7 @@
                         }
                 }
                 if(recibo=='' && band == true){
-                    toastr["error"]("Se requiere de Numero de Recibo Para concretar el Pago.", "Error")
+                    toastr["error"]("Se requiere de número de recibo para concretar el pago", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -581,7 +602,7 @@
                     aux1++;
                 }
                 if (monto == 0){
-                    toastr["error"]("Por Favor Ingrese el Monto.", "Error")
+                    toastr["error"]("Por favor ingrese el monto", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -606,7 +627,7 @@
                     
                     }else{
                         monto = 0;
-                        toastr["error"]("Por Favor Ingrese el Monto.", "Error")
+                        toastr["error"]("Por favor ingrese el monto", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -631,7 +652,7 @@
 
                 }else{
                     descuento=0;
-                    toastr["error"]("Por Favor Ingrese el Descuento.", "Error")
+                    toastr["error"]("Por favor ingrese el descuento.", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -659,7 +680,8 @@
                 if(parseFloat(pago) <= aux){
                     
                 }else{
-                    toastr["error"]("El Pago no puede ser mayor que el monto restando el descuento.", "Error")
+                    //error mensaje .-.
+                    toastr["error"]("El pago no puede ser mayor que "+ aux, "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -679,12 +701,38 @@
                         }
                     aux1++;
                 }
+                
+                var suma = parseInt(pago) + parseInt(descuento);
+                if (parseFloat(monto) == suma ){
+                    
+                }else{
+                    aux1++;
+                    toastr["error"]("Todo se paga en una sola cuota", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                }
                 if(parseFloat(descuento) <= parseFloat(monto)){
                     
                   //  alert(descuento + 'y ' + monto);
                     }else{
                         //alert(descuento + 'y ' + monto);
-                    toastr["error"]("El Descuento no puede ser mayor  que el monto.", "Error")
+                        //mostarle el monto
+                    toastr["error"]("El descuento no puede ser mayor que " + monto, "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -725,7 +773,7 @@
                     var nada = '';
                     $('#tbCursos').html(nada);
                     $('#nombreCompleto').val(''); 
-                    toastr["error"]("DNI contiene 8 caracteres" , "Error!")
+                    toastr["error"]("DNI contiene 8 caracteres" , "Error")
                     toastr.options = {
                         "closeButton": false,
                         "debug": true,
@@ -882,7 +930,7 @@
                                 listarCuotas(idMatricula);
                                 $('#btnRegistrarPago').attr('disabled',true)
                             },error:function (error) {  
-                        toastr["error"]("No se puede repetir el Numero de Recibo", "Error!")
+                        toastr["error"]("No se puede repetir el número de recibo", "Error")
                         toastr.options = {
                         "closeButton": false,   
                         "debug": true,
