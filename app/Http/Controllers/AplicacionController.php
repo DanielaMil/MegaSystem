@@ -21,13 +21,13 @@ class AplicacionController extends Controller
     {
         return view('Mantenedor/Registrar');
     }*/
-    //*********************Matricula*******************************/
+    //*********************Matricula********************************/
     public function Matricula2(REQUEST $request)
     {
 
         return view('Mantenedor.Matricula');
     }
-    
+
     public function Matricula(REQUEST $request)
     {
 
