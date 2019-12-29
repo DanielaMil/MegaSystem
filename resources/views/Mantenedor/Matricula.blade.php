@@ -616,8 +616,6 @@ PATRICIA
                         }
                         if (estadop==0) {
                           
-
-
                             
                         //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
                             tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
@@ -641,6 +639,7 @@ PATRICIA
                                 +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
                             }
                     }
+                    
                     $('#tblCursos').html(tabla);
                     SeleccionarCuros();
                     SeleccionarGrupo();
