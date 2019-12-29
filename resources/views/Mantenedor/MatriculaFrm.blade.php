@@ -39,9 +39,9 @@ fggf>jdk>fjkfjkj
                     <div class="tab-content">
                         <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
                             <div class="card-body">
-                                <!--<h5 class="card-title">
+                                <h5 class="card-title">
                                     Ingresar Datos
-                                </h5>-->
+                                </h5>
                                 <div>
                                     <!--**********Datos de Alumnos*********<br>****-->
                                     <div class="card-body mx-auto style=width: 50px" > 
@@ -103,6 +103,12 @@ fggf>jdk>fjkfjkj
                                                     <option value="0">Femenino</option>
                                                 </select>
                                             </div>
+                                            <div class="position-relative form-group"><label for="form-control" class="">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Edad</font>
+                                                </font>
+                                                </label><input name="txtEdad" id="txtEdad" type="text"  class="form-control" style="width: 80px" >
+                                            </div>
                                         </div>
                                         <div class="column m-3" style="width: 18em;">
                                             <div class="position-relative form-group">
@@ -142,9 +148,9 @@ fggf>jdk>fjkfjkj
                         </div>
                         <div class="tab-pane show" id="tab-animated1-apoderado" role="tabpanel">
                             <div class="card-body">
-                                <!--<h5 class="card-title">
+                                <h5 class="card-title">
                                     Ingresar Datos
-                                </h5>-->
+                                </h5>
                                 <div>
                                     <!--**********Datos de Apoderado*************-->
                                         <div class="card-body mx-auto style=width: 50px" > 
@@ -245,11 +251,11 @@ fggf>jdk>fjkfjkj
                         </div>
                         <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
                             <div class="card-body">
-                                <!--<h5 class="card-title">
+                                <h5 class="card-title">
                                     <font style="vertical-align: inherit;">
                                         <font style="vertical-align: inherit;">Ingresar Datos</font>
                                     </font>
-                                </h5>-->
+                                </h5>
                                 <div>
                                     <!--**************************************Datos de Matricula***************************************************0.00-->
                                     <div class="row m-3 ">
@@ -282,7 +288,7 @@ fggf>jdk>fjkfjkj
                                                             </tbody>
                                                             <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
                                                         </table>
-
+                                                    <br><br>
                                                         <div class="col-md-18" style="    padding-left: 0px;">
                                                             <div class="main-card mb-3 card" style="padding: 10px;" >
                                                                 <div class="row m-7 ">
@@ -456,81 +462,81 @@ fggf>jdk>fjkfjkj
 @endsection
 
 @section('modal')
-  <!-- Modal Registro de Matricula -->
-  <div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            ¿Seguro que desea registrar matrícula?
-        </div>
-        <div class="modal-footer">
-          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-          <a href="{{url('/matricula')}}">
-            <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
-          </a>
-           <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-        </div>
-      </div>
+<!-- Modal Registro de Matricula -->
+<div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-  </div>
+    <div class="modal-body">
+        ¿Seguro que desea registrar matrícula?
+    </div>
+    <div class="modal-footer">
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+        <a href="{{url('/matricula')}}">
+        <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
+        </a>
+        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+    </div>
+    </div>
+</div>
+</div>
 
 <!---REGISTRAR ALUMNO----->
 <div class="modal fade" id="RegAlumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            ¿Seguro que desea registrar alumno?
-        </div>
-        <div class="modal-footer">
-          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-          
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
-            <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
-          
-           <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-        </div>
-      </div>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+    <div class="modal-body">
+        ¿Seguro que desea registrar alumno?
+    </div>
+    <div class="modal-footer">
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+        
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
+        <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+        
+        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+    </div>
+    </div>
+</div>
 </div>
 
 <!---REGISTRAR APODERADO   ----->
 <div class="modal fade" id="RegApoderado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            ¿Seguro que desea registrar apoderado?
-        </div>
-        <div class="modal-footer">
-          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-          
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalApoderado">Registrar</button> 
-          
-            <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
-          
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-        </div>
-      </div>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+    <div class="modal-body">
+        ¿Seguro que desea registrar apoderado?
+    </div>
+    <div class="modal-footer">
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+        
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalApoderado">Registrar</button> 
+        
+        <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+    </div>
+    </div>
+</div>
 </div>
 
 @endsection
@@ -547,7 +553,8 @@ fggf>jdk>fjkfjkj
 <script src="{{asset('js/app.js')}}"></script>
 
 <script>
-    function soloLetras(e){
+        function soloLetras(e){
+
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
             letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
@@ -565,7 +572,7 @@ fggf>jdk>fjkfjkj
                 return false;
             }
         }
-
+    
         function soloNumeros(e){
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
@@ -606,23 +613,23 @@ fggf>jdk>fjkfjkj
         }
 
     $(document).ready(function() {
-        /*function confirmationM() 
-        {
-            if(confirm("Seguro que desea registrar Matrícula?")){
-                registrarAJAX();
-                LimpiarFormularioALU_dni02();
-                LimpiarFormularioApoderado_dni();
-                MontoMatricula();
-                //tabla(null);
+        var arrayCursosMatriculados = [];
+        var UbicacionPago = -1;
+        var resultado = document.getElementById("info");
+        var mensualidadGeneral = 0.00;
+        var auxIdGrupo = 0 ;
+        var auxMonto = 60.00;
+        var edadGlobal = 0;
 
-                return true;
-                
-            }else{
-                return false;
-            }
-        }*/
+        var numero = document.getElementById('numero');
 
         $('#modalMatricula').click(function () {  
+
+            if (edadGlobal < 18) {
+                alert('Debes llenar datos del apoderado');
+            } else {
+                
+            }
                 registrarAJAX();
                 LimpiarFormularioALU_dni02();
                 LimpiarFormularioApoderado_dni();
@@ -637,19 +644,7 @@ fggf>jdk>fjkfjkj
         $('#modalApoderado').click(function(){
             registrar_Apoderado();
         });
-        /*$('#btn_registrarAjax').click(function () {  
-            confirmationM();
-        });*/
         
-        var arrayCursosMatriculados = [];
-        var UbicacionPago = -1;
-        var resultado = document.getElementById("info");
-        var mensualidadGeneral = 0.00;
-        var auxIdGrupo = 0 ;
-        var auxMonto = 60.00;
-
-        var numero = document.getElementById('numero');
-
         //--------------Tablas---------------------------------
 
         function tabla(auxdeni) {
@@ -685,19 +680,12 @@ fggf>jdk>fjkfjkj
                                     if(response.datosG[j].idCurso ==  response.datosGND[p].idCurso){
                                         estadop = 1;
                                     }
-
-                                    /*if(response.datosG[j].vacante < 1){
-                                        estadop = 1;
-                                    }*/
                                 }
-                                /*if(response.datosG[j].vacante == 0){
-                                        estadop = 1;
-                                }*/
                             }
                         }
                         if (estadop==0) {
 
-                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+                        tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
@@ -1430,14 +1418,15 @@ fggf>jdk>fjkfjkj
                         $('#txtFechaNaAl').val(alu.feNacimiento);
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         
+                        edadAlumno(alu.feNacimiento);
                         $('#btnLimpiarAlumno').attr('disabled',false);
 
                         $('#btn_registrarAjax').attr('disabled',false);
                         $('#btnGuardarTablaAjax').attr('disabled',false);
                         $('#btnCancelar').attr('disabled',false);
 
-                        tabla(alu.dni);
                         bloquearMatricula();
+                        tabla(alu.dni);
                     }else{
                         
                         if(response.cod == 100){
@@ -2028,10 +2017,7 @@ fggf>jdk>fjkfjkj
        
         }
 
-       /* $('#btn_registrarAjax').click(function () { 
-            registrarAJAX();
-        })*/
-
+        /*Registrar*/
         function registrar_Alumno() {
             //Datos de Alumno auxIdApoderado-auxIdAl
             
@@ -2046,7 +2032,8 @@ fggf>jdk>fjkfjkj
             var txtFechaNaAl = $('#txtFechaNaAl').val();
 
             var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
-            
+         //   alert(txtFechaNaAl);
+            edadAlumno(('#txtFechaNaAl'));
 
             $.ajax({
                 type: "post",
@@ -2108,8 +2095,9 @@ fggf>jdk>fjkfjkj
                         $('#btn_registrarAjax').attr('disabled',false);
                         $('#btnGuardarTablaAjax').attr('disabled',false);
                         $('#btnCancelar').attr('disabled',false);
-
-                        tabla(alu.dni);
+                        //alert(alu.feNacimiento);
+                        //edadAlumno(alu.feNacimiento);
+                        //tabla(alu.dni);
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -2166,11 +2154,6 @@ fggf>jdk>fjkfjkj
             });
         }
 
-       /* $('#btn_guardar_Alumno').click(function () { 
-            registrar_Alumno();
-            edadAlumno();
-        })*/
-
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2213,7 +2196,6 @@ fggf>jdk>fjkfjkj
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
         }
-
 
         $('#btnLimpiarAlumno').click(function () { 
             LimpiarFormularioALU_dni();
@@ -2353,70 +2335,38 @@ fggf>jdk>fjkfjkj
 
             });
         }
-       /* $('#btn_guardar_Apoderado').click(function () { 
-            registrar_Apoderado();
-        })   */
   
-        function edadAlumno(){
-            var fecha = $('#txtFechaNaAl').val();
+        function edadAlumno(fecha){
+            //var fecha = $('#txtFechaNaAl').val();
             
+            //fecha.change(function () {
+                if (fecha == '') {
+                    
+                } else {
+                    var fechaNace = new Date(fecha);
+                    var fechaActual = new Date()
+
+                    var mes = fechaActual.getMonth();
+                    var dia = fechaActual.getDate();
+                    var año = fechaActual.getFullYear();
+
+                    fechaActual.setDate(dia);
+                    fechaActual.setMonth(mes);
+                    fechaActual.setFullYear(año);
+
+                    edad = Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365));
+
+                    $('#txtEdad').val(edad);
+
+                    edadGlobal = edad;
+                }
+            //})
+
             
-
-            var fechaNace = new Date(fecha);
-            var fechaActual = new Date()
-
-            var mes = fechaActual.getMonth();
-            var dia = fechaActual.getDate();
-            var año = fechaActual.getFullYear();
-
-            fechaActual.setDate(dia);
-            fechaActual.setMonth(mes);
-            fechaActual.setFullYear(año);
-
-            edad = Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365));
-
-            if (edad < 18) {
-                alert('Alumno menor de edad(Llenar apoderado)');
-            }
         }
 
-        /*function confirmationA() 
-        {
-            if(confirm("Seguro que desea registrar alumno?")){
-                registrar_Alumno();
-                edadAlumno();
-                return true;
-                
-            }else{
-                return false;
-            }
-        }
+        //edadAlumno($('#txtFechaNaAl').val());
 
-        $('#btn_guardar_Alumno').click(function () {  
-            confirmationA();
-        });
-        
-        function confirmationAP() 
-        {
-            if(confirm("Seguro que desea registrar apoderado?")){
-                registrar_Apoderado();
-                return true;
-                
-            }else{
-                return false;
-            }
-        }
-
-        $('#btn_guardar_Apoderado').click(function () {  
-            confirmationAP();
-        });
-*/
-       /* $('#btnLimpiarApoderado').click(function () { 
-            LimpiarFormularioApoderado();
-            
-            $('#txtDni_AP').val('');
-            $('#txtDni_AP').attr('disabled',false);
-        }) */
 })
 </script>
     
