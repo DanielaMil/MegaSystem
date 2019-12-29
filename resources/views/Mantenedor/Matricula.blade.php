@@ -245,13 +245,12 @@ PATRICIA
                                     <form action="">
                                         <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
 
-                                        <div class="form-inline form-control-sm">
+                                        <div class="form-inline form-control-sm mb-3" >
                                             <label>
-                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MATRÍCULA : </font>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MATRÍCULA : <font style="color:lightseagreen">S/. </font></font>
                                             </label>
-                                            <label id="txtMatricula" style="font-weight: bold">                                  
-                                            </label>
-                                            <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
+                                            <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em; border: 0; background-color: #fff; font-weight: bold; color:lightseagreen" >
+                                            <input type="hidden" id="urlAJAX_montoMatricula" style="width: 4em; border: 0;" value="{{route('buscarMontoMatricula')}}">
                                         </div>
 
                                         <label for="form-control" class="" style="font-weight: bold">Importe</label>
@@ -276,10 +275,10 @@ PATRICIA
                                             </div>
                                         </div>    
                                         <br>
-                                        <div class="form-inline form-control-sm">
+                                        <div class="form-inline form-control-sm mb-3">
                                             <label>
-                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MENSUALIDAD : </font>
-                                                <label class="montoMensualidad" id="txtMensualidad"  style="font-weight: bold; color:#3f6ad8; text-align: center;"> mes</label>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MENSUALIDAD : <font style="color:lightseagreen">S/. </font></font>
+                                                <input name="txt" id="txtMensualidad" class="form-control" type="text" style="width: 4em; border: 0; background-color: #fff; font-weight: bold; color:lightseagreen" >   
                                             </label>
                                             <h3 class="titleConcepto" style="font-size: 20px;
                                                     text-transform: uppercase;
