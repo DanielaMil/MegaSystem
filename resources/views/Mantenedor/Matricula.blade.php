@@ -639,7 +639,7 @@ PATRICIA
                                 +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
                             }
                     }
-                    
+
                     $('#tblCursos').html(tabla);
                     SeleccionarCuros();
                     SeleccionarGrupo();
@@ -1151,14 +1151,13 @@ PATRICIA
                             {
                                 idCurso:    e.attr('Key'),
                                 idGrupo:    selectGrupo.eq(index).val(),
-                                importe:    0.00,
+                                importe:    50.00,
                                 pagoMens:   parseFloat(mensualidadGeneral),
                                 pagoMatr:   parseFloat(matricula.val()),
                                 razon:      "",
                                 descuento:  0.00
                             }
                           
-                            
                         );
                         auxIdGrupo = selectGrupo.eq(index).val();
                         //alert(auxIdGrupo);
