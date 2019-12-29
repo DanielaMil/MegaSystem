@@ -110,7 +110,7 @@ PATRICIA
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-4 ml-5 ">
-                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <input name="txtDireccionAl" id="txtDireccionAl" maxlength="50" type="text" autocomplete="off" class="form-control" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
