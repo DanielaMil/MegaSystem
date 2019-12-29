@@ -172,7 +172,7 @@ PATRICIA
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-3 mb-4 ml-5 mr-4">
+                                <div class="col-md-3 mb-4 ml-5 mr-4 pl-0">
                                     <label for="txtParentesco_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parentesco</font></font></label>
                                     <input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                     <div class="invalid-feedback">
@@ -212,7 +212,7 @@ PATRICIA
                         <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
                         <div class="row">
                             <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="main-card mb-3 card">  
                                     <div class="table-responsive">
                                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -232,18 +232,26 @@ PATRICIA
                                 </div>
                             </div>
     
-                            <div class="col-md-3" style="    padding-left: 0px;">
-                                <div class="main-card mb-3 card" style="padding: 10px;" >
+                            <div class="col-md-4" style="    padding-left: 0px;">
+                                <div class="main-card mb-3 card" style="padding: 20px;" >
                                     <h3 class="titleCurso" style="font-size: 20px;
                                     text-transform: uppercase;
                                     font-weight: bold;
                                     text-align: center;"></h3>
                                     <hr style="margin-top:0">
+                                    
                                     <form action="">
                                         <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
-                                        <label for="form-control-sm" class="" style="font-weight: bold">N° Recibo</label>
-                                        <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm">
-                                        <br>
+
+                                        <div class="form-inline form-control-sm">
+                                            <label>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MATRÍCULA : </font>
+                                            </label>
+                                            <label id="txtMatricula" style="font-weight: bold">                                  
+                                            </label>
+                                            <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
+                                        </div>
+
                                         <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend"><span class="input-group-text">
@@ -253,7 +261,8 @@ PATRICIA
                                                     </font>
                                                 </font></span>
                                             </div>
-                                            <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control">
+                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" autocomplete="off" class="form-control" onkeypress="return montos(event)">
+                                            <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <font style="vertical-align: inherit;">
@@ -263,13 +272,67 @@ PATRICIA
                                                     </font>
                                                 </span>
                                             </div>
+                                        </div>    
+                                        <br>
+                                        <div class="form-inline form-control-sm">
+                                            <label>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MENSUALIDAD : </font>
+                                            </label>
+                                            <label id="txtMensualidad"  style="font-weight: bold">                                  
+                                            </label>
                                         </div>
+
+                                        <label for="form-control" class="" style="font-weight: bold">Descuento</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend"><span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        S/
+                                                    </font>
+                                                </font></span>
+                                            </div>
+                                            <input placeholder="00" name="txt" id="txtDescuento" type="number" autocomplete="off" class="form-control" min="0" step="1" maxlength="6" onkeypress="return montos(event)">
+                                            <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
+                                        </div>  
+                                        <br>
+                                        <label for="form-control" class="" style="font-weight: bold">Explicación</label>
+                                        <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí..."></textarea>
+                                        <br>  
+                                        <div class="text-center">
+                                            <button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary " type="button" id="btnGuardarTablaAjax" disabled="true" ><font ><font style="font-weight: bold;">GENERAR CUOTAS</font></font></button>
+                                            <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
+
+                                           
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Mes</font></font></th>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Monto</font></font></th>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Vence</font></font></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody02">
+                                                                                                   
+                                                    </tbody>
+                                                </table>
+                                            </div>                                         
+                                        </div>
+                                        
                                     </form>
-                                    <hr style="margin-top:0">
+                                    
                                     <div class="d-block text-center card-footer">
-                                            {{-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button> --}}
-                                            <button class="btn-wide btn btn-success" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
-                                        </div>
+                                        <button class="btn-wide btn btn-success" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">GUARDAR</font></font></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -279,21 +342,21 @@ PATRICIA
                                 <div class="main-card card">
                                     <div class="form-row">
                                         <div class="col-md-3 mb-4 mx-auto mt-3">
-                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Recibo</font></font></label>
-                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
+                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo</font></font></label>
+                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control" disabled="true">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-md-3 mb-4 pr-0 mt-3">
                                             <label for="txtDniPromotor" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Promotor</font></font></label>
-                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)"  disabled="true">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>                                                                                                                                  
                                         </div>
                                         <div class="col-md-1 mt-5 pt-0 pl-0">
-                                            <button type="submit" class="btn btn-info" id="btnBuscarPromotor" >Buscar</button>                                                                                  
+                                            <button type="submit" class="btn btn-info" id="btnBuscarPromotor"  disabled="true" >Buscar</button>                                                                                  
                                             <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
                                         </div>
                                         <div class="col-md-3 mb-2 mx-auto mt-4">
@@ -310,9 +373,11 @@ PATRICIA
                         
                         <hr style="margin-top:1em">
                         <div class="text-center ">
-                            <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">CANCELAR</button>
-                            <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
-                            <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado">REGISTRAR</button>
+                            <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnCancelar">CANCELAR</button>
+                            <a href="{{url('/matricula')}}">
+                                <button type="button" class="btn btn-success" id="btn_registrarAjax" disabled="true" >REGISTRAR</button>
+                                <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
+                            </a>                           
                         </div>
                     </div>
                 </div>
@@ -336,7 +401,7 @@ PATRICIA
           </button>
         </div>
         <div class="modal-body">
-            ¿Desea registrar Matrícula?
+            ¿Desea registrar matrícula?
         </div>
         <div class="modal-footer">
           <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
@@ -514,8 +579,11 @@ PATRICIA
                             }
                         }
                         if (estadop==0) {
+                          
 
-                        tabla+='<tr><td><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+
+                            
+                        tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
@@ -536,7 +604,7 @@ PATRICIA
                                 +'<td><button class="btnPagarCurso">pago</button></td></tr>';  
                             }
                     }
-                    $('#tbody').html(tabla);
+                    $('#tblCursos').html(tabla);
                     SeleccionarCuros();
                     SeleccionarGrupo();
 
