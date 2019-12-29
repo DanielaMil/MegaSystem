@@ -111,7 +111,7 @@ PATRICIA
                             <div class="form-row">
                                 <div class="col-md-6 mb-4 ml-5 ">
                                     <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
-                                    <input name="txtDireccionAl" id="txtDireccionAl" maxlength="40" type="text" autocomplete="off" class="form-control" disabled="true">
+                                    <input name="txtDireccionAl" id="txtDireccionAl" maxlength="50" type="text" autocomplete="off" class="form-control" disabled="true">
                                     <div class="invalid-feedback">
                                         Please provide a valid city.
                                     </div>
@@ -617,7 +617,8 @@ PATRICIA
 
 
                             
-                        tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
+                        //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
+                            tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
 
                                 +'<td>'+response.datosC[i].nombre+'</td>'
                                 +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'

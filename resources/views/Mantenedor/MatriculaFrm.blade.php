@@ -288,40 +288,7 @@ fggf>jdk>fjkfjkj
                                                             </tbody>
                                                             <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
                                                         </table>
-                                                    <br><br>
-                                                        <div class="col-md-18" style="    padding-left: 0px;">
-                                                            <div class="main-card mb-3 card" style="padding: 10px;" >
-                                                                <div class="row m-7 ">
-                                                                    <div class="column m-3" style="width: 15em;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">N° Recibo*</font>
-                                                                        </font>
-                                                                        <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
-                                                                    </div>
-                                                                    <div class="card-body mx-auto style=width: 50px" > 
-                                                                        <div  class="form-inline">
-                                                                            @csrf 
-                                                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                                                <label class="mr-sm-2">
-                                                                                    <font style="vertical-align: inherit;">
-                                                                                        <font style="vertical-align: inherit;">DNI_Promotor</font>
-                                                                                    </font>
-                                                                                </label>
-                                                                                <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                                            </div>
-                                                                            <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
-                                                                            <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
-                                                                        </div>
-                                                                    </div> 
-                                                                    <div class="column m-3" style="width: 30em;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            <font style="vertical-align: inherit;">Nombre</font>
-                                                                        </font>
-                                                                        <input name="txtNombrePromotor" id="txtNombrePromotor" autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    
                                                     </div>                                                
                                                 </div>
                                             </div>
@@ -424,6 +391,39 @@ fggf>jdk>fjkfjkj
                                                     </div>
                                                     <!--<button type="button" class="btn btn-primary" id="btnVolver" >Volver</button>
                                                     <input type="hidden" id="urlVolver" value="{{route('volverInicio')}}">-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-18" style="    padding-left: 0px;">
+                                        <div class="main-card mb-3 card" style="padding: 10px;" >
+                                            <div class="row m-7 ">
+                                                <div class="column m-3" style="width: 15em;">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">N° Recibo*</font>
+                                                    </font>
+                                                    <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
+                                                </div>
+                                                <div class="card-body mx-auto style=width: 50px" > 
+                                                    <div  class="form-inline">
+                                                        @csrf 
+                                                        <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
+                                                            <label class="mr-sm-2">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">DNI_Promotor</font>
+                                                                </font>
+                                                            </label>
+                                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
+                                                        <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
+                                                    </div>
+                                                </div> 
+                                                <div class="column m-3" style="width: 30em;">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Nombre</font>
+                                                    </font>
+                                                    <input name="txtNombrePromotor" id="txtNombrePromotor" autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
                                                 </div>
                                             </div>
                                         </div>
