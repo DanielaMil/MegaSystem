@@ -1,7 +1,28 @@
 @extends('layouts.app')
 @section('css')
-
+    <script>
+        // Evento que se ejecuta cada vez que se pulsa sobre un checkbox de la tabla
+        $("table input[type=checkbox]").on("click",function() {
+            // si esta seleccionado el checkbox
+            if($(this).is(":checked"))
+            {
+         
+                // añadimos la clase selected
+                $(this).parents("tr").addClass("selected");
+            }else{
+         
+                // quitamos la clase selected
+                $(this).parents("tr").removeClass("selected");
+            }
+        });
+    </script>
+    <script>
+        function marcar(obj) {
+            obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+        }
+    </script>
 @endsection
+
 @section('url')
 PATRICIA
 @endsection
@@ -217,7 +238,7 @@ PATRICIA
                             <div class="col-md-8">
                                 <div class="main-card mb-3 card">  
                                     <div class="table-responsive">
-                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover" >
                                             <thead>
                                                 <tr>
                                                     <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></th>
@@ -614,27 +635,25 @@ PATRICIA
                                 }
                             }
                         }
-                        if (estadop==0) {
-                          
-                            
+                        if (estadop==0) { 
                         //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
-                            tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
+                            tabla+='<tr onclick="marcar(this)"><td><div class="custom-checkbox custom-control"><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
+                            +'<td>'+response.datosC[i].nombre+'</td>'
+                            +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
 
-                                +'<td>'+response.datosC[i].nombre+'</td>'
-                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
-                                for(var j=0;j < response.datosG.length;j++){
-                                    estado=0;
-                                    if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                        for(var p=0;p < response.datosGND.length;p++){
-                                            if(response.datosG[j].idGrupo ==  response.datosGND[p].idGrupo){
-                                                estado = 1;
-                                            }
-                                        }
-                                        if (estado==0) {
-                                            tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'vac:'+response.datosG[j].vacante+'</option>'
+                            for(var j=0;j < response.datosG.length;j++){
+                                estado=0;
+                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                    for(var p=0;p < response.datosGND.length;p++){
+                                        if(response.datosG[j].idGrupo ==  response.datosGND[p].idGrupo){
+                                            estado = 1;
                                         }
                                     }
+                                    if (estado==0) {
+                                        tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'vac:'+response.datosG[j].vacante+'</option>'
+                                    }
                                 }
+                            }
                             tabla+='</select></td>'
                                 +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
                             }
@@ -1151,11 +1170,7 @@ PATRICIA
                             {
                                 idCurso:    e.attr('Key'),
                                 idGrupo:    selectGrupo.eq(index).val(),
-<<<<<<< HEAD
-                                importe:    50.00,
-=======
                                 importe:    50,
->>>>>>> 84f4d8b07338473cc3363924a2a25df1f72263d9
                                 pagoMens:   parseFloat(mensualidadGeneral),
                                 pagoMatr:   parseFloat(matricula.val()),
                                 razon:      "",
@@ -2321,5 +2336,8 @@ PATRICIA
 } );*/
 })
 </script>
+
+
+
     
  @endsection 

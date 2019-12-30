@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('template/architectui-html-free/main.css')}}" rel="stylesheet">
     <link href="{{asset('template/architectui-html-free/toastr.css')}}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body>
