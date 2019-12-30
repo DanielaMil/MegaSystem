@@ -106,10 +106,29 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" >
                     Cancelar
                 </button>
-                <button type="button" id="btnRegistrarModal" data-dismiss="" class="btn btn-primary" >
-                    Registrar
-                </button>
+                <button type="button" class="btn btn-primary" id="btn_registrarAjax" data-toggle="modal" data-target="#RegMatricula">Registrar</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Desea registrar el costo adicional?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRegistrarModal" >SÍ</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">No</button>
+        </div>
         </div>
     </div>
 </div>
@@ -539,7 +558,7 @@
             
             
             function abrirModal(){
-                $('#btnRegistrarModal').attr('data-dismiss','');
+                //$('#btnRegistrarModal').attr('data-dismiss','');
             }
             var aux1=0;
             function validacionTediosa(){
@@ -678,7 +697,7 @@
                 aux = parseFloat( monto - descuento); 
                 //alert(aux);
                 if(parseFloat(pago) <= aux){
-                    
+                        
                 }else{
                     //error mensaje .-.
                     toastr["error"]("El pago no puede ser mayor que "+ aux, "Error")
@@ -756,7 +775,6 @@
             }
             
             $('#btnRegistrarModal').click(function(){
-                //abrirModal();
                 validacionTediosa();
                 if(aux1==0){
                     registrarCuota();
@@ -834,7 +852,7 @@
                     listarCuotas(idMatricula);
                     $('#btnRegistrarPago').attr('disabled',true);
                     $('.titleConcepto').html('');
-                    
+                    $('tr').css('background-color', '');
                  });
             }
             function listarCuotas(idMatricula) {
@@ -864,7 +882,7 @@
                                 }else{
                                     fecha = response.datos[i].feVencimiento
                                 }
-                                html = html + '<tr>'
+                                html = html + '<tr class="'+fecha+'">'
                                     +'<th scope="row">'+ (i+1) +'</th>'
                                     +'<td>' + response.datos[i].descripcion + '</td>'
                                     +'<td class="text-center">' + Number(response.datos[i].monto).toFixed(2) + '</td>'
@@ -872,7 +890,7 @@
                                     +'<td class="text-center">'+ fecha +'</td>'
                                     +'<td class="text-center"><div class="badge '+((response.datos[i].pagado==0)?"badge-danger":"badge-success")+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+((response.datos[i].pagado==0)?"PENDIENTE":"PAGADO")+'</font></font></div></td>'
                                     +'<td class="text-center">'
-                                    +'<button type="button"  class="btn mr-2 mb-2 btn-primary btnPagarCuota "'+((response.datos[i].pagado==0)?"":"disabled")+' saldoDeuda='+response.datos[i].saldo+' descripcion="'+response.datos[i].descripcion+'" value="'+response.datos[i].idCuota+'" >'
+                                        +'<button type="button"  class="btn mr-2 mb-2 btn-primary btnPagarCuota "'+((response.datos[i].pagado==0)?"":"disabled")+' saldoDeuda='+response.datos[i].saldo+' descripcion="'+response.datos[i].descripcion+'" value="'+response.datos[i].idCuota+'" aux="'+fecha+'">'
                                     +'<i class="metismenu-icon pe-7s-graph1"></i>'
                                     +'</button>'
                                     +'</td>'
@@ -899,9 +917,12 @@
                     $('#numbImporte').val(''); 
                     descripConcepto = $(this).attr('descripcion');
                     idcuota = $(this).val();
+                    fecha = $(this).attr('aux');
                     saldoDeuda = $(this).attr('saldoDeuda');
                     $('#btnRegistrarPago').attr('disabled',false);
                     $('.titleConcepto').html(descripConcepto);
+                    $('tr').css('background-color', '');
+                    $('.'+fecha+'').css('background-color', '#FADBD8');
                 });
            }
 
