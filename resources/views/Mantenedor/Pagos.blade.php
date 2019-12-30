@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
-                        <input name="text" id="txtNuroRecibo" type="text" class="form-control">
+                        <input name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="8" >
                         <label for="examplePassword" class="">Costo Total</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
@@ -890,7 +890,7 @@
                                     +'<td class="text-center">'+ fecha +'</td>'
                                     +'<td class="text-center"><div class="badge '+((response.datos[i].pagado==0)?"badge-danger":"badge-success")+'"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'+((response.datos[i].pagado==0)?"PENDIENTE":"PAGADO")+'</font></font></div></td>'
                                     +'<td class="text-center">'
-                                        +'<button type="button"  class="btn mr-2 mb-2 btn-primary btnPagarCuota "'+((response.datos[i].pagado==0)?"":"disabled")+' saldoDeuda='+response.datos[i].saldo+' descripcion="'+response.datos[i].descripcion+'" value="'+response.datos[i].idCuota+'" aux="'+fecha+'">'
+                                        +'<button type="button"  class="btn mr-2 mb-2 btn-primary btnPagarCuota "'+((response.datos[i].pagado==0)?"":"disabled")+' saldoDeuda='+response.datos[i].saldo+' descripcion="'+response.datos[i].descripcion+'" value="'+response.datos[i].idCuota+'" aux="'+fecha+'" debe = "'+response.datos[i].suma+'" pos="'+response.datos[i].pos+'">'
                                     +'<i class="metismenu-icon pe-7s-graph1"></i>'
                                     +'</button>'
                                     +'</td>'
@@ -913,16 +913,56 @@
 
            function formularioPagar() {
                 $('.btnPagarCuota').click(function () {
-                    $('#txtNroRecibo').val(''); 
-                    $('#numbImporte').val(''); 
-                    descripConcepto = $(this).attr('descripcion');
-                    idcuota = $(this).val();
-                    fecha = $(this).attr('aux');
-                    saldoDeuda = $(this).attr('saldoDeuda');
-                    $('#btnRegistrarPago').attr('disabled',false);
-                    $('.titleConcepto').html(descripConcepto);
-                    $('tr').css('background-color', '');
-                    $('.'+fecha+'').css('background-color', '#FADBD8');
+                    debe = 0;
+                    saldoDeuda = 0;
+                    pos = 0;
+                    pos = $(this).attr('pos');
+                    debe = $(this).attr('debe');
+                    if(pos==1){
+                        $('#txtNroRecibo').val(''); 
+                        $('#numbImporte').val(''); 
+                        descripConcepto = $(this).attr('descripcion');
+                        idcuota = $(this).val();
+                        fecha = $(this).attr('aux');
+                        saldoDeuda = $(this).attr('saldoDeuda');
+                        $('#btnRegistrarPago').attr('disabled',false);
+                        $('.titleConcepto').html(descripConcepto);
+                        $('tr').css('background-color', '');
+                        $('.'+fecha+'').css('background-color', '#FADBD8');
+                    }else{
+                        saldoDeuda = $(this).attr('saldoDeuda');
+                        if((parseFloat(debe) <= parseFloat(saldoDeuda))){
+                            $('#txtNroRecibo').val(''); 
+                            $('#numbImporte').val(''); 
+                            descripConcepto = $(this).attr('descripcion');
+                            idcuota = $(this).val();
+                            fecha = $(this).attr('aux');
+                            saldoDeuda = $(this).attr('saldoDeuda');
+                            $('#btnRegistrarPago').attr('disabled',false);
+                            $('.titleConcepto').html(descripConcepto);
+                            $('tr').css('background-color', '');
+                            $('.'+fecha+'').css('background-color', '#FADBD8');
+                        }else{
+                            toastr["error"]("Aún tiene deudas pendientes", "Error")
+                                toastr.options = {
+                                "closeButton": false,   
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                        }
+                    }
                 });
            }
 
@@ -972,7 +1012,24 @@
                     }
                         });
                     }else{
-                        alert('Faltan Datos');
+                        toastr["error"]("Por favor ingrese los datos correspondientes", "Error")
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        } 
                     }
                }
            });
