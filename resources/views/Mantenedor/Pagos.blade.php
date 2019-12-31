@@ -68,25 +68,25 @@
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtPago" type="number" maxlength="4" min="0" class="form-control" onkeypress="return filterFloat(event,this);">
+                            <input placeholder="00" step="1" id="txtPago" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
                             
                         </div>
                         <label for="examplePassword" class="">Descuento</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtDescuento" type="number" maxlength="4" min="0" class="form-control" onkeypress="return filterFloat(event,this);" >
+                            <input placeholder="00" step="1" id="txtDescuento" type="number"  min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
                             
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
-                        <input name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="8" onkeypress="return filterFloat(event,this);" >
+                        <input placeholder="0000014" name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="7" onkeypress="return filterFloat(event,this);" >
                         <label for="examplePassword" class="">Costo Total</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtMonto" type="number" maxlength="4" min="0" class="form-control"onkeypress="return filterFloat(event,this);" >
+                            <input placeholder="00" step="1" id="txtMonto" type="number" min="0" class="form-control"onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
@@ -192,8 +192,8 @@
                                 <hr style="margin-top:0">
                                 <form action="">
                                     <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
-                                    <label for="form-control-sm" class="" style="font-weight: bold">N° Recibo</label>
-                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="8">
+                                    <label for="form-control-sm" class="" style="font-weight: bold">N° de Recibo</label>
+                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="7"  placeholder="0000014">
                                     <br>
                                     <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                     <div class="input-group input-group-sm">
@@ -204,7 +204,7 @@
                                                 </font>
                                             </font></span>
                                         </div>
-                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);">
+                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
                                     </div>
                                 </form>
                                 <hr style="margin-top:0">
@@ -619,7 +619,7 @@ function filter(__val__){
                     pago=0;
                     $('#txtPago').val('0');
                     band = false;
-                    toastr["error"]("Por favor ingrese el pago", "Error")
+                    toastr["error"]("Por favor ingrese el importe", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -638,6 +638,31 @@ function filter(__val__){
                             "hideMethod": "fadeOut"
                         }
                 }
+                var verification = $('#txtNuroRecibo').val();
+                if (verification.length != 7) {
+                    aux1++;
+                    
+                    toastr["error"]("El número recibo es de 8 dígitos", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    
+                }
+                
                 if(recibo=='' && band == true){
                     toastr["error"]("Se requiere de número de recibo para concretar el pago", "Error")
                         toastr.options = {
@@ -853,7 +878,12 @@ function filter(__val__){
             $('#dniAlumno').on('input', function () { 
                 this.value = this.value.replace(/[^0-9]/g,'');
             });
-          
+            $('#txtNroRecibo').on('input', function () { 
+                this.value = this.value.replace(/[^0-9]/g,'');
+            });
+            $('#txtNuroRecibo').on('input', function () { 
+                this.value = this.value.replace(/[^0-9]/g,'');
+            });
             
             llenarCombo();
             function obtenerMatricula(){
@@ -1070,8 +1100,10 @@ function filter(__val__){
                                 }
                }else{
                 //    alert($('#numbImporte').val())
+                valida  = $('#txtNroRecibo').val();
                     if (($('#txtNroRecibo').val() != ''  &&  $('#numbImporte').val() != '')) {
-                        $.ajax({
+                        if(valida.length==7){
+                            $.ajax({
                             type: "post",
                             url: $('#urlAJAXregistrarPago').val(),
                             data: {
@@ -1085,46 +1117,66 @@ function filter(__val__){
                             },
                             success: function (response) {
                                 toastr["success"]("Se registró el pago con éxito.", "Éxito!");
-                        toastr.options = {
-                        "closeButton": false,   
-                        "debug": true,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        }
+                                toastr.options = {
+                                "closeButton": false,   
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                             }
                                 listarCuotas(idMatricula);
                                 $('#btnRegistrarPago').attr('disabled',true)
                             },error:function (error) {  
-                        toastr["error"]("No se puede repetir el número de recibo", "Error")
-                        toastr.options = {
-                        "closeButton": false,   
-                        "debug": true,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        } 
-                    }
+                                toastr["error"]("No se puede repetir el número de recibo", "Error")
+                                toastr.options = {
+                                "closeButton": false,   
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                } 
+                                }
                         });
+                        }else{
+                            toastr["error"]("El número de recibo es de 7 dígitos", "Error")
+                                toastr.options = {
+                                "closeButton": false,   
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                } 
+                        }
                     }else{
                         toastr["error"]("Por favor ingrese los datos correspondientes", "Error")
                         toastr.options = {
