@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('css')
+@section('java')
     <script>
         // Evento que se ejecuta cada vez que se pulsa sobre un checkbox de la tabla
         $("table input[type=checkbox]").on("click",function() {
@@ -17,9 +17,7 @@
         });
     </script>
     <script>
-        function marcar(obj) {
-            obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
-        }
+        
     </script>
 @endsection
 
@@ -621,7 +619,7 @@ PATRICIA
                     var estado ;
                     var estadoc;
                     var estadop;
-
+                    var cont = 0;
                     for(var i=0;i < response.datosC.length;i++){
                         estadoc =0;
                         estadop=0;
@@ -637,7 +635,7 @@ PATRICIA
                         }
                         if (estadop==0) { 
                         //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
-                            tabla+='<tr onclick="marcar(this)"><td><div class="custom-checkbox custom-control"><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
+                            tabla+='<tr class="itemCur"><td><div class="custom-checkbox custom-control"><input   onclick=""  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
                             +'<td>'+response.datosC[i].nombre+'</td>'
                             +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
 
@@ -655,11 +653,14 @@ PATRICIA
                                 }
                             }
                             tabla+='</select></td>'
-                                +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+                                +'<td><button index='+cont+' onclick="marcar()" type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+
+                                cont++;
                             }
                     }
 
                     $('#tblCursos').html(tabla);
+                    marcar()
                     SeleccionarCuros();
                     SeleccionarGrupo();
 
@@ -802,6 +803,36 @@ PATRICIA
 
 
             });
+        }
+
+        function marcar() {  
+            /*$('.checkCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('checked')) {            
+                        $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        $('.itemCur').eq(index).css({background:''});
+                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });*/
+
+            $('.btnPagarCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('click')) {            
+                        $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        $('.itemCur').eq(index).css({background:''});
+                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });          
         }
 
         cantidadDni_AL();
@@ -2109,6 +2140,104 @@ PATRICIA
             });
         }
 
+        function validarAlumno(){
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlAJAX_Guardar_Datos_Alumno,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                       //modal de Mensaje para guardar alumno
+
+
+
+
+                    }else{
+                        tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en datos del alumno", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Alumno').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2321,19 +2450,19 @@ PATRICIA
             
         }
         /*$(document).ready(function() {
-    $('#example').DataTable( {
-        columnDefs: [ {
-            orderable: false,
-            className: 'select-checkbox',
-            targets:   0
-        } ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        order: [[ 1, 'asc' ]]
-    } );
-} );*/
+            $('#example').DataTable( {
+                columnDefs: [ {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets:   0
+                } ],
+                select: {
+                    style:    'os',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+        } );*/
 })
 </script>
 

@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 28/12/2019 20:39:04
+ Date: 31/12/2019 00:14:01
 */
 
 SET NAMES utf8mb4;
@@ -30,9 +30,15 @@ CREATE TABLE `alumno`  (
   `genero` bit(1) NULL DEFAULT NULL,
   `celular` char(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `feNacimiento` date NULL DEFAULT NULL,
-  `direccion` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `direccion` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`idAlumno`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 105 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of alumno
+-- ----------------------------
+INSERT INTO `alumno` VALUES (103, '44444444', 'kjnij', 'lkjlok', 'hkjnjk', b'1', '999999999', '1997-05-02', 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+INSERT INTO `alumno` VALUES (104, '99999999', 'bgvbgb', 'ihjhj', 'jhjhh', b'1', '966666666', '1997-06-02', 'ghgñññññññññññññññññññññññññññññññññññññññññññññññ');
 
 -- ----------------------------
 -- Table structure for apoderado
@@ -155,7 +161,7 @@ CREATE TABLE `grupo`  (
 -- ----------------------------
 -- Records of grupo
 -- ----------------------------
-INSERT INTO `grupo` VALUES (19, 'sab(8:00AM-11:00AM)', 5, 4, 3, 2, 2, '08:00:00.00', '11:00:00.00', 'Sábado', '2019-11-02');
+INSERT INTO `grupo` VALUES (19, 'sab(8:00AM-11:00AM)', 5, 4, 3, 2, 1, '08:00:00.00', '11:00:00.00', 'Sábado', '2019-11-02');
 INSERT INTO `grupo` VALUES (20, 'sab(11:00AM-2:00PM)', 6, 4, 3, 2, 12, '11:00:00.00', '14:00:00.00', 'Sábado', '2019-11-02');
 INSERT INTO `grupo` VALUES (21, 'sab(2:00PM-5:00PM)', 6, 4, 3, 2, 20, '14:00:00.00', '17:00:00.00', 'Sábado', '2019-11-02');
 INSERT INTO `grupo` VALUES (22, 'Dom(8:00AM-11:00AM)', 7, 4, 3, 2, 15, '08:00:00.00', '11:00:00.00', 'Domingo', '2019-11-02');
@@ -325,11 +331,16 @@ DROP PROCEDURE IF EXISTS `listarCuotas`;
 delimiter ;;
 CREATE PROCEDURE `listarCuotas`(IN `_idMatricula` INT(4))
 BEGIN
-	SELECT
-        *
+DECLARE algo INT;
+    DECLARE numero INT;
+    set @algo = 0;
+    set @numero = 0;
+    
+SELECT
+        co.descripcion, c.idCuota, c.monto,  DATE_FORMAT(c.feVencimiento, "%d-%m-%Y") as feVencimiento, c.idConcepto, c.idMatricula, c.saldo, c.pagado, c.raDescuento, c.moDescuento, (@algo := c.saldo + @algo) as suma, (@numero := @numero +1 ) as pos
     FROM cuota c INNER JOIN concepto co ON c.idConcepto = co.idConcepto
     WHERE
-        c.idMatricula = _idMatricula;
+        co.idConcepto > 1 and co.idConcepto < 4 ORDER by c.idCuota ASC;
 END
 ;;
 delimiter ;
@@ -550,14 +561,15 @@ delimiter ;;
 CREATE PROCEDURE `registrarPago`(IN _importe FLOAT, IN _nrecibo VARCHAR(12), IN _idcuota INT)
 BEGIN
 	DECLARE cant INT;
+    Declare MESSAGE_TEXT varchar(200);
 	SET cant = (SELECT COUNT(*) FROM pago p WHERE p.nuRecibo = _nrecibo);
-	IF cant < 0 THEN
-			SELECT 'Recibo Ya Existe';
+	IF cant > 0 THEN
+		signal SQLSTATE '45000'
+       	set MESSAGE_TEXT = 'Error, No puedes hacerlo';
 	ELSE
 		INSERT INTO pago(importe,feEmision,nuRecibo,idCuota) VALUES(_importe,NOW(),_nrecibo,_idcuota);
 		UPDATE cuota c SET c.pagado = 1 WHERE  (SELECT SUM(p.importe) FROM pago p WHERE p.idCuota = _idcuota) >= C.monto and c.idCuota = _idcuota;
 		UPDATE cuota c SET c.saldo = c.saldo - _importe  WHERE  c.idCuota = _idcuota;
-		SELECT 'Correcto';
 	END IF;
 
 	
