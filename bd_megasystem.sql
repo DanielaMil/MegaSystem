@@ -11,7 +11,7 @@
  Target Server Version : 100134
  File Encoding         : 65001
 
- Date: 31/12/2019 00:14:01
+ Date: 31/12/2019 02:36:46
 */
 
 SET NAMES utf8mb4;
@@ -431,8 +431,8 @@ DROP PROCEDURE IF EXISTS `mostrarConcepto`;
 delimiter ;;
 CREATE PROCEDURE `mostrarConcepto`()
   NO SQL 
-SELECT concepto.descripcion, concepto.moTotal, concepto.idConcepto from concepto WHERE concepto.idConcepto <=3
-;
+SELECT concepto.descripcion, concepto.moTotal,
+concepto.idConcepto from concepto WHERE concepto.idConcepto = 1 or concepto.idConcepto = 4 or concepto.idConcepto = 5
 ;;
 delimiter ;
 
