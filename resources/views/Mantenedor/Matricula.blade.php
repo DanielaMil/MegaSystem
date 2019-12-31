@@ -2185,6 +2185,104 @@ PATRICIA
             });
         }
 
+        function validarAlumno(){
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlAJAX_Guardar_Datos_Alumno,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                       //modal de Mensaje para guardar alumno
+
+
+
+
+                    }else{
+                        tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en datos del alumno", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Alumno').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2397,19 +2495,19 @@ PATRICIA
             
         }
         /*$(document).ready(function() {
-    $('#example').DataTable( {
-        columnDefs: [ {
-            orderable: false,
-            className: 'select-checkbox',
-            targets:   0
-        } ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        order: [[ 1, 'asc' ]]
-    } );
-} );*/
+            $('#example').DataTable( {
+                columnDefs: [ {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets:   0
+                } ],
+                select: {
+                    style:    'os',
+                    selector: 'td:first-child'
+                },
+                order: [[ 1, 'asc' ]]
+            } );
+        } );*/
 })
 </script>
 

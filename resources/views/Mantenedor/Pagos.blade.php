@@ -64,7 +64,7 @@
                         <label for="exampleSelect" class="">Concepto</label>
                         <select name="select" id="opciones" class="form-control">
                         </select>
-                        <label for="examplePassword" class="">Pago</label>
+                        <label for="examplePassword" class="">Importe</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
@@ -180,7 +180,7 @@
                                 <form action="">
                                     <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
                                     <label for="form-control-sm" class="" style="font-weight: bold">N° Recibo</label>
-                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm">
+                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="8">
                                     <br>
                                     <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                     <div class="input-group input-group-sm">
@@ -307,7 +307,7 @@
                             limpiarModalIngreso();
                             ListarCursoXMatricula();
                         }else{
-                            toastr["error"]("ALumno no encontrado", "Error")
+                            toastr["error"]("Alumno no encontrado", "Error")
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": true,
@@ -845,7 +845,7 @@
                     validar();
                 });
             }
-
+            
             function ListarCursoXMatricula() {
                 $(".pagosCuotas").click(function () {  
                     idMatricula = $(this).val();
@@ -855,6 +855,7 @@
                     $('tr').css('background-color', '');
                  });
             }
+
             function listarCuotas(idMatricula) {
                 
                     // alert(idMatricula)
@@ -897,6 +898,8 @@
                                     +'</tr>'
                             }   
                             $('#tblCuotas').html(html);
+                            $('#txtNroRecibo').attr('disabled',true);
+                            $('#numbImporte').attr('disabled',true);
                             formularioPagar();
                         }else{
                             var nada = '';
@@ -919,12 +922,15 @@
                     pos = $(this).attr('pos');
                     debe = $(this).attr('debe');
                     if(pos==1){
+                        $('#txtNroRecibo').attr('disabled',false);
+                        $('#numbImporte').attr('disabled',false);
                         $('#txtNroRecibo').val(''); 
                         $('#numbImporte').val(''); 
                         descripConcepto = $(this).attr('descripcion');
                         idcuota = $(this).val();
                         fecha = $(this).attr('aux');
                         saldoDeuda = $(this).attr('saldoDeuda');
+                        $('#numbImporte').val(saldoDeuda); 
                         $('#btnRegistrarPago').attr('disabled',false);
                         $('.titleConcepto').html(descripConcepto);
                         $('tr').css('background-color', '');
@@ -932,12 +938,15 @@
                     }else{
                         saldoDeuda = $(this).attr('saldoDeuda');
                         if((parseFloat(debe) <= parseFloat(saldoDeuda))){
+                            $('#txtNroRecibo').attr('disabled',false);
+                            $('#numbImporte').attr('disabled',false);
                             $('#txtNroRecibo').val(''); 
                             $('#numbImporte').val(''); 
                             descripConcepto = $(this).attr('descripcion');
                             idcuota = $(this).val();
                             fecha = $(this).attr('aux');
                             saldoDeuda = $(this).attr('saldoDeuda');
+                            $('#numbImporte').val(saldoDeuda); 
                             $('#btnRegistrarPago').attr('disabled',false);
                             $('.titleConcepto').html(descripConcepto);
                             $('tr').css('background-color', '');
@@ -965,7 +974,7 @@
                     }
                 });
            }
-
+           
            $('#btnRegistrarPago').click(function () {
 
                if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
@@ -987,7 +996,24 @@
                                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                             },
                             success: function (response) {
-                                //Pago REgistrado con éxito
+                                toastr["success"]("Se registró el pago con éxito.", "Éxito!");
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
                                 listarCuotas(idMatricula);
                                 $('#btnRegistrarPago').attr('disabled',true)
                             },error:function (error) {  
@@ -1047,6 +1073,7 @@
                     banResponsive = 0;
                 }
             });
+
             // ================================
 
     })
