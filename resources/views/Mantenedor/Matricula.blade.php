@@ -363,9 +363,6 @@ PATRICIA
                                         
                                     </form>
                                     
-                                    <div class="d-block text-center card-footer">
-                                        <button class="btn-wide btn btn-success" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">GUARDAR</font></font></button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -666,8 +663,7 @@ PATRICIA
                                 }
                             }
                             tabla+='</select></td>'
-                                +'<td><button nombreCurso="'+response.datosC[i].nombre+'" disabled index='+cont+'  type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
-
+                                +'<td class="text-center"><button type="button" class="btn mr-2 mb-2 btn-primary btnPagarCurso" nombreCurso="'+response.datosC[i].nombre+'" disabled index='+cont+'><i class="metismenu-icon pe-7s-info"></i></button></td></tr>';  
                                 cont++;
                             }
                     }
@@ -827,7 +823,7 @@ PATRICIA
                     $('.titleCurso').html(e.attr('nombrecurso'))
                     if (e.prop('click')) {  
                         $('.itemCur').css({background:''});       
-                        $('.itemCur').eq(index).css({background:'paleturquoise'});
+                        $('.itemCur').eq(index).css({background:'#fadbd8'});
                     }else{            
                         $('.itemCur').eq(index).css({background:''});
                        // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
