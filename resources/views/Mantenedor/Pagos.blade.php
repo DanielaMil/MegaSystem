@@ -103,7 +103,7 @@
             </div>
         </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" >
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="Cancelar2" >
                     Cancelar
                 </button>
                 <button type="button" class="btn btn-primary" id="btn_registrarAjax" data-toggle="modal" data-target="#RegMatricula">Registrar</button>
@@ -875,7 +875,26 @@
                     $('tr').css('background-color', '');
                  });
             }
-            
+            $("#Cancelar2").click(function () {
+                 toastr["info"]("Se canceló la operación", "Información")
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } );
             $("#btnCancelar").click(function () {
                  toastr["info"]("Se canceló la operación", "Información")
                 toastr.options = {
