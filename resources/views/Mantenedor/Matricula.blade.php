@@ -376,14 +376,14 @@ PATRICIA
                                     <div class="form-row">
                                         <div class="col-md-3 mb-4 mx-auto mt-3">
                                             <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo</font></font></label>
-                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control" disabled="true">
+                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control" >
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-md-3 mb-4 pr-0 mt-3">
                                             <label for="txtDniPromotor" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Promotor</font></font></label>
-                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)"  disabled="true">
+                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>                                                                                                                                  
@@ -407,10 +407,14 @@ PATRICIA
                         <hr style="margin-top:1em">
                         <div class="text-center ">
                             <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnCancelar">CANCELAR</button>
-                            <a href="{{url('/matricula')}}">
+                            <!--<a href="{{url('/matricula')}}">-->
                                 <button type="button" class="btn btn-success" id="btn_registrarAjax" disabled="true" >REGISTRAR</button>
-                                <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">
-                            </a>                           
+                                <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+
+                                <!--<input type="hidden" name="urlVerificarMatricula"  id="urlVerificarMatricula" url="{{route('verificarMatricula')}}">-->
+
+                                <!--<input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">-->
+                            <!--</a>     -->                      
                         </div>
                     </div>
                 </div>
@@ -467,7 +471,6 @@ PATRICIA
             <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
             <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
             
-            <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
         </div>
         </div>
@@ -585,14 +588,14 @@ PATRICIA
 
         $('#modalMatricula').click(function () {  
 
-            if (edadGlobal < 18) {
+            /*if (edadGlobal < 18) {
                 alert('Debes llenar datos del apoderado');
             } else {
                 
-            }
+            }*/
                 registrarAJAX();
-                LimpiarFormularioALU_dni02();
-                LimpiarFormularioApoderado_dni();
+                //LimpiarFormularioALU_dni02();
+                //LimpiarFormularioApoderado_dni();
                 MontoMatricula();
         });
 
@@ -1934,8 +1937,8 @@ PATRICIA
             });
         }*/
 
-        function registrarAJAX() {
-            //Datos de Alumno auxIdApoderado-auxIdAl
+        /*function registrarAJAX() {
+            //*******registra la matricula ***********************
             
             var auxIdAl = $('#auxIdAl').val();
 
@@ -1966,7 +1969,7 @@ PATRICIA
 
             $.ajax({
                 type: "post",
-                url: urlregistroAJAX,
+                url: "/matricula",
                 data:{
                     
                     auxIdAl         :auxIdAl,
@@ -2055,10 +2058,8 @@ PATRICIA
                 complete:function () {  
                 }
 
-            });
-
-       
-        }
+            });      
+        }*/
 
         /*Registrar*/
         function registrar_Alumno() {
@@ -2610,6 +2611,247 @@ PATRICIA
 
             
         }
+
+        function registrarAJAX() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            //DAtos del Apoderado 
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+            var urlregistroAJAX = $('#urlregistroAJAX').val();
+
+            //datos para las cuotas
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
+
+            $.ajax({
+                type: "post",
+                url: "/matricula",
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
+
+                    cursos : arrayCursosMatriculados
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.cod == 101){
+
+                        Command: toastr["success"]("registrada correctamente", "Matrícula")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+                    }else{
+                        
+                        if(response.cod == 100){
+                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+                error:function (error) {  
+                    alert("Debe seleccionar almenos un curso");
+                },
+                complete:function () {  
+                }
+
+            });
+
+       
+        }
+
+        function validarMatricula() {
+            //*******registra la matricula ***********************
+            
+            var auxIdAl = $('#auxIdAl').val();
+
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            //DAtos del Apoderado 
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+            var urlregistroAJAX = $('#urlregistroAJAX').val();
+
+            //datos para las cuotas
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
+
+            $.ajax({
+                type: "post",
+                url: "/matricula",
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
+
+                    cursos : arrayCursosMatriculados
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.cod == 101){
+                        //Modal de Matricula 
+                        $('#RegMatricula').modal('show');
+                        
+                    }else{
+                        
+                        if(response.cod == 100){
+                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+                error:function (error) {  
+                    alert("Debe seleccionar almenos un curso");
+                },
+                complete:function () {  
+                }
+
+            });
+
+       
+        }
+
+        $('#btn_registrarAjax').click(function () { 
+            validarMatricula();
+        })
+
+
         /*$(document).ready(function() {
             $('#example').DataTable( {
                 columnDefs: [ {
@@ -2625,9 +2867,5 @@ PATRICIA
             } );
         } );*/
 })
-</script>
-
-
-
-    
+</script>   
  @endsection 
