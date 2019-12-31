@@ -258,7 +258,7 @@ PATRICIA
                                     <h3 class="titleCurso" style="font-size: 20px;
                                     text-transform: uppercase;
                                     font-weight: bold;
-                                    text-align: center;"></h3>
+                                    text-align: center;">    </h3>
                                     <hr style="margin-top:0">
                                     
                                     <form action="">
@@ -653,7 +653,7 @@ PATRICIA
                                 }
                             }
                             tabla+='</select></td>'
-                                +'<td><button index='+cont+' onclick="marcar()" type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+                                +'<td><button nombreCurso="'+response.datosC[i].nombre+'" disabled index='+cont+'  type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
 
                                 cont++;
                             }
@@ -661,6 +661,7 @@ PATRICIA
 
                     $('#tblCursos').html(tabla);
                     marcar()
+                    marcar2()
                     SeleccionarCuros();
                     SeleccionarGrupo();
 
@@ -805,26 +806,14 @@ PATRICIA
             });
         }
 
-        function marcar() {  
-            /*$('.checkCurso').each(function (index, element) {
-                var e = $(this);
-
-                e.click(function () {  
-                    if (e.prop('checked')) {            
-                        $('.itemCur').eq(index).css({background:'paleturquoise'});
-                    }else{            
-                        $('.itemCur').eq(index).css({background:''});
-                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
-                    }
-                });
-                
-            });*/
-
+        function marcar2(){
             $('.btnPagarCurso').each(function (index, element) {
                 var e = $(this);
 
                 e.click(function () {  
-                    if (e.prop('click')) {            
+                    $('.titleCurso').html(e.attr('nombrecurso'))
+                    if (e.prop('click')) {  
+                        $('.itemCur').css({background:''});       
                         $('.itemCur').eq(index).css({background:'paleturquoise'});
                     }else{            
                         $('.itemCur').eq(index).css({background:''});
@@ -832,7 +821,51 @@ PATRICIA
                     }
                 });
                 
-            });          
+            });       
+        }
+
+        function IniciarPagoMatricula(){
+            $('#txtImporte').prop('disabled',true);
+            $('#txtImporte').val('')
+            $('#txtDescuento').prop('disabled',true);
+            $('#txtDescuento').val('')
+            $('#txtComentario').prop('disabled',true);
+            $('#txtComentario').val('');
+        }
+
+        function marcar() {  
+            $('.checkCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('checked')) {         
+                        $('.btnPagarCurso').eq(index).prop('disabled',false)  ; 
+                        
+                      // $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        
+                        IniciarPagoMatricula()
+                        $('.btnPagarCurso').eq(index).prop('disabled',true)  ;
+                        $('.itemCur').eq(index).css({background:''});
+                        // $('.itemCur').eq(index).css({background:''});
+                    //    obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });
+            // $('.btnPagarCurso').each(function (index, element) {
+            //     var e = $(this);
+
+            //     e.click(function () {  
+            //         if (e.prop('click')) {            
+            //             $('.itemCur').eq(index).css({background:'paleturquoise'});
+            //         }else{            
+            //             $('.itemCur').eq(index).css({background:''});
+            //            // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+            //         }
+            //     });
+                
+            // });          
         }
 
         cantidadDni_AL();
@@ -1307,13 +1340,25 @@ PATRICIA
                 // alert(UbicacionPago)
                 var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
                 if (newMenualidad>=0){
-                    mensualidad.val(Number(newMenualidad).toFixed(2));
-                    arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
-                    arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
-                    arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
-                    console.log(arrayCursosMatriculados);
+                    if ( parseFloat(IDDescueto.val()) <= 10) {
+                        // mensualidad.val(Number(newMenualidad).toFixed(2));
+                        arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                        arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
+                        console.log(arrayCursosMatriculados);
 
-                    auxMonto = newMenualidad;
+                        auxMonto = newMenualidad;    
+                    }else{
+                        IDDescueto.val('10.00');
+                        var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                        arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
+                        console.log(arrayCursosMatriculados);
+
+                        auxMonto = newMenualidad;    
+                    }
+                    
                 }
             });
         }
