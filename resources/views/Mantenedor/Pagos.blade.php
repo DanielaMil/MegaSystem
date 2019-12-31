@@ -68,32 +68,25 @@
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtPago" type="number" maxlength="4" min="0" class="form-control">
-                            <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                            </div>
+                            <input placeholder="00" step="1" id="txtPago" type="number" maxlength="4" min="0" class="form-control" onkeypress="return filterFloat(event,this);">
+                            
                         </div>
                         <label for="examplePassword" class="">Descuento</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtDescuento" type="number" maxlength="4" min="0" class="form-control">
-                            <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                            </div>
+                            <input placeholder="00" step="1" id="txtDescuento" type="number" maxlength="4" min="0" class="form-control" onkeypress="return filterFloat(event,this);" >
+                            
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
-                        <input name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="8" >
+                        <input name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="8" onkeypress="return filterFloat(event,this);" >
                         <label for="examplePassword" class="">Costo Total</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtMonto" type="number" maxlength="4" min="0" class="form-control">
-                            <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                            </div>
+                            <input placeholder="00" step="1" id="txtMonto" type="number" maxlength="4" min="0" class="form-control"onkeypress="return filterFloat(event,this);" >
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
@@ -211,16 +204,7 @@
                                                 </font>
                                             </font></span>
                                         </div>
-                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">
-                                                        .00
-                                                    </font>
-                                                </font>
-                                            </span>
-                                        </div>
+                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </form>
                                 <hr style="margin-top:0">
@@ -250,7 +234,42 @@
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
 
 <script>
+function filterFloat(evt,input){
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;    
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value+chark;
+    if(key >= 48 && key <= 57){
+        if(filter(tempValue)=== false){
+            return false;
+        }else{       
+            return true;
+        }
+    }else{
+          if(key == 8 || key == 13 || key == 0) {     
+              return true;              
+          }else if(key == 46){
+                if(filter(tempValue)=== false){
+                    return false;
+                }else{       
+                    return true;
+                }
+          }else{
+              return false;
+          }
+    }
+}
+function filter(__val__){
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+    if(preg.test(__val__) === true){
+        return true;
+    }else{
+       return false;
+    }
+    
+}
     $(document).ready(function() {
+
             var idConcepto;
             var idMatricula;
             var descripConcepto;
@@ -834,15 +853,7 @@
             $('#dniAlumno').on('input', function () { 
                 this.value = this.value.replace(/[^0-9]/g,'');
             });
-            $('#txtMonto').on('input', function () { 
-                this.value = this.value.replace(/[^0-9]/g,'');
-            });
-            $('#txtPago').on('input', function () { 
-                this.value = this.value.replace(/[^0-9]/g,'');
-            });
-            $('#txtDescuento').on('input', function () { 
-                this.value = this.value.replace(/[^0-9]/g,'');
-            });
+          
             
             llenarCombo();
             function obtenerMatricula(){
@@ -1152,6 +1163,41 @@
             });
 
             // ================================
+
+            function filterFloat(evt,input){
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;    
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value+chark;
+    if(key >= 48 && key <= 57){
+        if(filter(tempValue)=== false){
+            return false;
+        }else{       
+            return true;
+        }
+    }else{
+          if(key == 8 || key == 13 || key == 0) {     
+              return true;              
+          }else if(key == 46){
+                if(filter(tempValue)=== false){
+                    return false;
+                }else{       
+                    return true;
+                }
+          }else{
+              return false;
+          }
+    }
+}
+function filter(__val__){
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+    if(preg.test(__val__) === true){
+        return true;
+    }else{
+       return false;
+    }
+    
+}
 
     })
 </script>
