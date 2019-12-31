@@ -53,7 +53,7 @@ class pagosController extends Controller
         $idcuota = $dato->idcuota;
         
         if (true) {
-            $datos = DB::select('call registrarPago(?,?,?)', array($importe,$recibo,$idcuota));
+            $datos = DB::select('call registrarPago2(?,?,?)', array($importe,$recibo,$idcuota));
             
             return response()->json($datos);
             
@@ -152,7 +152,7 @@ class pagosController extends Controller
         // $_numcade = strlen($idMatricula);
         // return response()->json($_numcade);
         if (true) {
-            $datos = DB::select('call registrarPago(?,?,?)', array($importe,$recibo,$idcuota));
+            $datos = DB::select('call registrarPago2(?,?,?)', array($importe,$recibo,$idcuota));
             
             return response()->json($datos);
             
