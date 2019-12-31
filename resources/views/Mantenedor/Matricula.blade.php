@@ -736,6 +736,14 @@ PATRICIA
             $('#txtImporte').attr('disabled',true);
             $('#txtComentario').attr('disabled',true);
             $('#txtDescuento').attr('disabled',true);
+
+            $('#txtRecibo').attr('disabled',true);
+            $('#txtDniPromotor').attr('disabled',true);
+            $('#btnBuscarPromotor').attr('disabled',true);
+            $('#btnGuardarTablaAjax').attr('disabled',true);
+
+            $('#btnCancelar').attr('disabled',true);
+            $('#btn_registrarAjax').attr('disabled',true);
         }
         
         bloquearMatricula()
@@ -744,7 +752,17 @@ PATRICIA
             $('#txtImporte').attr('disabled',false);
             $('#txtComentario').attr('disabled',false);
             $('#txtDescuento').attr('disabled',false);
+
+            $('#txtRecibo').attr('disabled',false);
+            $('#txtDniPromotor').attr('disabled',false);
+            $('#btnBuscarPromotor').attr('disabled',false);
+            $('#btnGuardarTablaAjax').attr('disabled',false);
+
+            $('#btnCancelar').attr('disabled',false);
+            $('#btn_registrarAjax').attr('disabled',false);
         }
+
+        
 
         //----------------VALIDAR/CANTIDAD DE DATOS------------------------
         function cantidadDni_AL() {
@@ -1460,9 +1478,9 @@ PATRICIA
                         edadAlumno(alu.feNacimiento);
                         $('#btnLimpiarAlumno').attr('disabled',false);
 
-                        $('#btn_registrarAjax').attr('disabled',false);
-                        $('#btnGuardarTablaAjax').attr('disabled',false);
-                        $('#btnCancelar').attr('disabled',false);
+                        $('#btn_registrarAjax').attr('disabled',true);
+                        $('#btnGuardarTablaAjax').attr('disabled',true);
+                        $('#btnCancelar').attr('disabled',true);
 
                         bloquearMatricula();
                         tabla(alu.dni);
