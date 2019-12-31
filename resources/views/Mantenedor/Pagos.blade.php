@@ -876,6 +876,7 @@
                  });
             }
             
+            
             $("#btnCancelar").click(function () {
                  toastr["info"]("Se canceló la operación", "Información")
                 toastr.options = {
