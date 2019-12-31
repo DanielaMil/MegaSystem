@@ -677,8 +677,7 @@ class AplicacionController extends Controller
                 //if(count($datos) > 0){ //se guardo correctamente los datos 
                     $data = [
                         'estado' => true,
-                        'cod' => 200,
-                        'datos' => $data
+                        'cod' => 200
                     ];
                     return response()->json($data);
                // }
