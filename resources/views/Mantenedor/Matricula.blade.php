@@ -110,7 +110,7 @@ PATRICIA
                                 <div class="col-md-3 mb-4 mx-auto ">
                                     <label for="cboGeneroAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Género<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                     <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
-                                        <option selected value="-1">-Seleccione-</option>
+                                        <option value="-1">-Seleccione-</option>
                                         <option value="1">Masculino</option>
                                         <option value="0">Femenino</option>
                                     </select>
@@ -1452,6 +1452,8 @@ PATRICIA
 
                         for (var i=0;i < option.length ;i++) {
                             var ban = (option.eq(i).val() == alu.genero)?true:false;
+                            option.attr('selected');
+                            
                             option.eq(i).attr('selected',ban);
                         }
 
