@@ -515,9 +515,9 @@ class AplicacionController extends Controller
         $_numcade = strlen($txtDni_Al);
         $_numcade01 = strlen($txtCelularAl);
         
-        if ($_numcade == 8 && $_numcade01 == 9) {
+        if ($_numcade == 8) {
 
-            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $txtCelularAl == "" || $cboGeneroAl == -1){
+            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $cboGeneroAl == -1){
                 // falra llenar campos obligatorios
                 $data = [ 
                     'estado' => false,
@@ -532,6 +532,55 @@ class AplicacionController extends Controller
                         'estado' => true,
                         'cod' => 200,
                         'datos' => $datos
+                    ];
+                    return response()->json($data);
+               // }
+            }
+            // else{
+            //}//100 si la cadena no tiene 8 digitos
+        } else { 
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+        
+        
+    }
+
+    public function verificarAlumno(REQUEST $dato){
+        $auxIdAl         =$dato->auxIdAl;
+        $txtDni_Al        =$dato->txtDni_Al;
+        $txtApellidoPaAl =$dato->txtApellidoPaAl;
+        $txtApellidoMaAl =$dato->txtApellidoMaAl;
+        $txtNombreAl     =$dato->txtNombreAl;
+        $cboGeneroAl     =$dato->cboGeneroAl;
+        $txtDireccionAl  =$dato->txtDireccionAl;
+        $txtCelularAl    =$dato->txtCelularAl;
+        $txtFechaNaAl    =$dato->txtFechaNaAl;
+
+       // $txtDni_Al = $dato->txtDni_Al; 
+        $_numcade = strlen($txtDni_Al);
+        $_numcade01 = strlen($txtCelularAl);
+        
+        if ($_numcade == 8) {
+
+            if ($txtApellidoPaAl == "" || $txtApellidoMaAl == "" || $txtNombreAl == "" || $txtFechaNaAl == "" || $txtDireccionAl == "" || $cboGeneroAl == -1){
+                // falra llenar campos obligatorios
+                $data = [ 
+                    'estado' => false,
+                    'cod' => 101
+                ];
+                return response()->json($data);
+
+            }else{
+                //$datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));         
+                //if(count($datos) > 0){ //se guardo correctamente los datos 
+                   // return response()->json($txtDni_Al);
+                    $data = [
+                        'estado' => true,
+                        'cod' => 200
                     ];
                     return response()->json($data);
                // }
@@ -564,9 +613,9 @@ class AplicacionController extends Controller
         $_numcade = strlen($txtDni_AP);
         $_numcade01 = strlen($txtCelular_AP);
         
-        if ($_numcade == 8 && $_numcade01==9) {
+        if ($_numcade == 8) {
 
-            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == "" || $txtDireccion_AP == "" || $txtCelular_AP == "" || $txtParentesco_AP == ""){
+            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == "" || $txtDireccion_AP == "" || $txtParentesco_AP == ""){
                 // falra llenar campos obligatorios
                 $data = [ 
                     'estado' => false,
@@ -597,4 +646,55 @@ class AplicacionController extends Controller
         
         
     }
+
+    public function verificarApoderado(REQUEST $dato){
+
+        $auxIdApoderado   =$dato->auxIdApoderado;
+        $txtDni_AP        =$dato->txtDni_AP;
+        $txtApellidopa_Ap =$dato->txtApellidopa_Ap;
+        $txtApellidoMa_AP =$dato->txtApellidoMa_AP;
+        $txtNombre_AP     =$dato->txtNombre_AP;
+        $txtDireccion_AP  =$dato->txtDireccion_AP;
+        $txtCelular_AP    =$dato->txtCelular_AP;
+        $txtParentesco_AP =$dato->txtParentesco_AP;
+
+       // $txtDni_Al = $dato->txtDni_Al;
+        $_numcade = strlen($txtDni_AP);
+        $_numcade01 = strlen($txtCelular_AP);
+        
+        if ($_numcade == 8) {
+
+            if ($txtApellidopa_Ap == "" || $txtApellidoMa_AP == "" || $txtNombre_AP == "" || $txtDireccion_AP == "" || $txtParentesco_AP == ""){
+                // falra llenar campos obligatorios
+                $data = [ 
+                    'estado' => false,
+                    'cod' => 101
+                ];
+                return response()->json($data);
+
+            }else{
+                //$datos = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP,));         
+                //if(count($datos) > 0){ //se guardo correctamente los datos 
+                    $data = [
+                        'estado' => true,
+                        'cod' => 200,
+                        'datos' => $data
+                    ];
+                    return response()->json($data);
+               // }
+            }
+            // else{
+            //}//100 si la cadena no tiene 8 digitos
+        } else { 
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
+        
+        
+    }
+
+
 }

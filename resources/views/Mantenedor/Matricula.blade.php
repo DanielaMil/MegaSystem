@@ -140,7 +140,12 @@ PATRICIA
                             <hr style="margin-top:1em">
                             <div class="text-center ">
                                 <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarAlumno">LIMPIAR</button>
-                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" data-target="#RegAlumno" data-toggle="modal">REGISTRAR</button>
+
+                                <!--<button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" data-target="#RegAlumno" data-toggle="modal">REGISTRAR</button>-->
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" >REGISTRAR</button>
+                                <input type="hidden" id="urlValidarAlumno" value="{{route('verificarAlumno')}}">
+
+
                                 <!--<button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarAlumno">Limpiar</button>
                                 
                                 <button type="button" class="btn btn-primary" id="btn_guardar_Alumno" disabled="true" data-toggle="modal" data-target="#RegAlumno">
@@ -224,7 +229,12 @@ PATRICIA
                             <hr style="margin-top:1em">
                             <div class="text-center ">
                                 <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">LIMPIAR</button>
-                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" data-toggle="modal" data-target="#RegApoderado">REGISTRAR</button>
+
+                                <!--<button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" data-toggle="modal" data-target="#RegApoderado">REGISTRAR</button>-->
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" >REGISTRAR</button>
+
+                                <input type="hidden" id="urlValidarApoderado" value="{{route('verificarApoderado')}}">
+                                
                             </div>
                         </div>
                     </div>
@@ -2083,7 +2093,7 @@ PATRICIA
                         $('#btnCancelar').attr('disabled',false);
                         //alert(alu.feNacimiento);
                         //edadAlumno(alu.feNacimiento);
-                        //tabla(alu.dni);
+                        tabla(alu.dni);
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -2153,11 +2163,11 @@ PATRICIA
             var txtCelularAl = $('#txtCelularAl').val();
             var txtFechaNaAl = $('#txtFechaNaAl').val();
 
-            var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
+            var urlValidarAlumno = $('#urlValidarAlumno').val();
             
             $.ajax({
                 type: "post",
-                url: urlAJAX_Guardar_Datos_Alumno,
+                url: urlValidarAlumno,
                 data:{
                     
                     auxIdAl         :auxIdAl,
@@ -2179,8 +2189,8 @@ PATRICIA
                     if(response.estado == true){
                        //modal de Mensaje para guardar alumno
 
-
-
+                      $('#RegAlumno').modal('show')
+                        //alert('Salio Carajo');
 
                     }else{
                         tabla(null);
@@ -2237,6 +2247,11 @@ PATRICIA
 
             });
         }
+
+        $('#btn_guardar_Alumno').click(function () { 
+            validarAlumno();
+        }) 
+        
 
         function LimpiarFormularioALU_dni() {  
 
@@ -2364,7 +2379,102 @@ PATRICIA
                         
                         $('#btnLimpiarApoderado').attr('disabled',false);
 
-                        tabla(alu.dni);
+                        //tabla(alu.dni);
+                    }else{
+                        //tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en datos del Apoderado", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Apoderado').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+
+        function validarApoderado() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+
+            var urlValidarApoderado = $('#urlValidarApoderado').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlValidarApoderado,
+                data:{
+                    
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                        //Modal de confirmacion
+
+                        $('#RegAlumno').modal('show')
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -2421,6 +2531,10 @@ PATRICIA
             });
         }
   
+        $('#btn_guardar_Apoderado').click(function () { 
+            validarApoderado();
+        }) 
+
         function edadAlumno(fecha){
             //var fecha = $('#txtFechaNaAl').val();
             

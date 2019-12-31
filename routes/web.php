@@ -35,6 +35,11 @@ route::post('/matricula/validarDescuento','AplicacionController@validarDescuento
 route::post('/matricula/guardar_Alumno','AplicacionController@guardar_Alumno')->name('guardar_Alumno');
 route::post('/matricula/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name('guardar_Apoderado');
 
+route::post('/matricula/verificarAlumno','AplicacionController@verificarAlumno')->name('verificarAlumno');
+route::post('/matricula/verificarApoderado','AplicacionController@verificarApoderado')->name('verificarApoderado');
+
+
+
 route::post('/matricula/volverInicio','AplicacionController@volverInicio')->name('volverInicio');
 
 
