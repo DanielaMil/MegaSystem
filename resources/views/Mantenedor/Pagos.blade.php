@@ -111,6 +111,26 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="RegPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Desea registrar el Pago?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRegistrarPago2" >SÍ</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">No</button>
+        </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -206,7 +226,7 @@
                                 <hr style="margin-top:0">
                                 <div class="d-block text-center card-footer">
                                         {{-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button> --}}
-                                        <button class="btn-wide btn btn-success" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
+                                        <button class="btn-wide btn btn-success" data-toggle="modal" id="btnRegistrarPago" data-target="#RegPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
                                     </div>
                             </div>
                         </div>
@@ -855,7 +875,27 @@
                     $('tr').css('background-color', '');
                  });
             }
-
+            
+            $("#btnCancelar").click(function () {
+                 toastr["info"]("Se canceló la operación", "Información")
+                toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            } );
             function listarCuotas(idMatricula) {
                 
                     // alert(idMatricula)
@@ -898,6 +938,7 @@
                                     +'</tr>'
                             }   
                             $('#tblCuotas').html(html);
+                            $('.titleConcepto').html('');
                             $('#txtNroRecibo').attr('disabled',true);
                             $('#numbImporte').attr('disabled',true);
                             formularioPagar();
@@ -974,9 +1015,9 @@
                     }
                 });
            }
-           
-           $('#btnRegistrarPago').click(function () {
-
+           $('#RegPago').css('z-index', '9999999');
+           $('#btnRegistrarPago2').click(function () {
+                $('#RegPAgo').css('background-color', '');
                if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
                 //alert
                 alert('no debe ingresar saldo mayor');
