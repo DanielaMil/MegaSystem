@@ -2236,7 +2236,7 @@ PATRICIA
                     if(response.estado == true){
                        //modal de Mensaje para guardar alumno
 
-                      $('#RegAlumno').modal('show')
+                      $('#RegAlumno').modal('show');
                         //alert('Salio Carajo');
 
                     }else{
@@ -2299,7 +2299,6 @@ PATRICIA
             validarAlumno();
         }) 
         
-
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2521,7 +2520,8 @@ PATRICIA
                     if(response.estado == true){
                         //Modal de confirmacion
 
-                        $('#RegAlumno').modal('show')
+                        $('#RegApoderado').modal('show');
+
                     }else{
                         tabla(null);
                         if(response.cod == 100){
