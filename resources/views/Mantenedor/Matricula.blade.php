@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('css')
+@section('java')
     <script>
         // Evento que se ejecuta cada vez que se pulsa sobre un checkbox de la tabla
         $("table input[type=checkbox]").on("click",function() {
@@ -17,9 +17,7 @@
         });
     </script>
     <script>
-        function marcar(obj) {
-            obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
-        }
+        
     </script>
 @endsection
 
@@ -621,7 +619,7 @@ PATRICIA
                     var estado ;
                     var estadoc;
                     var estadop;
-
+                    var cont = 0;
                     for(var i=0;i < response.datosC.length;i++){
                         estadoc =0;
                         estadop=0;
@@ -637,7 +635,7 @@ PATRICIA
                         }
                         if (estadop==0) { 
                         //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
-                            tabla+='<tr onclick="marcar(this)"><td><div class="custom-checkbox custom-control"><input name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
+                            tabla+='<tr class="itemCur"><td><div class="custom-checkbox custom-control"><input   onclick=""  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
                             +'<td>'+response.datosC[i].nombre+'</td>'
                             +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
 
@@ -655,11 +653,14 @@ PATRICIA
                                 }
                             }
                             tabla+='</select></td>'
-                                +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+                                +'<td><button index='+cont+' onclick="marcar()" type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+
+                                cont++;
                             }
                     }
 
                     $('#tblCursos').html(tabla);
+                    marcar()
                     SeleccionarCuros();
                     SeleccionarGrupo();
 
@@ -802,6 +803,36 @@ PATRICIA
 
 
             });
+        }
+
+        function marcar() {  
+            /*$('.checkCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('checked')) {            
+                        $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        $('.itemCur').eq(index).css({background:''});
+                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });*/
+
+            $('.btnPagarCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('click')) {            
+                        $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        $('.itemCur').eq(index).css({background:''});
+                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });          
         }
 
         cantidadDni_AL();

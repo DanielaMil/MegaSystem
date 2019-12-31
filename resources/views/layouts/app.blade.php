@@ -137,6 +137,7 @@
     <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
     @yield('js')
+    @yield('java')
 </html>
 
 @yield("modal")
