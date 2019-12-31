@@ -100,7 +100,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="{{url('/matricula')}}">
+                                        <a href="{{url('/matricula2')}}">
                                             <i class="metismenu-icon"></i>
                                             Matrícula
                                         </a>

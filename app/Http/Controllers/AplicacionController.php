@@ -228,79 +228,26 @@ class AplicacionController extends Controller
         $txtCelular_AP    =$dato->txtCelular_AP;
         $txtParentesco_AP =$dato->txtParentesco_AP;
 
-        if ($txtDni_AP == ''){
-            $auxIdApoderado = null;
-        }else{
-            if ($auxIdApoderado == ''){
-               // $datosAp = DB::select("call registrarApoderado(?,?,?,?,?,?,?)",array($txtDni_AP,$txtNombre_AP,$txtApellidopa_Ap,$txtApellidoMa_AP,$txtCelular_AP,$txtDireccion_AP,$txtParentesco_AP));
-                $Apoderado = DB::select("call buscarApoderado(?)", array($txtDni_AP));
-                $auxIdApoderado = $Apoderado[0]->idApoderado;
-            }
-        }
-
-        if ($txtDniPromotor == '') {
-            $idPromotor = NULL;
-        }else{
-            $datosPromotor =  DB::select("call buscarPromotor(?)", array($txtDniPromotor));
-            $idPromotor = $datosPromotor[0]->idPromotor;
-        }
+     
                 
         //***********************************INICIO DE MATRICULA CUOTAS  PAGOS DE LA MATRICULA ************************* */
         
-                     
-        for ($i=0; $i <count($dato->cursos) ; $i++) { 
-            $auxImporte = 0.00;
-            
-            $Matricula = DB::select("call registroMatricula(?,?,?,?)", array($dato->cursos[$i]["idGrupo"],$auxIdApoderado,$auxIdAl,$idPromotor)); //SE REGISTRA LA MATRICULA 
-
-            $idMatricula01 = DB::select("call ultimaMatricula()",array());  //EXTRAE EK ID DE LA ULTIMA MATRICULA 
-            $datosGrupo = DB::select("call mostrarMesesPagos(?)",array($dato->cursos[$i]["idGrupo"])); //SE MUESTRA LOS DATOS DEL GRUPO ENVIANDO EL ID 
-
-           
-            $auxSaldo = (($dato->cursos[$i]["pagoMatr"]) - ($dato->cursos[$i]["importe"]));
-            //return response()->json($auxSaldo);
-            if ($auxSaldo == 0.00) {
-                $estado = 1;
-            }else{
-                $estado = 0;
-            }
-            
-            $dataMensualidad01 = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array(($dato->cursos[$i]["pagoMatr"]),$datosGrupo[0]->feInicio,2,$idMatricula01[0]->idMatricula,$dato->cursos[$i]["pagoMatr"],$estado,NULL,0.00,0));    
-           
-            $ultimaCuotaMatricula = DB::select("call ultimaCuotaMatricula()",array());
-            
-            
-            $pago01  = DB::select("call registrarPago(?,?,?)",array(($dato->cursos[$i]["importe"]),$txtRecibo,$ultimaCuotaMatricula[0]->idCuota));
-            /*if($i == 1){
-                return response()->json($pago01);
-            }*/
-            $cantidadMeses = 0; 
-            for($j=0;$j < ($datosGrupo[0]->duMeses) ; $j++ ){
-                
-                $cantidadMeses = $cantidadMeses + 1;
-                //Para registrar la mensualidad
-                $idMatricula = DB::select("call ultimaMatricula()",array());
-               
-                $dataMensualidad = DB::select("call registroCuotas(?,?,?,?,?,?,?,?,?)",array($dato->cursos[$i]["pagoMens"],$datosGrupo[0]->feInicio,3,$idMatricula[0]->idMatricula,$dato->cursos[$i]["pagoMens"],0,$dato->cursos[$i]["razon"],$dato->cursos[$i]["descuento"],$cantidadMeses));
-                
-            }
-        }
         
-        if($dataMensualidad01){
-            $datas = [
-                'estado' => false,
-                'cod' => 200,
-                'datos' => $dataMensualidad01
-            ];
-            return response()->json($datas);
-        }else{
+        
             
             $datas = [
                 'estado' => true,
                 'cod' => 101
             ];
         return response()->json($datas);
-        }
+        
+    /*}else{
+        $data = [
+            'estado' => false,
+            'cod'    => 100
+        ];
+        return response()->json($data);
+    }*/
 
     }
 

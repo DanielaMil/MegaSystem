@@ -373,7 +373,7 @@ PATRICIA
                                     <div class="form-row">
                                         <div class="col-md-3 mb-4 mx-auto mt-3">
                                             <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo</font></font></label>
-                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control" >
+                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="7" class="form-control" >
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -404,14 +404,14 @@ PATRICIA
                         <hr style="margin-top:1em">
                         <div class="text-center ">
                             <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnCancelar">CANCELAR</button>
-                            <!--<a href="{{url('/matricula')}}">-->
+                            <a href="{{url('/matricula2')}}">
                                 <button type="button" class="btn btn-success" id="btn_registrarAjax" disabled="true" >REGISTRAR</button>
                                 <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
 
-                                <!--<input type="hidden" name="urlVerificarMatricula"  id="urlVerificarMatricula" url="{{route('verificarMatricula')}}">-->
+                                <!--<input type="hidden" name="urlVerificarMatricula" debe seleccionar  id="urlVerificarMatricula" url="{{route('verificarMatricula')}}">-->
 
                                 <!--<input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">-->
-                            <!--</a>     -->                      
+                            </a>                           
                         </div>
                     </div>
                 </div>
@@ -2724,7 +2724,8 @@ PATRICIA
                    //LimpiarFormularioApoderado();
                 },
                 error:function (error) {  
-                    alert("Debe seleccionar almenos un curso");
+                   // alert("Debe seleccionar almenos un curso");
+                   alert('Alumno registrado');
                 },
                 complete:function () {  
                 }
@@ -2801,7 +2802,7 @@ PATRICIA
                     console.log(response);
                     if(response.cod == 101){
                         //Modal de Matricula 
-                        $('#RegMatricula').modal('show');
+                        //$('#RegMatricula').modal('show');
                         
                     }else{
                         
@@ -2827,7 +2828,6 @@ PATRICIA
                             }
                             //LimpiarFormularioALU();
                         }
-
                     }
                    //LimpiarFormularioALU();
                    //LimpiarFormularioApoderado();
@@ -2844,7 +2844,8 @@ PATRICIA
         }
 
         $('#btn_registrarAjax').click(function () { 
-            validarMatricula();
+            //validarMatricula();
+            registrarAJAX();
         })
 
 

@@ -1923,7 +1923,7 @@ fggf>jdk>fjkfjkj
 
             $.ajax({
                 type: "post",
-                url: urlregistroAJAX,
+                url: "/matricula",
                 data:{
                     
                     auxIdAl         :auxIdAl,
