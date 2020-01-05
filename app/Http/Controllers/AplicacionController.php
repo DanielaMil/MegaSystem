@@ -252,8 +252,7 @@ class AplicacionController extends Controller
     }
 
     public function matriculaRegistro(REQUEST $dato){
-        $txtRecibo = $dato->txtRecibo;
-        $txtDniPromotor = $dato->txtDniPromotor;
+        
 
         /*$_numcade01 = strlen($txtRecibo);
         if ($_numcade01 == 8 ) {*/
@@ -293,7 +292,8 @@ class AplicacionController extends Controller
         }
 
 
-
+        $txtRecibo = $dato->txtRecibo;
+        $txtDniPromotor = $dato->txtDniPromotor;
 
         if ($txtDniPromotor == '') {
             $idPromotor = NULL;
@@ -304,7 +304,6 @@ class AplicacionController extends Controller
                 
         //***********************************INICIO DE MATRICULA CUOTAS  PAGOS DE LA MATRICULA ************************* */
         
-                     
         for ($i=0; $i <count($dato->cursos) ; $i++) { 
             $auxImporte = 0.00;
             
@@ -342,8 +341,21 @@ class AplicacionController extends Controller
                 
             }
         }
-        
         if($dataMensualidad01){
+            $datas = [
+                'estado' => true,
+                'cod' => 101
+            ];
+            return response()->json($datas);
+        }else{
+            
+            $datas = [
+                'estado' => false,
+                'cod' => 101
+            ];
+        return response()->json($datas);
+        }
+        /*if($dataMensualidad01){
             $datas = [
                 'estado' => false,
                 'cod' => 200,
@@ -357,7 +369,7 @@ class AplicacionController extends Controller
                 'cod' => 101
             ];
         return response()->json($datas);
-        }
+        }*/
     /*}else{
         $data = [
             'estado' => false,
