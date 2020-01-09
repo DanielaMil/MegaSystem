@@ -34,6 +34,12 @@ class AplicacionController extends Controller
         return view('Mantenedor.MatriculaFrm');
     }
 
+    public function alumnosPorCiclo(REQUEST $request)
+    {
+
+        return view('Mantenedor.ReporteAlumnosPorCiclo');
+    }
+
     public function buscarAL(Request $dato)
     {
         $_auxdni = $dato->txtDni;

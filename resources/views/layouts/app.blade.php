@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('template/architectui-html-free/main.css')}}" rel="stylesheet">
     <link href="{{asset('template/architectui-html-free/toastr.css')}}" rel="stylesheet">
+    @yield('links')
     @yield('css')
 </head>
 
@@ -109,6 +110,33 @@
                                         <a href="{{url('/pagos')}}">
                                             <i class="metismenu-icon">
                                             </i>Pagos
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-graph2"></i>
+                                    REPORTES
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Grupo con más alumnos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon">
+                                            </i>Grupo con más egresados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/alumnosPorCiclo')}}">
+                                            <i class="metismenu-icon">
+                                            </i>Alumnos por ciclo
                                         </a>
                                     </li>
                                 </ul>
