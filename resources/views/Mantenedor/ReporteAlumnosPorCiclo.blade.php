@@ -3,7 +3,6 @@
 @section('url')
     <script type="text/javascript" src="{{asset('chartjs/dist/Chart.js')}}"></script>
     <script type="text/javascript" src="{{asset('chartjs/dist/Chart.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('chartjs/dist/utils.js')}}"></script>
    <script type="text/javascript" src="{{asset('chartjs/dist/Chart.bundle.js')}}"></script>
     <script type="text/javascript" src="{{asset('chartjs/dist/Chart.bundle.min.js')}}"></script>
 	<style>
@@ -63,6 +62,13 @@
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
+                    
+                },{
+                    label: 'Line Dataset',
+                    data: [20, 50, 10, 30,10,50],
+                    type: 'line',
+                    borderWidth: 3,
+				    fill: false,  
                 }]
             },
             options: {
