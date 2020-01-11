@@ -61,6 +61,11 @@ Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listar
 Route::post('/pagos/registrarPagos', 'pagosController@registrarPagos')->name('registrarPagos');
 Route::post('/pagos/pagosIngresos', 'pagosController@pagosIngresos')->name('pagosIngresos');
 
+///*****************************************REPORTE 1*** */
+
+Route::get('/CantidadPorGrupo', 'AplicacionController@CantidadPorGrupo')->name('CantidadPorGrupo');
+
 ///*****************************************REPORTE 3*** */
 
 Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
+
