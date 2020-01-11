@@ -2848,7 +2848,6 @@ PATRICIA
             registrarAJAX();
         })
 
-
         /*$(document).ready(function() {
             $('#example').DataTable( {
                 columnDefs: [ {
