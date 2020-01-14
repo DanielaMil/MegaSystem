@@ -44,7 +44,7 @@ route::post('/matricula/verificarMatricula','AplicacionController@verificarMatri
 route::post('/matricula/volverInicio','AplicacionController@volverInicio')->name('volverInicio');
 
 
-//************************FIN_MATRICULA******************************** */
+//************************FIN_MATRICULA********************************* */
 
 Route::get('/matricula2', 'AplicacionController@Matricula2')->name('matricula2');
 route::post('/matricula2/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
@@ -64,3 +64,5 @@ Route::post('/pagos/pagosIngresos', 'pagosController@pagosIngresos')->name('pago
 ///*****************************************REPORTE 3*** */
 
 Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
+
+
