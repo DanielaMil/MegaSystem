@@ -1,3 +1,9 @@
+<?php 
+    $con=mysqli_init(); 
+    mysqli_ssl_set($con, NULL, NULL, NULL, NULL, NULL); 
+    mysqli_real_connect($con, "servidortpi.mysql.database.azure.com", "patricia15@servidortpi", "PatriciaDanielaMilLimo15", "bd_megasystem", 3306);
+?>
+
 @extends('layouts.app')
 
 @section('url')
@@ -51,15 +57,37 @@
     </div>
 
     <canvas id="myChart" width="400" height="400"></canvas>
+
     <script>
-        var ctx = document.getElementById('myChart');
+       var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Ciclo 2020-I', 'Ciclo 2019-III', 'Ciclo 2019-II', 'Ciclo 2019-I', 'Ciclo 2018-III', 'Ciclo 2018-I'],
+                /*labels: ['Ciclo 2020-I', 'Ciclo 2019-III', 'Ciclo 2019-II', 'Ciclo 2019-I', 'Ciclo 2018-III', 'Ciclo 2018-I'],*/
+                labels: [
+                    <?php
+                        $sql = "SELECT *FROM ciclo";
+                        $result = mysqli_query($con, $sql); 
+                        while ($registros = mysqli_fetch_array($result))
+                        {
+                        ?>        
+                        '<?php echo $registros["nombre"] ?>',
+                        <?php    
+                        }
+                    ?>
+                ],
                 datasets: [{
                     label: '# Matriculados',
-                    data: [12, 19, 3, 5, 2, 3],
+                    /*data: [12, 19, 3, 5, 2, 3],*/
+                    data:   
+                        <?php
+                            $sql = "SELECT COUNT(*) as cantidad FROM matricula WHERE estado<>'R'";
+                            $result = mysqli_query($con, $sql); 
+                        ?>
+                        [<?php while ($registros = mysqli_fetch_array($result)){ ?><?php echo $registros["cantidad"] ?>, 
+                        <?php } ?>],
+                            
+                    
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -80,7 +108,13 @@
                     
                 },{
                     label: '# Retirados',
-                    data: [6, 9, 1,2, 1, 2],
+                    data:   
+                        <?php
+                            $sql = "SELECT COUNT(*) as cantidad FROM matricula WHERE estado='R'";
+                            $result = mysqli_query($con, $sql); 
+                        ?>
+                        [<?php while ($registros = mysqli_fetch_array($result)){ ?><?php echo $registros["cantidad"] ?>, 
+                        <?php } ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
@@ -102,7 +136,7 @@
                     borderWidth: 1
                 },{
                     label: 'Utilidades',
-                    data: [20, 50, 10, 30,10,50],
+                    data: [20],
                     type: 'line',
                     borderColor: 'rgb(75, 192, 192)',
                     borderWidth: 2,
