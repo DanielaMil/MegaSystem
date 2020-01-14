@@ -21,7 +21,7 @@ class AplicacionController extends Controller
     {
         return view('Mantenedor/Registrar');
     }*/
-    //*********************Matricula********************************/
+    //*********************Matricula*********************************/
     public function Matricula2(REQUEST $request)
     {
 
@@ -765,6 +765,13 @@ class AplicacionController extends Controller
         }
         
         
+    }
+
+    public function mostrarCiclo(REQUEST $request)
+    {
+        $datos = DB::select('call listarCiclos()', array());
+
+        return response()->json($datos);
     }
 
 
