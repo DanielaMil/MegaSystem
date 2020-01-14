@@ -122,9 +122,9 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{url('/CantidadPorGrupo')}}">
                                             <i class="metismenu-icon"></i>
-                                            Grupo con más alumnos
+                                            Mayor cantidad por grupo
                                         </a>
                                     </li>
                                     <li>

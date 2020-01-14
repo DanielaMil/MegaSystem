@@ -34,6 +34,12 @@ class AplicacionController extends Controller
         return view('Mantenedor.MatriculaFrm');
     }
 
+    public function CantidadPorGrupo(REQUEST $request)
+    {
+
+        return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo');
+    }
+
     public function alumnosPorCiclo(REQUEST $request)
     {
 
