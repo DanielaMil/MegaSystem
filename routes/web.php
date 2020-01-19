@@ -67,5 +67,8 @@ Route::get('/CantidadPorGrupo', 'AplicacionController@CantidadPorGrupo')->name('
 
 ///*****************************************REPORTE 3*** */
 
-Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
+Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
+Route::post('/listado', 'reporte3Controller@listado')->name('listado');
+
+
 
