@@ -772,9 +772,16 @@ class AplicacionController extends Controller
 
         return response()->json($datos);
     }
+    public function listarEgresadosPorCurso(REQUEST $request)
+    {
+        $datos = DB::select('call listarCiclo()', array());
+
+        return response()->json($datos);
+    }
     public function listarCursos(REQUEST $request)
     {
         $datos = DB::select('call listarCurso()', array());
+
         return response()->json($datos);
     }
 }

@@ -22,22 +22,119 @@
         <i class="metismenu-icon pe-7s-graph3"></i>Población de alumnos
     </div>
     <canvas id="myChart"></canvas>
+    <div class="btnPDF d-flex justify-content-around m-3">
+        <button type="button" class="btn btn-primary" onclick="generarPDF()">PDF</button>
+        <button type="button" class="btn btn-primary">Excel</button>
+
+    </div>
+    @section('js')
     <script src="chart.js"></script>
+
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    data: [60, 18, 10, 8, 4],
-                    label: 'Comparacion de navegadores'
-                }],
-                labels: ['Google Chrome', 'Safari', 'Edge', 'Firefox', 'Opera']
-            },
-            options: {
-                responsive: true
-            }
-        });
+        function cantidadEgresados(curso, data) {
+            var total = [];
+            data.forEach(element => {
+                if (element.curso == curso) {
+                    total.push(element.totalEgresados);
+                }
+            });
+            return total;
+        }
+        var cursos = [];
+
+        function cargarCursos() {
+            $.ajax({
+                type: "get",
+                url: "cursos",
+                dataType: "json",
+
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    response.forEach(element => {
+                        cursos.push(element.nombre)
+                    });
+                    console.log(cursos)
+                }
+            });
+        }
+        var ciclos = []
+
+        function cargarCiclos() {
+            $.ajax({
+                type: "get",
+                url: "ciclos",
+                dataType: "json",
+
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    response.forEach(element => {
+                        ciclos.push(element.nombre)
+                    });
+                    console.log(ciclos)
+                }
+            });
+        }
+        cargarCursos();
+        cargarCiclos();
+
+        function listado() {
+            var url = "egresadosPorCurso";
+            $.ajax({
+                type: "get",
+                url: url,
+                dataType: "json",
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    console.log(response);
+                    var dataSets = [];
+                    cursos.forEach(element => {
+                        dataSets.push({
+                            label: element,
+                            data: cantidadEgresados(element, response),
+                            backgroundColor: 'rgba(' + Math.random() * (250 - 0) + 0 + ',' + 161 + ',' + Math.random() * (250 - 0) + 0 + ', ' + Math.random() * (250 - 0) + 0 + ' )',
+                        });
+                    });
+                    console.log(dataSets)
+                    var ctx = document.getElementById('myChart');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ciclos,
+                            datasets: dataSets
+                        },
+                        options: {
+                            responsive: true,
+                        }
+                    });
+
+
+                }
+            });
+
+
+
+        }
+        listado()
     </script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
+    <script>
+        function generarPDF() {
+            Canvas = document.getElementById("myChart");
+            Context = Canvas.getContext("2d");
+
+            var imgData = Canvas.toDataURL('image/png');
+            var pdf = new jsPDF('landscape');
+            pdf.addImage(imgData, 'PNG', 30, 30, 240, 140);
+            pdf.save('download.pdf');
+        }
+    </script>
+    @endsection
 </div>
 @endsection
