@@ -72,4 +72,12 @@ Route::get('/cursos', 'AplicacionController@listarCursos')->name('listarCursos')
 
 ///*****************************************REPORTE 3*** */
 
+<<<<<<< HEAD
 Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
+=======
+Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
+Route::post('/listado', 'reporte3Controller@listado')->name('listado');
+
+
+
+>>>>>>> c1979e245e7f29594ea78918273f014d206d8dac
