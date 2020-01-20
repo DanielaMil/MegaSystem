@@ -66,7 +66,14 @@ Route::post('/pagos/pagosIngresos', 'pagosController@pagosIngresos')->name('pago
 
 Route::get('/CantidadPorGrupo', 'AplicacionController@CantidadPorGrupo')->name('CantidadPorGrupo');
 
+///*****************************************REPORTE 2*** */
+
+Route::get('/alumnosEgresados', 'AplicacionController@alumnosEgresados')->name('alumnosEgresados');
+Route::get('/egresadosPorCurso', 'AplicacionController@listarEgresadosPorCurso')->name('listarEgresadosPorCurso');
+Route::get('/cursos', 'AplicacionController@listarCursos')->name('listarCursos');
+Route::get('/ciclos', 'AplicacionController@mostrarCiclo')->name('mostrarCiclo');
+
 ///*****************************************REPORTE 3*** */
 
-Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
-
+Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
+Route::post('/listado', 'reporte3Controller@listado')->name('listado');

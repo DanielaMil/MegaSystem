@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,127 +48,128 @@
                         </span>
                     </button>
                 </span>
-            </div>    <div class="app-header__content">
+            </div>
+            <div class="app-header__content">
                 <!--Todo lo que va al lado del menu hamborguesa-->
             </div>
-        </div>        
+        </div>
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow bg-vicious-stance sidebar-text-light"">
-                <div class="app-header__logo">
-                    <div class="logo-src"></div>
-                    <div class="header__pane ml-auto">
-                        <div>
-                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="app-header__mobile-menu">
+                <div class=" app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ml-auto">
                     <div>
-                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
                         </button>
                     </div>
                 </div>
-                <div class="app-header__menu">
-                    <span>
-                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                            <span class="btn-icon-wrapper">
-                                <i class="fa fa-ellipsis-v fa-w-6"></i>
-                            </span>
-                        </button>
-                    </span>
-                </div>    <div class="scrollbar-sidebar">
-                    <div class="app-sidebar__inner">
-                        <ul class="vertical-nav-menu">
-                            <li class="app-sidebar__heading">Dashboards</li>
-                            <li>
-                                <a href="index.html" class="mm-active">
-                                    <i class="metismenu-icon pe-7s-home"></i>
-                                    INICIO
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Opciones</li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-study"></i>
-                                    CETPRO
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{url('/matricula')}}">
-                                            <i class="metismenu-icon"></i>
-                                            Matrícula
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/pagos')}}">
-                                            <i class="metismenu-icon">
-                                            </i>Pagos
-                                        </a>
-                                    </li> 
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-graph2"></i>
-                                    REPORTES
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{url('/CantidadPorGrupo')}}">
-                                            <i class="metismenu-icon"></i>
-                                            Mayor cantidad por grupo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="metismenu-icon">
-                                            </i>Grupo con más egresados
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/alumnosPorCiclo')}}">
-                                            <i class="metismenu-icon">
-                                            </i>Alumnos por ciclo
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>    
-            <div class="app-main__outer">
-                <div class="app-main__inner">  
-                    <!--Aqui va todo lo que está dentro -->
-                    @yield('content')
-                </div>
-                <div class="app-wrapper-footer">
-                    <div class="app-footer">
-                        
-                    </div>
-                </div>    
             </div>
-            <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>
+            <div class="scrollbar-sidebar">
+                <div class="app-sidebar__inner">
+                    <ul class="vertical-nav-menu">
+                        <li class="app-sidebar__heading">Dashboards</li>
+                        <li>
+                            <a href="index.html" class="mm-active">
+                                <i class="metismenu-icon pe-7s-home"></i>
+                                INICIO
+                            </a>
+                        </li>
+                        <li class="app-sidebar__heading">Opciones</li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-study"></i>
+                                CETPRO
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{url('/matricula')}}">
+                                        <i class="metismenu-icon"></i>
+                                        Matrícula
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/pagos')}}">
+                                        <i class="metismenu-icon">
+                                        </i>Pagos
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-graph2"></i>
+                                REPORTES
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{url('/CantidadPorGrupo')}}">
+                                        <i class="metismenu-icon"></i>
+                                        Mayor cantidad por grupo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/alumnosEgresados')}}">
+                                        <i class="metismenu-icon">
+                                        </i>Grupo con más egresados
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/alumnosPorCiclo')}}">
+                                        <i class="metismenu-icon">
+                                        </i>Alumnos por ciclo
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <div class="app-main__outer">
+            <div class="app-main__inner">
+                <!--Aqui va todo lo que está dentro -->
+                @yield('content')
+            </div>
+            <div class="app-wrapper-footer">
+                <div class="app-footer">
+
+                </div>
+            </div>
+        </div>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    </div>
     </div>
 </body>
-    <!--<script type="text/javascript" src="./assets/scripts/main.js"></script>-->
-    <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
-    <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
-    <script src="{{asset('js/app.js')}}"></script>
-    @yield('js')
-    @yield('java')
+<!--<script type="text/javascript" src="./assets/scripts/main.js"></script>-->
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
+@yield('js')
+@yield('java')
+
 </html>
 
 @yield("modal")
-
-
