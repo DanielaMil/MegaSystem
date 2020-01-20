@@ -220,72 +220,43 @@ class AplicacionController extends Controller
         $txtRecibo = $dato->txtRecibo;
         $txtDniPromotor = $dato->txtDniPromotor;
 
-        /*$_numcade01 = strlen($txtRecibo);
-        if ($_numcade01 == 8 ) {*/
-
-        $auxIdAl         = $dato->auxIdAl;
-        $txtDni_Al        = $dato->txtDni_Al;
-        $txtApellidoPaAl = $dato->txtApellidoPaAl;
-        $txtApellidoMaAl = $dato->txtApellidoMaAl;
-        $txtNombreAl     = $dato->txtNombreAl;
-        $cboGeneroAl     = $dato->cboGeneroAl;
-        $txtDireccionAl  = $dato->txtDireccionAl;
-        $txtCelularAl    = $dato->txtCelularAl;
-        $txtFechaNaAl    = $dato->txtFechaNaAl;
-        if ($auxIdAl == '') {
-            //$datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
-            // $Alumno = DB::select("call buscarAlumnodni(?)", array($txtDni_Al));
-            $auxIdAl = $Alumno[0]->idAlumno;
+        $_numcade01 = strlen($txtRecibo);
+        if ($_numcade01 == 7 )
+        {
+            $datas = [
+                'estado' => true,
+                'cod' => 200
+            ];
+            return response()->json($datas);
+        }else{
+            $datas = [
+                'estado' => false,
+                'cod' => 100
+            ];
+            return response()->json($datas);
         }
-
-        $auxIdApoderado   = $dato->auxIdApoderado;
-        $txtDni_AP        = $dato->txtDni_AP;
-        $txtApellidopa_Ap = $dato->txtApellidopa_Ap;
-        $txtApellidoMa_AP = $dato->txtApellidoMa_AP;
-        $txtNombre_AP     = $dato->txtNombre_AP;
-        $txtDireccion_AP  = $dato->txtDireccion_AP;
-        $txtCelular_AP    = $dato->txtCelular_AP;
-        $txtParentesco_AP = $dato->txtParentesco_AP;
-
-
-
-        //***********************************INICIO DE MATRICULA CUOTAS  PAGOS DE LA MATRICULA ************************* */
-
-
-
-
-        $datas = [
-            'estado' => true,
-            'cod' => 101
-        ];
-        return response()->json($datas);
-
-        /*}else{
-        $data = [
-            'estado' => false,
-            'cod'    => 100
-        ];
-        return response()->json($data);
-    }*/
     }
 
-    public function matriculaRegistro(REQUEST $dato)
+    public function auxfuncion(REQUEST $dato)
     {
+        return response()->json($data);
+    }
 
-
+    public function matriculaRegistro(REQUEST $dato){
         /*$_numcade01 = strlen($txtRecibo);
         if ($_numcade01 == 8 ) {*/
 
-        $auxIdAl         = $dato->auxIdAl;
-        $txtDni_Al        = $dato->txtDni_Al;
-        $txtApellidoPaAl = $dato->txtApellidoPaAl;
-        $txtApellidoMaAl = $dato->txtApellidoMaAl;
-        $txtNombreAl     = $dato->txtNombreAl;
-        $cboGeneroAl     = $dato->cboGeneroAl;
-        $txtDireccionAl  = $dato->txtDireccionAl;
-        $txtCelularAl    = $dato->txtCelularAl;
-        $txtFechaNaAl    = $dato->txtFechaNaAl;
-        if ($auxIdAl == '') {
+        $auxIdAl         =$dato->auxIdAl;
+        $txtDni_Al        =$dato->txtDni_Al;
+        $txtApellidoPaAl =$dato->txtApellidoPaAl;
+        $txtApellidoMaAl =$dato->txtApellidoMaAl;
+        $txtNombreAl     =$dato->txtNombreAl;
+        $cboGeneroAl     =$dato->cboGeneroAl;
+        $txtDireccionAl  =$dato->txtDireccionAl;
+        $txtCelularAl    =$dato->txtCelularAl;
+        $txtFechaNaAl    =$dato->txtFechaNaAl;
+       
+        if ($auxIdAl == ''){
             //$datos = DB::select("call registrarAlumno(?,?,?,?,?,?,?,?)",array($txtDni_Al,$txtNombreAl,$txtApellidoPaAl,$txtApellidoMaAl,$cboGeneroAl,$txtCelularAl,$txtFechaNaAl,$txtDireccionAl));
             $Alumno = DB::select("call buscarAlumnodni(?)", array($txtDni_Al));
             $auxIdAl = $Alumno[0]->idAlumno;
@@ -373,28 +344,7 @@ class AplicacionController extends Controller
             ];
             return response()->json($datas);
         }
-        /*if($dataMensualidad01){
-            $datas = [
-                'estado' => false,
-                'cod' => 200,
-                'datos' => $dataMensualidad01
-            ];
-            return response()->json($datas);
-        }else{
-            
-            $datas = [
-                'estado' => true,
-                'cod' => 101
-            ];
-        return response()->json($datas);
-        }*/
-        /*}else{
-        $data = [
-            'estado' => false,
-            'cod'    => 100
-        ];
-        return response()->json($data);
-    }*/
+        
     }
 
     public function buscarMontoMatricula(REQUEST $request)
