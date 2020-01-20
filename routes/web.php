@@ -17,38 +17,39 @@ Route::get('/a', 'AplicacionController@Inicio2')->name('inicio2');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
+Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
 
 // **********************MATRICULA***********************************
-route::get('/matricula/inicio','AplicacionController@Matricula')->name('matricula01');
-route::post('/matricula/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
-route::post('/matricula/buscarApoderado','AplicacionController@buscarAP')->name('buscar_AP');
-route::post('/matricula/buscarPromotor','AplicacionController@buscarPromotor')->name('buscar_Promotor');
+route::get('/inicio','AplicacionController@Matricula')->name('matricula01');
+route::post('/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
+route::post('/buscarApoderado','AplicacionController@buscarAP')->name('buscar_AP');
+route::post('/buscarPromotor','AplicacionController@buscarPromotor')->name('buscar_Promotor');
 
-route::post('/matricula','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
-route::post('/matricula/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
-route::post('/matricula/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
-route::post('/matricula/listarMensualidad','AplicacionController@listarMensualidad')->name('listarMensualidad');
-route::post('/matricula/cantidad','AplicacionController@cantidadCelAp')->name('cantidadCelularAP');
-route::post('/matricula/validarImporte','AplicacionController@validarImporte')->name('validarImporte');
-route::post('/matricula/validarDescuento','AplicacionController@validarDescuento')->name('validarDescuento');
-route::post('/matricula/guardar_Alumno','AplicacionController@guardar_Alumno')->name('guardar_Alumno');
-route::post('/matricula/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name('guardar_Apoderado');
+route::post('/matriculaRegistro','AplicacionController@matriculaRegistro')->name('matriculaRegistro');
+route::post('/cargarGrupo','AplicacionController@listarGrupo')->name('listarGrupo');
+route::post('/buscarMontoMatricula','AplicacionController@buscarMontoMatricula')->name('buscarMontoMatricula');
+route::post('/listarMensualidad','AplicacionController@listarMensualidad')->name('listarMensualidad');
+route::post('/cantidad','AplicacionController@cantidadCelAp')->name('cantidadCelularAP');
+route::post('/validarImporte','AplicacionController@validarImporte')->name('validarImporte');
+route::post('/validarDescuento','AplicacionController@validarDescuento')->name('validarDescuento');
+route::post('/guardar_Alumno','AplicacionController@guardar_Alumno')->name('guardar_Alumno');
+route::post('/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name('guardar_Apoderado');
 
-route::post('/matricula/verificarAlumno','AplicacionController@verificarAlumno')->name('verificarAlumno');
-route::post('/matricula/verificarApoderado','AplicacionController@verificarApoderado')->name('verificarApoderado');
-route::post('/matricula/verificarMatricula','AplicacionController@verificarMatricula')->name('verificarMatricula');
+route::post('/verificarAlumno','AplicacionController@verificarAlumno')->name('verificarAlumno');
+route::post('/verificarApoderado','AplicacionController@verificarApoderado')->name('verificarApoderado');
+route::post('/verificarMatricula','AplicacionController@verificarMatricula')->name('verificarMatricula');
 
 
 
-route::post('/matricula/volverInicio','AplicacionController@volverInicio')->name('volverInicio');
+
+route::post('/auxfuncion','AplicacionController@auxfuncion')->name('auxfuncion');
 
 
 //************************FIN_MATRICULA********************************* */
-
+/*
 Route::get('/matricula2', 'AplicacionController@Matricula2')->name('matricula2');
 route::post('/matricula2/buscarAlumno','AplicacionController@buscarAL')->name('buscar_AL');
-Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');
+Route::get('/matricula', 'AplicacionController@Matricula')->name('matricula');*/
 
 //********************PAGOS****** */
 Route::get('/pagos', 'pagosController@Pagos')->name('pago');
