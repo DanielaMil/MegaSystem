@@ -98,6 +98,7 @@
                             label: element,
                             data: cantidadEgresados(element, response),
                             backgroundColor: 'rgba(' + Math.random() * (250 - 0) + 0 + ',' + 161 + ',' + Math.random() * (250 - 0) + 0 + ', ' + Math.random() * (250 - 0) + 0 + ' )',
+                            fill: 'false',
                         });
                     });
                     console.log(dataSets)
