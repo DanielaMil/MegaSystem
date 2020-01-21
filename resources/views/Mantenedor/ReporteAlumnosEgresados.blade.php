@@ -19,10 +19,10 @@
 </div>
 <div class="card">
     <div class="card-header">
-        <i class="metismenu-icon pe-7s-graph3"></i>Población de alumnos
+        <i class="metismenu-icon pe-7s-graph3"></i>Población de Egresados
     </div>
     <canvas id="myChart"></canvas>
-    <div class="btnPDF d-flex justify-content-around m-3">
+    <div class=" card-footer btnPDF d-flex justify-content-around m-3">
         <button type="button" class="btn btn-primary" onclick="generarPDF()">PDF</button>
         <button type="button" class="btn btn-primary">Excel</button>
 
@@ -99,6 +99,8 @@
                             data: cantidadEgresados(element, response),
                             backgroundColor: 'rgb(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ')',
                             fill: 'false',
+                            radius: 5,
+                            borderWidth: 4,
                         });
                     });
                     console.log(dataSets)
@@ -133,7 +135,7 @@
             var imgData = Canvas.toDataURL('image/png');
             var pdf = new jsPDF('landscape');
             pdf.addImage(imgData, 'PNG', 30, 30, 240, 140);
-            pdf.save('download.pdf');
+            pdf.save('ReporteEgresado.pdf');
         }
     </script>
     @endsection
