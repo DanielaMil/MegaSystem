@@ -5,6 +5,8 @@
 <script type="text/javascript" src="{{asset('chartjs/dist/Chart.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('chartjs/dist/Chart.bundle.js')}}"></script>
 <script type="text/javascript" src="{{asset('chartjs/dist/Chart.bundle.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.0/xlsx.full.min.js"></script>
 <style>
     canvas {
         -moz-user-select: none;
@@ -31,15 +33,6 @@
     <script src="chart.js"></script>
 
     <script>
-        function cantidadEgresados(curso, data) {
-            var total = [];
-            data.forEach(element => {
-                if (element.curso == curso) {
-                    total.push(element.totalEgresados);
-                }
-            });
-            return total;
-        }
         var cursos = [];
 
         function cargarCursos() {
@@ -81,6 +74,39 @@
         cargarCursos();
         cargarCiclos();
 
+        function calcularCiclo(total, ciclo, totalEgresados) {
+            for (let i = 0; i < ciclos.length; i++) {
+                if (ciclo == ciclos[i]) {
+                    total[i] = totalEgresados
+                    break
+                }
+
+            }
+        }
+
+        function cantidadEgresados(curso, data) {
+            var total = [];
+            ciclos.forEach(element => {
+                total.push(0);
+            });
+            data.forEach(element => {
+                if (element.curso == curso) {
+                    calcularCiclo(total, element.ciclo, element.totalEgresados)
+                }
+            });
+            for (let i = 0; i < total.length; i++) {
+                if (total[i] == 0) {
+                    total[i] = null;
+
+                } else {
+                    break
+                }
+
+            }
+            return total;
+        }
+        var data
+
         function listado() {
             var url = "egresadosPorCurso";
             $.ajax({
@@ -92,15 +118,20 @@
                 },
                 success: function(response) {
                     console.log(response);
+                    data = response
                     var dataSets = [];
                     cursos.forEach(element => {
+                        var r = Math.round(Math.random() * 255);
+                        var g = Math.round(Math.random() * 255);
+                        var b = Math.round(Math.random() * 255);
                         dataSets.push({
                             label: element,
                             data: cantidadEgresados(element, response),
-                            backgroundColor: 'rgb(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ')',
+                            backgroundColor: 'rgb(' + r + ',' + g + ',' + b + ')',
+                            borderColor: 'rgb(' + r + ',' + g + ',' + b + ')',
                             fill: 'false',
-                            radius: 5,
-                            borderWidth: 4,
+                            radius: 4,
+                            borderWidth: 2,
                         });
                     });
                     console.log(dataSets)
@@ -136,6 +167,41 @@
             var pdf = new jsPDF('landscape');
             pdf.addImage(imgData, 'PNG', 30, 30, 240, 140);
             pdf.save('ReporteEgresado.pdf');
+        }
+
+        var wb = XLSX.utils.book_new();
+        wb.Props = {
+            Title: "SheetJS Tutorial",
+            Subject: "Test",
+            Author: "Red Stapler",
+            CreatedDate: new Date()
+        };
+
+        wb.SheetNames.push("Test Sheet");
+        var ws_data = [
+            ['Ciclos', 'Cursos', 'Egresados'], ...data
+        ];
+
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Test Sheet"] = ws;
+        var wbout = XLSX.write(wb, {
+            bookType: 'xlsx',
+            type: 'binary'
+        });
+
+        function s2ab(s) {
+
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+
+        }
+
+        function guardarExcel() {
+            saveAs(new Blob([s2ab(wbout)], {
+                type: "application/octet-stream"
+            }), 'test.xlsx');
         }
     </script>
     @endsection
