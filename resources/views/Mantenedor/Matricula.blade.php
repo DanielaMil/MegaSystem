@@ -386,12 +386,12 @@ PATRICIA
                                             </div>                                                                                                                                  
                                         </div>
                                         <div class="col-md-1 mt-5 pt-0 pl-0">
-                                            <button type="submit" class="btn btn-info" id="btnBuscarPromotor"  disabled="true" >Buscar</button>                                                                                  
+                                            <button type="button" class="btn btn-info" id="btnBuscarPromotor"  >Buscar</button>                                                                                  
                                             <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
                                         </div>
                                         <div class="col-md-3 mb-2 mx-auto mt-4">
                                             <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></label>                                                                      
-                                            <input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" placeholder="Nombre" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                            <input name="txtNombrePromotor" id="txtNombrePromotor" type="text" maxlength="20" placeholder="Nombre" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
                                             <div class="invalid-feedback">
                                                 Please choose a username.
                                             </div>                                    
@@ -404,14 +404,14 @@ PATRICIA
                         <hr style="margin-top:1em">
                         <div class="text-center ">
                             <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnCancelar">CANCELAR</button>
-                            <a href="{{url('/matricula2')}}">
+                            <!--<a href="{{url('/matricula2')}}">-->
                                 <button type="button" class="btn btn-success" id="btn_registrarAjax" disabled="true" >REGISTRAR</button>
-                                <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+                                <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">     
 
                                 <!--<input type="hidden" name="urlVerificarMatricula" debe seleccionar  id="urlVerificarMatricula" url="{{route('verificarMatricula')}}">-->
 
                                 <!--<input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">-->
-                            </a>                           
+                           <!-- </a> -->                          
                         </div>
                     </div>
                 </div>
@@ -442,7 +442,7 @@ PATRICIA
             <a href="{{url('/matricula')}}">
             <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
             </a>
-            <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
+           <!-- <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">-->        
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
         </div>
         </div>
@@ -506,7 +506,6 @@ PATRICIA
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
-
 
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
@@ -1551,7 +1550,7 @@ PATRICIA
             buscarAlumno();
         });
 
-        //--------------------PROMOTOR---------------------
+        //--------------------PROMOTOR----------------------
         function buscarPromotor01(){
             var urlAJAX_Promotor = $('#urlAJAX_Promotor').val();
             var txtDniPromotor = $('#txtDniPromotor').val();
@@ -2675,7 +2674,9 @@ PATRICIA
                     console.log(response);
                     if(response.cod == 101){
 
-                        Command: toastr["success"]("registrada correctamente", "Matrícula")
+
+
+                        /*Command: toastr["success"]("registrada correctamente", "Matrícula")
 
                         toastr.options = {
                         "closeButton": false,
@@ -2693,7 +2694,7 @@ PATRICIA
                         "hideEasing": "linear",
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
-                        }
+                        }*/
                     }else{
                         
                         if(response.cod == 100){
@@ -2767,7 +2768,7 @@ PATRICIA
 
             $.ajax({
                 type: "post",
-                url: "/matricula",
+                url: urlregistroAJAX,
                 data:{
                     
                     auxIdAl         :auxIdAl,
@@ -2803,6 +2804,7 @@ PATRICIA
                     if(response.cod == 101){
                         //Modal de Matricula 
                         //$('#RegMatricula').modal('show');
+                        alert('es el resultado de la validacion');
                         
                     }else{
                         
@@ -2838,14 +2840,13 @@ PATRICIA
                 complete:function () {  
                 }
 
-            });
-
-       
+            }); 
         }
 
         $('#btn_registrarAjax').click(function () { 
-            //validarMatricula();
-            registrarAJAX();
+            validarMatricula();
+            //registrarAJAX();
+           // btn_registrarAjax
         })
 
         /*$(document).ready(function() {

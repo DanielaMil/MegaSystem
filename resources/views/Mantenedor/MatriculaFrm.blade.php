@@ -1,16 +1,35 @@
 @extends('layouts.app')
-@section('css')
-
+@section('java')
+    <script>
+        // Evento que se ejecuta cada vez que se pulsa sobre un checkbox de la tabla
+        $("table input[type=checkbox]").on("click",function() {
+            // si esta seleccionado el checkbox
+            if($(this).is(":checked"))
+            {
+         
+                // añadimos la clase selected
+                $(this).parents("tr").addClass("selected");
+            }else{
+         
+                // quitamos la clase selected
+                $(this).parents("tr").removeClass("selected");
+            }
+        });
+    </script>
+    <script>
+        
+    </script>
 @endsection
+
 @section('url')
-fggf>jdk>fjkfjkj
+PATRICIA
 @endsection
 
 @section('content')   
-        <!--*******************Encabezado*****************
+        <!--*******************Encabezado*****************-->
         <div class="modal-header">
-            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Registrar Matricula</h5>
-        </div>-->
+            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">REGISTRAR</h5>
+        </div>
         <!--*******************FIN_Encabezado****************--->
         <!--****************************************Formulario****************************************-->
         <div class="card">
@@ -32,513 +51,456 @@ fggf>jdk>fjkfjkj
                         </a>
                     </li>
                 </ul>
+
                 <hr style="margin-top:0">
 
-                <!--Formularios de Alumno Apoderado Matricula--->
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Ingresar Datos
-                                </h5>
-                                <div>
-                                    <!--**********Datos de Alumnos*********<br>****-->
-                                    <div class="card-body mx-auto style=width: 50px" > 
-                                        <div  class="form-inline">
-                                            @csrf
-                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-                                            <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                <label class="mr-sm-2">
-                                                    DNI
-                                                </label>
-                                                <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AL" style="width: 80px">Buscar</button>
-                                            <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">
-                                            
-                                            <input type="hidden" id="auxIdAl" >  
-                                            <div class="load" style="display: none">Cargando....</div>
-                                        </div>
-                                    </div> 
-                                    <div class="row m-3 ">
-                                        <div class="column m-3" style="width: 18em;">
-                                            <div class="position-relative form-group">
-                                                <label for="form-control" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Apellido Paterno*</font>
-                                                    </font>
-                                                </label><input name="txtApellidoPa_Al" id="txtApellidoPaAl" type="text" maxlength="20" class="form-control" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="examplePassword" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Fecha Nacimiento*</font>
-                                                    </font>
-                                                </label><input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px"  onkeypress="return soloNumeros(event)" disabled="true">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="form-control" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Dirección*</font>
-                                                    </font>
-                                                </label><input name="txtDireccionAl" id="txtDireccionAl" maxlength="40" type="text" autocomplete="off" class="form-control" disabled="true">
-                                            </div>
-                                        </div>
-                                        <div class="column m-3" style="width: 18em;">
-                                            <div class="position-relative form-group"><label for="form-control" class="">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Apellido Materno*</font>
-                                                </font>
-                                                </label><input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="exampleSelect" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Género*</font>
-                                                    </font>
-                                                </label>
-                                                <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
-                                                    <option selected value="1">Masculino</option>
-                                                    <option value="0">Femenino</option>
-                                                </select>
-                                            </div>
-                                            <div class="position-relative form-group"><label for="form-control" class="">
-                                                <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Edad</font>
-                                                </font>
-                                                </label><input name="txtEdad" id="txtEdad" type="text"  class="form-control" style="width: 80px" >
-                                            </div>
-                                        </div>
-                                        <div class="column m-3" style="width: 18em;">
-                                            <div class="position-relative form-group">
-                                                <label for="examplePassword" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Nombre*</font>
-                                                    </font>
-                                                </label><input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                            </div>
-                                            <div class="position-relative form-group">
-                                                <label for="examplePassword" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Celular*</font>
-                                                    </font>
-                                                </label>
-                                                <INPUT type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
-                                                <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="tab-content">
+                    <div class="tab-pane show  active" id="tab-animated1-alumno" role="tabpanel">
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
+                        <div class="form-inline">   
+                            @csrf      
+                            <div class="mx-auto">
+                                <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                    <label for="examplePassword22" class="mr-sm-2" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DNI</font></font></label>
+                                    <input name="txtDni_Al" id="txtDni_Al" type="text" class="form-control" maxlength="8" autocomplete="off" onkeypress="return soloNumeros(event)">
+                                    <button type="button" id="btn_buscarAJAX_AL" class="btn btn-info" style="width: 80px">BUSCAR</button>
+                                </div>
 
-                                    <div class="row">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-primary" id="btn_guardar_Alumno" disabled="true" data-toggle="modal" data-target="#RegAlumno">
-                                                Guardar
-                                            </button>
-                                            <!--<button type="button" class="btn btn-primary" disabled="true"  id="btn_guardar_Alumno">Guardar</button>-->
-                                            
-                                            <button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarAlumno">Limpiar</button>
-                                        </div>
-                                        <div class="col-md-4"></div>
+                                <input type="hidden" id="urlAJAX_AL" value="{{route('buscar_AL')}}">                                 
+                                <input type="hidden" id="auxIdAl" >  
+                                <div class="load" style="display: none">Cargando....</div>
+                            </div>                  
+                           
+                        </div>
+                        <br><br>   
+                        <!--   REGISTRO DE ALUMNO  --> 
+                        <div class="needs-validation " novalidate="" >
+                            @csrf 
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoPaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input type="text" class="form-control" placeholder="" value="" required="" name="txtApellidoPa_Al" id="txtApellidoPaAl"  maxlength="20" autocomplete="off" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoMaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtApellidoMa_Al" id="txtApellidoMaAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>                                                                      
+                                    <input name="txtNombre_Al" id="txtNombreAl" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtFechaNaAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha Nacimiento<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtFechaNa_Al" id="txtFechaNaAl" type="date" class="form-control" style="width: 190px"  onkeypress="return soloNumeros(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="cboGeneroAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Género<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <select name="cboGenero_Al" id="cboGeneroAl"  class="form-control" style="width: 140px" disabled="true">
+                                        <option value="-1">-Seleccione-</option>
+                                        <option value="1">Masculino</option>
+                                        <option value="0">Femenino</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid state.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtCelularAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular</font></font></label>
+                                    <input type="text" SIZE=9 id="txtCelularAl" class="form-control" autocomplete="off" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                    <input type="hidden" id="urlAJAX_cantidadAL" value="{{route('cantidadCelularAP')}}">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid zip.
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="tab-pane show" id="tab-animated1-apoderado" role="tabpanel">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Ingresar Datos
-                                </h5>
-                                <div>
-                                    <!--**********Datos de Apoderado*************-->
-                                        <div class="card-body mx-auto style=width: 50px" > 
-                                            <div  class="form-inline">
-                                                <!-- <form class="form-inline" >-->
-                                                @csrf  
-                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group" style="width: 15em;"></div>
-                                                <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                    <label class="mr-sm-2">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">DNI</font>
-                                                        </font>
-                                                    </label>
-                                                    <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary" id="btn_buscarAJAX_AP" style="width: 80px">Buscar</button>
-                                                <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
-                                                <input type="hidden" id="auxIdApoderado" value="">  
-                                                <div class="load" style="display: none">cargando....</div>
-                                            </div>
-                                        </div> 
-                                        <div class="row m-3 ">
-                                            <div class="column m-3" style="width: 18em;">
-                                                <div class="position-relative form-group">
-                                                    <label for="form-control" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Apellido Paterno*</font>
-                                                        </font>
-                                                    </label><input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                </div>
-                                                <div class="position-relative form-group">
-                                                    <label for="form-control" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Parentesco*</font>
-                                                        </font>
-                                                    </label><input name="txtParentesco_AP" id="txtParentesco_AP" maxlength="20" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                </div>
-                                                <div class="position-relative form-group">
-                                                    <label for="form-control" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Dirección*</font>
-                                                        </font>
-                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text"  maxlength="30"autocomplete="off" class="form-control" disabled="true">
-                                                </div>
-                                            </div>
-                                            <div class="column m-3" style="width: 18em;">
-                                                <div class="position-relative form-group"><label for="form-control" class="">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Apellido Materno*</font>
-                                                    </font>
-                                                    </label><input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" maxlength="20" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
-                                                </div>
-                                                <div class="position-relative form-group"><label for="examplePassword" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Celular*</font>
-                                                        </font>
-                                                    </label><input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
-                                                    <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
-                                                </div>
-                                            </div>
-                                            <div class="column m-3" style="width: 18em;">
-                                                <div class="position-relative form-group">
-                                                    <label for="examplePassword" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Nombre*</font>
-                                                        </font>
-                                                    </label><input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" maxlength="20" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--<div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group">
-                                                    <label for="form-control" class="">
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Dirección</font>
-                                                        </font>
-                                                    </label><input name="txtDireccion_AP" id="txtDireccion_AP" type="text" autocomplete="off" class="form-control" disabled="true">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4"></div>
-                                        </div>-->
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="col-md-4">
-                                                <!--<button type="button" class="btn btn-primary" disabled="true"  id="btn_guardar_Apoderado">Guardar</button>-->
-                                                <button type="button" class="btn btn-primary" id="btn_guardar_Apoderado" disabled="true" data-toggle="modal" data-target="#RegApoderado">
-                                                    Guardar
-                                                </button>
-
-                                                <button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarApoderado">Limpiar</button>
-                                            </div>
-                                            <div class="col-md-4"></div>
-                                        </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-4 ml-5 ">
+                                    <label for="txtDireccionAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtDireccionAl" id="txtDireccionAl" maxlength="50" type="text" autocomplete="off" class="form-control" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
                                 </div>
+                                
                             </div>
-                        </div>
-                        <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">Ingresar Datos</font>
-                                    </font>
-                                </h5>
-                                <div>
-                                    <!--**************************************Datos de Matricula***************************************************0.00-->
-                                    <div class="row m-3 ">
-                                        <div class="column m-2" style="width: 34em;">
-                                            <div class="column m-3" style="width: 25em;">
-                                                <div class="mt-3 position-relative form-check">
-                                                    <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                        <!--<table class="table">
-                                                            <thead>
-                                                                <th></th>
-                                                                <th>CURSO</th>
-                                                                <th>GRUPO</th>
-                                                                <th>PAGO</th>
-                                                            </thead>
-                                                            <tbody id="tbody">
-                                                                
-                                                            </tbody>
-                                                            <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                                                        </table>-->
-                                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></th>
-                                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CURSO</font></font></th>
-                                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GRUPO</font></font></th>
-                                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PAGO</font></font></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbody">                                       
-                                                            </tbody>
-                                                            <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
-                                                        </table>
-                                                    
-                                                    </div>                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="column m-2" style="width: 2em;">
-                                        
-                                        </div>
-                                        <div class="col-md-4.5" style="    padding-left: 0px;">
-                                            <div class="main-card mb-3 card" style="padding: 10px;" >
-                                                <div class="column m-3" style="width: 17em;">
-                                                <!--<div class="column m-3"  style="    padding-left: 10px;">-->
-                                                            <h4>________Datos_________</h4>        
-                                                    <div class="card-body mx-auto style=width: 8em">
-                                                        <div class="form-inline">
-                                                            <label>
-                                                                <font style="font-weight: bold;">Pago Matrícula </font>
-                                                            </label>
-                                                            <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em" >
-                                                            <input type="hidden" id="urlAJAX_montoMatricula" value="{{route('buscarMontoMatricula')}}">
-                                                        </div>
-                                                    </div>
-                                                        
-                                                    <div class="column m-3" style="width: 8em;">
-                                                        <label for="form-control" class="" style="font-weight: bold">Importe</label>
-                                                        <div class="input-group input-group-sm">
-                                                            <div class="input-group-prepend"><span class="input-group-text">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        S/
-                                                                    </font>
-                                                                </font></span>
-                                                            </div>
-                                                            <input name="txt" id="txtImporte" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
-                                                            <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            .00
-                                                                        </font>
-                                                                    </font>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body mx-auto style=width: 50px">
-                                                        <div class="form-inline">
-                                                            <label>
-                                                                <font style="font-weight: bold">Pago Mensualidad</font>
-                                                            </label>
-                                                            <input name="txt" id="txtMensualidad" class="form-control" type="text" style="width: 4em" >                                                                 
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <label>
-                                                        <font style="vertical-align: inherit;">
-                                                            <font style="vertical-align: inherit;">Razón del descuento</font>
-                                                        </font>
-                                                    </label>
-                                                    <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" style="width: 250px"placeholder="Escribe aquí tus comentarios"></textarea>
-                                                    <div class="column m-3" style="width: 8em;">
-                                                        <label for="form-control" class="" style="font-weight: bold">Descuento</label>
-                                                        <div class="input-group input-group-sm">
-                                                            <div class="input-group-prepend"><span class="input-group-text">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        S/
-                                                                    </font>
-                                                                </font></span>
-                                                            </div>
-                                                            <input name="txt" id="txtDescuento" type="text" autocomplete="off" class="form-control" style="width: 25%" maxlength="6" onkeypress="return montos(event)">
-                                                            <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">
-                                                                            .00
-                                                                        </font>
-                                                                    </font>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="column m-3" style="width: 17em;">
-                                                        <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                            <!--<table class="table02">-->
-                                                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                                                <thead>
-                                                                    <th>MES</th>
-                                                                    <th>MONTO</th>
-                                                                    <th>FECHA VENC.</th>
-                                                                </thead>
-                                                                <tbody id="tbody02">
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <button type="button" class="btn btn-primary" id="btnGuardarTablaAjax"  disabled="true">Generar</button>
-                                                            <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
-                                                    </div>
-                                                    <!--<button type="button" class="btn btn-primary" id="btnVolver" >Volver</button>
-                                                    <input type="hidden" id="urlVolver" value="{{route('volverInicio')}}">-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-18" style="    padding-left: 0px;">
-                                        <div class="main-card mb-3 card" style="padding: 10px;" >
-                                            <div class="row m-7 ">
-                                                <div class="column m-3" style="width: 15em;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">N° Recibo*</font>
-                                                    </font>
-                                                    <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="8" class="form-control">
-                                                </div>
-                                                <div class="card-body mx-auto style=width: 50px" > 
-                                                    <div  class="form-inline">
-                                                        @csrf 
-                                                        <div class="mb-2 mr-sm-2 mb-sm-0 form-group">
-                                                            <label class="mr-sm-2">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">DNI_Promotor</font>
-                                                                </font>
-                                                            </label>
-                                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text" style="width: 7em" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary" id="btnBuscarPromotor" style="width: 5em">Buscar</button>
-                                                        <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
-                                                    </div>
-                                                </div> 
-                                                <div class="column m-3" style="width: 30em;">
-                                                    <font style="vertical-align: inherit;">
-                                                        <font style="vertical-align: inherit;">Nombre</font>
-                                                    </font>
-                                                    <input name="txtNombrePromotor" id="txtNombrePromotor" autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled ="true" style="width: 18em">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row m-3" >
-                                        <div class="column m-3" style="width: 18em;"></div>
-                                        <div class="column m-3" style="width: 5em;">
-                                            <!--<a href="{{url('/matricula')}}">-->
-                                                <!--<button type="button" class="btn btn-primary" id="btn_registrarAjax" disabled="true" >Registrar</button>-->
-                                                <button type="button" class="btn btn-primary" id="btn_registrarAjax" data-toggle="modal" disabled="true" data-target="#RegMatricula">
-                                                    Registrar
-                                                </button>
-                                            <!--</a>-->
-                                        </div>
-                                        <div class="column m-3" style="width: 10em;">
-                                            <a href="{{url('/matricula')}}">
-                                                <button type="button" class="btn btn-primary" id="btnCancelar" >Cancelar</button>
-                                            </a>
-                                        </div>
-                                        <!--<div class="column m-3" style="width: 10em;">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegAlumno">
-                                                Registrar01
-                                            </button>
-                                        </div>-->
-                                        
-                                    </div>
-                                </div>
+                            <hr style="margin-top:1em">
+                            <div class="text-center ">
+                                <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarAlumno">LIMPIAR</button>
+
+                                <!--<button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" data-target="#RegAlumno" data-toggle="modal">REGISTRAR</button>-->
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Alumno" >REGISTRAR</button>
+                                <input type="hidden" id="urlValidarAlumno" value="{{route('verificarAlumno')}}">
+
+
+                                <!--<button type="button" class="btn btn-primary" disabled="true" id="btnLimpiarAlumno">Limpiar</button>
+                                
+                                <button type="button" class="btn btn-primary" id="btn_guardar_Alumno" disabled="true" data-toggle="modal" data-target="#RegAlumno">
+                                    Guardar
+                                </button>-->
                             </div>
                         </div>
                     </div>
+                        <!-- REGISTRO DE APODERADO --> 
+                    <div class="tab-pane show" id="tab-animated1-apoderado" role="tabpanel">
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>          
+                        <div class="form-inline">   
+                            @csrf      
+                            <div class="mx-auto">
+                                <div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+                                    <label for="examplePassword22" class="mr-sm-2" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DNI</font></font></label>
+                                    <input name="txtDni_AP" id="txtDni_AP" type="text" autocomplete="off" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                    <button type="submit" class="btn btn-info" id="btn_buscarAJAX_AP" style="width: 80px">BUSCAR</button>
+                                </div>
+                                
+                                <input type="hidden" id="urlAJAX_AP" value="{{route('buscar_AP')}}">
+                                <input type="hidden" id="auxIdApoderado" value="">  
+                                <div class="load" style="display: none">cargando....</div>
+                            </div>                  
+                           
+                        </div>
+                        <br><br>    
+                        <div class="needs-validation " novalidate="" >
+                            @csrf 
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidopa_Ap" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Paterno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtApellidopa_Ap" id="txtApellidopa_Ap" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtApellidoMa_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellido Materno<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtApellidoMa_AP" id="txtApellidoMa_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)"disabled="true">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-4 mx-auto ">
+                                    <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>                                                                      
+                                    <input name="txtNombre_AP" id="txtNombre_AP"  autocomplete="off" type="text" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-3 mb-4 ml-5 mr-4 pl-0">
+                                    <label for="txtParentesco_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parentesco<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtParentesco_AP" id="txtParentesco_AP" type="text" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3 mb-4 ml-5">
+                                    <label for="txtCelular_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celular<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtCelular_AP" id="txtCelular_AP" autocomplete="off" type="text" class="form-control" style="width: 170px" maxlength="9" onkeypress="return soloNumeros(event)" disabled="true">
+                                    <input type="hidden" id="urlAJAX_cantidadCelularAP" value="{{route('cantidadCelularAP')}}">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid zip.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-4 ml-5 ">
+                                    <label for="txtDireccion_AP" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                    <input name="txtDireccion_AP" id="txtDireccion_AP" type="text"  autocomplete="off" class="form-control" disabled="true">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <hr style="margin-top:1em">
+                            <div class="text-center ">
+                                <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnLimpiarApoderado">LIMPIAR</button>
+
+                                <!--<button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" data-toggle="modal" data-target="#RegApoderado">REGISTRAR</button>-->
+                                <button class="btn-wide btn btn-success" type="button" disabled="true"  id="btn_guardar_Apoderado" >REGISTRAR</button>
+
+                                <input type="hidden" id="urlValidarApoderado" value="{{route('verificarApoderado')}}">
+                                
+                            </div>
+                        </div>
+                    </div>
+                        <!-- REGISTRO DE MATRICULA --> 
+                    <div class="tab-pane show" id="tab-animated1-matricula" role="tabpanel">
+                        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DATOS</font></font></h5>
+                        <div class="row">
+                            <input type="hidden" id="urlAJAX_ListarGrupo" value="{{route('listarGrupo')}}"> 
+                            <div class="col-md-8">
+                                <div class="main-card mb-3 card">  
+                                    <div class="table-responsive">
+                                        <table class="align-middle mb-0 table table-borderless table-striped table-hover" >
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></th>
+                                                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Curso</font></font></th>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Grupo</font></font></th>
+                                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Datos de Pago</font></font></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblCursos">
+                                                                                           
+                                            </tbody>
+                                        </table>
+                                    </div>     
+                                </div>
+                            </div>
+    
+                            <div class="col-md-4" style="    padding-left: 0px;">
+                                <div class="main-card mb-3 card" style="padding: 20px;" >
+                                    <h3 class="titleCurso" style="font-size: 20px;
+                                    text-transform: uppercase;
+                                    font-weight: bold;
+                                    text-align: center;">    </h3>
+                                    <hr style="margin-top:0">
+                                    
+                                    <form action="">
+                                        <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
+
+                                        <div class="form-inline form-control-sm mb-3" >
+                                            <label>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MATRÍCULA : <font style="color:lightseagreen">S/. </font></font>
+                                            </label>
+                                            <input name="txt" id="txtMatricula" class="form-control" type="text" style="width: 4em; border: 0; background-color: #fff; font-weight: bold; color:lightseagreen" >
+                                            <input type="hidden" id="urlAJAX_montoMatricula" style="width: 4em; border: 0;" value="{{route('buscarMontoMatricula')}}">
+                                        </div>
+
+                                        <label for="form-control" class="" style="font-weight: bold">Importe<font style="vertical-align: inherit; color:darkred">*</font></label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend"><span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        S/
+                                                    </font>
+                                                </font></span>
+                                            </div>
+                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" max="10" autocomplete="off" class="form-control" onkeypress="return soloNumeros(event)" value="{{route('buscarMontoMatricula')}}">
+                                            <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
+                                        </div>    
+                                        <br>
+                                        <div class="form-inline form-control-sm mb-3">
+                                            <label>
+                                                <font style="font-weight: bold; color:#3f6ad8">PAGO DE MENSUALIDAD : <font style="color:lightseagreen">S/. </font></font>
+                                                <input name="txt" id="txtMensualidad" class="form-control" type="text" style="width: 4em; border: 0; background-color: #fff; font-weight: bold; color:lightseagreen" >   
+                                            </label>
+                                            <h3 class="titleConcepto" style="font-size: 20px;
+                                                    text-transform: uppercase;
+                                                    font-weight: bold;
+                                                    text-align: center;"></h3>
+                                        </div>
+
+                                        <label for="form-control" class="" style="font-weight: bold">Descuento</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend"><span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        S/
+                                                    </font>
+                                                </font></span>
+                                            </div>
+                                            <input placeholder="00" name="txt" id="txtDescuento" type="number" autocomplete="off" class="form-control" min="0" step="1" maxlength="6" onkeypress="return soloNumeros(event)">
+                                            <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
+                                        </div>  
+                                        <br>
+                                        <label for="form-control" class="" style="font-weight: bold">Explicación</label>
+                                        <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí..."></textarea>
+                                        <br>  
+                                        <div class="text-center">
+                                         <!--   <button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary " type="button" id="btnGuardarTablaAjax" disabled="true" > GENERAR CUOTAS</button>-->
+                                            <button type="button" class="btn btn-info"  disabled="true" id="btnGuardarTablaAjax">GENERAR CUOTAS</button>    
+                                            <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
+
+                                           
+                                            <div class="table-responsive">
+                                                <table class="mb-0 table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Mes</font></font></th>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Monto</font></font></th>
+                                                            <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; font-size: 12px">Vence</font></font></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody02">
+                                                                                                   
+                                                    </tbody>
+                                                </table>
+                                            </div>                                         
+                                        </div>
+                                        
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="main-card card">
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-4 mx-auto mt-3">
+                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
+                                            <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="7" class="form-control" >
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-4 pr-0 mt-3">
+                                            <label style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Promotor</font></font></label>
+                                            <input name="txtDniPromotor" id="txtDniPromotor" autocomplete="off" type="text"  placeholder="DNI" class="form-control" maxlength="8" onkeypress="return soloNumeros(event)">
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>                                                                                                                                  
+                                        </div>
+                                        <div class="col-md-1 mt-5 pt-0 pl-0">
+                                            <button type="button" class="btn btn-info" id="btnBuscarPromotor"  >Buscar</button>                                                                                  
+                                            <input type="hidden" id="urlAJAX_Promotor" value="{{route('buscar_Promotor')}}">
+                                        </div>
+                                        <div class="col-md-3 mb-2 mx-auto mt-4">
+                                            <label for="txtNombreAl" style="font-weight: bold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></label>                                                                      
+                                            <input name="txtNombrePromotor" id="txtNombrePromotor" type="text" maxlength="20" placeholder="Nombre" autocomplete="off" class="form-control" onkeypress="return soloLetras(event)" disabled="true">
+                                            <div class="invalid-feedback">
+                                                Please choose a username.
+                                            </div>                                    
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>     
+                        </div>
+                        
+                        <hr style="margin-top:1em">
+                        <div class="text-center ">
+                            <button class="btn-wide btn btn-secondary" type="button" disabled="true" id="btnCancelar">CANCELAR</button>
+                           <!-- <a href="{{url('/matricula2')}}">-->
+                                <button type="button" class="btn btn-success" id="btn_registrarAjax" disabled="true" >REGISTRAR</button>
+
+                                <input type="hidden" name="urlValidarM" id="urlValidarM" url="{{route('verificarMatricula')}}">   
+
+                                <!--<input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">-->
+                          <!--  </a> -->                          
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <font size=1.5px> <font style="vertical-align: inherit; color:darkred">(*) Campos obligatorios</font> </font>
+            </div>         
         </div>
+        
         <!--*************************************FIN_Formulario*****************************************-->
-   
+       
 @endsection
 
 @section('modal')
+
 <!-- Modal Registro de Matricula -->
 <div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Desea registrar matrícula?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            <a href="{{url('/matricula')}}">
+            <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
+            </a>
+               <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">   
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+        </div>
+        </div>
     </div>
-    <div class="modal-body">
-        ¿Seguro que desea registrar matrícula?
-    </div>
-    <div class="modal-footer">
-        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-        <a href="{{url('/matricula')}}">
-        <button type="button" class="btn btn-primary" id="modalMatricula" >Registrar</button> 
-        </a>
-        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-    </div>
-    </div>
-</div>
 </div>
 
 <!---REGISTRAR ALUMNO----->
 <div class="modal fade" id="RegAlumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Seguro que desea registrar alumno?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
+            <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
+            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+        </div>
+        </div>
     </div>
-    <div class="modal-body">
-        ¿Seguro que desea registrar alumno?
-    </div>
-    <div class="modal-footer">
-        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-        
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalAlumno">Registrar</button> 
-        <input type="hidden" id="urlAJAX_Guardar_Datos_Alumno" value="{{route('guardar_Alumno')}}">
-        
-        <input type="hidden" name="urlregistroAJAX" id="urlregistroAJAX" url="{{route('matriculaRegistro')}}">        
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-    </div>
-    </div>
-</div>
 </div>
 
 <!---REGISTRAR APODERADO   ----->
 <div class="modal fade" id="RegApoderado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        ¿Seguro que desea registrar apoderado?
-    </div>
-    <div class="modal-footer">
-        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-        
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalApoderado">Registrar</button> 
-        
-        <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
-        
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
-    </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Seguro que desea registrar apoderado?
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
+            
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modalApoderado">Registrar</button> 
+            
+            <input type="hidden" id="urlAJAX_Guardar_Datos_Apoderado" value="{{route('guardar_Apoderado')}}">
+            
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
+        </div>
+        </div>
     </div>
 </div>
-</div>
-
 @endsection
 
 @section('js')
@@ -546,7 +508,6 @@ fggf>jdk>fjkfjkj
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
-
 
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
 
@@ -612,28 +573,20 @@ fggf>jdk>fjkfjkj
             }
         }
 
-        $(document).ready(function() {
+    $(document).ready(function() {
         var arrayCursosMatriculados = [];
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");
-        var mensualidadGeneral = 0.00;
+        var mensualidadGeneral = 0;
         var auxIdGrupo = 0 ;
-        var auxMonto = 60.00;
+        var auxMonto = 60;
         var edadGlobal = 0;
 
         var numero = document.getElementById('numero');
 
         $('#modalMatricula').click(function () {  
-
-            if (edadGlobal < 18) {
-                alert('Debes llenar datos del apoderado');
-            } else {
-                
-            }
-                registrarAJAX();
-                LimpiarFormularioALU_dni02();
-                LimpiarFormularioApoderado_dni();
-                MontoMatricula();
+            registrarAJAX();
+            MontoMatricula();
         });
 
         $('#modalAlumno').click(function () {  
@@ -645,7 +598,7 @@ fggf>jdk>fjkfjkj
             registrar_Apoderado();
         });
         
-        //--------------Tablas---------------------------------
+        //--------------Tablas--------------------------------- 50
 
         function tabla(auxdeni) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
@@ -669,7 +622,7 @@ fggf>jdk>fjkfjkj
                     var estado ;
                     var estadoc;
                     var estadop;
-
+                    var cont = 0;
                     for(var i=0;i < response.datosC.length;i++){
                         estadoc =0;
                         estadop=0;
@@ -683,30 +636,34 @@ fggf>jdk>fjkfjkj
                                 }
                             }
                         }
-                        if (estadop==0) {
+                        if (estadop==0) { 
+                        //tabla+='<tr> <td> <div class="custom-control custom-checkbox"><input name="check" type="checkbox" ban=0 key="'+response.datosC[i].idCurso+'" class="custom-control-input" id="customCheck1" checked></div></td>'
+                            tabla+='<tr class="itemCur"><td><div class="custom-checkbox custom-control"><input   onclick=""  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></div></td>'
+                            +'<td>'+response.datosC[i].nombre+'</td>'
+                            +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
 
-                        tabla+='<tr><td><input  name="check" ban=0 key="'+response.datosC[i].idCurso+'" type="checkbox" class="form-check-input checkCurso"></td>'
-
-                                +'<td>'+response.datosC[i].nombre+'</td>'
-                                +'<td><select name="estado" class="form-control codigoGrupo" style="width: 250px">'
-                                for(var j=0;j < response.datosG.length;j++){
-                                    estado=0;
-                                    if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
-                                        for(var p=0;p < response.datosGND.length;p++){
-                                            if(response.datosG[j].idGrupo ==  response.datosGND[p].idGrupo){
-                                                estado = 1;
-                                            }
-                                        }
-                                        if (estado==0) {
-                                            tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'vac:'+response.datosG[j].vacante+'</option>'
+                            for(var j=0;j < response.datosG.length;j++){
+                                estado=0;
+                                if ( response.datosC[i].idCurso ==  response.datosG[j].idCurso) {
+                                    for(var p=0;p < response.datosGND.length;p++){
+                                        if(response.datosG[j].idGrupo ==  response.datosGND[p].idGrupo){
+                                            estado = 1;
                                         }
                                     }
+                                    if (estado==0) {
+                                        tabla+='<option value="'+response.datosG[j].idGrupo+'">'+response.datosG[j].descripcion+'vac:'+response.datosG[j].vacante+'</option>'
+                                    }
                                 }
+                            }
                             tabla+='</select></td>'
-                                +'<td><button type="button" class="btnPagarCurso" ><i class="metismenu-icon pe-7s-graph1"></i></button></td></tr>';  
+                                +'<td class="text-center"><button type="button" class="btn mr-2 mb-2 btn-primary btnPagarCurso" nombreCurso="'+response.datosC[i].nombre+'" disabled index='+cont+'><i class="metismenu-icon pe-7s-info"></i></button></td></tr>';  
+                                cont++;
                             }
                     }
-                    $('#tbody').html(tabla);
+
+                    $('#tblCursos').html(tabla);
+                    marcar()
+                    marcar2()
                     SeleccionarCuros();
                     SeleccionarGrupo();
 
@@ -851,6 +808,68 @@ fggf>jdk>fjkfjkj
             });
         }
 
+        function marcar2(){
+            $('.btnPagarCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    $('.titleCurso').html(e.attr('nombrecurso'))
+                    if (e.prop('click')) {  
+                        $('.itemCur').css({background:''});       
+                        $('.itemCur').eq(index).css({background:'#fadbd8'});
+                    }else{            
+                        $('.itemCur').eq(index).css({background:''});
+                       // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });       
+        }
+
+        function IniciarPagoMatricula(){
+            $('#txtImporte').prop('disabled',true);
+            $('#txtImporte').val('')
+            $('#txtDescuento').prop('disabled',true);
+            $('#txtDescuento').val('')
+            $('#txtComentario').prop('disabled',true);
+            $('#txtComentario').val('');
+        }
+
+        function marcar() {  
+            $('.checkCurso').each(function (index, element) {
+                var e = $(this);
+
+                e.click(function () {  
+                    if (e.prop('checked')) {         
+                        $('.btnPagarCurso').eq(index).prop('disabled',false)  ; 
+                        
+                      // $('.itemCur').eq(index).css({background:'paleturquoise'});
+                    }else{            
+                        
+                        IniciarPagoMatricula()
+                        $('.btnPagarCurso').eq(index).prop('disabled',true)  ;
+                        $('.itemCur').eq(index).css({background:''});
+                        // $('.itemCur').eq(index).css({background:''});
+                    //    obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+                    }
+                });
+                
+            });
+            // $('.btnPagarCurso').each(function (index, element) {
+            //     var e = $(this);
+
+            //     e.click(function () {  
+            //         if (e.prop('click')) {            
+            //             $('.itemCur').eq(index).css({background:'paleturquoise'});
+            //         }else{            
+            //             $('.itemCur').eq(index).css({background:''});
+            //            // obj.style.background = (obj.style.background=='') ? 'paleturquoise' : '';
+            //         }
+            //     });
+                
+            // });          
+        }
+
         cantidadDni_AL();
 
         function cantidadDni_AP() {
@@ -983,6 +1002,8 @@ fggf>jdk>fjkfjkj
 
         cantidadDni_CEL();
 
+
+
         function cantidadDni_CEL01() {
             var txtCelularAl = $('#txtCelularAl');
             
@@ -1070,6 +1091,32 @@ fggf>jdk>fjkfjkj
                     success: function (response) {
                         console.log(response);
                                                 
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("mínimo s/ 30.00 soles", "Importe")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtImporte').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+                        
                         if(response.cod == 101){
                             //cantidad de caracteres menor al de 8
                             toastr["error"]("mayor al pago de la Matrícula", "Importe")
@@ -1095,7 +1142,6 @@ fggf>jdk>fjkfjkj
                             $('#txtImporte').val('');
                            // $('#txtImporte').attr('disabled',true);
                         }
-                        
                         // $('.load').css({display:'none'});
                     },
                     error:function (error) {  
@@ -1136,6 +1182,32 @@ fggf>jdk>fjkfjkj
                     success: function (response) {
                         console.log(response);
                                                 
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("máximo de s/10.00", "Descuento")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtDescuento').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+
                         if(response.cod == 101){
                             //cantidad de caracteres menor al de 8
                             toastr["error"]("mayor al pago de la Mensualidad", "Descuento")
@@ -1217,14 +1289,13 @@ fggf>jdk>fjkfjkj
                             {
                                 idCurso:    e.attr('Key'),
                                 idGrupo:    selectGrupo.eq(index).val(),
-                                importe:    0.00,
+                                importe:    50,
                                 pagoMens:   parseFloat(mensualidadGeneral),
                                 pagoMatr:   parseFloat(matricula.val()),
                                 razon:      "",
-                                descuento:  0.00
+                                descuento:  00
                             }
                           
-                            
                         );
                         auxIdGrupo = selectGrupo.eq(index).val();
                         //alert(auxIdGrupo);
@@ -1293,9 +1364,9 @@ fggf>jdk>fjkfjkj
                     }
                     // alert(pos)
                     if (pos != -1) {
-                        $('#txtImporte').val(Number(arrayCursosMatriculados[pos].importe).toFixed(2));
-                        $('#txtDescuento').val(Number(arrayCursosMatriculados[pos].descuento).toFixed(2));
-                        $('#txtMensualidad').val(Number(arrayCursosMatriculados[pos].pagoMens).toFixed(2));
+                        $('#txtImporte').val(Number(arrayCursosMatriculados[pos].importe).toFixed(0));
+                        $('#txtDescuento').val(Number(arrayCursosMatriculados[pos].descuento).toFixed(0));
+                        $('#txtMensualidad').val(Number(arrayCursosMatriculados[pos].pagoMens).toFixed(0));
                         $('#txtComentario').val(arrayCursosMatriculados[pos].razon)
                         // $('#txtImporte').attr('value',arrayCursosMatriculados[pos].importe); 
                     }
@@ -1324,13 +1395,25 @@ fggf>jdk>fjkfjkj
                 // alert(UbicacionPago)
                 var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
                 if (newMenualidad>=0){
-                    mensualidad.val(Number(newMenualidad).toFixed(2));
-                    arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
-                    arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
-                    arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
-                    console.log(arrayCursosMatriculados);
+                    if ( parseFloat(IDDescueto.val()) <= 10) {
+                        // mensualidad.val(Number(newMenualidad).toFixed(2));
+                        arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                        arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
+                        console.log(arrayCursosMatriculados);
 
-                    auxMonto = newMenualidad;
+                        auxMonto = newMenualidad;    
+                    }else{
+                        IDDescueto.val('10.00');
+                        var newMenualidad = parseFloat(mensualidad.val()) - parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].descuento = parseFloat(IDDescueto.val());
+                        arrayCursosMatriculados[UbicacionPago].pagoMens = newMenualidad;
+                        arrayCursosMatriculados[UbicacionPago].razon = comentario.val();
+                        console.log(arrayCursosMatriculados);
+
+                        auxMonto = newMenualidad;    
+                    }
+                    
                 }
             });
         }
@@ -1411,10 +1494,31 @@ fggf>jdk>fjkfjkj
 
                         $('#cboGeneroAl').attr('disabled',true);
                         var option = $('#cboGeneroAl option');
+
                         for (var i=0;i < option.length ;i++) {
                             var ban = (option.eq(i).val() == alu.genero)?true:false;
-                            option.eq(i).attr('selected',ban);
+                            option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                           /*var ban;
+                            //alert(alu.genero);  
+                            if ( alu.genero == 0) {
+                                ban = true;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }
+
+                            if (alu.genero == 1) {
+                                ban = false;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }*/
+
+                            
                         }
+
                         $('#txtFechaNaAl').val(alu.feNacimiento);
                         $('#btn_guardar_Alumno').attr('disabled',true);
                         
@@ -1502,7 +1606,7 @@ fggf>jdk>fjkfjkj
             $('#txtCelularAl').attr('disabled',false);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',false);
-            //$('#cboGeneroAl').val('');
+            //$('#cboGeneroAl').val('-Seleccione-');
             $('#cboGeneroAl').attr('disabled',false);
         }
 
@@ -1510,7 +1614,7 @@ fggf>jdk>fjkfjkj
             buscarAlumno();
         });
 
-        //--------------------PROMOTOR---------------------
+        //--------------------PROMOTOR----------------------
         function buscarPromotor01(){
             var urlAJAX_Promotor = $('#urlAJAX_Promotor').val();
             var txtDniPromotor = $('#txtDniPromotor').val();
@@ -1620,7 +1724,7 @@ fggf>jdk>fjkfjkj
             buscarPromotor01();
         });
 
-        //------------------APODERADO-----------------
+        //------------------APODERADO-----------------60.00
         function buscarApoderado() {
             
             var urlAJAX_AP = $('#urlAJAX_AP').val();
@@ -1808,6 +1912,7 @@ fggf>jdk>fjkfjkj
                     $('#txtMatricula').attr('disabled',true);
                     $('#txtMensualidad').val(alu02.moTotal);
                     $('#txtMensualidad').attr('disabled',true);
+                    $('#txtImporte').val(alu01.moTotal);
                 },
                 error:function (error) {  
                 },
@@ -1818,204 +1923,6 @@ fggf>jdk>fjkfjkj
 
         MontoMatricula();
 
-        /*function registrarAJAX() {
-            //Datos de Alumno auxIdApoderado-auxIdAl
-            
-            var auxIdAl = $('#auxIdAl').val();
-
-            var txtDni_Al = $('#txtDni_Al').val();
-            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
-            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
-            var txtNombreAl = $('#txtNombreAl').val();
-            var cboGeneroAl = $('#cboGeneroAl').val();
-            var txtDireccionAl = $('#txtDireccionAl').val();
-            var txtCelularAl = $('#txtCelularAl').val();
-            var txtFechaNaAl = $('#txtFechaNaAl').val();
-
-            //DAtos del Apoderado 
-            var auxIdApoderado = $('#auxIdApoderado').val();
-
-            var txtDni_AP = $('#txtDni_AP').val();
-            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
-            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
-            var txtNombre_AP = $('#txtNombre_AP').val();
-            var txtDireccion_AP = $('#txtDireccion_AP').val();
-            var txtCelular_AP = $('#txtCelular_AP').val();
-            var txtParentesco_AP = $('#txtParentesco_AP').val();
-            var urlregistroAJAX = $('#urlregistroAJAX').val();
-
-            //datos para las cuotas
-            var txtRecibo = $('#txtRecibo').val();
-            var txtDniPromotor = $('#txtDniPromotor').val(); 
-
-            $.ajax({
-                type: "post",
-                url: urlregistroAJAX,
-                data:{
-                    
-                    auxIdAl         :auxIdAl,
-                    txtDni_Al       :txtDni_Al,
-                    txtApellidoPaAl :txtApellidoPaAl,
-                    txtApellidoMaAl :txtApellidoMaAl,
-                    txtNombreAl     :txtNombreAl,
-                    cboGeneroAl     :cboGeneroAl,
-                    txtDireccionAl  :txtDireccionAl,
-                    txtCelularAl    :txtCelularAl,
-                    txtFechaNaAl    :txtFechaNaAl,
-
-                    auxIdApoderado   :auxIdApoderado,
-                    txtDni_AP        :txtDni_AP,
-                    txtApellidopa_Ap :txtApellidopa_Ap,
-                    txtApellidoMa_AP :txtApellidoMa_AP,
-                    txtNombre_AP     :txtNombre_AP,
-                    txtDireccion_AP  :txtDireccion_AP,
-                    txtCelular_AP    :txtCelular_AP,
-                    txtParentesco_AP :txtParentesco_AP,
-
-                    txtRecibo        :txtRecibo,
-                    txtDniPromotor   :txtDniPromotor,
-
-                    cursos : arrayCursosMatriculados
-                },
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success:function(response){
-                    console.log(response);
-                    alert("Se registro los datos correctamente");
-                   LimpiarFormularioALU();
-                   LimpiarFormularioApoderado();
-                },
-
-            });
-        }*/
-
-        function registrarAJAX() {
-            //Datos de Alumno auxIdApoderado-auxIdAl
-            
-            var auxIdAl = $('#auxIdAl').val();
-
-            var txtDni_Al = $('#txtDni_Al').val();
-            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
-            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
-            var txtNombreAl = $('#txtNombreAl').val();
-            var cboGeneroAl = $('#cboGeneroAl').val();
-            var txtDireccionAl = $('#txtDireccionAl').val();
-            var txtCelularAl = $('#txtCelularAl').val();
-            var txtFechaNaAl = $('#txtFechaNaAl').val();
-
-            //DAtos del Apoderado 
-            var auxIdApoderado = $('#auxIdApoderado').val();
-
-            var txtDni_AP = $('#txtDni_AP').val();
-            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
-            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
-            var txtNombre_AP = $('#txtNombre_AP').val();
-            var txtDireccion_AP = $('#txtDireccion_AP').val();
-            var txtCelular_AP = $('#txtCelular_AP').val();
-            var txtParentesco_AP = $('#txtParentesco_AP').val();
-            var urlregistroAJAX = $('#urlregistroAJAX').val();
-
-            //datos para las cuotas
-            var txtRecibo = $('#txtRecibo').val();
-            var txtDniPromotor = $('#txtDniPromotor').val(); 
-
-            $.ajax({
-                type: "post",
-                url: "/matricula",
-                data:{
-                    
-                    auxIdAl         :auxIdAl,
-                    txtDni_Al       :txtDni_Al,
-                    txtApellidoPaAl :txtApellidoPaAl,
-                    txtApellidoMaAl :txtApellidoMaAl,
-                    txtNombreAl     :txtNombreAl,
-                    cboGeneroAl     :cboGeneroAl,
-                    txtDireccionAl  :txtDireccionAl,
-                    txtCelularAl    :txtCelularAl,
-                    txtFechaNaAl    :txtFechaNaAl,
-
-                    auxIdApoderado   :auxIdApoderado,
-                    txtDni_AP        :txtDni_AP,
-                    txtApellidopa_Ap :txtApellidopa_Ap,
-                    txtApellidoMa_AP :txtApellidoMa_AP,
-                    txtNombre_AP     :txtNombre_AP,
-                    txtDireccion_AP  :txtDireccion_AP,
-                    txtCelular_AP    :txtCelular_AP,
-                    txtParentesco_AP :txtParentesco_AP,
-
-                    txtRecibo        :txtRecibo,
-                    txtDniPromotor   :txtDniPromotor,
-
-                    cursos : arrayCursosMatriculados
-                },
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success:function(response){
-                    console.log(response);
-                    if(response.cod == 101){
-
-                        Command: toastr["success"]("registrada correctamente", "Matrícula")
-
-                        toastr.options = {
-                        "closeButton": false,
-                        "debug": true,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-center",
-                        "preventDuplicates": true,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        }
-                    }else{
-                        
-                        if(response.cod == 100){
-                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
-
-                            toastr.options = {
-                            "closeButton": false,
-                            "debug": true,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": true,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                            //LimpiarFormularioALU();
-                        }
-
-                    }
-                   //LimpiarFormularioALU();
-                   //LimpiarFormularioApoderado();
-                },
-                error:function (error) {  
-                    alert("Debe seleccionar almenos un curso");
-                },
-                complete:function () {  
-                }
-
-            });
-
-       
-        }
 
         /*Registrar*/
         function registrar_Alumno() {
@@ -2032,8 +1939,8 @@ fggf>jdk>fjkfjkj
             var txtFechaNaAl = $('#txtFechaNaAl').val();
 
             var urlAJAX_Guardar_Datos_Alumno = $('#urlAJAX_Guardar_Datos_Alumno').val();
-         //   alert(txtFechaNaAl);
-            edadAlumno(('#txtFechaNaAl'));
+            //alert(cboGeneroAl);
+           // edadAlumno(('#txtFechaNaAl'));
 
             $.ajax({
                 type: "post",
@@ -2097,7 +2004,7 @@ fggf>jdk>fjkfjkj
                         $('#btnCancelar').attr('disabled',false);
                         //alert(alu.feNacimiento);
                         //edadAlumno(alu.feNacimiento);
-                        //tabla(alu.dni);
+                        tabla(alu.dni);
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -2154,6 +2061,108 @@ fggf>jdk>fjkfjkj
             });
         }
 
+        function validarAlumno(){
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            var urlValidarAlumno = $('#urlValidarAlumno').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlValidarAlumno,
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                       //modal de Mensaje para guardar alumno
+
+                      $('#RegAlumno').modal('show');
+                        //alert('Salio Carajo');
+
+                    }else{
+                        tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en datos del alumno", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Alumno').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+
+        $('#btn_guardar_Alumno').click(function () { 
+            validarAlumno();
+        }) 
+        
         function LimpiarFormularioALU_dni() {  
 
             $('#auxIdAl').val('');
@@ -2169,8 +2178,10 @@ fggf>jdk>fjkfjkj
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('');
+           // $('#cboGeneroAl').val('-Seleccione-');
             $('#cboGeneroAl').attr('disabled',true);
+
+            $("#cboGeneroAl > option[value=-1]").attr("selected",true);
 
             
         }
@@ -2190,9 +2201,7 @@ fggf>jdk>fjkfjkj
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('');
-            $('#cboGeneroAl').attr('disabled',true);
-
+            $("#cboGeneroAl > option[value=-1]").attr("selected",true);
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
         }
@@ -2279,7 +2288,103 @@ fggf>jdk>fjkfjkj
                         
                         $('#btnLimpiarApoderado').attr('disabled',false);
 
-                        tabla(alu.dni);
+                        //tabla(alu.dni);
+                    }else{
+                        //tabla(null);
+                        if(response.cod == 100){
+                            toastr["warning"]("en datos del Apoderado", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+                        if (response.cod == 101) {
+                           // $('.msj_ALU').css({display:'block'});
+                           toastr["error"]("Falta llenar campos obligatorios", "Error!!")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                            $('#btn_guardar_Apoderado').attr('disabled',false);
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+
+            });
+        }
+
+        function validarApoderado() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+
+            var urlValidarApoderado = $('#urlValidarApoderado').val();
+            
+            $.ajax({
+                type: "post",
+                url: urlValidarApoderado,
+                data:{
+                    
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.estado == true){
+                        //Modal de confirmacion
+
+                        $('#RegApoderado').modal('show');
+
                     }else{
                         tabla(null);
                         if(response.cod == 100){
@@ -2336,6 +2441,10 @@ fggf>jdk>fjkfjkj
             });
         }
   
+        $('#btn_guardar_Apoderado').click(function () { 
+            validarApoderado();
+        }) 
+
         function edadAlumno(fecha){
             //var fecha = $('#txtFechaNaAl').val();
             
@@ -2365,9 +2474,220 @@ fggf>jdk>fjkfjkj
             
         }
 
-        //edadAlumno($('#txtFechaNaAl').val());
+        function registrarAJAX() {
+            //Datos de Alumno auxIdApoderado-auxIdAl
+            
+            var auxIdAl = $('#auxIdAl').val();
 
+            var txtDni_Al = $('#txtDni_Al').val();
+            var txtApellidoPaAl = $('#txtApellidoPaAl').val();
+            var txtApellidoMaAl = $('#txtApellidoMaAl').val();
+            var txtNombreAl = $('#txtNombreAl').val();
+            var cboGeneroAl = $('#cboGeneroAl').val();
+            var txtDireccionAl = $('#txtDireccionAl').val();
+            var txtCelularAl = $('#txtCelularAl').val();
+            var txtFechaNaAl = $('#txtFechaNaAl').val();
+
+            //DAtos del Apoderado 
+            var auxIdApoderado = $('#auxIdApoderado').val();
+
+            var txtDni_AP = $('#txtDni_AP').val();
+            var txtApellidopa_Ap = $('#txtApellidopa_Ap').val();
+            var txtApellidoMa_AP = $('#txtApellidoMa_AP').val();
+            var txtNombre_AP = $('#txtNombre_AP').val();
+            var txtDireccion_AP = $('#txtDireccion_AP').val();
+            var txtCelular_AP = $('#txtCelular_AP').val();
+            var txtParentesco_AP = $('#txtParentesco_AP').val();
+            var urlregistroAJAX = $('#urlregistroAJAX').val();
+
+            //datos para las cuotas
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
+
+            $.ajax({
+                type: "post",
+                url: "/matriculaRegistro",
+                data:{
+                    
+                    auxIdAl         :auxIdAl,
+                    txtDni_Al       :txtDni_Al,
+                    txtApellidoPaAl :txtApellidoPaAl,
+                    txtApellidoMaAl :txtApellidoMaAl,
+                    txtNombreAl     :txtNombreAl,
+                    cboGeneroAl     :cboGeneroAl,
+                    txtDireccionAl  :txtDireccionAl,
+                    txtCelularAl    :txtCelularAl,
+                    txtFechaNaAl    :txtFechaNaAl,
+
+                    auxIdApoderado   :auxIdApoderado,
+                    txtDni_AP        :txtDni_AP,
+                    txtApellidopa_Ap :txtApellidopa_Ap,
+                    txtApellidoMa_AP :txtApellidoMa_AP,
+                    txtNombre_AP     :txtNombre_AP,
+                    txtDireccion_AP  :txtDireccion_AP,
+                    txtCelular_AP    :txtCelular_AP,
+                    txtParentesco_AP :txtParentesco_AP,
+
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
+
+                    cursos : arrayCursosMatriculados
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.cod == 101){
+
+
+
+                        Command: toastr["success"]("registrada correctamente", "Matrícula")
+
+                        toastr.options = {
+                        "closeButton": false,
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+                    }else{
+                        
+                        if(response.cod == 100){
+                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }
+
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+                error:function (error) {  
+                   // alert("Debe seleccionar almenos un curso");
+                   //alert('Alumno registrado');
+                },
+                complete:function () {  
+                }
+
+            });
+
+       
+        }
+
+        function validarMatricula() {
+          
+            var txtRecibo = $('#txtRecibo').val();
+            var txtDniPromotor = $('#txtDniPromotor').val(); 
+
+            $.ajax({
+                type: "post",
+                url: "/verificarMatricula",
+                data:{
+                    txtRecibo        :txtRecibo,
+                    txtDniPromotor   :txtDniPromotor,
+
+                    cursos : arrayCursosMatriculados,
+                },
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(response){
+                    console.log(response);
+                    if(response.cod == 200){
+                        //Modal de Matricula  mayor al pago de la Matrícula
+                        $('#RegMatricula').modal('show');
+                    }else{
+                        
+                        if(response.cod == 100){
+                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //LimpiarFormularioALU();
+                        }else{
+                            if (response.cod == 101) {
+                                toastr["warning"]("cantidad debe ser mayor a s/30", "Verificar importe")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
+                        }
+                    }
+                   //LimpiarFormularioALU();
+                   //LimpiarFormularioApoderado();
+                },
+                error:function (error) {  
+                    alert("Debe seleccionar almenos un curso");
+                },
+                complete:function () {  
+                }
+
+            }); 
+        }
+
+        $('#btn_registrarAjax').click(function () { 
+            validarMatricula();
+        })
 })
-</script>
-    
+</script>   
  @endsection 
