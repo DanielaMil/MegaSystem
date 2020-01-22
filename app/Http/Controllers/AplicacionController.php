@@ -37,7 +37,8 @@ class AplicacionController extends Controller
     public function CantidadPorGrupo(REQUEST $request)
     {
 
-        return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo');
+        $curso = DB::select('select * from curso ');
+        return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo')->with('curso',$curso);
     }
 
     public function alumnosPorCiclo(REQUEST $request)
@@ -220,6 +221,17 @@ class AplicacionController extends Controller
         $txtRecibo = $dato->txtRecibo;
         $txtDniPromotor = $dato->txtDniPromotor;
 
+        for ($i = 0; $i < count($dato->cursos); $i++) 
+        {
+            if (($dato->cursos[$i]["importe"])==0) {
+                $datas = [
+                    'estado' => false,
+                    'cod' => 101
+                ];
+                return response()->json($datas);
+            }
+        }
+        
         $_numcade01 = strlen($txtRecibo);
         if ($_numcade01 == 7 )
         {
@@ -235,11 +247,6 @@ class AplicacionController extends Controller
             ];
             return response()->json($datas);
         }
-    }
-
-    public function auxfuncion(REQUEST $dato)
-    {
-        return response()->json($data);
     }
 
     public function matriculaRegistro(REQUEST $dato){
@@ -508,6 +515,14 @@ class AplicacionController extends Controller
             ];
             return response()->json($data);
         }
+
+        if ($monImporte < 30) {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
+            ];
+            return response()->json($data);
+        }
     }
 
     public function validarDescuento(REQUEST $dato)
@@ -519,6 +534,14 @@ class AplicacionController extends Controller
             $data = [
                 'estado' => false,
                 'cod'    => 101
+            ];
+            return response()->json($data);
+        }
+
+        if ($monDescuento > 10 ) {
+            $data = [
+                'estado' => false,
+                'cod'    => 100
             ];
             return response()->json($data);
         }

@@ -31,16 +31,22 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <select name="" id="">
+            @foreach ($curso as $c)
+                <option value="{{$c->idCurso}}">{{$c->nombre}}</option>
+            @endforeach
+        </select>
+    </div>
 
     <script>
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-    labels: ['Ciclo 1','Ciclo 2','Ciclo 3','Ciclo 4','Ciclo 5','Ciclo 6',],
+    labels: ['Ciclo 2018-I','Ciclo 2018-II','Ciclo 2019-I','Ciclo 2019-II','Ciclo 2020-I','Ciclo 2020-II',],
     datasets: [{ 
-        data: [86,114,106,106,107,111],
+        data: [86,114,106,106,,107],
         label: "Ofimatica",
         borderColor: "#3e95cd",
         fill: false
