@@ -2179,7 +2179,7 @@ PATRICIA
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
            // $('#cboGeneroAl').val('-Seleccione-');
-           $('#cboGeneroAl').attr('disabled',true);
+            $('#cboGeneroAl').attr('disabled',true);
 
             $("#cboGeneroAl > option[value=-1]").attr("selected",true);
 
@@ -2201,7 +2201,6 @@ PATRICIA
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('-Seleccione-');
             $("#cboGeneroAl > option[value=-1]").attr("selected",true);
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
