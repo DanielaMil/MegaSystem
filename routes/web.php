@@ -61,6 +61,7 @@ Route::post('/pagos/pagar', 'pagosController@StorePago')->name('StorePago');
 Route::post('/pagos/listarCuotas', 'pagosController@listarCuotas')->name('listarCuotas');
 Route::post('/pagos/registrarPagos', 'pagosController@registrarPagos')->name('registrarPagos');
 Route::post('/pagos/pagosIngresos', 'pagosController@pagosIngresos')->name('pagosIngresos');
+Route::post('/pagos/duplicado', 'pagosController@duplicado')->name('duplicado');
 
 ///*****************************************REPORTE 1*** */
 
@@ -76,4 +77,4 @@ Route::get('/ciclos', 'AplicacionController@mostrarCiclo')->name('mostrarCiclo')
 ///*****************************************REPORTE 3*** */
 
 Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
-Route::post('/listado', 'reporte3Controller@listado')->name('listado');
+Route::get('/listado', 'reporte3Controller@listado')->name('listado');

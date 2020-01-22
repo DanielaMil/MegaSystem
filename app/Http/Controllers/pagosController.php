@@ -105,9 +105,30 @@ class pagosController extends Controller
         return response()->json($datos);
     }
 
+    public function duplicado(Request $dato){
+        $recibo = $dato->recibo;
+        $datos = DB::select("call duplicadoRecibo(?)", array($recibo));        
+        if(count($datos) > 0){
+            $data = [
+                'estado' => true,
+                'datos' => $datos
+            ];
+            return response()->json($data);
+        }else{
+            $data = [
+                'estado' => false,
+                'cod' => 101
+            ];
+            return response()->json($data);
+        }
+    }
+
     public function obtenerID(Request $dato){
         $datos = DB::select("call obtenerID()");
-        return response()->json($datos);
+        $data=[
+            'data' => $datos
+        ];
+        return response()->json($data);
     }
     
     public function listarCuotas(Request $dato)
