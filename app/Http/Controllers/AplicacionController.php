@@ -37,7 +37,8 @@ class AplicacionController extends Controller
     public function CantidadPorGrupo(REQUEST $request)
     {
 
-        return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo');
+        $curso = DB::select('select * from curso ');
+        return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo')->with('curso',$curso);
     }
 
     public function alumnosPorCiclo(REQUEST $request)
