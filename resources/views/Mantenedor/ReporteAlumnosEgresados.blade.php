@@ -26,7 +26,7 @@
     <canvas id="myChart"></canvas>
     <div class=" card-footer btnPDF d-flex justify-content-around m-3">
         <button type="button" class="btn btn-primary" onclick="generarPDF()">PDF</button>
-        <button type="button" class="btn btn-primary">Excel</button>
+        <button type="button" class="btn btn-primary" onclick="guardarExcel()">Excel</button>
 
     </div>
     @section('js')
@@ -169,26 +169,6 @@
             pdf.save('ReporteEgresado.pdf');
         }
 
-        var wb = XLSX.utils.book_new();
-        wb.Props = {
-            Title: "SheetJS Tutorial",
-            Subject: "Test",
-            Author: "Red Stapler",
-            CreatedDate: new Date()
-        };
-
-        wb.SheetNames.push("Test Sheet");
-        var ws_data = [
-            ['Ciclos', 'Cursos', 'Egresados'], ...data
-        ];
-
-        var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        wb.Sheets["Test Sheet"] = ws;
-        var wbout = XLSX.write(wb, {
-            bookType: 'xlsx',
-            type: 'binary'
-        });
-
         function s2ab(s) {
 
             var buf = new ArrayBuffer(s.length);
@@ -199,9 +179,32 @@
         }
 
         function guardarExcel() {
+            var wb = XLSX.utils.book_new();
+            wb.Props = {
+                Title: "SheetJS Tutorial",
+                Subject: "Test",
+                Author: "Red Stapler",
+                CreatedDate: new Date()
+            };
+
+            wb.SheetNames.push("Test Sheet");
+            var ws_data = [
+                ['Ciclos', 'Cursos', 'Egresados']
+            ];
+
+            data.forEach(element => {
+                ws_data.push([element.ciclo, element.curso, element.totalEgresados]);
+            });
+
+            var ws = XLSX.utils.aoa_to_sheet(ws_data);
+            wb.Sheets["ReporteEgresado"] = ws;
+            var wbout = XLSX.write(wb, {
+                bookType: 'xlsx',
+                type: 'binary'
+            });
             saveAs(new Blob([s2ab(wbout)], {
                 type: "application/octet-stream"
-            }), 'test.xlsx');
+            }), 'ReporteEgresado.xlsx');
         }
     </script>
     @endsection
