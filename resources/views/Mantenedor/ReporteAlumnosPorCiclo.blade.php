@@ -62,7 +62,7 @@
         function listado(){
             var url = "listado";
             $.ajax({
-                type: "post",
+                type: "get",
                 url: url,
                 dataType: "json",
                 headers: {
@@ -71,25 +71,23 @@
                 success: function (response) {
                     console.log(response);
                     var arrayCiclo = [];
-                    var arrayMatriculados = []
-                    
+                    var arrayMatriculados = []                    
                     var arrayRetirados = []
+                    
                     for(var i=0;i < response.datos.length;i++)
                     {
-                      arrayCiclo.push(response.datos[i].nombre)
-                    arrayMatriculados.push(response.datos[i].Matriculados)
-                    arrayRetirados.push(response.datos[i].Retirados)
+                        arrayCiclo.push(response.datos[i].nombre)
+                        arrayMatriculados.push(response.datos[i].Matriculados)
+                        arrayRetirados.push(response.datos[i].Retirados)
                     }
 
                     var ctx = document.getElementById('myChart');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            /*labels: ['Ciclo 2020-I', 'Ciclo 2019-III', 'Ciclo 2019-II', 'Ciclo 2019-I', 'Ciclo 2018-III', 'Ciclo 2018-I'],*/
                             labels: arrayCiclo,
                             datasets: [{
                                 label: '# Matriculados',
-                                /*data: [12, 19, 3, 5, 2, 3],*/
                                 data:   arrayMatriculados ,                                      
                                 backgroundColor: [
                                     'rgba(54, 162, 235, 0.2)',
@@ -150,45 +148,11 @@
                             }
                         }
                     }); 
-
-                    // var valores = eval(datos);
-
-                    // var Datos = {
-                    //     labels : arrayCiclo
-                    //     datasets : [
-                    //         {
-                    //             label: '# Matriculados',
-                    //             fillColor : 'rgba(91,228,146,0,6)',
-                    //             strokeColor : 'rgba(57,194,112,0,7)',
-                    //             highlightFill : 'rgba(73,206,180,0,6)',
-                    //             highlighttroke : 'rgba(66,196,157,0,7)',
-                    //             data: [12, 19, 3, 5, 2, 3],
-                                
-                                
-                    //         },{
-                    //             label: '# Retirados',
-                    //             fillColor : 'rgba(91,228,146,0,6)',
-                    //             strokeColor : 'rgba(57,194,112,0,7)',
-                    //             highlightFill : 'rgba(73,206,180,0,6)',
-                    //             highlighttroke : 'rgba(66,196,157,0,7)',
-                    //             data: [12, 19, 3, 5, 2, 3],
-                    //         }
-                    //     ]
-                        
-                    // }
-
-                    // var contexto = document.getElementById('myChart').getContext('2d');
-                    // window.Barra = new Chart(contexto).Bar(Datos,{responsive : true});
-
                 }
             });
-
-
-
         }
 
         listado();
-
 
     </script>
 
