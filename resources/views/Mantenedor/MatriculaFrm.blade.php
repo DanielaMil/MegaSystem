@@ -1499,7 +1499,24 @@ PATRICIA
                             var ban = (option.eq(i).val() == alu.genero)?true:false;
                             option.attr('selected');
                             
-                            option.eq(i).attr('selected',ban);
+                                option.eq(i).attr('selected',ban);
+                           /*var ban;
+                            //alert(alu.genero);  
+                            if ( alu.genero == 0) {
+                                ban = true;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }
+
+                            if (alu.genero == 1) {
+                                ban = false;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }*/
+
+                            
                         }
 
                         $('#txtFechaNaAl').val(alu.feNacimiento);
