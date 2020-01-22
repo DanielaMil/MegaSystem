@@ -99,7 +99,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="Cancelar2" >
                     Cancelar
                 </button>
-                <button type="button" class="btn btn-primary" id="btn_registrarAjax" data-toggle="modal" data-target="#RegMatricula">Registrar</button>
+                <button type="button" class="btn btn-primary" id="btnRegistrarModal">Registrar</button>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -125,12 +125,12 @@
     </div>
 </div>
 
-<div class="modal fade" id="RegMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade RegMatricula" id="RegMatricula" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -139,7 +139,7 @@
         </div>
         <div class="modal-footer">
             <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRegistrarModal" >SÍ</button> 
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnAdicional" >SÍ</button> 
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">No</button>
         </div>
         </div>
@@ -193,7 +193,7 @@
                                 <form action="">
                                     <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
                                     <label for="form-control-sm" class="" style="font-weight: bold">N° de Recibo</label>
-                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="7"  placeholder="0000014">
+                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="8"  placeholder="Serie">
                                     <br>
                                     <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                     <div class="input-group input-group-sm">
@@ -204,7 +204,7 @@
                                                 </font>
                                             </font></span>
                                         </div>
-                                        <input placeholder="00" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                                        <input placeholder="Importe" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
                                     </div>
                                 </form>
                                 <hr style="margin-top:0">
@@ -269,7 +269,6 @@ function filter(__val__){
     
 }
     $(document).ready(function() {
-
             var idConcepto;
             var idMatricula;
             var descripConcepto;
@@ -505,27 +504,6 @@ function filter(__val__){
                         }
                     },
                     error:function (response) {  
-                        console.log(response);
-                        modal = false;
-                        //alert('Error, No puedes hacerlo');
-                        toastr["error"]("Error,número de documento duplicado ", "Error");
-                        toastr.options = {
-                        "closeButton": false,   
-                        "debug": true,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                        }
                     },
                     complete:function (response) {  
 
@@ -597,7 +575,7 @@ function filter(__val__){
             
             
             function abrirModal(){
-                //$('#btnRegistrarModal').attr('data-dismiss','');
+                
             }
             var aux1=0;
             function validacionTediosa(){
@@ -608,7 +586,6 @@ function filter(__val__){
                 aux1 = 0;
                 band = false;
                 if(pago!=''){
-                    
                     band = true;
                     if (pago == '0'){
                         band = false;
@@ -639,9 +616,9 @@ function filter(__val__){
                         }
                 }
                 var verification = $('#txtNuroRecibo').val();
+                var niu = 0;
                 if (verification.length != 7) {
                     aux1++;
-                    
                     toastr["error"]("El número recibo es de 8 dígitos", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -660,9 +637,47 @@ function filter(__val__){
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    
+                }else{
+                    $.ajax({
+                        type: "post",
+                        url: '/pagos/duplicado',
+                        data: {
+                            recibo: $('#txtNuroRecibo').val()
+                        },
+                        dataType: "JSON",
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            var info = JSON.parse(JSON.stringify(response));
+                            console.log(info.datos[0].numero);
+                            var niu = info.datos[0].numero;
+                            if (niu == 1){
+                                aux++;
+                                    //alert('Error, No puedes hacerlo');
+                                    toastr["error"]("Error, número de documento duplicado ", "Error");
+                                    toastr.options = {
+                                    "closeButton": false,   
+                                    "debug": true,
+                                    "newestOnTop": false,
+                                    "progressBar": true,
+                                    "positionClass": "toast-top-right",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                    }
+                            }else{
+                            }
+                        }
+                    });
                 }
-                
                 if(recibo=='' && band == true){
                     toastr["error"]("Se requiere de número de recibo para concretar el pago", "Error")
                         toastr.options = {
@@ -706,8 +721,7 @@ function filter(__val__){
                     aux1++;
                 }
                 if(monto!=''){
-                    
-                    
+                       
                     }else{
                         monto = 0;
                         toastr["error"]("Por favor ingrese el monto", "Error")
@@ -834,19 +848,17 @@ function filter(__val__){
                             "hideMethod": "fadeOut"
                         }
                     aux1++;
-                }
-                     
+                }        
             }
-            
+            $('#btnAdicional').click(function(){
+                registrarCuota();            
+            });
             $('#btnRegistrarModal').click(function(){
                 validacionTediosa();
-                if(aux1==0){
-                    registrarCuota();
-                   // alert('modal es desPues del registro true: ' + modal);
+                if(aux1 == 0){
+                    $('.RegMatricula').modal("show");
                 }
-                
             });
-            
             $('#btnBuscar').click(function(){
                 var verification = $('#dniAlumno').val();
                 if (verification.length == 8) {
@@ -916,46 +928,6 @@ function filter(__val__){
                     $('tr').css('background-color', '');
                  });
             }
-            $("#Cancelar2").click(function () {
-                 toastr["info"]("Se canceló la operación", "Información")
-                toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-                }
-            } );
-            $("#btnCancelar").click(function () {
-                 toastr["info"]("Se canceló la operación", "Información")
-                toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-                }
-            } );
             function listarCuotas(idMatricula) {
                 
                     // alert(idMatricula)
@@ -1102,7 +1074,7 @@ function filter(__val__){
                 //    alert($('#numbImporte').val())
                 valida  = $('#txtNroRecibo').val();
                     if (($('#txtNroRecibo').val() != ''  &&  $('#numbImporte').val() != '')) {
-                        if(valida.length==7){
+                        if(valida.length==8){
                             $.ajax({
                             type: "post",
                             url: $('#urlAJAXregistrarPago').val(),
@@ -1116,6 +1088,7 @@ function filter(__val__){
                                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                             },
                             success: function (response) {
+                                //aquí va el sí o no :( 
                                 toastr["success"]("Se registró el pago con éxito.", "Éxito!");
                                 toastr.options = {
                                 "closeButton": false,   
