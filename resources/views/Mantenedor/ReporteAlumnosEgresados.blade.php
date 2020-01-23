@@ -25,8 +25,8 @@
     </div>
     <canvas id="myChart"></canvas>
     <div class=" card-footer btnPDF d-flex justify-content-around m-3">
-        <button type="button" class="btn btn-primary" onclick="generarPDF()">PDF</button>
-        <button type="button" class="btn btn-primary" onclick="guardarExcel()">Excel</button>
+        <button type="button" class="btn btn-danger mr-sm-2" onclick="generarPDF()"> <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-pdf-o"></i>PDF</button>
+        <button type="button" class="btn btn-success mr-sm-2" onclick="guardarExcel()"><i class="fa fa-fw" aria-hidden="true" title="Copy to use file-excel-o"></i>Excel</button>
 
     </div>
     @section('js')
