@@ -867,8 +867,8 @@ function filter(__val__){
                             "hideMethod": "fadeOut"
                         }
                     aux1++;
-                }        
-                if (verification.length != 7) {
+                }    
+                if ((verification.length != 7)) {
                     aux1++;
                     toastr["error"]("El número de recibo es de 7 dígitos", "Error")
                         toastr.options = {
@@ -889,7 +889,8 @@ function filter(__val__){
                             "hideMethod": "fadeOut"
                         }
                 }else{
-                    $.ajax({
+                    if(verification=!"0000000"){
+                        $.ajax({
                         type: "post",
                         url: '/pagos/duplicado',
                         data: {
@@ -934,6 +935,27 @@ function filter(__val__){
                             }
                         }
                     });
+                    }else{
+                        toastr["error"]("No debe de existir un recibo con Nº = 0000000 ", "Error");
+                                            toastr.options = {
+                                            "closeButton": false,   
+                                            "debug": true,
+                                            "newestOnTop": false,
+                                            "progressBar": true,
+                                            "positionClass": "toast-top-right",
+                                            "preventDuplicates": false,
+                                            "onclick": null,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut"
+                                            }
+                    }
+                    
                 }
             }
             $('#btnAdicional').click(function(){
@@ -961,7 +983,7 @@ function filter(__val__){
             }
             $('#txtNuroRecibo').keyup(function () { 
                 var verification = $('#txtNuroRecibo').val();
-                if (verification.length == 7) {
+                if ((verification.length == 7)&& (verification=!"0000000")) {
                     $.ajax({
                         type: "post",
                         url: '/pagos/duplicado',
@@ -1176,9 +1198,11 @@ function filter(__val__){
                 });
            }
            var aux2=0;
+
            $('#txtNroRecibo').keyup(function () { 
                 var verification = $('#txtNroRecibo').val();
-                if (verification.length == 7) {
+
+                if ((verification.length == 7)&& (verification=!"0000000")) {
                     $.ajax({
                         type: "post",
                         url: '/pagos/duplicado',
@@ -1228,53 +1252,75 @@ function filter(__val__){
                 }else{
                     valida  = $('#txtNroRecibo').val();
                     if (($('#txtNroRecibo').val() != ''  &&  $('#numbImporte').val() != '')) {
-                        if(valida.length==7){
-                            $.ajax({
-                        type: "post",
-                        url: '/pagos/duplicado',
-                        data: {
-                            recibo: $('#txtNroRecibo').val()
-                        },
-                        dataType: "JSON",
-                        headers: {
-                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function (response) {
-                            var info = JSON.parse(JSON.stringify(response));
-                            console.log(info.datos[0].numero);
-                            var niu = info.datos[0].numero;
-                            if (niu == 1){
-                                aux2++;
-                                    //alert('Error, No puedes hacerlo');
-                                    toastr["error"]("Error, número de documento duplicado ", "Error");
-                                    toastr.options = {
-                                    "closeButton": false,   
-                                    "debug": true,
-                                    "newestOnTop": false,
-                                    "progressBar": true,
-                                    "positionClass": "toast-top-right",
-                                    "preventDuplicates": false,
-                                    "onclick": null,
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "5000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
+                        if((valida.length==7)){
+                            if((valida=!"0000000")){
+                                $.ajax({
+                                type: "post",
+                                url: '/pagos/duplicado',
+                                data: {
+                                    recibo: $('#txtNroRecibo').val()
+                                },
+                                dataType: "JSON",
+                                headers: {
+                                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function (response) {
+                                    var info = JSON.parse(JSON.stringify(response));
+                                    console.log(info.datos[0].numero);
+                                    var niu = info.datos[0].numero;
+                                    if (niu == 1){
+                                        aux2++;
+                                            //alert('Error, No puedes hacerlo');
+                                            toastr["error"]("Error, número de documento duplicado ", "Error");
+                                            toastr.options = {
+                                            "closeButton": false,   
+                                            "debug": true,
+                                            "newestOnTop": false,
+                                            "progressBar": true,
+                                            "positionClass": "toast-top-right",
+                                            "preventDuplicates": false,
+                                            "onclick": null,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut"
+                                            }
+                                            
+                                    }else{
+                                        
                                     }
-                                    
+                                    if (aux2==0){
+                                        asignarAtributo1();
+                                    }else{
+                                        quitarAtributo2();
+                                    }
+                                }
+                         });    
                             }else{
-                                
+                                toastr["error"]("No debe de existir un recibo con Nº = 0000000 ", "Error");
+                                            toastr.options = {
+                                            "closeButton": false,   
+                                            "debug": true,
+                                            "newestOnTop": false,
+                                            "progressBar": true,
+                                            "positionClass": "toast-top-right",
+                                            "preventDuplicates": false,
+                                            "onclick": null,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut"
+                                            }
                             }
-                            if (aux2==0){
-                                asignarAtributo1();
-                            }else{
-                                quitarAtributo2();
-                            }
-                        }
-                    });      
+                              
                         }else{
                             aux2++;
                             toastr["error"]("El número recibo es de 7 dígitos", "Error")
