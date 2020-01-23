@@ -77,6 +77,7 @@
                     <table class="mb-0 table table-bordered table-sm">
                         <thead>
                             <tr>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N°</font></font></th>
                                 <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ciclo</font></font></th>
                                 <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Matriculados</font></font></th>
                                 <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Cursos</font></font></th>
@@ -133,6 +134,7 @@
                         arrayRetirados.push(response.datos[i].Retirados)
 
                         html = html + '<tr>'
+                                    +'<td>' + (i+1) + '</td>'
                                     +'<td>' + response.datos[i].nombre + '</td>'
                                     +'<td class="text-center">' + response.datos[i].Matriculados + '</td>'
                                     +'<td class="text-center">'+ response.datos[i].nombre +'</td>'
