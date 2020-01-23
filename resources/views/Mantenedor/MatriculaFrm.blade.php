@@ -770,7 +770,7 @@ PATRICIA
                         }else{
                             if(response.cod == 100){
                                 //cantidad de caracteres menor al de 8
-                                toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+                                toastr["warning"]("Cantidad de carácter no válido", "DNI del alumno")
 
                                 toastr.options = {
                                 "closeButton": false,
@@ -900,7 +900,7 @@ PATRICIA
                         }else{
                             if(response.cod == 100){
                                 //cantidad de caracteres menor al de 8
-                                toastr["warning"]("en el DNI del apoderado", "Cantidad de caracteres inválido")
+                                toastr["warning"]("Cantidad de carácter no válido", "DNI del apoderado")
 
                                 toastr.options = {
                                 "closeButton": false,
@@ -966,7 +966,7 @@ PATRICIA
                         
                         if(response.cod == 100){
                             //cantidad de caracteres menor al de 8
-                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+                            toastr["warning"]("Cantidad de carácter no válido", "Celular")
 
                             toastr.options = {
                             "closeButton": false,
@@ -1002,8 +1002,6 @@ PATRICIA
 
         cantidadDni_CEL();
 
-
-
         function cantidadDni_CEL01() {
             var txtCelularAl = $('#txtCelularAl');
             
@@ -1030,7 +1028,7 @@ PATRICIA
                         
                         if(response.cod == 100){
                             //cantidad de caracteres menor al de 8
-                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+                            toastr["warning"]("Cantidad de carácter no válido", "Celular")
 
                             toastr.options = {
                             "closeButton": false,
@@ -1113,7 +1111,7 @@ PATRICIA
                             "hideMethod": "fadeOut"
                             }
                             //$('#txtImporte').attr('disabled',false);
-                            $('#txtImporte').val('');
+                            $('#txtImporte').val(30);
                            // $('#txtImporte').attr('disabled',true);
                         }
                         
@@ -1139,7 +1137,7 @@ PATRICIA
                             "hideMethod": "fadeOut"
                             }
                             //$('#txtImporte').attr('disabled',false);
-                            $('#txtImporte').val('');
+                            $('#txtImporte').val(50);
                            // $('#txtImporte').attr('disabled',true);
                         }
                         // $('.load').css({display:'none'});
@@ -2182,8 +2180,6 @@ PATRICIA
             $('#cboGeneroAl').attr('disabled',true);
 
             $("#cboGeneroAl > option[value=-1]").attr("selected",true);
-
-            
         }
 
         function LimpiarFormularioALU_dni02() {  
@@ -2629,7 +2625,7 @@ PATRICIA
                     }else{
                         
                         if(response.cod == 100){
-                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+                            toastr["warning"]("cantidad de carácter no válido", "N° Recibo")
 
                             toastr.options = {
                             "closeButton": false,
@@ -2688,6 +2684,69 @@ PATRICIA
         $('#btn_registrarAjax').click(function () { 
             validarMatricula();
         })
+
+        function cantidadRecibo()
+        {
+            var auxtxtRecibo = $('#txtRecibo');
+            
+            auxtxtRecibo.change(function () {
+                var txtRecibo = $('#txtRecibo').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: "/verificarRecibo",
+                    data:{
+                        txtRecibo :txtRecibo
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        if(response.estado == true){
+                            //encotro dni del alumno
+                        }else{
+                            if(response.cod == 100){
+                                //cantidad de caracteres menor al de 8
+                                toastr["warning"]("cantidad de carácter no válido", "N° Recibo")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
+                        }
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+            });
+        }
+
+        cantidadRecibo();
+
 })
 </script>   
  @endsection 
