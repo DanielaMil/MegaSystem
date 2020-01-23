@@ -99,7 +99,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id ="Cancelar2" >
                     Cancelar
                 </button>
-                <button type="button" class="btn btn-primary" id="btnRegistrarModal">Registrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" id="btnRegistrarModal" >Registrar</button>
             </div>
         </div>
     </div>
@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<div class="modal fade RegMatricula" id="RegMatricula" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade " id="asd" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -280,8 +280,6 @@ function filter(__val__){
             function limpiarModalIngreso(){
                 $('.btnRegistrarIngreso').click(function(){
                     $('#txtNuroRecibo').val('');
-                    $('#txtPago').val('');
-                    $('#txtDescuento').val('');
                     $('#txtObservacion').val('');
                 });
             }
@@ -415,7 +413,11 @@ function filter(__val__){
                                     response.datos[i].descripcion 
                                 +'</option>'
                             }   
-                            $("#txtMonto").val(response.datos[0].moTotal);
+                            var aux = '';
+                            aux = response.datos[0].moTotal;
+                            $("#txtPago").val(aux);
+                            $("#txtMonto").val(aux);
+                            $("#txtDescuento").val(0);
                             idConcepto = response.datos[0].idConcepto;
                             $('#txtMonto').attr('disabled',true);
                             $('#opciones').html(html);
@@ -617,67 +619,7 @@ function filter(__val__){
                 }
                 var verification = $('#txtNuroRecibo').val();
                 var niu = 0;
-                if (verification.length != 7) {
-                    aux1++;
-                    toastr["error"]("El número recibo es de 8 dígitos", "Error")
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": true,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
-                }else{
-                    $.ajax({
-                        type: "post",
-                        url: '/pagos/duplicado',
-                        data: {
-                            recibo: $('#txtNuroRecibo').val()
-                        },
-                        dataType: "JSON",
-                        headers: {
-                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function (response) {
-                            var info = JSON.parse(JSON.stringify(response));
-                            console.log(info.datos[0].numero);
-                            var niu = info.datos[0].numero;
-                            if (niu == 1){
-                                aux++;
-                                    //alert('Error, No puedes hacerlo');
-                                    toastr["error"]("Error, número de documento duplicado ", "Error");
-                                    toastr.options = {
-                                    "closeButton": false,   
-                                    "debug": true,
-                                    "newestOnTop": false,
-                                    "progressBar": true,
-                                    "positionClass": "toast-top-right",
-                                    "preventDuplicates": false,
-                                    "onclick": null,
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "5000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
-                                    }
-                            }else{
-                            }
-                        }
-                    });
-                }
+/*
                 if(recibo=='' && band == true){
                     toastr["error"]("Se requiere de número de recibo para concretar el pago", "Error")
                         toastr.options = {
@@ -699,6 +641,7 @@ function filter(__val__){
                         }
                     aux1++;
                 }
+*/
                 if (monto == 0){
                     toastr["error"]("Por favor ingrese el monto", "Error")
                         toastr.options = {
@@ -849,15 +792,85 @@ function filter(__val__){
                         }
                     aux1++;
                 }        
+                if (verification.length != 7) {
+                    aux1++;
+                    toastr["error"]("El número recibo es de 8 dígitos", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                }else{
+                    $.ajax({
+                        type: "post",
+                        url: '/pagos/duplicado',
+                        data: {
+                            recibo: $('#txtNuroRecibo').val()
+                        },
+                        dataType: "JSON",
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            var info = JSON.parse(JSON.stringify(response));
+                            console.log(info.datos[0].numero);
+                            var niu = info.datos[0].numero;
+                            if (niu == 1){
+                                aux++;
+                                    //alert('Error, No puedes hacerlo');
+                                    toastr["error"]("Error, número de documento duplicado ", "Error");
+                                    toastr.options = {
+                                    "closeButton": false,   
+                                    "debug": true,
+                                    "newestOnTop": false,
+                                    "progressBar": true,
+                                    "positionClass": "toast-top-right",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                    }
+                            }else{
+                            }
+                            if(aux1 == 0){
+                                asignarAtributo();
+                            }else{
+                                quitarAtributo();
+                            }
+                        }
+                    });
+                }
+                
             }
             $('#btnAdicional').click(function(){
                 registrarCuota();            
             });
+            function asignarAtributo(){
+                $("#btnRegistrarModal").attr("data-target", "#asd");
+            }
+            function quitarAtributo(){
+                $("#btnRegistrarModal").removeAttr("data-target");
+            }
             $('#btnRegistrarModal').click(function(){
                 validacionTediosa();
-                if(aux1 == 0){
-                    $('.RegMatricula').modal("show");
-                }
             });
             $('#btnBuscar').click(function(){
                 var verification = $('#dniAlumno').val();
@@ -914,6 +927,8 @@ function filter(__val__){
             function seleccionar(){
                 $('#opciones').change(function (e) { 
                     $("#txtMonto").val($('#opciones option[value='+$('#opciones').val()+']').attr('monto'));
+                    $("#txtPago").val($('#opciones option[value='+$('#opciones').val()+']').attr('monto'));
+                    $("#txtDescuento").val(0);
                     idConcepto = $('#opciones option[value='+$('#opciones').val()+']').attr('value');
                     validar();
                 });

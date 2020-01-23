@@ -38,6 +38,7 @@ route::post('/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name
 route::post('/verificarAlumno','AplicacionController@verificarAlumno')->name('verificarAlumno');
 route::post('/verificarApoderado','AplicacionController@verificarApoderado')->name('verificarApoderado');
 route::post('/verificarMatricula','AplicacionController@verificarMatricula')->name('verificarMatricula');
+route::post('/verificarRecibo','AplicacionController@verificarRecibo')->name('verificarRecibo');
 
 
 
@@ -69,12 +70,16 @@ Route::get('/CantidadPorGrupo', 'AplicacionController@CantidadPorGrupo')->name('
 
 ///*****************************************REPORTE 2*** */
 
+Route::get('/alumnosPorCiclo', 'AplicacionController@alumnosPorCiclo')->name('alumnosPorCiclo');
+Route::post('/grupoxcurso','AplicacionController@grupoXCurso')->name('grupoXCurso');
+
 Route::get('/alumnosEgresados', 'AplicacionController@alumnosEgresados')->name('alumnosEgresados');
 Route::get('/egresadosPorCurso', 'AplicacionController@listarEgresadosPorCurso')->name('listarEgresadosPorCurso');
 Route::get('/cursos', 'AplicacionController@listarCursos')->name('listarCursos');
 Route::get('/ciclos', 'AplicacionController@mostrarCiclo')->name('mostrarCiclo');
 
-///*****************************************REPORTE 3*** */
-
 Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
-Route::get('/listado', 'reporte3Controller@listado')->name('listado');
+Route::post('/listado', 'reporte3Controller@listado')->name('listado');
+Route::post('/validarNroCiclos', 'reporte3Controller@validarNroCiclos')->name('validarNroCiclos');
+Route::post('/verTotalCiclos', 'reporte3Controller@verTotalCiclos')->name('verTotalCiclos');
+
