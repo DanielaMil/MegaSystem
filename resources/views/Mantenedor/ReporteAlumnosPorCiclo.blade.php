@@ -41,8 +41,6 @@
                                 <i class="fa fa-fw" aria-hidden="true" title="Copy to use eye"></i>
                                 VER
                             </button>
-                            
-                            
                         </div>
                         
                     </div>
@@ -52,10 +50,12 @@
                     <div class="form-inline">
                         <div class="mb-2 mr-sm-2 mb-sm-2 position-relative form-group" id="example_length">
                             <label class="mr-sm-2">Exportar a </label>
-                            <button type="button" id="btn_verAJAX" class="btn btn-danger mr-sm-2" >
-                                <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-pdf-o"></i>
-                                PDF
-                            </button>
+                            <a href="{{route('imprimir')}}" style="color: white; text-decoration:none;" target="_blank" >
+                                <button type="button" id="btnPDF" class="btn btn-danger mr-sm-2">
+                                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-pdf-o"></i>
+                                    PDF
+                                </button>
+                            </a>
                             <button type="button" id="btn_verAJAX" class="btn btn-success mr-sm-2" >
                                 <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-excel-o"></i>
                                 EXCEL
@@ -69,9 +69,9 @@
 
             <div class="divider"></div>
             <div class="row">
-                <div class="col-md-7 card ">
+                <div class="col-md-7 card " id="prueba">
                         {{-- <canvas id="myChart" width="0" height="400"></canvas> --}}
-                        <canvas id="myChart" width="450" height="225" class="chartjs-render-monitor" style="display: block; width: 450px; height: 225px;"></canvas>                                     
+                                                           
                 </div>
                 <div class="col-md-5">
                     <table class="mb-0 table table-bordered table-sm">
@@ -142,9 +142,11 @@
 
                     }
                     $('#tblReporte3').html(html);
+                    $('#prueba').html('<canvas id="myChart" width="450" height="225" class="chartjs-render-monitor" style="display: block; width: 450px; height: 225px;"></canvas>  ')
                     
                     var ctx = document.getElementById('myChart');
-                    var myChart = new Chart(ctx, {
+                    ctx.width=ctx.width;
+                new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: arrayCiclo,
@@ -178,12 +180,18 @@
                    
                 }
             });
+
         }
         
+        
+        $("#myChart").hover(function(event) {
+  event.preventDefault();
+}); 
+
         $('#btn_verAJAX').click(function () { 
             listado();
         })
-        listado();
+         listado();
 
         function validarNroCiclos() {
             var txtNroCiclos = $('#txtNroCiclos');
@@ -278,9 +286,28 @@
         }
 
         totalCiclos();
+        
+
+        
 
 
     </script>
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
+    {{-- <script>
+        function generarPDF(){
+            Canvas = document.getElementById("myChart");
+            Context = Canvas.getContext("2d");
+
+            var imgData = Canvas.toDataURL('image/png');
+            var pdf = new jsPDF('landscape');
+
+            pdf.addImage(imgData, 'PNG', 30,30 , 140,70);
+            pdf.save('ReporteAlumnosCiclo.pdf');
+        }
+    </script>
+    --}}
 
 
 

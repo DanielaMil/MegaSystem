@@ -77,8 +77,11 @@ Route::get('/egresadosPorCurso', 'AplicacionController@listarEgresadosPorCurso')
 Route::get('/cursos', 'AplicacionController@listarCursos')->name('listarCursos');
 Route::get('/ciclos', 'AplicacionController@mostrarCiclo')->name('mostrarCiclo');
 
+///*****************************************REPORTE 3*** */
 Route::get('/alumnosPorCiclo', 'reporte3Controller@alumnosPorCiclo')->name('alumnosPorCiclo');
 Route::post('/listado', 'reporte3Controller@listado')->name('listado');
 Route::post('/validarNroCiclos', 'reporte3Controller@validarNroCiclos')->name('validarNroCiclos');
 Route::post('/verTotalCiclos', 'reporte3Controller@verTotalCiclos')->name('verTotalCiclos');
+// Route::get('/pdfReporteTotalAlumno', 'reporte3Controller@pdfReporteTotalAlumno')->name('pdfReporteTotalAlumno');
+Route::get('/ReporteCantidadAlumnos', 'reporte3Controller@imprimir')->name('imprimir');
 

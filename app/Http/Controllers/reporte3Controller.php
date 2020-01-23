@@ -12,6 +12,21 @@ class reporte3Controller extends Controller{
         return view('Mantenedor.ReporteAlumnosPorCiclo');
     }
 
+    // public function pdfReporteTotalAlumno(REQUEST $request)
+    // {
+
+    //     return view('Mantenedor.pdfReporteTotalAlumnos');
+    // }
+
+    public function imprimir(){
+        
+        $pdf = \PDF::loadView('Mantenedor.pdfReporteTotalAlumnos');
+        // return $pdf->download('ReporteCantidadAlumnos.pdf');
+        $pdf->setPaper('a4','landscape');
+
+        return $pdf->stream();
+    }
+
     public function listado(REQUEST $request)
     {
 
