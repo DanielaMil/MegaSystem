@@ -143,8 +143,8 @@
         </div>
         <div class="modal-footer">
             <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRegistrarPago2" >SÍ</button> 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">No</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRegistrarPago2" >Registrar</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
         </div>
         </div>
     </div>
@@ -164,8 +164,8 @@
         </div>
         <div class="modal-footer">
             <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarMatricula">SI</button>-->
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnAdicional" >SÍ</button> 
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">No</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnAdicional" >Registrar</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarMatricula">Cancelar</button>
         </div>
         </div>
     </div>
@@ -602,7 +602,7 @@ function filter(__val__){
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (response) {
-                        alert('se Registro el Pago con éxito');
+                        //alert('se Registro el Pago con éxito');
                         cerrarModal();
                     },error:function (error) {  
                         toastr["error"]("No se puede repetir el número de recibo", "Error")
@@ -639,7 +639,11 @@ function filter(__val__){
                 var pago = $('#txtPago').val();
                 aux1 = 0;
                 band = false;
-                if(pago==0){
+                if(pago==""){
+                    pago=0;
+                    $('#txtPago').val(0);
+                }
+                if((parseInt(pago) ==0)){
                     toastr["error"]("Por favor ingrese el importe", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -670,24 +674,6 @@ function filter(__val__){
                     aux1++;
                     $('#txtPago').val('0');
                     band = false;
-                    toastr["error"]("Por favor ingrese el importe", "Error")
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": true,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
                 }
                 var verification = $('#txtNuroRecibo').val();
                 var niu = 0;
@@ -715,7 +701,7 @@ function filter(__val__){
                 }
 */
                 if (monto == 0){
-                    toastr["error"]("Por favor ingrese el monto", "Error")
+                    toastr["error"]("Por favor ingrese el costo total", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -738,6 +724,7 @@ function filter(__val__){
                 if(monto!=''){
                        
                     }else{
+                        $('#txtMonto').val(0);
                         monto = 0;
                         toastr["error"]("Por favor ingrese el monto", "Error")
                         toastr.options = {
@@ -764,6 +751,7 @@ function filter(__val__){
 
                 }else{
                     descuento=0;
+                    $('#txtDescuento').val(0);
                     toastr["error"]("Por favor ingrese el descuento.", "Error")
                         toastr.options = {
                             "closeButton": false,
@@ -789,12 +777,23 @@ function filter(__val__){
                 //alert(descuento);
                 aux = parseFloat( monto - descuento); 
                 //alert(aux);
-                if(parseFloat(pago) <= aux){
-                        
+
+                
+                
+                var suma = parseInt(pago) + parseInt(descuento);
+
+                if ((parseFloat(monto) == suma)){
+                    
                 }else{
-                    //error mensaje .-.
-                    toastr["error"]("El pago no puede ser mayor que "+ aux, "Error")
-                        toastr.options = {
+                    aux1++;
+                    if((parseInt(pago)!= 0 ) && (pago!='')){
+
+                        if(monto=!0){
+                            var mont2 = $('#txtMonto').val();
+                            //alert("suma"+suma + "monto"+mont2 );
+                            if(parseInt(suma) < parseFloat(mont2)){
+                                toastr["error"]("Todo se paga en una sola cuota", "Error")
+                            toastr.options = {
                             "closeButton": false,
                             "debug": true,
                             "newestOnTop": false,
@@ -811,36 +810,39 @@ function filter(__val__){
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
-                    aux1++;
-                }
-                
-                var suma = parseInt(pago) + parseInt(descuento);
-                if ((parseFloat(monto) == suma)){
-                    
-                }else{
-                    aux1++;
-                    if(parseInt(pago)!= 0){
-                        toastr["error"]("Todo se paga en una sola cuota", "Error")
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": true,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                    }
+                            }
+                        }
                     }
                 }
-                if(parseFloat(descuento) <= parseFloat(monto)){
+                if(pago==""){
+                    pago=0;
+                }
+                if(parseFloat(pago) <= aux){
+                        
+                    }else{
+                        //error mensaje .-.
+                        toastr["error"]("El importe no puede ser mayor que "+ aux, "Error")
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                        aux1++;
+                    }
+                    var monto = $('#txtMonto').val();
+                if(parseInt(descuento) <= parseInt(monto)){
                     
                   //  alert(descuento + 'y ' + monto);
                     }else{
@@ -868,7 +870,7 @@ function filter(__val__){
                 }        
                 if (verification.length != 7) {
                     aux1++;
-                    toastr["error"]("El número recibo es de 7 dígitos", "Error")
+                    toastr["error"]("El número de recibo es de 7 dígitos", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
