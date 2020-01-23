@@ -41,6 +41,13 @@ class AplicacionController extends Controller
         return view('Mantenedor.ReporteMayorcantidadAlumnosPorGrupo')->with('curso',$curso);
     }
 
+
+    public function CantidadPorGrupoXCurso(REQUEST $request){
+        $grupo = DB::select('select grupo.descripcion as cursoNombre, COUNT(matricula.idAlumno) AS numero, ciclo.nombre as ciclo from grupo INNER JOIN curso on grupo.idCurso=curso.idCurso INNER JOIN ciclo on ciclo.idCiclo=grupo.idCiclo LEFT JOIN matricula on matricula.idGrupo=grupo.idGrupo WHERE curso.idCurso = '.$request->id.' GROUP BY grupo.descripcion, ciclo.nombre');
+        return response()->json($grupo);
+    }
+
+
     public function alumnosPorCiclo(REQUEST $request)
     {
 
