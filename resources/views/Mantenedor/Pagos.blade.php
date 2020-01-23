@@ -68,25 +68,50 @@
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtPago" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
-                            
+                            <input placeholder="00" step="1" id="txtPago" type="number" min="0" class="form-control" onkeypress="return soloNumeros(event);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
                         </div>
                         <label for="examplePassword" class="">Descuento</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtDescuento" type="number"  min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
-                            
+                            <input placeholder="00" step="1" id="txtDescuento" type="number"  min="0" class="form-control" onkeypress="return soloNumeros(event);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                            .00
+                                                        </font>
+                                                    </font>
+                                                </span>
+                                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <label for="form-control" class="">N° de Recibo</label>
-                        <input placeholder="0000014" name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="7" onkeypress="return filterFloat(event,this);" >
+                        <input placeholder="Nº Recibo" name="text" id="txtNuroRecibo" type="text" class="form-control" maxlength="7" onkeypress="return filterFloat(event,this);" >
                         <label for="examplePassword" class="">Costo Total</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend"><span class="input-group-text">S/</span>
                             </div>
-                            <input placeholder="00" step="1" id="txtMonto" type="number" min="0" class="form-control"onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                            <input placeholder="00" step="1" id="txtMonto" type="number" min="0" class="form-control"onkeypress="return soloNumeros(event);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <font style="vertical-align: inherit;">
+                                        <font style="vertical-align: inherit;">
+                                            .00
+                                        </font>
+                                    </font>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
@@ -193,7 +218,7 @@
                                 <form action="">
                                     <input type="hidden" name="" id="urlAJAXregistrarPago" value="{{route('registrarPagos')}}">
                                     <label for="form-control-sm" class="" style="font-weight: bold">N° de Recibo</label>
-                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="8"  placeholder="Serie">
+                                    <input name="text" id="txtNroRecibo" type="text" class="form-control form-control-sm"  maxlength="7"  placeholder="Nº Recibo">
                                     <br>
                                     <label for="form-control" class="" style="font-weight: bold">Importe</label>
                                     <div class="input-group input-group-sm">
@@ -204,13 +229,22 @@
                                                 </font>
                                             </font></span>
                                         </div>
-                                        <input placeholder="Importe" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return filterFloat(event,this);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                                        <input placeholder="Importe" step="1" id="numbImporte" type="number" min="0" class="form-control" onkeypress="return soloNumeros(event);" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"maxlength = "5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">
+                                                        .00
+                                                    </font>
+                                                </font>
+                                            </span>
+                                        </div>
                                     </div>
                                 </form>
                                 <hr style="margin-top:0">
                                 <div class="d-block text-center card-footer">
                                         {{-- <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button> --}}
-                                        <button class="btn-wide btn btn-success" data-toggle="modal" id="btnRegistrarPago" data-target="#RegPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
+                                        <button class="btn-wide btn btn-success btnRegistrarPago" data-toggle="modal" id="btnRegistrarPago" disabled ><font ><font style="vertical-align: inherit;">REGISTRAR</font></font></button>
                                     </div>
                             </div>
                         </div>
@@ -234,6 +268,24 @@
 <script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
 
 <script>
+function soloNumeros(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " 0123456789";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
 function filterFloat(evt,input){
     // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
     var key = window.Event ? evt.which : evt.keyCode;    
@@ -587,6 +639,26 @@ function filter(__val__){
                 var pago = $('#txtPago').val();
                 aux1 = 0;
                 band = false;
+                if(pago==0){
+                    toastr["error"]("Por favor ingrese el importe", "Error")
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                }
                 if(pago!=''){
                     band = true;
                     if (pago == '0'){
@@ -595,7 +667,7 @@ function filter(__val__){
                         band = true;
                     }
                 }else{
-                    pago=0;
+                    aux1++;
                     $('#txtPago').val('0');
                     band = false;
                     toastr["error"]("Por favor ingrese el importe", "Error")
@@ -743,11 +815,12 @@ function filter(__val__){
                 }
                 
                 var suma = parseInt(pago) + parseInt(descuento);
-                if (parseFloat(monto) == suma ){
+                if ((parseFloat(monto) == suma)){
                     
                 }else{
                     aux1++;
-                    toastr["error"]("Todo se paga en una sola cuota", "Error")
+                    if(parseInt(pago)!= 0){
+                        toastr["error"]("Todo se paga en una sola cuota", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -764,7 +837,8 @@ function filter(__val__){
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                        }
+                    }
+                    }
                 }
                 if(parseFloat(descuento) <= parseFloat(monto)){
                     
@@ -794,7 +868,7 @@ function filter(__val__){
                 }        
                 if (verification.length != 7) {
                     aux1++;
-                    toastr["error"]("El número recibo es de 8 dígitos", "Error")
+                    toastr["error"]("El número recibo es de 7 dígitos", "Error")
                         toastr.options = {
                             "closeButton": false,
                             "debug": true,
@@ -828,7 +902,7 @@ function filter(__val__){
                             console.log(info.datos[0].numero);
                             var niu = info.datos[0].numero;
                             if (niu == 1){
-                                aux++;
+                                aux1++;
                                     //alert('Error, No puedes hacerlo');
                                     toastr["error"]("Error, número de documento duplicado ", "Error");
                                     toastr.options = {
@@ -852,13 +926,13 @@ function filter(__val__){
                             }
                             if(aux1 == 0){
                                 asignarAtributo();
+
                             }else{
                                 quitarAtributo();
                             }
                         }
                     });
                 }
-                
             }
             $('#btnAdicional').click(function(){
                 registrarCuota();            
@@ -869,8 +943,45 @@ function filter(__val__){
             function quitarAtributo(){
                 $("#btnRegistrarModal").removeAttr("data-target");
             }
+            $('#asd').on('hidden.bs.modal', function () {
+                quitarAtributo();
+            });
+            
             $('#btnRegistrarModal').click(function(){
                 validacionTediosa();
+            });
+            function asigno(){
+                if(aux1 == 0){
+                    asignarAtributo();
+                }else{
+                    quitarAtributo();
+                }
+            }
+            $('#txtNuroRecibo').keyup(function () { 
+                var verification = $('#txtNuroRecibo').val();
+                if (verification.length == 7) {
+                    $.ajax({
+                        type: "post",
+                        url: '/pagos/duplicado',
+                        data: {
+                            recibo: $('#txtNuroRecibo').val()
+                        },
+                        dataType: "JSON",
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            var info = JSON.parse(JSON.stringify(response));
+                            console.log(info.datos[0].numero);
+                            var niu = info.datos[0].numero;
+                            if (niu == 1){
+                                aux1++;
+                            }else{
+                            }
+                        }
+                    });
+                }else{
+                }
             });
             $('#btnBuscar').click(function(){
                 var verification = $('#dniAlumno').val();
@@ -1062,110 +1173,129 @@ function filter(__val__){
                     }
                 });
            }
-           $('#RegPago').css('z-index', '9999999');
-           $('#btnRegistrarPago2').click(function () {
-                $('#RegPAgo').css('background-color', '');
-               if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
-                //alert
-                toastr["error"]("No debe ingresar un monto mayor a "+saldoDeuda, "Error")
-                                toastr.options = {
-                                "closeButton": false,   
-                                "debug": true,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                                }
-               }else{
-                //    alert($('#numbImporte').val())
-                valida  = $('#txtNroRecibo').val();
+           var aux2=0;
+           $('#txtNroRecibo').keyup(function () { 
+                var verification = $('#txtNroRecibo').val();
+                if (verification.length == 7) {
+                    $.ajax({
+                        type: "post",
+                        url: '/pagos/duplicado',
+                        data: {
+                            recibo: $('#txtNroRecibo').val()
+                        },
+                        dataType: "JSON",
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            var info = JSON.parse(JSON.stringify(response));
+                            console.log(info.datos[0].numero);
+                            var niu = info.datos[0].numero;
+                            if (niu == 1){
+                                aux2++;
+                            }else{
+                            }
+                        }
+                    });
+                }else{
+                }
+            });
+            
+           function tediosa2(){
+               aux2=0;
+                if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
+                    aux2 ++;
+                    toastr["error"]("No debe ingresar un monto mayor a "+saldoDeuda, "Error")
+                    toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }else{
+                    valida  = $('#txtNroRecibo').val();
                     if (($('#txtNroRecibo').val() != ''  &&  $('#numbImporte').val() != '')) {
-                        if(valida.length==8){
+                        if(valida.length==7){
                             $.ajax({
-                            type: "post",
-                            url: $('#urlAJAXregistrarPago').val(),
-                            data: {
-                                importe: $('#numbImporte').val(),
-                                recibo: $('#txtNroRecibo').val(),
-                                idcuota: idcuota
-                            },
-                            dataType: "json",
-                            headers: {
-                                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function (response) {
-                                //aquí va el sí o no :( 
-                                toastr["success"]("Se registró el pago con éxito.", "Éxito!");
-                                toastr.options = {
-                                "closeButton": false,   
-                                "debug": true,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                             }
-                                listarCuotas(idMatricula);
-                                $('#btnRegistrarPago').attr('disabled',true)
-                            },error:function (error) {  
-                                toastr["error"]("No se puede repetir el número de recibo", "Error")
-                                toastr.options = {
-                                "closeButton": false,   
-                                "debug": true,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                                } 
-                                }
-                        });
+                        type: "post",
+                        url: '/pagos/duplicado',
+                        data: {
+                            recibo: $('#txtNroRecibo').val()
+                        },
+                        dataType: "JSON",
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            var info = JSON.parse(JSON.stringify(response));
+                            console.log(info.datos[0].numero);
+                            var niu = info.datos[0].numero;
+                            if (niu == 1){
+                                aux2++;
+                                    //alert('Error, No puedes hacerlo');
+                                    toastr["error"]("Error, número de documento duplicado ", "Error");
+                                    toastr.options = {
+                                    "closeButton": false,   
+                                    "debug": true,
+                                    "newestOnTop": false,
+                                    "progressBar": true,
+                                    "positionClass": "toast-top-right",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                    }
+                                    
+                            }else{
+                                
+                            }
+                            if (aux2==0){
+                                asignarAtributo1();
+                            }else{
+                                quitarAtributo2();
+                            }
+                        }
+                    });      
                         }else{
-                            toastr["error"]("El número de recibo es de 7 dígitos", "Error")
-                                toastr.options = {
-                                "closeButton": false,   
-                                "debug": true,
-                                "newestOnTop": false,
-                                "progressBar": true,
-                                "positionClass": "toast-top-right",
-                                "preventDuplicates": false,
-                                "onclick": null,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "5000",
-                                "extendedTimeOut": "1000",
-                                "showEasing": "swing",
-                                "hideEasing": "linear",
-                                "showMethod": "fadeIn",
-                                "hideMethod": "fadeOut"
-                                } 
+                            aux2++;
+                            toastr["error"]("El número recibo es de 7 dígitos", "Error")
+                            toastr.options = {
+                            "closeButton": false,   
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
                         }
                     }else{
+                        aux2++;
                         toastr["error"]("Por favor ingrese los datos correspondientes", "Error")
                         toastr.options = {
                         "closeButton": false,   
@@ -1185,7 +1315,63 @@ function filter(__val__){
                         "hideMethod": "fadeOut"
                         } 
                     }
-               }
+                }
+           }
+           function reniu(){
+            $.ajax({
+                    type: "post",
+                    url: $('#urlAJAXregistrarPago').val(),
+                    data: {
+                        importe: $('#numbImporte').val(),
+                        recibo: $('#txtNroRecibo').val(),
+                        idcuota: idcuota
+                    },
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        //aquí va el sí o no :( 
+                        toastr["success"]("Se registró el pago con éxito.", "Éxito!");
+                        toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }
+                        listarCuotas(idMatricula);
+                        $('#btnRegistrarPago').attr('disabled',true)
+                    }
+                });
+           }
+           function asignarAtributo1(){
+                $("#btnRegistrarPago").attr("data-target", "#RegPago");
+            }
+            function quitarAtributo2(){
+                $("#btnRegistrarPago").removeAttr("data-target");
+            }
+           $('#RegPago').css('z-index', '9999999');
+           var bandera = false;
+           $('#btnRegistrarPago2').click(function () {
+                reniu();
+           });
+           $('#RegPago').on('hidden.bs.modal', function () {
+                quitarAtributo2();
+            });
+           $('#btnRegistrarPago').click(function () {
+                $('#RegPago').css('background-color', '');
+                tediosa2();
            });
 
            var banResponsive = 0;
