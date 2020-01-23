@@ -282,7 +282,7 @@ PATRICIA
                                             <input type="hidden" id="urlAJAX_montoMatricula" style="width: 4em; border: 0;" value="{{route('buscarMontoMatricula')}}">
                                         </div>
 
-                                        <label for="form-control" class="" style="font-weight: bold">Importe</label>
+                                        <label for="form-control" class="" style="font-weight: bold">Importe<font style="vertical-align: inherit; color:darkred">*</font></label>
                                         <div class="input-group input-group-sm">
                                             <div class="input-group-prepend"><span class="input-group-text">
                                                 <font style="vertical-align: inherit;">
@@ -291,7 +291,7 @@ PATRICIA
                                                     </font>
                                                 </font></span>
                                             </div>
-                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" autocomplete="off" class="form-control" onkeypress="return montos(event)" value="{{route('buscarMontoMatricula')}}">
+                                            <input placeholder="00" name="txt" id="txtImporte" type="number"  step="1" min="0" max="10" autocomplete="off" class="form-control" onkeypress="return soloNumeros(event)" value="{{route('buscarMontoMatricula')}}">
                                             <input type="hidden" id="urlAJAX_monto" value="{{route('validarImporte')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -324,7 +324,7 @@ PATRICIA
                                                     </font>
                                                 </font></span>
                                             </div>
-                                            <input placeholder="00" name="txt" id="txtDescuento" type="number" autocomplete="off" class="form-control" min="0" step="1" maxlength="6" onkeypress="return montos(event)">
+                                            <input placeholder="00" name="txt" id="txtDescuento" type="number" autocomplete="off" class="form-control" min="0" step="1" maxlength="6" onkeypress="return soloNumeros(event)">
                                             <input type="hidden" id="urlAJAX_desc" value="{{route('validarDescuento')}}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -341,7 +341,8 @@ PATRICIA
                                         <textarea name="txtComentario" id="txtComentario" rows="3" cols="1" class="form-control" placeholder="Escribe aquí..."></textarea>
                                         <br>  
                                         <div class="text-center">
-                                            <button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary " type="button" id="btnGuardarTablaAjax" disabled="true" ><font ><font style="font-weight: bold;">GENERAR CUOTAS</font></font></button>
+                                         <!--   <button class="mb-2 mr-2 border-0 btn-transition btn btn-outline-primary " type="button" id="btnGuardarTablaAjax" disabled="true" > GENERAR CUOTAS</button>-->
+                                            <button type="button" class="btn btn-info"  disabled="true" id="btnGuardarTablaAjax">GENERAR CUOTAS</button>    
                                             <input type="hidden" id="urlAJAX_ListarMensualidad" value="{{route('listarMensualidad')}}">
 
                                            
@@ -372,7 +373,7 @@ PATRICIA
                                 <div class="main-card card">
                                     <div class="form-row">
                                         <div class="col-md-3 mb-4 mx-auto mt-3">
-                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo</font></font></label>
+                                            <label for="txtRecibo" style="font-weight: bold"><font style="vertical-align: inherit;" ><font style="vertical-align: inherit;">N° Recibo<font style="vertical-align: inherit; color:darkred">*</font></font></font></label>
                                             <input name="txtRecibo" id="txtRecibo" autocomplete="off" type="text" maxlength="7" class="form-control" >
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -414,6 +415,7 @@ PATRICIA
                         </div>
                     </div>
                 </div>
+                <font size=1.5px> <font style="vertical-align: inherit; color:darkred">(*) Campos obligatorios</font> </font>
             </div>         
         </div>
         
@@ -428,7 +430,7 @@ PATRICIA
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -454,7 +456,7 @@ PATRICIA
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -479,7 +481,7 @@ PATRICIA
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mensaje!!!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje del sistema</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -575,9 +577,9 @@ PATRICIA
         var arrayCursosMatriculados = [];
         var UbicacionPago = -1;
         var resultado = document.getElementById("info");
-        var mensualidadGeneral = 0.00;
+        var mensualidadGeneral = 0;
         var auxIdGrupo = 0 ;
-        var auxMonto = 60.00;
+        var auxMonto = 60;
         var edadGlobal = 0;
 
         var numero = document.getElementById('numero');
@@ -596,7 +598,7 @@ PATRICIA
             registrar_Apoderado();
         });
         
-        //--------------Tablas---------------------------------
+        //--------------Tablas--------------------------------- 50
 
         function tabla(auxdeni) {
             var urlAJAX_ListarGrupo = $('#urlAJAX_ListarGrupo').val();
@@ -768,7 +770,7 @@ PATRICIA
                         }else{
                             if(response.cod == 100){
                                 //cantidad de caracteres menor al de 8
-                                toastr["warning"]("en el DNI del alumno", "Cantidad de caracteres inválido")
+                                toastr["warning"]("Cantidad de carácter no válido", "DNI del alumno")
 
                                 toastr.options = {
                                 "closeButton": false,
@@ -898,7 +900,7 @@ PATRICIA
                         }else{
                             if(response.cod == 100){
                                 //cantidad de caracteres menor al de 8
-                                toastr["warning"]("en el DNI del apoderado", "Cantidad de caracteres inválido")
+                                toastr["warning"]("Cantidad de carácter no válido", "DNI del apoderado")
 
                                 toastr.options = {
                                 "closeButton": false,
@@ -964,7 +966,7 @@ PATRICIA
                         
                         if(response.cod == 100){
                             //cantidad de caracteres menor al de 8
-                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+                            toastr["warning"]("Cantidad de carácter no válido", "Celular")
 
                             toastr.options = {
                             "closeButton": false,
@@ -1026,7 +1028,7 @@ PATRICIA
                         
                         if(response.cod == 100){
                             //cantidad de caracteres menor al de 8
-                            toastr["warning"]("en el celular", "Cantidad de caracteres inválido")
+                            toastr["warning"]("Cantidad de carácter no válido", "Celular")
 
                             toastr.options = {
                             "closeButton": false,
@@ -1087,6 +1089,32 @@ PATRICIA
                     success: function (response) {
                         console.log(response);
                                                 
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("mínimo s/ 30.00 soles", "Importe")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtImporte').val(30);
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+                        
                         if(response.cod == 101){
                             //cantidad de caracteres menor al de 8
                             toastr["error"]("mayor al pago de la Matrícula", "Importe")
@@ -1109,10 +1137,9 @@ PATRICIA
                             "hideMethod": "fadeOut"
                             }
                             //$('#txtImporte').attr('disabled',false);
-                            $('#txtImporte').val('');
+                            $('#txtImporte').val(50);
                            // $('#txtImporte').attr('disabled',true);
                         }
-                        
                         // $('.load').css({display:'none'});
                     },
                     error:function (error) {  
@@ -1153,6 +1180,32 @@ PATRICIA
                     success: function (response) {
                         console.log(response);
                                                 
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["error"]("máximo de s/10.00", "Descuento")
+
+                            toastr.options = {
+                            "closeButton": false,
+                            "debug": true,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtDescuento').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+
                         if(response.cod == 101){
                             //cantidad de caracteres menor al de 8
                             toastr["error"]("mayor al pago de la Mensualidad", "Descuento")
@@ -1309,9 +1362,9 @@ PATRICIA
                     }
                     // alert(pos)
                     if (pos != -1) {
-                        $('#txtImporte').val(Number(arrayCursosMatriculados[pos].importe).toFixed(2));
-                        $('#txtDescuento').val(Number(arrayCursosMatriculados[pos].descuento).toFixed(2));
-                        $('#txtMensualidad').val(Number(arrayCursosMatriculados[pos].pagoMens).toFixed(2));
+                        $('#txtImporte').val(Number(arrayCursosMatriculados[pos].importe).toFixed(0));
+                        $('#txtDescuento').val(Number(arrayCursosMatriculados[pos].descuento).toFixed(0));
+                        $('#txtMensualidad').val(Number(arrayCursosMatriculados[pos].pagoMens).toFixed(0));
                         $('#txtComentario').val(arrayCursosMatriculados[pos].razon)
                         // $('#txtImporte').attr('value',arrayCursosMatriculados[pos].importe); 
                     }
@@ -1444,7 +1497,24 @@ PATRICIA
                             var ban = (option.eq(i).val() == alu.genero)?true:false;
                             option.attr('selected');
                             
-                            option.eq(i).attr('selected',ban);
+                                option.eq(i).attr('selected',ban);
+                           /*var ban;
+                            //alert(alu.genero);  
+                            if ( alu.genero == 0) {
+                                ban = true;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }
+
+                            if (alu.genero == 1) {
+                                ban = false;
+                                option.attr('selected');
+                            
+                                option.eq(i).attr('selected',ban);
+                            }*/
+
+                            
                         }
 
                         $('#txtFechaNaAl').val(alu.feNacimiento);
@@ -1652,7 +1722,7 @@ PATRICIA
             buscarPromotor01();
         });
 
-        //------------------APODERADO-----------------
+        //------------------APODERADO-----------------60.00
         function buscarApoderado() {
             
             var urlAJAX_AP = $('#urlAJAX_AP').val();
@@ -2107,11 +2177,9 @@ PATRICIA
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
            // $('#cboGeneroAl').val('-Seleccione-');
-           $('#cboGeneroAl').attr('disabled',true);
+            $('#cboGeneroAl').attr('disabled',true);
 
             $("#cboGeneroAl > option[value=-1]").attr("selected",true);
-
-            
         }
 
         function LimpiarFormularioALU_dni02() {  
@@ -2129,7 +2197,6 @@ PATRICIA
             $('#txtCelularAl').attr('disabled',true);
             $('#txtFechaNaAl').val('');
             $('#txtFechaNaAl').attr('disabled',true);
-            //$('#cboGeneroAl').val('-Seleccione-');
             $("#cboGeneroAl > option[value=-1]").attr("selected",true);
             $('#txtDni_Al').val('');
             $('#txtDni_Al').attr('disabled',false);
@@ -2542,8 +2609,9 @@ PATRICIA
                 url: "/verificarMatricula",
                 data:{
                     txtRecibo        :txtRecibo,
-                    txtDniPromotor   :txtDniPromotor
+                    txtDniPromotor   :txtDniPromotor,
 
+                    cursos : arrayCursosMatriculados,
                 },
                 dataType: 'json',
                 headers: {
@@ -2552,12 +2620,12 @@ PATRICIA
                 success:function(response){
                     console.log(response);
                     if(response.cod == 200){
-                        //Modal de Matricula 
+                        //Modal de Matricula  mayor al pago de la Matrícula
                         $('#RegMatricula').modal('show');
                     }else{
                         
                         if(response.cod == 100){
-                            toastr["warning"]("en el recibo de la Matrícula", "Cantidad de caracteres inválido")
+                            toastr["warning"]("cantidad de carácter no válido", "N° Recibo")
 
                             toastr.options = {
                             "closeButton": false,
@@ -2577,6 +2645,28 @@ PATRICIA
                             "hideMethod": "fadeOut"
                             }
                             //LimpiarFormularioALU();
+                        }else{
+                            if (response.cod == 101) {
+                                toastr["warning"]("cantidad debe ser mayor a s/30", "Verificar importe")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
                         }
                     }
                    //LimpiarFormularioALU();
@@ -2593,9 +2683,70 @@ PATRICIA
 
         $('#btn_registrarAjax').click(function () { 
             validarMatricula();
-            //registrarAJAX();
-           // btn_registrarAjax
         })
+
+        function cantidadRecibo()
+        {
+            var auxtxtRecibo = $('#txtRecibo');
+            
+            auxtxtRecibo.change(function () {
+                var txtRecibo = $('#txtRecibo').val();
+                
+                $.ajax({
+                    type: "post",
+                    url: "/verificarRecibo",
+                    data:{
+                        txtRecibo :txtRecibo
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        
+                        if(response.estado == true){
+                            //encotro dni del alumno
+                        }else{
+                            if(response.cod == 100){
+                                //cantidad de caracteres menor al de 8
+                                toastr["warning"]("cantidad de carácter no válido", "N° Recibo")
+
+                                toastr.options = {
+                                "closeButton": false,
+                                "debug": true,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                                }
+                            }
+                        }
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
+            });
+        }
+
+        cantidadRecibo();
+
 })
 </script>   
  @endsection 

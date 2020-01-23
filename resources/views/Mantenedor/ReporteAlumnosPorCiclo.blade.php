@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 
 @section('url')
@@ -28,18 +26,62 @@
        
         <div class="card-body table-responsive no-padding">
             <div class="row">
-                <div class="col-md-7 ">
-                    <canvas id="myChart" width="0" height="400"></canvas>                   
+                <div class="col-lg-6">
+                    <div class="form-inline">
+                        <div class="mb-2 mr-sm-2 mb-sm-2 position-relative form-group" id="example_length">
+                            <label class="mr-sm-2">Ver </label>
+                                <input placeholder="3" name="txt" id="txtNroCiclos" type="number" autocomplete="off" class="form-control form-control-sm" min="1" step="1" max="3" style="width: 58px;"> 
+                                <input type="hidden" id="urlAJAX_nroCiclos" value="{{route('validarNroCiclos')}}">
+                            <label class="ml-sm-2">últimos ciclos de
+                                <input name="txt" id="txtTotalCiclos" class="form-control" type="text" style="width: 4em; border: 0; background-color: #fff; font-weight: bold; color:lightseagreen" >
+                                <input type="hidden" id="urlAJAX_totalCiclos" style="width: 4em; border: 0;" value="{{route('verTotalCiclos')}}">
+                            </label>
+
+                            <button type="button" id="btn_verAJAX" class="btn btn-info" >
+                                <i class="fa fa-fw" aria-hidden="true" title="Copy to use eye"></i>
+                                VER
+                            </button>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-inline">
+                        <div class="mb-2 mr-sm-2 mb-sm-2 position-relative form-group" id="example_length">
+                            <label class="mr-sm-2">Exportar a </label>
+                            <button type="button" id="btn_verAJAX" class="btn btn-danger mr-sm-2" >
+                                <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-pdf-o"></i>
+                                PDF
+                            </button>
+                            <button type="button" id="btn_verAJAX" class="btn btn-success mr-sm-2" >
+                                <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-excel-o"></i>
+                                EXCEL
+                            </button> 
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-md-7 card ">
+                        {{-- <canvas id="myChart" width="0" height="400"></canvas> --}}
+                        <canvas id="myChart" width="450" height="225" class="chartjs-render-monitor" style="display: block; width: 450px; height: 225px;"></canvas>                                     
                 </div>
                 <div class="col-md-5">
                     <table class="mb-0 table table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ciclo</font></font></th>
-                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Matriculados</font></font></th>
-                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Curso</font></font></th>
-                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Grupo</font></font></th>
-                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Retirados</font></font></th>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Matriculados</font></font></th>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Cursos</font></font></th>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Grupos</font></font></th>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"># Retirados</font></font></th>
                             </tr>
                         </thead>
                         <tbody id="tblReporte3">
@@ -52,18 +94,27 @@
         </div>
     </div>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
 
 @endsection
 
 @section('js')
+
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/main.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('template/architectui-html-free//assets/scripts/toastr.js')}}"></script>
     <script>
+         
 
         function listado(){
             var url = "listado";
+            var nroCiclos = $('#txtNroCiclos').val();
+
             $.ajax({
                 type: "post",
                 url: url,
+                data:{
+                    nroCiclos :nroCiclos,
+                },
                 dataType: "json",
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -71,123 +122,162 @@
                 success: function (response) {
                     console.log(response);
                     var arrayCiclo = [];
-                    var arrayMatriculados = []
-                    
-                    var arrayRetirados = []
+                    var arrayMatriculados = [] ;                   
+                    var arrayRetirados = [];
+                    var html='';     
+
                     for(var i=0;i < response.datos.length;i++)
                     {
-                      arrayCiclo.push(response.datos[i].nombre)
-                    arrayMatriculados.push(response.datos[i].Matriculados)
-                    arrayRetirados.push(response.datos[i].Retirados)
-                    }
+                        arrayCiclo.push(response.datos[i].nombre)
+                        arrayMatriculados.push(response.datos[i].Matriculados)
+                        arrayRetirados.push(response.datos[i].Retirados)
 
+                        html = html + '<tr>'
+                                    +'<td>' + response.datos[i].nombre + '</td>'
+                                    +'<td class="text-center">' + response.datos[i].Matriculados + '</td>'
+                                    +'<td class="text-center">'+ response.datos[i].nombre +'</td>'
+                                    +'<td class="text-center">'+ response.datos[i].nombre +'</td>'
+                                    +'<td class="text-center">'+ response.datos[i].Retirados +'</td>'
+                                    +'</tr>'
+
+                    }
+                    $('#tblReporte3').html(html);
+                    
                     var ctx = document.getElementById('myChart');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            /*labels: ['Ciclo 2020-I', 'Ciclo 2019-III', 'Ciclo 2019-II', 'Ciclo 2019-I', 'Ciclo 2018-III', 'Ciclo 2018-I'],*/
                             labels: arrayCiclo,
                             datasets: [{
                                 label: '# Matriculados',
-                                /*data: [12, 19, 3, 5, 2, 3],*/
-                                data:   arrayMatriculados ,                                      
-                                backgroundColor: [
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                ],
-                                borderWidth: 1
+                                data:   arrayMatriculados ,                                                            
+                                backgroundColor:'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1,
                                 
                             },{
                                 label: '# Retirados',
                                 data:   arrayRetirados,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    
-                                ],
-                                borderWidth: 1
-                            },{
-                                label: 'Utilidades',
-                                data: [20],
-                                type: 'line',
-                                borderColor: 'rgb(75, 192, 192)',
-                                borderWidth: 2,
-                                fill: false,  
-                            }]
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',                                  
+                                borderWidth: 1,
+                            }
+                            ]
                         },
                         options: {
                             scales: {
-                                yAxes: [{
+                                yAxes: [{                                    
                                     ticks: {
                                         beginAtZero: true
                                     }
-                                }]
+                                
+                                }]  
                             }
                         }
                     }); 
-
-                    // var valores = eval(datos);
-
-                    // var Datos = {
-                    //     labels : arrayCiclo
-                    //     datasets : [
-                    //         {
-                    //             label: '# Matriculados',
-                    //             fillColor : 'rgba(91,228,146,0,6)',
-                    //             strokeColor : 'rgba(57,194,112,0,7)',
-                    //             highlightFill : 'rgba(73,206,180,0,6)',
-                    //             highlighttroke : 'rgba(66,196,157,0,7)',
-                    //             data: [12, 19, 3, 5, 2, 3],
-                                
-                                
-                    //         },{
-                    //             label: '# Retirados',
-                    //             fillColor : 'rgba(91,228,146,0,6)',
-                    //             strokeColor : 'rgba(57,194,112,0,7)',
-                    //             highlightFill : 'rgba(73,206,180,0,6)',
-                    //             highlighttroke : 'rgba(66,196,157,0,7)',
-                    //             data: [12, 19, 3, 5, 2, 3],
-                    //         }
-                    //     ]
-                        
-                    // }
-
-                    // var contexto = document.getElementById('myChart').getContext('2d');
-                    // window.Barra = new Chart(contexto).Bar(Datos,{responsive : true});
-
+                   
                 }
             });
+        }
+        
+        $('#btn_verAJAX').click(function () { 
+            listado();
+        })
+        listado();
+
+        function validarNroCiclos() {
+            var txtNroCiclos = $('#txtNroCiclos');
+
+            txtNroCiclos.change(function () {
+                var urlAJAXVal = $('#urlAJAX_nroCiclos').val();
+                var nroCiclos = $('#txtNroCiclos').val();
+                $.ajax({
+                    type: "post",
+                    url: urlAJAXVal,
+                    data:{
+                        nroCiclos :nroCiclos,
+                    },
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function (response) {
+                        // $('.load').css({display:'block'});
+                    },
+                    success: function (response) {
+                        console.log(response);
+                                                
+                        if(response.cod == 100){
+                            //cantidad de caracteres menor al de 8
+                            toastr["warning"]("inválido", "Número de ciclos")
+
+            toastr.options = {
+            "closeButton": true,
+            "debug": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+                            //$('#txtImporte').attr('disabled',false);
+                            $('#txtNroCiclos').val('');
+                           // $('#txtImporte').attr('disabled',true);
+                        }
+                        
+                        // $('.load').css({display:'none'});
+                    },
+                    error:function (error) {  
+                    
+                    },
+                    complete:function () {  
+                    }
+                });
 
 
-
+            });
         }
 
-        listado();
+        validarNroCiclos();
+
+        function totalCiclos() {
+            
+            var urlAJAX_totalCiclos = $('#urlAJAX_totalCiclos').val();
+
+            $.ajax({
+                type: "post",
+                url: urlAJAX_totalCiclos,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function (response) {
+                    // $('.load').css({display:'block'});
+                },
+                success: function (response) {
+                    console.log(response);
+
+                    var total = response.datos[0];
+                    
+                    $('#txtTotalCiclos').attr('disabled',true);
+                    $('#txtTotalCiclos').val(total.nroCiclos);
+                },
+                error:function (error) {  
+                },
+                complete:function () {  
+                }
+            });
+        }
+
+        totalCiclos();
 
 
     </script>

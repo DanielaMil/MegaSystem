@@ -3,9 +3,10 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class PruebaMatricula extends TestCase
 {
     /**
      * A basic test example.
@@ -14,21 +15,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('Pagos/');
-
-        $response->assertStatus(404);
-    }
-
-    public function testbloquearMatricula()
-    {
         $response = $this->get('MatriculaFrm/');
 
         $response->assertStatus(404);
     }
-    
-    public function testValidarImporte()
+
+    public function bloquearMatricula()
     {
-        $response = $this->get('MatriculaFrm/');
+        $response = $this->get('Matricula/');
 
         $response->assertStatus(404);
     }
