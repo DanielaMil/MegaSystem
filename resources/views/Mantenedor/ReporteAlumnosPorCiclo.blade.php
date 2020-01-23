@@ -74,7 +74,7 @@
                                     PDF
                                 </button>
                             {{-- </a> --}}
-                            <button type="button" id="btn_verAJAX" class="btn btn-success mr-sm-2" >
+                            <button type="button" id="btn_verAJAX" class="btn btn-success mr-sm-2"  onclick="generarEXCEL()" >
                                 <i class="fa fa-fw" aria-hidden="true" title="Copy to use file-excel-o"></i>
                                 EXCEL
                             </button> 
@@ -339,7 +339,46 @@
 
             pdf.save('ReporteAlumnosCiclo.pdf');
         }
+
+        function s2ab(s) {
+
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+
+        }
+
+        function generarEXCEL() {
+            var wb = XLSX.utils.book_new();
+            wb.Props = {
+            Title: "SheetJS Tutorial",
+            Subject: "Test",
+            Author: "Red Stapler",
+            CreatedDate: new Date()
+            };
+
+            wb.SheetNames.push("ReporteAlumnosCiclo");
+            var ws_data = [
+                ['Ciclos', '#Matriculados', '#Retirados']
+            ];
+
+            data.forEach(element => {
+                ws_data.push([arrayCiclo, arrayMatriculados, arrayRetirados]);
+            });
+
+            var ws = XLSX.utils.aoa_to_sheet(ws_data);
+            wb.Sheets["ReporteAlumnosCiclo"] = ws;
+            var wbout = XLSX.write(wb, {
+            bookType: 'xlsx',
+            type: 'binary'
+            });
+            saveAs(new Blob([s2ab(wbout)], {
+            type: "application/octet-stream"
+            }), 'ReporteAlumnosCiclo.xlsx');
+        }
     </script>
+   
    
     {{-- <script>
         function generarPDF(){
