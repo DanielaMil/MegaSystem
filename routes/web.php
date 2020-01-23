@@ -67,6 +67,7 @@ Route::post('/pagos/duplicado', 'pagosController@duplicado')->name('duplicado');
 ///*****************************************REPORTE 1*** */
 
 Route::get('/CantidadPorGrupo', 'AplicacionController@CantidadPorGrupo')->name('CantidadPorGrupo');
+Route::post('/CantidadPorGrupoCurso', 'AplicacionController@CantidadPorGrupoXCurso')->name('CantidadPorGrupo');
 
 ///*****************************************REPORTE 2*** */
 
