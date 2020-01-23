@@ -38,6 +38,7 @@ route::post('/guardar_Apoderado','AplicacionController@guardar_Apoderado')->name
 route::post('/verificarAlumno','AplicacionController@verificarAlumno')->name('verificarAlumno');
 route::post('/verificarApoderado','AplicacionController@verificarApoderado')->name('verificarApoderado');
 route::post('/verificarMatricula','AplicacionController@verificarMatricula')->name('verificarMatricula');
+route::post('/verificarRecibo','AplicacionController@verificarRecibo')->name('verificarRecibo');
 
 
 

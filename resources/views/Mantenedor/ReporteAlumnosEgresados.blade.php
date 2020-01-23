@@ -187,7 +187,7 @@
                 CreatedDate: new Date()
             };
 
-            wb.SheetNames.push("Test Sheet");
+            wb.SheetNames.push("ReporteEgresado");
             var ws_data = [
                 ['Ciclos', 'Cursos', 'Egresados']
             ];

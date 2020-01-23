@@ -757,4 +757,27 @@ class AplicacionController extends Controller
 
         return response()->json($datos);
     }
+
+    public function verificarRecibo(request $request)
+    {
+        $txtRecibo = $request->txtRecibo;
+
+        $_numcade01 = strlen($txtRecibo);
+        if ($_numcade01 == 7 )
+        {
+            $datas = [
+                'estado' => true,
+                'cod' => 200
+            ];
+            return response()->json($datas);
+        }else{
+            $datas = [
+                'estado' => false,
+                'cod' => 100
+            ];
+            return response()->json($datas);
+        }
+
+    }
+
 }
