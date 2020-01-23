@@ -1209,6 +1209,27 @@ function filter(__val__){
             
            function tediosa2(){
                aux2=0;
+               if( parseFloat( $('#numbImporte').val()) ==0 ){
+                    aux2 ++;
+                    toastr["error"]("Debe ingresar numeros mayores a 0", "Error")
+                    toastr.options = {
+                        "closeButton": false,   
+                        "debug": true,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
                 if( parseFloat( $('#numbImporte').val()) > saldoDeuda ){
                     aux2 ++;
                     toastr["error"]("No debe ingresar un monto mayor a "+saldoDeuda, "Error")
